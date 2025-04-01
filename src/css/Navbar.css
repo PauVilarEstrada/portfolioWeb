@@ -1,0 +1,138 @@
+/* Estilos generales */
+.nav-container {
+    display: flex;
+    justify-content: center; /* Centra el contenido cuando está cerrado */
+    align-items: center;
+    width: 50px; /* Inicia cerrado */
+    height: 50px;
+    padding: 10px;
+    border-radius: 35px;
+    background-color: #0D0D0D;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    position: fixed; /* 🔹 Lo fija en la pantalla */
+    top: 5px; /* 🔹 Se mantiene en la parte superior */
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+/* Barra de color inferior */
+.nav-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #1DB954;
+}
+
+/* Expandir cuando el mouse está encima */
+.nav-container.expanded {
+    width: 270px;
+    height: 50px;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+/* Links ocultos cuando está cerrado */
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    flex-grow: 1;
+}
+
+.nav-container.expanded .nav-links {
+    opacity: 1;
+}
+
+/* Estilos de los links */
+.nav-links li a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: white;
+}
+
+/* Estilos para el icono de la izquierda */
+.nav-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 40px;
+    opacity: 1;
+    transition: transform 0.3s ease-in-out, left 0.3s ease-in-out;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-container.expanded .nav-logo {
+    left: 10px;
+    transform: translateX(0);
+}
+
+.nav-icon {
+    width: 32px;
+    height: 32px;
+    filter: brightness(1) invert(1);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.nav-icon:hover {
+    transform: scale(1.1);
+}
+
+/* 🔹 Redes sociales (NO FIJAS) */
+.social-container {
+    position: absolute; /* 🔹 Ya NO es fija */
+    top: 30px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+    z-index: 500; /* Debajo del navbar */
+}
+
+/* 🔹 Estilos para los iconos sociales */
+.social-icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s;
+}
+
+/* 🔹 Hover para iconos */
+.social-icon:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+/* 🔹 Ajuste responsive */
+@media (max-width: 768px) {
+    .nav-container {
+        width: 50px;
+    }
+
+    .social-container {
+        top: 10px;
+        right: 10px;
+    }
+
+    .social-icon {
+        width: 50px;
+        height: 50px;
+    }
+}

@@ -1,0 +1,100 @@
+.camerax-container {
+  text-align: center;
+  padding: 60px 20px;
+  background: #0D0D0D;
+  color: #ffffff;
+}
+
+.camerax-container h1 {
+  font-size: 2.8rem;
+  color: #1bc927;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.camerax-container p {
+  font-size: 1.3rem;
+  color: #b3b3b3;
+  max-width: 700px;
+  margin: 0 auto 20px;
+}
+
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.gameplay-image {
+  width: 40%;
+  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 15px rgba(27, 201, 39, 0.3);
+  transition: transform 0.3s ease-in-out;
+}
+
+.gameplay-image:hover {
+  transform: scale(1.05);
+}
+
+.code-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 40px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(27, 201, 39, 0.3);
+}
+
+.code-image {
+  width: 60%;
+  max-width: 700px;
+  border-radius: 8px;
+  box-shadow: 0px 6px 15px rgba(0, 255, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+}
+
+.code-image:hover {
+  transform: scale(1.05);
+}
+
+.camerax-features {
+  list-style: none;
+  padding: 0;
+}
+
+.camerax-features li {
+  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px 18px;
+  margin: 10px 0;
+  border-radius: 8px;
+  color: #1bc927;
+  transition: background 0.3s ease-in-out;
+}
+
+.camerax-features li:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.camerax-back-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #1bc927;
+  text-decoration: none;
+  border: 2px solid #1bc927;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background 0.3s ease-in-out;
+}
+
+.camerax-back-link:hover {
+  background: #1bc927;
+  color: #0d0d0d;
+}

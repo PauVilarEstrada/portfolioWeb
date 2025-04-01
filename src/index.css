@@ -1,0 +1,19 @@
+/* Fondo y tipografía general */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0D0D0D;
+  color: #FFFFFF;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Enlaces */
+a {
+  color: #1DB954;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #1DB954;
+  text-decoration: underline;
+}
