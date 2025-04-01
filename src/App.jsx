@@ -26,6 +26,10 @@ function AppContent() {
 
   return (
     <div className="app-container">
+       <div style={{ color: 'white', backgroundColor: 'red', padding: '2rem' }}>
+      🚨 Esto es una prueba de visibilidad desde producción
+    </div>
+    
       <NavBar />
       {!hideHero && <Hero />}
       <Routes>
