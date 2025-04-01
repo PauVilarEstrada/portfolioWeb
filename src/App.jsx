@@ -1,11 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Hero from "./components/Hero";
 import ProjectsSection from "./components/ProjectsSection";
 import ExperienceSection from "./components/ExperienceSection";
 import ContactSection from "./components/ContactSection";
-import CameraX from "../src/components/myprojects/CameraX"; // ⬅️ ¡Aquí estaba el problema!
+import CameraX from "../src/components/myprojects/CameraX";
 import FlappyBird from "../src/components/myprojects/FlappyBird";
 import Pacman from "../src/components/myprojects/Pacman";
 import TheMovieDB from "../src/components/myprojects/TheMovieDB";
@@ -13,7 +13,7 @@ import TheMovieDB from "../src/components/myprojects/TheMovieDB";
 import "./index.css";
 
 function AppContent() {
-  const location = useLocation(); // Obtiene la ruta actual
+  const location = useLocation();
   const hideHero = [
     "/projects",
     "/projects/camerax",
@@ -23,13 +23,11 @@ function AppContent() {
     "/experience",
     "/contact"
   ].includes(location.pathname);
-   // Oculta Hero en "Experience"
-  
 
   return (
     <div className="app-container">
       <NavBar />
-      {!hideHero && <Hero />} {/* Oculta Hero solo en /experience */}
+      {!hideHero && <Hero />}
       <Routes>
         <Route path="/projects" element={<ProjectsSection />} />
         <Route path="/experience" element={<ExperienceSection />} />
@@ -43,10 +41,4 @@ function AppContent() {
   );
 }
 
-export default function App() {
-  return (
-    <Router>
-      <AppContent />
-    </Router>
-  );
-}
+export default AppContent; // 👈 ya no exportas una función que incluye <Router>

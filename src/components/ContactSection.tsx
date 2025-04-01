@@ -29,9 +29,10 @@ export default function ContactSection() {
           <p>
             📧 <a href="mailto:pvilardev@gmail.com" className="email-link">pvilardev@gmail.com</a>
           </p>
-          <a href="./src/public/CV_PAUVILAR.pdf" download className="download-btn">
-            <FaDownload /> Download My CV
+          <a href={`${import.meta.env.BASE_URL}CV_PAUVILAR.pdf`} download className="download-btn">
+           <FaDownload /> DOWNLOAD MY CV
           </a>
+
         </div>
       </div>
     </section>
