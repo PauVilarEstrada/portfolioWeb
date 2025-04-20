@@ -23,11 +23,11 @@ export default function DigimonDobleApi() {
       <div className="image-gallery">
         <img src={digimon1} alt="Digimon List View" className="gameplay-image" />
         <img src={digimon2} alt="Digimon Detail View" className="gameplay-image" />
-        <img src={digimon3} alt="Digimon Evolution View" className="gameplay-image" />
-        <img src={digimon4} alt="Digimon Evolution View" className="gameplay-image" />
-        <img src={digimon5} alt="Digimon Evolution View" className="gameplay-image" />
-        <img src={digimon6} alt="Digimon Evolution View" className="gameplay-image" />
-        <img src={digimon7} alt="Digimon Evolution View" className="gameplay-image" />
+        <img src={digimon3} alt="Digimon Options Click" className="gameplay-image" />
+        <img src={digimon4} alt="Digimon Portrait" className="gameplay-image" />
+        <img src={digimon5} alt="Digimon Grid" className="gameplay-image" />
+        <img src={digimon6} alt="Digimon Grid Portrait" className="gameplay-image" />
+        <img src={digimon7} alt="Digimon Search" className="gameplay-image" />
       </div>
 
       <h2>📌 Features</h2>
