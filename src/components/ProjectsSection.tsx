@@ -11,6 +11,7 @@ import pacmanLogo from "../components/myprojects/assets/logosApps/pacmanlogo.png
 import flappyLogo from "../components/myprojects/assets/logosApps/flappybirdLogoSection.png"; // este lo usas para Flappy Bird como placeholder
 import cameraXLogo from "../components/myprojects/assets/logosApps/cameralogo.png";
 import movieLogo from "../components/myprojects/assets/logosApps/moviedblogo.png";
+import digimonLogo from "../components/myprojects/assets/logosApps/logodigimon.png";
 
 const projects = [
   {
@@ -26,6 +27,12 @@ const projects = [
     path: "/projects/flappybird",
   },
   {
+    name: "Digimon APP",
+    description: "Doble API'S app android",
+    image: digimonLogo,
+    path: "/projects/digimon",
+  },
+  {
     name: "CameraX",
     description: "Advanced photography app",
     image: cameraXLogo,
@@ -36,7 +43,7 @@ const projects = [
     description: "Movie database app with API integration",
     image: movieLogo,
     path: "/projects/themoviedb",
-  },
+  }
 ];
 
 

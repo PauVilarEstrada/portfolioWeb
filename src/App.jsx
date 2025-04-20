@@ -5,21 +5,23 @@ import Hero from "./components/Hero";
 import ProjectsSection from "./components/ProjectsSection";
 import ExperienceSection from "./components/ExperienceSection";
 import ContactSection from "./components/ContactSection";
-import CameraX from "../src/components/myprojects/CameraX"; // ⬅️ ¡Aquí estaba el problema!
+import CameraX from "../src/components/myprojects/CameraX";
 import FlappyBird from "../src/components/myprojects/FlappyBird";
 import Pacman from "../src/components/myprojects/Pacman";
 import TheMovieDB from "../src/components/myprojects/TheMovieDB";
+import DigimonDobleApi from "../src/components/myprojects/DigimonDobleApi";
 
 import "./index.css";
 
 function AppContent() {
-  const location = useLocation(); // Obtiene la ruta actual
+  const location = useLocation();
   const hideHero = [
     "/projects",
     "/projects/camerax",
     "/projects/flappybird",
     "/projects/pacman",
     "/projects/themoviedb",
+    "/projects/digimon",
     "/experience",
     "/contact"
   ].includes(location.pathname);
@@ -38,9 +40,12 @@ function AppContent() {
         <Route path="/projects/flappybird" element={<FlappyBird />} />
         <Route path="/projects/pacman" element={<Pacman />} />
         <Route path="/projects/themoviedb" element={<TheMovieDB />} />
+        <Route path="/projects/digimon" element={<DigimonDobleApi />} />
       </Routes>
     </div>
   );
 }
 
-export default function App() {}
+export default function App() {
+  return <AppContent />;
+}
