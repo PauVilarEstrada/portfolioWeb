@@ -19,3 +19,31 @@
     margin: 10px 0 0;
     color: #B3B3B3;
   }
+
+  .hero-instruction {
+    font-size: 1.2rem;
+    color: #b3b3b3;
+    margin-top: 20px;
+    max-width: 600px;
+    text-align: center;
+    line-height: 1.6;
+    animation: fadeIn 2s ease forwards;
+    opacity: 0;
+  }
+  
+  .highlight {
+    color: #00ff00;
+    font-weight: bold;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
