@@ -226,7 +226,7 @@ export default function ExperienceSection() {
         <div className="studies">
           <div className="study-item">
             <img src={insPoblenouLogo} alt="INS Poblenou Logo" className="studiesPB-logo" />
-            <h3>Multiplatform Application Development (2022 - 2025)</h3>
+            <h3>Multiplatform Application Development (2023 - 2025)</h3>
             <p>
               I am currently studying <strong>Multiplatform Application Development</strong> at <strong>INS Poblenou</strong>, where I have specialized in full-stack development and application creation for various environments.
             </p>
