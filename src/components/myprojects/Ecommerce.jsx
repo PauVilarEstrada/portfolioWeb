@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../myprojects/css/ecommerce.css";
-import ecommerceHome from "../../assets/ecommerce-home.png";
-import ecommerceShoes from "../../assets/ecommerce-shoes.png";
-import ecommerceCart from "../../assets/ecommerce-cart.png";
-import ecommerceSection from "../../assets/ecommerce-sections.png";
-import ecommerceDashboard from "../../assets/ecommerce-dashboard.png";
+import ecommerceHome from "./assets/ecommerce-home.png";
+import ecommerceShoes from "./assets/ecommerce-shoes.png";
+import ecommerceCart from "./assets/ecommerce-cart.png";
+import ecommerceSection from "./assets/ecommerce-sections.png";
+import ecommerceDashboard from "./assets/ecommerce-dashboard.png";
 
 export default function Ecommerce() {
   return (
