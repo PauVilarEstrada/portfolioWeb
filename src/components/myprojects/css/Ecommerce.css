@@ -1,0 +1,92 @@
+/* 🛒 Contenedor principal */
+.ecommerce-container {
+  text-align: center;
+  padding: 60px 20px;
+  background: #0d0d0d;
+  color: #ffffff;
+}
+
+/* Título principal */
+.ecommerce-container h1 {
+  font-size: 2.8rem;
+  color: #38bdf8; /* sky-400 */
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Párrafos generales */
+.ecommerce-container p {
+  font-size: 1.2rem;
+  color: #b3b3b3;
+  max-width: 750px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+}
+
+/* Galería de imágenes */
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin: 30px 0;
+}
+
+.gallery-image {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0px 6px 15px rgba(56, 189, 248, 0.4); /* sombra azul cielo */
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery-image:hover {
+  transform: scale(1.05);
+}
+
+/* Listas de características */
+.ecommerce-features {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.ecommerce-features li {
+  font-size: 1.1rem;
+  background: rgba(255, 255, 255, 0.07);
+  padding: 12px 18px;
+  border-radius: 8px;
+  color: #38bdf8;
+  box-shadow: 0px 3px 8px rgba(56, 189, 248, 0.3);
+  transition: background 0.3s ease-in-out;
+}
+
+.ecommerce-features li:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Enlace para volver */
+.ecommerce-back-link {
+  display: inline-block;
+  margin-top: 30px;
+  font-size: 1.3rem;
+  color: #38bdf8;
+  text-decoration: none;
+  border: 2px solid #38bdf8;
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.ecommerce-back-link:hover {
+  background: #38bdf8;
+  color: #0d0d0d;
+  transform: scale(1.05);
+}

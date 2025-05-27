@@ -8,12 +8,21 @@ import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
 import "../css/ProjectsSection.css";
 import pacmanLogo from "../components/myprojects/assets/logosApps/pacmanlogo.png";
-import flappyLogo from "../components/myprojects/assets/logosApps/flappybirdLogoSection.png"; // este lo usas para Flappy Bird como placeholder
+import flappyLogo from "../components/myprojects/assets/logosApps/flappybirdLogoSection.png";
 import cameraXLogo from "../components/myprojects/assets/logosApps/cameralogo.png";
 import movieLogo from "../components/myprojects/assets/logosApps/moviedblogo.png";
 import digimonLogo from "../components/myprojects/assets/logosApps/logodigimon.png";
+import ecommerceLogo from "../components/myprojects/assets/logosApps/logo-ecommerce.png";
+
+
 
 const projects = [
+  {
+    name: "Ecommerce",
+    description: "Full-stack shop with auth, cart, admin & orders",
+    image: ecommerceLogo,
+    path: "/projects/ecommerce",
+  },
   {
     name: "Pacman",
     description: "A remake of the legendary Pacman",

@@ -10,6 +10,7 @@ import FlappyBird from "../src/components/myprojects/FlappyBird";
 import Pacman from "../src/components/myprojects/Pacman";
 import TheMovieDB from "../src/components/myprojects/TheMovieDB";
 import DigimonDobleApi from "../src/components/myprojects/DigimonDobleApi";
+import Ecommerce from "../src/components/myprojects/Ecommerce";
 
 import "./index.css";
 
@@ -20,6 +21,7 @@ function AppContent() {
     "/projects/camerax",
     "/projects/flappybird",
     "/projects/pacman",
+      "/projects/ecommerce",
     "/projects/themoviedb",
     "/projects/digimon",
     "/experience",
@@ -41,6 +43,7 @@ function AppContent() {
         <Route path="/projects/pacman" element={<Pacman />} />
         <Route path="/projects/themoviedb" element={<TheMovieDB />} />
         <Route path="/projects/digimon" element={<DigimonDobleApi />} />
+        <Route path="/projects/ecommerce" element={<Ecommerce />} />
       </Routes>
     </div>
   );
