@@ -13,10 +13,18 @@ import cameraXLogo from "../components/myprojects/assets/logosApps/cameralogo.pn
 import movieLogo from "../components/myprojects/assets/logosApps/moviedblogo.png";
 import digimonLogo from "../components/myprojects/assets/logosApps/logodigimon.png";
 import ecommerceLogo from "../components/myprojects/assets/logosApps/logo-ecommerce.png";
+import kddLogo from "../components/myprojects/assets/logosApps/kdd.png";
+
 
 
 
 const projects = [
+  {
+    name: "Intrusion Detection System (KDD’99)",
+    description: "Machine Learning–based IDS with hierarchical classification, dataset engineering and analytical dashboards.",
+    image: kddLogo,
+    path: "/projects/kdd",
+  },
   {
     name: "Ecommerce",
     description: "Full-stack shop with auth, cart, admin & orders",
