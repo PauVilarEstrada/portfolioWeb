@@ -11,6 +11,7 @@ import Pacman from "../src/components/myprojects/Pacman";
 import TheMovieDB from "../src/components/myprojects/TheMovieDB";
 import DigimonDobleApi from "../src/components/myprojects/DigimonDobleApi";
 import Ecommerce from "../src/components/myprojects/Ecommerce";
+import KDD from "../src/components/myprojects/KDD";
 
 import "./index.css";
 
@@ -45,6 +46,7 @@ function AppContent() {
         <Route path="/projects/themoviedb" element={<TheMovieDB />} />
         <Route path="/projects/digimon" element={<DigimonDobleApi />} />
         <Route path="/projects/ecommerce" element={<Ecommerce />} />
+        <Route path="/projects/kdd" element={<KDD />} />
       </Routes>
     </div>
   );

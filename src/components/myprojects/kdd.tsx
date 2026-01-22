@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../myprojects/css/kdd.css";
-import kdd from "../myprojects/assets/kdd.png";
+import kdd from "../myprojects/assets/logosApps/kdd.png";
 
 export default function Clav() {
   return (
