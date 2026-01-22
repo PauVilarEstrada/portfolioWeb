@@ -48,12 +48,57 @@ export default function Clav() {
           as a team member across data preparation, analysis, modeling, and project integration.
         </p>
         <ul className="clav-list">
-          <li>Adrià Garzón</li>
-          <li>Joel Mateos</li>
-          <li>Alex Montes</li>
-          <li>Alejandro Soriano</li>
-          <li>Pau Vilar</li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/adria-garzon/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Adrià Garzón
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="https://www.linkedin.com/in/joel-mateos-ab36501b9/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Joel Mateos
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="https://www.linkedin.com/in/alex-montes-terraz-9857a1288/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Alex Montes
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="https://www.linkedin.com/in/alejandro-soriano-mata-96a8792a8/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Alejandro Soriano
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="https://www.linkedin.com/in/pau-vilar/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Pau Vilar
+            </a>
+          </li>
         </ul>
+
       </div>
 
       <div className="clav-section">
