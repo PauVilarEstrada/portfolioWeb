@@ -274,7 +274,7 @@ export default function Clav() {
           </p>
           <p>
             LinkedIn:{" "}
-            <a href="https://linkedin.com/in/pauvilardev" className="clav-linkedin">
+            <a href="https://www.linkedin.com/in/pau-vilar/" className="clav-linkedin">
               linkedin.com/in/pauvilardev
             </a>
           </p>
