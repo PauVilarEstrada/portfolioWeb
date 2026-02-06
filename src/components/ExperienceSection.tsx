@@ -222,65 +222,83 @@ export default function ExperienceSection() {
  <div className="experience-container">
         <h2>STUDIES</h2>
 
-        {/* 🔹 Multiplatform Application Development */}
-        <div className="studies">
-          <div className="study-item">
-            <img src={insPoblenouLogo} alt="INS Poblenou Logo" className="studiesPB-logo" />
-            <h3>Multiplatform Application Development (2023 - 2025)</h3>
-            <p>
-              I am currently studying <strong>Multiplatform Application Development</strong> at <strong>INS Poblenou</strong>, where I have specialized in full-stack development and application creation for various environments.
-            </p>
-            <p>
-              Throughout these years, I have acquired extensive knowledge in modern technologies and development methodologies, including:
-            </p>
-            <h3>👨🏽‍💻 Technologies learned</h3>
-            <div className="tech-list-container">
-              <ul className="tech-list animated-list">
-                {/* Lenguajes de Programación */}
-                <li><img src={reactLogo} alt="React" /> React</li>
-                <li><img src={flaskLogo} alt="Flask" /> Flask</li>
-                <li><img src={javascriptLogo} alt="JavaScript" /> JavaScript</li>
-                <li><img src={typeScriptLogo} alt="TypeScript" /> TypeScript</li>
-                <li><img src={javaLogo} alt="Java" /> Java</li>
-                <li><img src={pythonLogo} alt="Python" /> Python</li>
-                <li><img src={angularLogo} alt="Angular" /> Angular</li>
-                <li><img src={nodejsLogo} alt="Node.js" /> Node.js</li>
-                <li><img src={kotlinLogo} alt="Kotlin" /> Kotlin</li>
-                
-                {/* Bases de Datos */}
-                <li><img src={sqlLogo} alt="SQL" /> SQL</li>
-                <li><img src={sqliteLogo} alt="SQLite" /> SQLite</li>
-                
-                {/* Frameworks y Librerías */}
-                <li><img src={springbootLogo} alt="Spring Boot" /> Spring Boot</li>
-                <li><img src={hibernateLogo} alt="Hibernate" /> Hibernate</li>
-                <li><img src={djangoLogo} alt="Django" /> Django</li>
-                <li><img src={junitLogo} alt="JUnit" /> JUnit</li>
-                
-                {/* Git y Control de Versiones */}
-                <li><img src={gitLogo} alt="Git" /> Git</li>
-                <li><img src={githubLogo} alt="GitHub" /> GitHub</li>
-                
-                {/* Infraestructura y DevOps */}
-                <li><img src={dockerLogo} alt="Docker" /> Docker</li>
-                <li><img src={virtualboxLogo} alt="VirtualBox" /> VirtualBox</li>
-                <li><img src={bashLogo} alt="Bash" /> Bash</li>
-                
-                {/* Estilos y Frontend */}
-                <li><img src={bootstrapLogo} alt="Bootstrap" /> Bootstrap</li>
-                <li><img src={TailwindLogo} alt="Tailwind" /> Tailwind</li>
-                <li><img src={htmlLogo} alt="HTML" /> HTML</li>
-                <li><img src={xmlLogo} alt="XML" /> XML</li>
-                
-                {/* Diseño y Herramientas */}
-                <li><img src={figmaLogo} alt="Figma" /> Figma</li>
-              </ul>
+                  {/* 🔹 Multiplatform Application Development */}
+          <div className="studies">
+            <div className="study-item">
+              <img
+                src={insPoblenouLogo}
+                alt="INS Poblenou Logo"
+                className="studiesPB-logo"
+              />
+              <h3>Multiplatform Application Development (DAM) · 2023 – 2025</h3>
+
+              <p>
+                I have successfully completed the <strong>Higher National Diploma in
+                Multiplatform Application Development (DAM)</strong> at{" "}
+                <strong>INS Poblenou</strong>, a technical program focused on the design,
+                development, and deployment of software solutions across multiple
+                platforms.
+              </p>
+
+              <p>
+                The program provided a strong foundation in{" "}
+                <strong>software engineering</strong>,{" "}
+                <strong>full-stack development</strong>,{" "}
+                <strong>databases</strong>, and{" "}
+                <strong>application lifecycle management</strong>, with an emphasis on
+                practical, production-oriented projects.
+              </p>
+
+              <h3>👨‍💻 Core Technologies & Tools</h3>
+              <div className="tech-list-container">
+                <ul className="tech-list animated-list">
+                  {/* Programming Languages */}
+                  <li><img src={javaLogo} alt="Java" /> Java</li>
+                  <li><img src={javascriptLogo} alt="JavaScript" /> JavaScript</li>
+                  <li><img src={typeScriptLogo} alt="TypeScript" /> TypeScript</li>
+                  <li><img src={pythonLogo} alt="Python" /> Python</li>
+                  <li><img src={kotlinLogo} alt="Kotlin" /> Kotlin</li>
+
+                  {/* Frontend & Frameworks */}
+                  <li><img src={reactLogo} alt="React" /> React</li>
+                  <li><img src={angularLogo} alt="Angular" /> Angular</li>
+                  <li><img src={flaskLogo} alt="Flask" /> Flask</li>
+                  <li><img src={djangoLogo} alt="Django" /> Django</li>
+                  <li><img src={springbootLogo} alt="Spring Boot" /> Spring Boot</li>
+                  <li><img src={hibernateLogo} alt="Hibernate" /> Hibernate</li>
+
+                  {/* Databases */}
+                  <li><img src={sqlLogo} alt="SQL" /> SQL</li>
+                  <li><img src={sqliteLogo} alt="SQLite" /> SQLite</li>
+
+                  {/* DevOps & Tooling */}
+                  <li><img src={dockerLogo} alt="Docker" /> Docker</li>
+                  <li><img src={virtualboxLogo} alt="VirtualBox" /> VirtualBox</li>
+                  <li><img src={bashLogo} alt="Bash" /> Bash</li>
+                  <li><img src={gitLogo} alt="Git" /> Git</li>
+                  <li><img src={githubLogo} alt="GitHub" /> GitHub</li>
+
+                  {/* Markup & Styling */}
+                  <li><img src={htmlLogo} alt="HTML" /> HTML</li>
+                  <li><img src={xmlLogo} alt="XML" /> XML</li>
+                  <li><img src={bootstrapLogo} alt="Bootstrap" /> Bootstrap</li>
+                  <li><img src={TailwindLogo} alt="Tailwind" /> Tailwind</li>
+
+                  {/* Design */}
+                  <li><img src={figmaLogo} alt="Figma" /> Figma</li>
+                </ul>
+              </div>
+
+              <p>
+                Throughout the program, I worked on real-world projects applying{" "}
+                <strong>clean architecture principles</strong>,{" "}
+                <strong>secure coding practices</strong>, automated testing, and
+                collaborative development workflows, aligning academic training with
+                industry standards.
+              </p>
             </div>
-            <p>
-              Additionally, I have worked on real projects applying best development practices such as <strong>clean architecture</strong> and <strong>code security</strong>, incorporating testing tools and CI/CD pipelines.
-            </p>
           </div>
-        </div>
+
         <div className="small-section-divider"></div>
 
         {/* 🔹 Social Sciences Baccalaureate */}
