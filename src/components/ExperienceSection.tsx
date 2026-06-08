@@ -32,7 +32,7 @@ import waterpoloImg1 from "../public/PauVilar_NegroPerfil.JPG";
 import waterpoloImg2 from "../public/PauVilar_NegroLado.JPG";
 import teamPhoto from "../public/sananFotoEquipo.jpg";
 
-// Logos de centros educativos
+// Education logos
 import insPoblenouLogo from "../assets/poblenoulogo.png";
 import insCarLogo from "../assets/insCARlogo.png";
 
@@ -51,37 +51,96 @@ import carLogo from "../assets/CARlogo.png";
 import carGeneral from "../assets/car_general.png";
 import carPiscinaFora from "../assets/carpiscinafora.jpg";
 
-
 export default function ExperienceSection() {
   return (
     <section className="experience-section">
-      {/* 🔹 Sycai Medical Experience */}
+
+      {/* ── Agentic Systems Training ── */}
+      <div className="experience-container">
+        <h2>AGENTIC SYSTEMS <span className="highlight">· Cambra de Comerç de Barcelona</span></h2>
+        <p className="subtitle">
+          Specialized training in <strong>Agentic AI Systems, automations, and AI-powered business solutions</strong>{" "}
+          at the <strong>Barcelona Chamber of Commerce</strong> — one of the most prestigious and forward-looking institutions
+          driving digital transformation for businesses in Catalonia.
+        </p>
+
+        <div className="experience-content">
+          <h3>🤖 Agentic AI Systems & Business Automation</h3>
+          <p>
+            An intensive program focused on the real-world design and deployment of{" "}
+            <strong>autonomous AI agents and automation workflows</strong> applied to business environments.
+            Organized by the <strong>Cambra de Comerç de Barcelona</strong> — a leading institution that bridges
+            cutting-edge technology with the practical needs of companies — the training covered the full lifecycle
+            of agentic systems, from architecture and orchestration to production integration and business impact.
+          </p>
+
+          <h3>💡 Key Topics Covered</h3>
+          <ul className="achievements">
+            <li>
+              <span className="achievements-text">
+                <strong>Agent architecture design</strong> — planning, reasoning loops, and tool integration (ReAct, CoT, reflection)
+              </span>
+            </li>
+            <li>
+              <span className="achievements-text">
+                <strong>Business automation workflows</strong> — designing end-to-end automated pipelines for real company processes
+              </span>
+            </li>
+            <li>
+              <span className="achievements-text">
+                <strong>Multi-agent orchestration</strong> — supervisor patterns, parallel agents, and handoff protocols
+              </span>
+            </li>
+            <li>
+              <span className="achievements-text">
+                <strong>Memory & state management</strong> — short-term context, long-term vector memory, and retrieval strategies
+              </span>
+            </li>
+            <li>
+              <span className="achievements-text">
+                <strong>Production deployment</strong> — evaluation, observability, and guardrails for autonomous systems in business contexts
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="section-divider"></div>
+
+      {/* ── Sycai Medical ── */}
       <div className="experience-container">
         <img src={sycaiLogo} alt="Sycai Medical Logo" className="company-logo" />
         <h2>EXPERIENCE AT <span className="highlight">SYCAI MEDICAL</span></h2>
         <p className="subtitle">
-          Sycai Medical is a Barcelona-based startup that develops AI-powered tools for radiologists. Its innovative technology helps detect and monitor <strong>precancerous abdominal lesions</strong> at early stages, significantly improving diagnosis and treatment efficiency.
+          Sycai Medical is a Barcelona-based startup that develops AI-powered tools for radiologists. Its innovative technology helps detect and monitor{" "}
+          <strong>precancerous abdominal lesions</strong> at early stages, significantly improving diagnosis and treatment efficiency.
         </p>
 
-        <div className="experience-container">
+        <div className="experience-content">
           <h3>🚀 Junior Full Stack Developer Internship (6 months)</h3>
           <p>
-            As a <strong>Junior Full Stack Developer</strong>, I was responsible for <strong>modernizing</strong> the company’s internal software infrastructure, <strong>redesigning databases</strong>, and <strong>upgrading outdated technologies</strong> into a modern stack.
+            As a <strong>Junior Full Stack Developer</strong>, I was responsible for <strong>modernizing</strong> the company's
+            internal software infrastructure, <strong>redesigning databases</strong>, and <strong>upgrading outdated technologies</strong> into a modern stack.
           </p>
 
           <h3>🔧 AWS Infrastructure & Cloud Optimization</h3>
           <p>
-            I worked on optimizing cloud-based solutions using <strong>AWS</strong>, improving scalability, security, and efficiency. I also <strong>redesigned databases</strong>, implemented <strong>Docker-based containerized solutions</strong>, and contributed to <strong>deployment automation</strong>.
+            I worked on optimizing cloud-based solutions using <strong>AWS</strong>, improving scalability, security, and efficiency.
+            I also <strong>redesigned databases</strong>, implemented <strong>Docker-based containerized solutions</strong>, and contributed to{" "}
+            <strong>deployment automation</strong>.
           </p>
 
           <h3>🏆 About Sycai Medical</h3>
           <p>
-            Founded in <strong>2020 in Barcelona</strong>, Sycai Medical specializes in <strong>medical AI</strong>, helping radiologists analyze <strong>CT scans and MRI images</strong>. Their technology seamlessly integrates with <strong>hospital PACS systems</strong>, utilizing <strong>DICOM standards</strong> for interoperability. Sycai has won <strong>multiple innovation awards</strong>, receiving funding from <strong>European startup accelerators</strong> and <strong>health-tech grants</strong>.
+            Founded in <strong>2020 in Barcelona</strong>, Sycai Medical specializes in <strong>medical AI</strong>, helping radiologists analyze{" "}
+            <strong>CT scans and MRI images</strong>. Their technology seamlessly integrates with <strong>hospital PACS systems</strong>, utilizing{" "}
+            <strong>DICOM standards</strong> for interoperability. Sycai has won <strong>multiple innovation awards</strong>, receiving funding from{" "}
+            <strong>European startup accelerators</strong> and <strong>health-tech grants</strong>.
           </p>
 
           <h3>⚡ Technologies Used</h3>
           <div className="tech-list-container">
-            <ul className="tech-list animated-list">
+            <ul className="tech-list">
               <li><img src={reactLogo} alt="React" /> React</li>
               <li><img src={flaskLogo} alt="Flask" /> Flask</li>
               <li><img src={javascriptLogo} alt="JavaScript" /> JavaScript</li>
@@ -103,259 +162,225 @@ export default function ExperienceSection() {
 
           <h3>💡 Key Achievements</h3>
           <ul className="achievements">
-  <li>
-    <span className="highlight-text">Migrated the company's internal platform</span>
-    <span className="achievements-text">from legacy systems to a modern full-stack architecture.</span>
-  </li>
-  <li>
-    <span className="highlight-text">Redesigned AWS databases</span>
-    <span className="achievements-text">optimizing performance and reducing costs.</span>
-  </li>
-  <li>
-    <span className="highlight-text">Developed Docker-based environments</span>
-    <span className="achievements-text">for scalable cloud deployments.</span>
-  </li>
-  <li>
-    <span className="highlight-text">Enhanced hospital PACS integration</span>
-    <span className="achievements-text">improving efficiency for radiologists.</span>
-  </li>
-</ul>
-
+            <li>
+              <span className="highlight-text">Migrated the company's internal platform</span>
+              <span className="achievements-text"> from legacy systems to a modern full-stack architecture.</span>
+            </li>
+            <li>
+              <span className="highlight-text">Redesigned AWS databases</span>
+              <span className="achievements-text"> optimizing performance and reducing costs.</span>
+            </li>
+            <li>
+              <span className="highlight-text">Developed Docker-based environments</span>
+              <span className="achievements-text"> for scalable cloud deployments.</span>
+            </li>
+            <li>
+              <span className="highlight-text">Enhanced hospital PACS integration</span>
+              <span className="achievements-text"> improving efficiency for radiologists.</span>
+            </li>
+          </ul>
         </div>
       </div>
 
-       {/* 🔹 Separation Space */}
-       <div className="section-divider"></div>
+      <div className="section-divider"></div>
 
+      {/* ── Water Polo ── */}
+      <div className="experience-container">
+        <h2>PROFESSIONAL WATER POLO CAREER</h2>
+        <p className="subtitle">
+          Elite-level goalkeeper competing in <strong>Spain's División de Honor (DHM)</strong> and <strong>top-tier European competitions</strong>.
+        </p>
 
-     {/* 🔹 Water Polo Experience */}
-<div className="experience-container">
-  <h2>PROFESSIONAL WATER POLO CAREER</h2>
-  <p className="subtitle">
-    Elite-level goalkeeper competing in <strong>Spain's División de Honor (DHM)</strong> and <strong>top-tier European competitions</strong>.
-  </p>
-
-  {/* 🔹 Clubs Section */}
-  <div className="clubs">
-    <div className="club">
-      <img src={cnsaLogo} alt="CN Sant Andreu Logo" className="club-logo" />
-      <h3>CN Sant Andreu (2023 - Present)</h3>
-      <p>
-      <strong>Starting Goalkeeper</strong> for <strong>CN Sant Andreu</strong>, one of Spain's top professional water polo clubs. 
-        Competing at the highest national and international levels:
-      </p>
-      <ul className="styled-list">
-        <li><strong>🏆 División de Honor (DHM) 🏆</strong> The premier Spanish professional league. <strong>⭐ LEWATERPOLO ⭐</strong></li>
-        <li><strong>👑 Copa del Rey 👑</strong> Spain’s most prestigious domestic cup tournament.</li>
-        <li><strong>🌍 EuroCup 🌍</strong> The <strong>second-most important</strong> club competition in Europe.</li>
-      </ul>
-    </div>
-    <div className="small-section-divider"></div>
-
-    <div className="club">
-      <img src={cnbLogo} alt="CN Barcelona Logo" className="club-logo" />
-      <h3>CN Barcelona (2019 - 2023)</h3>
-      <p>
-        Former <strong>Goalkeeper</strong> at <strong>CN Barcelona</strong>, the <strong>most decorated</strong> water polo club in Spain, competing in:
-      </p>
-      <ul className="styled-list">
-      <li><strong>🏆 División de Honor (DHM) 🏆</strong> The premier Spanish professional league. <strong>⭐ LEWATERPOLO ⭐</strong></li>
-      <li><strong>👑 Copa del Rey 👑</strong> Spain’s most prestigious domestic cup tournament.</li>
-      <li><strong>🥇 Champions League 🥇</strong> The <strong>top-tier</strong> club competition in European water polo.</li>
-      <li><strong>🌍 EuroCup 🌍</strong> The <strong>second-most important</strong> club competition in Europe.</li>
-      </ul>
-    </div>
-  </div>
-
-  {/* 🔹 Key Achievements */}
-  <h3>💡 Key Achievements</h3>
-  <ul className="achievements">
-  <li>
-    <span className="highlight-text">Represented two elite clubs</span> 
-    <span className="achievements-text">in Spain’s highest division and European competitions.</span>
-  </li>
-  <li>
-    <span className="highlight-text">Competed in the Champions League</span> 
-    <span className="achievements-text">facing the best water polo clubs in Europe and the world.</span>
-  </li>
-  <li>
-    <span className="highlight-text">Gained extensive experience</span> 
-    <span className="achievements-text">in high-pressure matches, improving decision-making and leadership skills.</span>
-  </li>
-  <li>
-    <span className="highlight-text">Developed strong teamwork and discipline</span> 
-    <span className="achievements-text">balancing a demanding sports career with professional growth.</span>
-  </li>
-  <li>
-    <span className="highlight-text">Developed mental resilience and problem-solving abilities</span>
-  </li>
-  <li>
-    <span className="highlight-text">Demonstrated leadership, discipline, and adaptability</span> 
-    <span className="achievements-text">in elite competitions, valuable traits for any professional setting.</span>
-  </li>
-  <li>
-    <span className="highlight-text">Balanced a dual career in sports and academics</span> 
-    <span className="achievements-text">mastering time management and goal-oriented discipline.</span>
-  </li>
-</ul>
-
-
-  {/* 🔹 Image Gallery */}
-  <div className="image-gallery">
-    <img src={waterpoloImg1} alt="Water Polo Action" />
-    <img src={teamPhoto} alt="Team Photo" />
-    <img src={waterpoloImg2} alt="Water Polo Action" />
-  </div>
-
-  {/* 🔹 Competition Logos */}
-  <div className="image-gallery">
-    <img src={lewaterpoloLogo} alt="DHM Logo" className="small-logo"/>
-    <img src={eurocupLogo} alt="EuroCup Logo" />
-    <img src={championsLogo} alt="Champions League Logo" />
-  </div>
-</div>
-
-{/* 🔹 Separation Space */}
-<div className="section-divider"></div>
-
- {/* 🔹 Studies */}
- <div className="experience-container">
-        <h2>STUDIES</h2>
-
-                  {/* 🔹 Multiplatform Application Development */}
-          <div className="studies">
-            <div className="study-item">
-              <img
-                src={insPoblenouLogo}
-                alt="INS Poblenou Logo"
-                className="studiesPB-logo"
-              />
-              <h3>Multiplatform Application Development (DAM) · 2023 – 2025</h3>
-
-              <p>
-                I have successfully completed the <strong>Higher National Diploma in
-                Multiplatform Application Development (DAM)</strong> at{" "}
-                <strong>INS Poblenou</strong>, a technical program focused on the design,
-                development, and deployment of software solutions across multiple
-                platforms.
-              </p>
-
-              <p>
-                The program provided a strong foundation in{" "}
-                <strong>software engineering</strong>,{" "}
-                <strong>full-stack development</strong>,{" "}
-                <strong>databases</strong>, and{" "}
-                <strong>application lifecycle management</strong>, with an emphasis on
-                practical, production-oriented projects.
-              </p>
-
-              <h3>👨‍💻 Core Technologies & Tools</h3>
-              <div className="tech-list-container">
-                <ul className="tech-list animated-list">
-                  {/* Programming Languages */}
-                  <li><img src={javaLogo} alt="Java" /> Java</li>
-                  <li><img src={javascriptLogo} alt="JavaScript" /> JavaScript</li>
-                  <li><img src={typeScriptLogo} alt="TypeScript" /> TypeScript</li>
-                  <li><img src={pythonLogo} alt="Python" /> Python</li>
-                  <li><img src={kotlinLogo} alt="Kotlin" /> Kotlin</li>
-
-                  {/* Frontend & Frameworks */}
-                  <li><img src={reactLogo} alt="React" /> React</li>
-                  <li><img src={angularLogo} alt="Angular" /> Angular</li>
-                  <li><img src={flaskLogo} alt="Flask" /> Flask</li>
-                  <li><img src={djangoLogo} alt="Django" /> Django</li>
-                  <li><img src={springbootLogo} alt="Spring Boot" /> Spring Boot</li>
-                  <li><img src={hibernateLogo} alt="Hibernate" /> Hibernate</li>
-
-                  {/* Databases */}
-                  <li><img src={sqlLogo} alt="SQL" /> SQL</li>
-                  <li><img src={sqliteLogo} alt="SQLite" /> SQLite</li>
-
-                  {/* DevOps & Tooling */}
-                  <li><img src={dockerLogo} alt="Docker" /> Docker</li>
-                  <li><img src={virtualboxLogo} alt="VirtualBox" /> VirtualBox</li>
-                  <li><img src={bashLogo} alt="Bash" /> Bash</li>
-                  <li><img src={gitLogo} alt="Git" /> Git</li>
-                  <li><img src={githubLogo} alt="GitHub" /> GitHub</li>
-
-                  {/* Markup & Styling */}
-                  <li><img src={htmlLogo} alt="HTML" /> HTML</li>
-                  <li><img src={xmlLogo} alt="XML" /> XML</li>
-                  <li><img src={bootstrapLogo} alt="Bootstrap" /> Bootstrap</li>
-                  <li><img src={TailwindLogo} alt="Tailwind" /> Tailwind</li>
-
-                  {/* Design */}
-                  <li><img src={figmaLogo} alt="Figma" /> Figma</li>
-                </ul>
-              </div>
-
-              <p>
-                Throughout the program, I worked on real-world projects applying{" "}
-                <strong>clean architecture principles</strong>,{" "}
-                <strong>secure coding practices</strong>, automated testing, and
-                collaborative development workflows, aligning academic training with
-                industry standards.
-              </p>
-            </div>
+        <div className="clubs">
+          <div className="club">
+            <img src={cnsaLogo} alt="CN Sant Andreu Logo" className="club-logo" />
+            <h3>CN Sant Andreu (2023 – Present)</h3>
+            <p>
+              <strong>Starting Goalkeeper</strong> for <strong>CN Sant Andreu</strong>, one of Spain's top professional water polo clubs.
+              Competing at the highest national and international levels:
+            </p>
+            <ul className="styled-list">
+              <li><strong>División de Honor (DHM)</strong> — The premier Spanish professional league · LEWATERPOLO</li>
+              <li><strong>Copa del Rey</strong> — Spain's most prestigious domestic cup tournament.</li>
+              <li><strong>EuroCup</strong> — The second-most important club competition in Europe.</li>
+            </ul>
           </div>
 
-        <div className="small-section-divider"></div>
+          <div className="small-section-divider"></div>
 
-        {/* 🔹 Social Sciences Baccalaureate */}
-        <div className="studies">
-          <div className="study-item">
-            <img src={insCarLogo} alt="INS CAR Logo" className="studiesCAR-logo" />
-            <h3>Social Sciences Baccalaureate (2019 - 2021)</h3>
+          <div className="club">
+            <img src={cnbLogo} alt="CN Barcelona Logo" className="club-logo" />
+            <h3>CN Barcelona (2019 – 2023)</h3>
             <p>
-              I completed my <strong>Social Sciences Baccalaureate</strong> at the <strong>High-Performance Center (INS CAR)</strong>, an institution exclusively designed for elite athletes at the national level.
+              Former <strong>Goalkeeper</strong> at <strong>CN Barcelona</strong>, the <strong>most decorated</strong> water polo club in Spain, competing in:
             </p>
-            <p>
-              At this center, I had the opportunity to balance <strong>6 hours of daily training</strong> with my academic studies, developing exceptional skills in <strong>time management, discipline, and working under pressure</strong>.
-            </p>
-            <p>
-              INS CAR hosts the top athletes in Spain across various disciplines, including the <strong>Spanish national water polo team</strong>. Thanks to this education, I not only strengthened my knowledge in subjects like economics and applied mathematics but also gained key skills for high-performance environments in any professional setting.
-            </p>
+            <ul className="styled-list">
+              <li><strong>División de Honor (DHM)</strong> — The premier Spanish professional league · LEWATERPOLO</li>
+              <li><strong>Copa del Rey</strong> — Spain's most prestigious domestic cup tournament.</li>
+              <li><strong>Champions League</strong> — The top-tier club competition in European water polo.</li>
+              <li><strong>EuroCup</strong> — The second-most important club competition in Europe.</li>
+            </ul>
           </div>
         </div>
 
-        
-  {/* 🔹 Image Gallery */}
-  <div className="image-gallery">
-    <img src={carGeneral} alt="CAR FLY" />
-    <img src={carLogo} alt="CAR LOGO" />
-    <img src={carPiscinaFora} alt="CAR EXTERIOR POOL" />
-  </div>
+        <h3>💡 Key Achievements</h3>
+        <ul className="achievements">
+          <li>
+            <span className="highlight-text">Represented two elite clubs</span>
+            <span className="achievements-text"> in Spain's highest division and European competitions.</span>
+          </li>
+          <li>
+            <span className="highlight-text">Competed in the Champions League</span>
+            <span className="achievements-text"> facing the best water polo clubs in Europe and the world.</span>
+          </li>
+          <li>
+            <span className="highlight-text">Developed mental resilience and problem-solving abilities</span>
+            <span className="achievements-text"> through high-pressure international competition.</span>
+          </li>
+          <li>
+            <span className="highlight-text">Balanced a dual career in sports and academics</span>
+            <span className="achievements-text"> mastering time management and goal-oriented discipline.</span>
+          </li>
+        </ul>
 
+        <div className="image-gallery">
+          <img src={waterpoloImg1} alt="Pau Vilar Profile" />
+          <img src={teamPhoto} alt="Team Photo CN Sant Andreu" />
+          <img src={waterpoloImg2} alt="Pau Vilar Side Profile" />
+        </div>
 
+        <div className="competition-gallery">
+          <img src={lewaterpoloLogo} alt="LEWATERPOLO DHM Logo" />
+          <img src={eurocupLogo} alt="EuroCup Logo" />
+          <img src={championsLogo} alt="Champions League Logo" />
+        </div>
+      </div>
+
+      <div className="section-divider"></div>
+
+      {/* ── Studies ── */}
+      <div className="experience-container">
+        <h2>STUDIES</h2>
+
+        {/* Master's in AI & Big Data */}
+        <div className="study-item">
+          <h3>🤖 Master's in Artificial Intelligence &amp; Big Data · 2025 – 2026</h3>
+          <p>
+            I have successfully completed the <strong>Master's degree in Artificial Intelligence &amp; Big Data</strong>,
+            a high-intensity program covering the full spectrum of modern AI and data engineering — from supervised and
+            unsupervised learning to LLMs, agentic systems, production data pipelines, and real-world ML deployment.
+          </p>
+          <p>
+            The program culminated in <strong>Ultimus Defensor</strong>, a full end-to-end AI cybersecurity
+            platform combining anomaly detection, MITRE ATT&amp;CK classification, and an LLM-powered BlueTeam assistant.
+          </p>
+          <h3>📚 Key Areas of Study</h3>
+          <ul className="achievements">
+            <li><span className="achievements-text"><strong>AI Models</strong> — neural networks, NLP, computer vision, expert systems, ethics in AI</span></li>
+            <li><span className="achievements-text"><strong>Machine Learning</strong> — supervised, unsupervised, ensemble methods, model evaluation</span></li>
+            <li><span className="achievements-text"><strong>Big Data Systems</strong> — distributed computing, data pipelines, real-time processing</span></li>
+            <li><span className="achievements-text"><strong>Applied Big Data</strong> — production data engineering, analytics, BI dashboards</span></li>
+            <li><span className="achievements-text"><strong>AI Programming</strong> — Python, ML frameworks, API design, deployment</span></li>
+            <li><span className="achievements-text"><strong>Final Project (MP6)</strong> — Ultimus Defensor: full AI platform for cybersecurity BlueTeam operations</span></li>
+          </ul>
+        </div>
 
         <div className="small-section-divider"></div>
 
-        {/* 🔹 Certifications */}
+        {/* DAM */}
+        <div className="study-item">
+          <img src={insPoblenouLogo} alt="INS Poblenou Logo" className="studiesPB-logo" />
+          <h3>Multiplatform Application Development (DAM) · 2023 – 2025</h3>
+          <p>
+            I have successfully completed the <strong>Higher National Diploma in Multiplatform Application Development (DAM)</strong>{" "}
+            at <strong>INS Poblenou</strong>, a technical program focused on the design, development, and deployment of software
+            solutions across multiple platforms.
+          </p>
+          <p>
+            The program provided a strong foundation in <strong>software engineering</strong>, <strong>full-stack development</strong>,{" "}
+            <strong>databases</strong>, and <strong>application lifecycle management</strong>, with an emphasis on practical,
+            production-oriented projects.
+          </p>
+
+          <h3>👨‍💻 Core Technologies & Tools</h3>
+          <div className="tech-list-container">
+            <ul className="tech-list">
+              <li><img src={javaLogo} alt="Java" /> Java</li>
+              <li><img src={javascriptLogo} alt="JavaScript" /> JavaScript</li>
+              <li><img src={typeScriptLogo} alt="TypeScript" /> TypeScript</li>
+              <li><img src={pythonLogo} alt="Python" /> Python</li>
+              <li><img src={kotlinLogo} alt="Kotlin" /> Kotlin</li>
+              <li><img src={reactLogo} alt="React" /> React</li>
+              <li><img src={angularLogo} alt="Angular" /> Angular</li>
+              <li><img src={flaskLogo} alt="Flask" /> Flask</li>
+              <li><img src={djangoLogo} alt="Django" /> Django</li>
+              <li><img src={springbootLogo} alt="Spring Boot" /> Spring Boot</li>
+              <li><img src={hibernateLogo} alt="Hibernate" /> Hibernate</li>
+              <li><img src={sqlLogo} alt="SQL" /> SQL</li>
+              <li><img src={sqliteLogo} alt="SQLite" /> SQLite</li>
+              <li><img src={dockerLogo} alt="Docker" /> Docker</li>
+              <li><img src={virtualboxLogo} alt="VirtualBox" /> VirtualBox</li>
+              <li><img src={bashLogo} alt="Bash" /> Bash</li>
+              <li><img src={gitLogo} alt="Git" /> Git</li>
+              <li><img src={githubLogo} alt="GitHub" /> GitHub</li>
+              <li><img src={htmlLogo} alt="HTML" /> HTML</li>
+              <li><img src={bootstrapLogo} alt="Bootstrap" /> Bootstrap</li>
+              <li><img src={TailwindLogo} alt="Tailwind" /> Tailwind</li>
+              <li><img src={figmaLogo} alt="Figma" /> Figma</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="small-section-divider"></div>
+
+        {/* Baccalaureate */}
+        <div className="study-item">
+          <img src={insCarLogo} alt="INS CAR Logo" className="studiesCAR-logo" />
+          <h3>Social Sciences Baccalaureate · 2019 – 2021</h3>
+          <p>
+            I completed my <strong>Social Sciences Baccalaureate</strong> at the <strong>High-Performance Center (INS CAR)</strong>,
+            an institution exclusively designed for elite athletes at the national level.
+          </p>
+          <p>
+            At this center, I balanced <strong>6 hours of daily training</strong> with academic studies, developing exceptional
+            skills in <strong>time management, discipline, and working under pressure</strong>.
+          </p>
+          <p>
+            INS CAR hosts the top athletes in Spain across various disciplines, including the <strong>Spanish national water polo team</strong>.
+          </p>
+        </div>
+
+        <div className="image-gallery">
+          <img src={carGeneral} alt="CAR Aerial View" />
+          <img src={carLogo} alt="CAR Logo" className="car-logo-img" />
+          <img src={carPiscinaFora} alt="CAR Outdoor Pool" />
+        </div>
+
+        <div className="small-section-divider"></div>
+
+        {/* Certifications */}
         <div className="certifications">
           <h3>CERTIFICATIONS</h3>
           <ul className="styled-list">
-            <li><strong>Google & Banco Santander:</strong> Artificial Intelligence and Productivity (Oct 2024)</li>
+            <li><strong>Cambra de Comerç de Barcelona:</strong> Sistemes Agèntics (2025)</li>
+            <li><strong>Google &amp; Banco Santander:</strong> Artificial Intelligence and Productivity (Oct 2024)</li>
             <li><strong>IBM:</strong> Python (Aug 2024)</li>
           </ul>
         </div>
 
-        {/* 🔹 Separation Space */}
-<div className="small-section-divider"></div>
+        <div className="small-section-divider"></div>
 
-        {/* 🔹 Languages */}
+        {/* Languages */}
         <div className="languages">
           <h3>LANGUAGES</h3>
           <ul className="styled-list">
-            <li><strong>Spanish</strong>Native</li>
-            <li><strong>Catalan</strong>Native</li>
-            <li><strong>English</strong>B1</li>
-
+            <li><strong>Spanish</strong> — Native</li>
+            <li><strong>Catalan</strong> — Native</li>
+            <li><strong>English</strong> — B1</li>
           </ul>
         </div>
       </div>
 
-
     </section>
-
   );
 }

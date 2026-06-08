@@ -1,7 +1,7 @@
-/* ────── SECCIÓN GENERAL ────── */
+/* ── General ── */
 .experience-section {
-  background-color: #0D0D0D;
-  color: #FFFFFF;
+  background-color: var(--bg);
+  color: var(--text);
   padding: 80px 20px;
   text-align: center;
 }
@@ -11,86 +11,89 @@
   margin: 0 auto;
 }
 
-.company-logo {
-  width: 350px;
-  height: auto;
-  margin-bottom: 20px;
-}
-
 h2 {
-  font-size: 2.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
   margin-bottom: 10px;
+  color: var(--text);
 }
 
 .highlight {
-  color: #1DB954;
+  color: var(--accent);
 }
 
-/* ────── Resaltado en logros ────── */
+/* ── Achievement highlights ── */
 .highlight-text {
-  color: #1bc927;
-  font-weight: bold;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 2px 6px;
-  border-radius: 15px;
+  color: var(--accent);
+  font-weight: 600;
+  background: rgba(29, 185, 84, 0.08);
+  padding: 2px 8px;
+  border-radius: 6px;
   display: inline;
   white-space: nowrap;
-  transition: background 0.3s ease-in-out, color 0.3s;
+  border: 1px solid rgba(29, 185, 84, 0.15);
+  transition: background 0.25s ease;
 }
 
 .highlight-text:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: #00ff1e;
+  background: rgba(29, 185, 84, 0.16);
 }
 
-/* ────── Lista de logros ────── */
+/* ── Achievement list ── */
 .achievements {
   list-style: none;
   padding: 0;
-  margin: 20px 0;
+  margin: 24px 0;
 }
 
 .achievements li {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.1rem;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 10px 15px;
+  align-items: flex-start;
+  gap: 12px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 12px 16px;
   margin: 8px 0;
-  border-radius: 8px;
-  color: #FFFFFF;
-  transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-  line-height: 1.5;
-  flex-wrap: wrap;
+  border-radius: var(--radius);
+  color: var(--text);
+  transition: transform 0.2s ease, background 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  line-height: 1.55;
+  text-align: left;
 }
 
 .achievements li:hover {
-  transform: scale(1.02);
-  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(4px);
+  background: var(--bg-card-hover);
+  border-color: rgba(29, 185, 84, 0.2);
 }
 
 .achievements li::before {
-  content: "✅";
-  font-size: 1.2rem;
-  display: inline-block;
-  margin-right: 10px;
+  content: "✓";
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 .achievements-text {
   flex: 1;
-  text-align: left;
-  font-size: 16px;
-  min-width: 50px;
+  font-size: 0.95rem;
   word-break: break-word;
 }
 
-/* ────── Subtítulos y contenido ────── */
+/* ── Subtitles ── */
 .subtitle {
-  font-size: 1.2rem;
-  color: #B3B3B3;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-secondary);
   margin-bottom: 40px;
+  line-height: 1.6;
 }
 
 .experience-content {
@@ -98,18 +101,22 @@ h2 {
 }
 
 h3 {
-  font-size: 1.8rem;
-  margin-top: 30px;
-  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 32px;
+  letter-spacing: -0.01em;
+  color: var(--text);
 }
 
 p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #B3B3B3;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
 }
 
-/* ────── Lista de tecnologías ────── */
+/* ── Tech list ── */
 .tech-list-container {
   display: flex;
   justify-content: center;
@@ -124,33 +131,39 @@ p {
   gap: 10px;
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .tech-list li {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 8px 12px;
-  border-radius: 5px;
-  color: #FFFFFF;
-  font-size: 1rem;
-  transition: transform 0.3s ease-in-out;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: transform 0.2s ease, border-color 0.25s ease, background 0.25s ease;
 }
 
 .tech-list li:hover {
-  transform: scale(1.1);
+  transform: translateY(-2px);
+  background: var(--bg-card-hover);
+  border-color: rgba(29, 185, 84, 0.25);
 }
 
 .tech-list img {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
 }
 
-/* ────── Sección Waterpolo ────── */
+/* ── Waterpolo section ── */
 .competition-logo {
-  width: 230px;
+  width: 200px;
   margin-bottom: 20px;
 }
 
@@ -166,75 +179,69 @@ p {
   text-align: center;
 }
 
-.club-logo {
-  width: 150px;
-  height: auto;
-  margin-bottom: 10px;
-}
 
-/* ────── Galería de imágenes (Waterpolo) ────── */
-/* Todas las imágenes tendrán el mismo tamaño y se organizarán en filas.
-   Puedes modificar los valores width y height según tus preferencias.
-*/
+/* ── Image gallery ── */
 .image-gallery {
   display: flex;
-  flex-wrap: wrap;      /* Permite que las imágenes se dispongan en filas */
-  justify-content: center; /* Centra las imágenes en cada fila */
-  gap: 10px;            /* Espacio entre imágenes */
-  margin-top: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 .image-gallery img {
-  width: 280px;
-  height: 200px;
-  aspect-ratio: 4 / 3; /* Asegura proporción estable */
+  width: 260px;
+  height: 185px;
   object-fit: cover;
-  border-radius: 20px;
-  transition: transform 0.3s ease-in-out, opacity 0.3s;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
-
 
 .image-gallery img:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
+  transform: scale(1.04);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
 }
 
-/* Si usas la clase small-logo para logos, aplica estos estilos */
 .image-gallery img.small-logo {
-  width: 300px;
-  height: 240px;
+  width: 280px;
+  height: 220px;
   border-radius: 0;
+  border: none;
   object-fit: contain;
+  box-shadow: none;
 }
 
-/* ────── Otros ajustes ────── */
-.experience-section h1 {
-  display: none;
-}
-
+/* ── Dividers ── */
 .section-divider {
   margin: 100px auto;
-  width: 90%;
-  height: 4px;
-  background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.5), rgba(255,255,255,0));
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent);
   border-radius: 2px;
 }
 
 .small-section-divider {
   margin: 50px auto;
   width: 100%;
-  height: 3px;
-  background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.3), rgba(255,255,255,0));
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent);
   border-radius: 10px;
 }
 
-/* Nota: Se ajustó .small-logo para evitar tamaños exageradamente pequeños */
-.small-logo {
-  width: 10px;
+/* ── Other ── */
+.experience-section h1 {
+  display: none;
 }
 
-/* ────── Estilos para listas dentro de cada club ────── */
+.small-logo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* ── Styled list (waterpolo warnings) ── */
 .styled-list {
   list-style: none;
   padding: 0;
@@ -243,39 +250,115 @@ p {
 
 .styled-list li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
-  font-size: 1.1rem;
-  background: rgba(255,255,255,0.08);
-  padding: 10px 15px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 12px 16px;
   margin: 8px 0;
-  border-radius: 8px;
-  color: #FFFFFF;
-  transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+  border-radius: var(--radius);
+  color: var(--text);
+  transition: transform 0.2s ease, background 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  text-align: left;
 }
 
 .styled-list li:hover {
-  transform: scale(1.02);
-  background: rgba(255,255,255,0.15);
+  transform: translateX(4px);
+  background: var(--bg-card-hover);
 }
 
 .styled-list li::before {
   content: "⚠️";
-  font-size: 1.2rem;
-  display: inline-block;
-  margin-right: 8px;
+  font-size: 1rem;
+  flex-shrink: 0;
 }
 
-/* ────── Otras secciones (estudios, logos de instituciones, etc.) ────── */
+/* ── Experience/study badges ── */
+.exp-badge,
+.study-badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(29, 185, 84, 0.08);
+  border: 1px solid rgba(29, 185, 84, 0.2);
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-bottom: 12px;
+}
+
+.study-item {
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+/* ── Education logos ── */
 .studiesPB-logo {
-  width: 150px;
+  width: 120px;
   height: auto;
-  margin-bottom: 10px;
+  margin: 0 auto 16px;
+  display: block;
 }
 
 .studiesCAR-logo {
-  width: 320px;
+  width: 220px;
   height: auto;
-  margin-bottom: 10px;
+  margin: 0 auto 16px;
+  display: block;
+}
+
+/* ── CAR logo special (white bg) ── */
+.car-logo-img {
+  object-fit: contain !important;
+  background: white;
+  padding: 16px !important;
+  border-radius: 12px !important;
+}
+
+/* ── Competition logos gallery ── */
+.competition-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin-top: 28px;
+  padding: 24px 0;
+}
+
+.competition-gallery img {
+  height: 90px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  opacity: 0.9;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.competition-gallery img:hover {
+  opacity: 1;
+  transform: scale(1.06);
+}
+
+/* ── Club logos centered ── */
+.club-logo {
+  width: 120px;
+  height: auto;
+  margin: 0 auto 12px;
+  display: block;
+}
+
+/* ── Company logo centered ── */
+.company-logo {
+  width: 280px;
+  height: auto;
+  margin: 0 auto 24px;
+  display: block;
+  opacity: 0.9;
 }
