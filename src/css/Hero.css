@@ -1,49 +1,146 @@
 .hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-    background-color: #0D0D0D;
-  }
-  
-  .hero h1 {
-    font-size: 3em;
-    margin: 0;
-    color: #FFFFFF;
-  }
-  
-  .hero h2 {
-    font-size: 1.5em;
-    margin: 10px 0 0;
-    color: #B3B3B3;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background-color: var(--bg);
+  position: relative;
+  overflow: hidden;
+  padding: 0 2rem;
+}
 
-  .hero-instruction {
-    font-size: 1.2rem;
-    color: #b3b3b3;
-    margin-top: 20px;
-    max-width: 600px;
-    text-align: center;
-    line-height: 1.6;
-    animation: fadeIn 2s ease forwards;
-    opacity: 0;
-  }
-  
-  .highlight {
-    color: #00ff00;
-    font-weight: bold;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
+/* Radial green glow behind title */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(29, 185, 84, 0.07) 0%, transparent 65%);
+  pointer-events: none;
+  animation: pulseGlow 7s ease-in-out infinite;
+}
+
+/* Subtle noise grid */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 0%, transparent 100%);
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 5.5rem);
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  background: linear-gradient(135deg, #ffffff 0%, #c8c8c8 45%, #ffffff 70%, #a0a0a0 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 6s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+.hero h2 {
+  font-family: var(--font-body);
+  font-size: clamp(0.7rem, 1.4vw, 0.95rem);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 22px 0 0;
+  opacity: 0.95;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-instruction {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 48px;
+  max-width: 400px;
+  text-align: center;
+  line-height: 1.75;
+  animation: fadeInUp 2.5s ease forwards;
+  opacity: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.highlight {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ── Scroll indicator ── */
+.hero-scroll {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  animation: fadeInUp 3s 1s ease forwards;
+  z-index: 1;
+}
+
+.hero-scroll span {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+}
+
+.scroll-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: scrollBounce 1.8s ease-in-out infinite;
+}
+
+/* ── Keyframes ── */
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -55%) scale(1); }
+  50%       { opacity: 1;   transform: translate(-50%, -55%) scale(1.12); }
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50%       { transform: translateY(6px); opacity: 0.4; }
+}
+
+@media (max-width: 768px) {
+  .hero h1 { letter-spacing: -0.02em; }
+  .hero h2 { letter-spacing: 0.14em; }
+}

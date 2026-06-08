@@ -17,11 +17,11 @@ export default function ContactSection() {
         </p>
 
         <p>
-          I have <strong>graduated in Multiplatform Application Development (DAM)</strong> and I am
-          currently pursuing a <strong>Master’s degree in Artificial Intelligence & Big Data</strong>.
-          My current focus is on the <strong>development and implementation of AI-driven solutions</strong>{" "}
-          and <strong>data analysis</strong>, with particular interest in Machine Learning,
-          applied analytics, and real-world data pipelines.
+          I have <strong>graduated in Multiplatform Application Development (DAM)</strong> and completed a{" "}
+          <strong>Master’s degree in Artificial Intelligence &amp; Big Data</strong>.
+          My focus is on the <strong>development and implementation of AI-driven solutions</strong>,{" "}
+          <strong>agentic systems</strong>, and <strong>data analysis</strong> — with particular interest in
+          Machine Learning, applied AI, and real-world data pipelines.
         </p>
 
         <p>
@@ -55,7 +55,7 @@ export default function ContactSection() {
           </p>
 
           <a
-            href={`${import.meta.env.BASE_URL}VILAR_ESTRADA_PAU.pdf`}
+            href={`${import.meta.env.BASE_URL}VILAR_PAU.pdf`}
             download
             className="download-btn"
           >

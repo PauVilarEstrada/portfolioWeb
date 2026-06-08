@@ -14,11 +14,18 @@ import movieLogo from "../components/myprojects/assets/logosApps/moviedblogo.png
 import digimonLogo from "../components/myprojects/assets/logosApps/logodigimon.png";
 import ecommerceLogo from "../components/myprojects/assets/logosApps/logo-ecommerce.png";
 import kddLogo from "../components/myprojects/assets/logosApps/kdd.png";
+import udLogo from "../components/myprojects/assets/logosApps/ultimusdefensorlogo.png";
 
 
 
 
 const projects = [
+  {
+    name: "Ultimus Defensor — BlueSentinel",
+    description: "AI-powered BlueTeam platform with MITRE ATT&CK detection, Isolation Forest + XGBoost pipeline, and LLM cybersecurity assistant.",
+    image: udLogo,
+    path: "/projects/ultimusdefensor",
+  },
   {
     name: "Intrusion Detection System (KDD’99)",
     description: "Machine Learning–based IDS with hierarchical classification, dataset engineering and analytical dashboards.",

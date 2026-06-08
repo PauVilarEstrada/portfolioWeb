@@ -1,45 +1,31 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import Hero from "./components/Hero";
+import HomePage from "./components/HomePage";
 import ProjectsSection from "./components/ProjectsSection";
 import ExperienceSection from "./components/ExperienceSection";
 import ContactSection from "./components/ContactSection";
-import CameraX from "../src/components/myprojects/CameraX";
-import FlappyBird from "../src/components/myprojects/FlappyBird";
-import Pacman from "../src/components/myprojects/Pacman";
-import TheMovieDB from "../src/components/myprojects/TheMovieDB";
-import DigimonDobleApi from "../src/components/myprojects/DigimonDobleApi";
-import Ecommerce from "../src/components/myprojects/Ecommerce";
-import KDD from "../src/components/myprojects/KDD";
+import CameraX from "./components/myprojects/CameraX";
+import FlappyBird from "./components/myprojects/FlappyBird";
+import Pacman from "./components/myprojects/Pacman";
+import TheMovieDB from "./components/myprojects/TheMovieDB";
+import DigimonDobleApi from "./components/myprojects/DigimonDobleApi";
+import Ecommerce from "./components/myprojects/Ecommerce";
+import KDD from "./components/myprojects/KDD";
+import UltimusDefensor from "./components/myprojects/UltimusDefensor";
 
 import "./index.css";
 
 function AppContent() {
-  const location = useLocation();
-  const hideHero = [
-    "/projects",
-    "/projects/camerax",
-    "/projects/flappybird",
-    "/projects/pacman",
-    "/projects/ecommerce",
-    "/projects/kdd",
-    "/projects/themoviedb",
-    "/projects/digimon",
-    "/experience",
-    "/contact"
-  ].includes(location.pathname);
-   // Oculta Hero en "Experience"
-  
-
   return (
     <div className="app-container">
       <NavBar />
-      {!hideHero && <Hero />} {/* Oculta Hero solo en /experience */}
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route path="/projects" element={<ProjectsSection />} />
         <Route path="/experience" element={<ExperienceSection />} />
         <Route path="/contact" element={<ContactSection />} />
+        <Route path="/projects/ultimusdefensor" element={<UltimusDefensor />} />
         <Route path="/projects/camerax" element={<CameraX />} />
         <Route path="/projects/flappybird" element={<FlappyBird />} />
         <Route path="/projects/pacman" element={<Pacman />} />
