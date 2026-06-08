@@ -10,18 +10,69 @@
   overflow: hidden;
 }
 
-/* Subtle background glow */
+/* Aurora glow — same treatment as home hero */
 .projects-section::before {
   content: '';
   position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 400px;
-  background: radial-gradient(ellipse, rgba(29, 185, 84, 0.05) 0%, transparent 70%);
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 25% 40%, rgba(29, 185, 84, 0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 45% at 78% 65%, rgba(56, 189, 248, 0.05) 0%, transparent 60%);
   pointer-events: none;
+  animation: psAurora 12s ease-in-out infinite alternate;
 }
+
+/* Dot grid */
+.projects-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 85% 80% at 50% 50%, black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 80% at 50% 50%, black 0%, transparent 100%);
+  animation: psDotPulse 6s ease-in-out infinite;
+}
+
+@keyframes psAurora {
+  0%   { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+@keyframes psDotPulse {
+  0%, 100% { opacity: 0.35; }
+  50%       { opacity: 0.65; }
+}
+
+/* Floating code symbols in Projects section */
+.ps-float-code {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ps-float-code span {
+  position: absolute;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(29, 185, 84, 0.06);
+  user-select: none;
+  white-space: nowrap;
+  animation: hfcFloat linear infinite;
+}
+
+.ps-float-code span:nth-child(1)  { left: 5%;  top: 12%; animation-duration: 19s; animation-delay: -2s; }
+.ps-float-code span:nth-child(2)  { left: 88%; top: 20%; animation-duration: 22s; animation-delay: -7s; }
+.ps-float-code span:nth-child(3)  { left: 15%; top: 78%; animation-duration: 18s; animation-delay: -12s; }
+.ps-float-code span:nth-child(4)  { left: 80%; top: 70%; animation-duration: 24s; animation-delay: -4s; }
+.ps-float-code span:nth-child(5)  { left: 50%; top: 5%;  animation-duration: 20s; animation-delay: -9s; }
+.ps-float-code span:nth-child(6)  { left: 92%; top: 45%; animation-duration: 17s; animation-delay: -14s; }
+.ps-float-code span:nth-child(7)  { left: 3%;  top: 45%; animation-duration: 23s; animation-delay: -1s; }
+.ps-float-code span:nth-child(8)  { left: 60%; top: 88%; animation-duration: 21s; animation-delay: -16s; }
 
 .projects-section h2 {
   font-family: var(--font-display);

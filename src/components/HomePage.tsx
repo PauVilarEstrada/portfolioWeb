@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../css/HomePage.css";
+
+const FLOAT_SYMBOLS = [
+  "const", "async", "import", "function", "return",
+  "class", "await", "export", "interface", "{ }",
+  "<AI/>", "01010", "while", "=>", "null", "type",
+];
 import { FaDownload, FaEnvelope } from "react-icons/fa";
 
 // Project logos
@@ -97,9 +103,9 @@ const techStack = [
 const timelineItems = [
   {
     date: "2026",
-    role: "Agentic Systems Training",
+    role: "AI Trainer — Agentic Systems",
     org: "Cambra de Comerç de Barcelona",
-    desc: "Specialized formation in AI agent orchestration, business automation workflows, and multi-agent systems deployment.",
+    desc: "Designed and delivered training programs in agentic AI, automation workflows, and multi-agent orchestration for business professionals.",
     active: true,
   },
   {
@@ -132,9 +138,22 @@ const timelineItems = [
   },
 ];
 
+const TERMINAL_LINES = [
+  { cmd: "$ ./welcome.sh", out: "👋  Welcome to Pau's portfolio!" },
+  { cmd: "$ git push origin --all --force-with-lease", out: "✓  All projects uploaded to GitHub" },
+  { cmd: "$ cat contact.txt", out: "📧  pvilardev@gmail.com — I reply fast!" },
+  { cmd: "$ open linkedin.com/in/pau-vilar", out: "🔗  Latest updates on my LinkedIn ↗" },
+  { cmd: "$ whoami", out: "AI Engineer · Full Stack · Water Polo GK 🤽" },
+  { cmd: "$ grep -r 'hire' ./candidates/", out: "✓  Match found → pau_vilar.json 🎯" },
+];
+
 export default function HomePage() {
   const [roleIdx, setRoleIdx] = useState(0);
   const [fadeState, setFadeState] = useState<"in" | "out">("in");
+  const [termIdx, setTermIdx] = useState(0);
+  const [termText, setTermText] = useState("");
+  const [termOut, setTermOut] = useState("");
+  const [termPhase, setTermPhase] = useState<"typing" | "output" | "pause">("typing");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -147,10 +166,42 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, []);
 
+  // Terminal typing effect
+  useEffect(() => {
+    const current = TERMINAL_LINES[termIdx];
+    if (termPhase === "typing") {
+      if (termText.length < current.cmd.length) {
+        const t = setTimeout(() => setTermText(current.cmd.slice(0, termText.length + 1)), 38);
+        return () => clearTimeout(t);
+      } else {
+        const t = setTimeout(() => { setTermOut(current.out); setTermPhase("output"); }, 500);
+        return () => clearTimeout(t);
+      }
+    } else if (termPhase === "output") {
+      const t = setTimeout(() => setTermPhase("pause"), 2200);
+      return () => clearTimeout(t);
+    } else {
+      const t = setTimeout(() => {
+        setTermText(""); setTermOut("");
+        setTermIdx((i) => (i + 1) % TERMINAL_LINES.length);
+        setTermPhase("typing");
+      }, 400);
+      return () => clearTimeout(t);
+    }
+  }, [termText, termPhase, termIdx]);
+
   return (
     <>
       {/* ── HERO ── */}
       <section className="home-hero">
+
+        {/* Floating code symbols — decorative background */}
+        <div className="hero-float-code" aria-hidden="true">
+          {FLOAT_SYMBOLS.map((sym, i) => (
+            <span key={i} className={`hfc hfc-${i}`}>{sym}</span>
+          ))}
+        </div>
+
         <div className="hero-content">
           <h1 className="hero-name" data-text="Pau Vilar I Estrada">Pau Vilar I Estrada</h1>
 
@@ -178,6 +229,22 @@ export default function HomePage() {
           <div className="hero-ctas">
             <Link to="/projects" className="btn-primary">View my work</Link>
             <Link to="/contact" className="btn-secondary">Get in touch</Link>
+          </div>
+        </div>
+
+        {/* Terminal AI widget — visible on wide screens only */}
+        <div className="hero-terminal" aria-hidden="true">
+          <div className="hero-terminal-bar">
+            <div className="hero-terminal-dot" />
+            <div className="hero-terminal-dot" />
+            <div className="hero-terminal-dot" />
+            <span className="hero-terminal-title">ai-console</span>
+          </div>
+          <div className="hero-terminal-body">
+            <div className="hero-terminal-cmd">
+              {termText}<span className="hero-terminal-cursor" />
+            </div>
+            {termOut && <div className="hero-terminal-output">{termOut}</div>}
           </div>
         </div>
 

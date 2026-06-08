@@ -55,26 +55,25 @@ export default function ExperienceSection() {
   return (
     <section className="experience-section">
 
-      {/* ── Agentic Systems Training ── */}
+      {/* ── Agentic Systems Trainer ── */}
       <div className="experience-container">
-        <h2>AGENTIC SYSTEMS <span className="highlight">· Cambra de Comerç de Barcelona</span></h2>
+        <h2>AI TRAINER <span className="highlight">· Cambra de Comerç de Barcelona</span></h2>
         <p className="subtitle">
-          Specialized training in <strong>Agentic AI Systems, automations, and AI-powered business solutions</strong>{" "}
-          at the <strong>Barcelona Chamber of Commerce</strong> — one of the most prestigious and forward-looking institutions
-          driving digital transformation for businesses in Catalonia.
+          <strong>AI Trainer &amp; Educator</strong> at the <strong>Barcelona Chamber of Commerce</strong> — designed
+          and delivered specialized training programs in <strong>Agentic AI Systems, automation workflows, and
+          AI-powered business solutions</strong> for professionals and companies in Catalonia.
         </p>
 
         <div className="experience-content">
-          <h3>🤖 Agentic AI Systems & Business Automation</h3>
+          <h3>🎓 Training Programs Delivered</h3>
           <p>
-            An intensive program focused on the real-world design and deployment of{" "}
-            <strong>autonomous AI agents and automation workflows</strong> applied to business environments.
-            Organized by the <strong>Cambra de Comerç de Barcelona</strong> — a leading institution that bridges
-            cutting-edge technology with the practical needs of companies — the training covered the full lifecycle
-            of agentic systems, from architecture and orchestration to production integration and business impact.
+            As an <strong>AI Instructor</strong> at the Cambra de Comerç de Barcelona — one of the most prestigious
+            institutions driving digital transformation for businesses in Catalonia — I designed and delivered
+            hands-on training covering the full lifecycle of agentic systems: from architecture and orchestration
+            to real-world production deployment and business impact.
           </p>
 
-          <h3>💡 Key Topics Covered</h3>
+          <h3>💡 Topics Taught</h3>
           <ul className="achievements">
             <li>
               <span className="achievements-text">
@@ -93,7 +92,7 @@ export default function ExperienceSection() {
             </li>
             <li>
               <span className="achievements-text">
-                <strong>Memory & state management</strong> — short-term context, long-term vector memory, and retrieval strategies
+                <strong>Memory &amp; state management</strong> — short-term context, long-term vector memory, and retrieval strategies
               </span>
             </li>
             <li>
@@ -350,7 +349,7 @@ export default function ExperienceSection() {
           </p>
         </div>
 
-        <div className="image-gallery">
+        <div className="image-gallery landscape">
           <img src={carGeneral} alt="CAR Aerial View" />
           <img src={carLogo} alt="CAR Logo" className="car-logo-img" />
           <img src={carPiscinaFora} alt="CAR Outdoor Pool" />
@@ -362,7 +361,6 @@ export default function ExperienceSection() {
         <div className="certifications">
           <h3>CERTIFICATIONS</h3>
           <ul className="styled-list">
-            <li><strong>Cambra de Comerç de Barcelona:</strong> Sistemes Agèntics (2025)</li>
             <li><strong>Google &amp; Banco Santander:</strong> Artificial Intelligence and Productivity (Oct 2024)</li>
             <li><strong>IBM:</strong> Python (Aug 2024)</li>
           </ul>

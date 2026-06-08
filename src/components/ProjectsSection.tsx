@@ -71,9 +71,14 @@ const projects = [
 ];
 
 
+const PS_SYMBOLS = ["const", "async", "import", "class", "await", "<AI/>", "01010", "=>"];
+
 export default function ProjectsSection() {
   return (
     <section className="projects-section">
+      <div className="ps-float-code" aria-hidden="true">
+        {PS_SYMBOLS.map((sym, i) => <span key={i}>{sym}</span>)}
+      </div>
       <h2>My Projects</h2>
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}

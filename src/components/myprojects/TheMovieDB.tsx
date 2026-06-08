@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../myprojects/css/themoviedb.css";
+import "./css/project-page.css";
+import movieLogo from "./assets/logosApps/moviedblogo.png";
 import tmdbLayout from "./assets/TMDBLayout.png";
 import tmdbDetails from "./assets/TMDBDetails.png";
 import tmdbFilms from "./assets/TMDBFilms.png";
@@ -11,68 +12,99 @@ import tmdbXML3 from "./assets/TMDBXML3.png";
 
 export default function TheMovieDB() {
   return (
-    <section className="themoviedb-container">
-      <h1>The Movie DB App</h1>
-      <p>
-        The Movie DB is a feature-rich Android application that consumes TheMovieDB API
-        to present users with popular, top-rated, and upcoming movies. The app allows users
-        to explore details of films, manage favorites, and enjoy an intuitive layout optimized
-        for mobile experience.
-      </p>
+    <div className="pp-page" style={{ "--pp-color": "#fb923c", "--pp-glow": "rgba(251, 146, 60, 0.2)" } as React.CSSProperties}>
 
-      <div className="image-gallery">
-        <img src={tmdbLayout} alt="TMDB App Layout" />
-        <img src={tmdbDetails} alt="TMDB Movie Details" />
-        <img src={tmdbFilms} alt="TMDB Movie List" />
+      <header className="pp-hero">
+        <img src={movieLogo} alt="The Movie DB" className="pp-hero-logo" />
+        <div className="pp-hero-content">
+          <span className="pp-hero-label">Android Application · Java / MVVM</span>
+          <h1 className="pp-title">The Movie DB App</h1>
+          <p className="pp-subtitle">
+            A feature-rich Android application consuming <strong>TheMovieDB API</strong> to present popular,
+            top-rated, and upcoming movies — with favorites, offline cache, real-time search, and an
+            adaptive layout for phones and tablets.
+          </p>
+          <div className="pp-tags">
+            <span className="pp-tag">Android</span>
+            <span className="pp-tag">Java</span>
+            <span className="pp-tag">MVVM</span>
+            <span className="pp-tag">Retrofit</span>
+            <span className="pp-tag">Room DB</span>
+            <span className="pp-tag">LiveData</span>
+          </div>
+        </div>
+      </header>
+
+      <div className="pp-body">
+
+        <div className="pp-section">
+          <h2 className="pp-section-title">Screenshots</h2>
+          <div className="pp-gallery c3">
+            <img src={tmdbLayout} alt="App Layout" />
+            <img src={tmdbDetails} alt="Movie Details" />
+            <img src={tmdbFilms} alt="Movie List" />
+          </div>
+        </div>
+
+        <div className="pp-section">
+          <h2 className="pp-section-title">Features</h2>
+          <ul className="pp-features">
+            <li><strong>Browse popular, top-rated, and upcoming movies</strong> from TMDB API.</li>
+            <li><strong>Real-time search</strong> with instant filtering across the catalogue.</li>
+            <li><strong>Save favorites locally</strong> via Room DB — persisted across sessions.</li>
+            <li><strong>Adaptive layout</strong> for phones and tablets (dual-pane on large screens).</li>
+            <li><strong>Offline cache</strong> of last-seen movie list for no-connection access.</li>
+          </ul>
+        </div>
+
+        <div className="pp-section">
+          <h2 className="pp-section-title">Architecture — MVVM</h2>
+          <p className="pp-text">
+            Built with clean <strong>MVVM architecture</strong> for clear separation of concerns and
+            testability. Retrofit handles all API communication and JSON deserialization, Room DB provides
+            local persistence, and LiveData drives reactive UI updates without lifecycle leaks.
+          </p>
+          <ul className="pp-features">
+            <li><strong>ViewModel:</strong> Holds UI state, survives configuration changes.</li>
+            <li><strong>Retrofit:</strong> REST client with Gson converter for TMDB API calls.</li>
+            <li><strong>Room DB:</strong> SQLite abstraction for favorites persistence.</li>
+            <li><strong>LiveData:</strong> Observable data streams that respect lifecycle automatically.</li>
+            <li><strong>RecyclerView + ViewHolder:</strong> Optimized list rendering with view recycling.</li>
+          </ul>
+        </div>
+
+        <div className="pp-section">
+          <h2 className="pp-section-title">Source Code Preview</h2>
+          <div className="pp-gallery c1">
+            <img src={tmdbCodPhone} alt="Source Code Mobile" />
+          </div>
+        </div>
+
+        <div className="pp-section">
+          <h2 className="pp-section-title">UI Layouts (XML)</h2>
+          <div className="pp-gallery c3">
+            <img src={tmdbXML} alt="XML Layout 1" />
+            <img src={tmdbXML2} alt="XML Layout 2" />
+            <img src={tmdbXML3} alt="XML Layout 3" />
+          </div>
+        </div>
+
+        <div className="pp-section">
+          <h2 className="pp-section-title">Repository</h2>
+          <div className="pp-actions">
+            <a
+              href="https://github.com/PauVilarEstrada/TheMovieDB"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pp-btn-primary"
+            >
+              GitHub →
+            </a>
+          </div>
+        </div>
+
+        <Link to="/projects" className="pp-back">Back to Projects</Link>
       </div>
-
-      <h2>📌 Features</h2>
-      <ul className="themoviedb-features">
-        <li>🎬 Browse popular, top-rated, and upcoming movies.</li>
-        <li>🔍 Search functionality with real-time filtering.</li>
-        <li>⭐ Save favorites locally with shared preferences.</li>
-        <li>📱 Adaptive layout for phones and tablets.</li>
-        <li>💾 Offline cache for last seen movie list.</li>
-      </ul>
-
-      <h2>⚙️ Technical Implementation</h2>
-      <p>
-        The project was developed using Java and Android Studio. It integrates RESTful API
-        calls via Retrofit and handles JSON responses to dynamically populate the UI. 
-        RecyclerView and ViewHolder patterns were used for optimized performance.
-      </p>
-
-      <h3>🧠 Architecture</h3>
-      <ul>
-        <li><strong>MVVM Pattern:</strong> Clean separation of concerns for scalability.</li>
-        <li><strong>Retrofit:</strong> Handles API requests and data parsing.</li>
-        <li><strong>Room DB:</strong> Used for local persistence (favorites).</li>
-        <li><strong>LiveData & ViewModel:</strong> For reactive UI updates.</li>
-      </ul>
-
-      <h2>🖥️ Source Code</h2>
-<div className="code-block">
-  <img src={tmdbCodPhone} alt="TMDB Code Mobile" />
-</div>
-
-<h2>📱 UI Layouts (XML)</h2>
-<div className="code-gallery">
-  <img src={tmdbXML} alt="TMDB XML Layout 1" className="code-image" />
-  <img src={tmdbXML2} alt="TMDB XML Layout 2" className="code-image" />
-  <img src={tmdbXML3} alt="TMDB XML Layout 3" className="code-image" />
-</div>
-
-
-      <h2>🔗 GitHub Repository</h2>
-      <p>
-        You can explore the full source code on GitHub:
-        <br />
-        <a href="https://github.com/PauVilarEstrada/TheMovieDB" target="_blank" rel="noopener noreferrer">
-          TheMovieDB GitHub Repository
-        </a>
-      </p>
-
-      <Link to="/projects" className="themoviedb-back-link">🔙 Back to Projects</Link>
-    </section>
+    </div>
   );
 }

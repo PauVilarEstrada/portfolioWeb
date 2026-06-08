@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../myprojects/css/ecommerce.css";
-
+import "./css/project-page.css";
+import ecommerceLogo from "./assets/logosApps/logo-ecommerce.png";
 import ecommerceHome from "./assets/ecommerce-home.png";
 import ecommerceShoes from "./assets/ecommerce-shoes.png";
 import ecommerceCart from "./assets/ecommerce-cart.png";
@@ -10,73 +10,95 @@ import ecommerceDashboard from "./assets/ecommerce-dashboard.png";
 
 export default function Ecommerce() {
   return (
-    <section className="ecommerce-container">
-      <h1>🛒 E-Commerce Web</h1>
-      
-      <p>
-        A full-stack e-commerce platform built to simulate a real online shopping experience. 
-        Users can browse products, manage a shopping cart, and securely place orders. 
-        The application includes an admin dashboard, image uploads, authentication, 
-        and performance enhancements via caching.
-      </p>
+    <div className="pp-page" style={{ "--pp-color": "#a78bfa", "--pp-glow": "rgba(167, 139, 250, 0.2)" }}>
 
-      <div className="image-gallery">
-        <img src={ecommerceHome} alt="Home Page showcasing featured products" className="gallery-image" />
-        <img src={ecommerceShoes} alt="Product Category Page with filters" className="gallery-image" />
-        <img src={ecommerceCart} alt="Shopping Cart interface with dynamic state" className="gallery-image" />
-        <img src={ecommerceSection} alt="Login and Registration page" className="gallery-image" />
-        <img src={ecommerceDashboard} alt="Admin Dashboard for managing products" className="gallery-image" />
+      <header className="pp-hero">
+        <img src={ecommerceLogo} alt="E-Commerce" className="pp-hero-logo" />
+        <div className="pp-hero-content">
+          <span className="pp-hero-label">Full Stack Web Application · React + Node.js</span>
+          <h1 className="pp-title">E-Commerce Platform</h1>
+          <p className="pp-subtitle">
+            A full-stack e-commerce platform simulating a real online shopping experience — product browsing,
+            cart management, secure authentication, <strong>admin dashboard</strong>, image uploads, and
+            performance caching via Redis.
+          </p>
+          <div className="pp-tags">
+            <span className="pp-tag">React</span>
+            <span className="pp-tag">Node.js</span>
+            <span className="pp-tag">MongoDB</span>
+            <span className="pp-tag">Redis</span>
+            <span className="pp-tag">Cloudinary</span>
+            <span className="pp-tag">JWT</span>
+            <span className="pp-tag">Zustand</span>
+          </div>
+        </div>
+      </header>
+
+      <div className="pp-body">
+
+        <div className="pp-section">
+          <h2 className="pp-section-title">Screenshots</h2>
+          <div className="pp-gallery c2">
+            <img src={ecommerceHome} alt="Home — featured products" />
+            <img src={ecommerceShoes} alt="Product category with filters" />
+            <img src={ecommerceCart} alt="Shopping cart interface" />
+            <img src={ecommerceSection} alt="Login and registration" />
+          </div>
+          <div className="pp-gallery c1" style={{ marginTop: 12 }}>
+            <img src={ecommerceDashboard} alt="Admin dashboard" />
+          </div>
+        </div>
+
+        <div className="pp-section">
+          <h2 className="pp-section-title">Core Features</h2>
+          <ul className="pp-features">
+            <li><strong>Secure authentication</strong> — user registration, login, and session management via JWT.</li>
+            <li><strong>Product browsing</strong> with category filtering and dynamic listings.</li>
+            <li><strong>Dynamic shopping cart</strong> with persistent state across sessions.</li>
+            <li><strong>Image uploads</strong> for products via Cloudinary CDN.</li>
+            <li><strong>Admin panel</strong> — create, update, delete, and feature products.</li>
+            <li><strong>Redis caching (Upstash)</strong> for featured product speed optimization.</li>
+            <li><strong>Fully responsive design</strong> for mobile and desktop devices.</li>
+            <li><strong>Stripe-ready</strong> placeholder for future payment integration.</li>
+          </ul>
+        </div>
+
+        <div className="pp-section">
+          <h2 className="pp-section-title">Tech Stack</h2>
+          <div className="pp-tech-grid">
+            {["React", "Vite", "Tailwind CSS", "Zustand", "Framer Motion", "Node.js", "Express", "MongoDB", "Mongoose", "Cloudinary", "Redis / Upstash", "JWT", "Cookie Parser", "Render", "MongoDB Atlas"].map(t => (
+              <span key={t} className="pp-tech-badge">{t}</span>
+            ))}
+          </div>
+        </div>
+
+        <div className="pp-section">
+          <h2 className="pp-section-title">Architecture</h2>
+          <p className="pp-text">
+            Component-based frontend with <strong>Zustand</strong> managing shared state (cart, auth). The
+            backend exposes a <strong>RESTful API</strong> built with Express, connecting to MongoDB via
+            Mongoose, storing image URLs through Cloudinary, and caching featured products in Redis (Upstash)
+            to reduce database load on hot paths.
+          </p>
+        </div>
+
+        <div className="pp-section">
+          <h2 className="pp-section-title">Links</h2>
+          <div className="pp-actions">
+            <a href="https://ecommerce-yrau.onrender.com" target="_blank" rel="noopener noreferrer" className="pp-btn-primary">
+              Live App →
+            </a>
+            <a href="https://github.com/PauVilarEstrada/e-commerceWeb" target="_blank" rel="noopener noreferrer" className="pp-btn-secondary">
+              GitHub
+            </a>
+            <a href="https://drive.google.com/file/d/1sJ-6Kzjrt_wjCOIrZHy65XSubOJSV1DN/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="pp-btn-secondary">
+              Demo Video
+            </a>
+          </div>
+        </div>
+
+        <Link to="/projects" className="pp-back">Back to Projects</Link>
       </div>
-
-      <h2>🔧 Technologies Used</h2>
-      <ul className="ecommerce-features">
-        <li>⚛️ <strong>Frontend:</strong> React, Vite, Tailwind CSS</li>
-        <li>🧠 Zustand for global state, Framer Motion for animations</li>
-        <li>🌐 <strong>Backend:</strong> Node.js, Express, MongoDB (Mongoose)</li>
-        <li>☁️ Cloudinary for image upload, Redis (Upstash) for featured product caching</li>
-        <li>🔐 Authentication via JWT and Cookie Parser</li>
-        <li>🚀 Deployment handled with Render and MongoDB Atlas</li>
-      </ul>
-
-      <h2>🎯 Core Features</h2>
-      <ul className="ecommerce-features">
-        <li>🔐 Secure user registration, login, and session management</li>
-        <li>🛍️ Product browsing with filtering by category</li>
-        <li>🧺 Dynamic shopping cart with persistent state</li>
-        <li>🖼️ Image uploads for products via Cloudinary</li>
-        <li>🛠️ Admin panel to create, update, delete and feature products</li>
-        <li>⚡ Featured product caching with Redis for speed</li>
-        <li>📱 Fully responsive design for mobile and desktop devices</li>
-        <li>💳 Stripe-ready placeholder for future payment integration</li>
-      </ul>
-
-      <h2>🧠 Architecture & Approach</h2>
-      <p>
-        The application follows a component-based architecture on the frontend, 
-        with Zustand managing shared state like the shopping cart. 
-        The backend exposes a RESTful API built with Express, 
-        connecting to MongoDB via Mongoose and storing image URLs using Cloudinary. 
-        Featured products are cached using Redis (Upstash) to enhance performance.
-      </p>
-
-      <h2>🔗 Project Links</h2>
-      <p>
-        <a href="https://ecommerce-yrau.onrender.com" target="_blank" rel="noopener noreferrer">
-          🌐 Live Web Application
-        </a>
-        <br />
-        <a href="https://github.com/PauVilarEstrada/e-commerceWeb" target="_blank" rel="noopener noreferrer">
-          💻 Source Code on GitHub
-        </a>
-        <br />
-        <a href="https://drive.google.com/file/d/1sJ-6Kzjrt_wjCOIrZHy65XSubOJSV1DN/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-          🎥 Demo Video (Google Drive)
-        </a>
-      </p>
-
-      <Link to="/projects" className="ecommerce-back-link">
-        🔙 Back to Projects
-      </Link>
-    </section>
+    </div>
   );
 }
