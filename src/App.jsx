@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/Navbar";
 import CustomCursor from "./components/CustomCursor";
 import NavHint from "./components/NavHint";
 import HomePage from "./components/HomePage";
@@ -13,7 +13,7 @@ import Pacman from "./components/myprojects/Pacman";
 import TheMovieDB from "./components/myprojects/TheMovieDB";
 import DigimonDobleApi from "./components/myprojects/DigimonDobleApi";
 import Ecommerce from "./components/myprojects/Ecommerce";
-import KDD from "./components/myprojects/KDD";
+import KDD from "./components/myprojects/kdd";
 import UltimusDefensor from "./components/myprojects/UltimusDefensor";
 import MindFlow from "./components/myprojects/MindFlow";
 

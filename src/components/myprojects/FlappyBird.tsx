@@ -4,7 +4,7 @@ import "./css/project-page.css";
 import flappyLogo from "./assets/logosApps/flappybirdLogoSection.png";
 import flappy1 from "./assets/flappyBird1.png";
 import flappy2 from "./assets/flappyBird2.png";
-import flappy3 from "./assets/flappyBird3.png";
+import flappy3 from "./assets/FlappyBird3.png";
 import flappyCod from "./assets/flappyBirdcod.png";
 import flappyCod2 from "./assets/FlappyBirdcod2.png";
 
