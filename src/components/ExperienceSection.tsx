@@ -38,7 +38,7 @@ import insCarLogo from "../assets/insCARlogo.png";
 import monlauLogo from "../assets/monlaulogo.svg";
 
 import sqliteLogo from "../assets/sqlitelogo.png";
-import virtualboxLogo from "../assets/virtualboxlogo.png";
+import virtualboxLogo from "../assets/Virtualboxlogo.png";
 import figmaLogo from "../assets/figmalogo.png";
 import djangoLogo from "../assets/djangologo.svg";
 import junitLogo from "../assets/junitlogo.png";
