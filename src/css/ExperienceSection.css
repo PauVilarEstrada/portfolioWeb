@@ -339,14 +339,6 @@ p {
   display: block;
 }
 
-.studiesMonlau-logo {
-  width: 150px;
-  height: auto;
-  margin: 0 auto 16px;
-  display: block;
-  border-radius: 12px;
-}
-
 /* ── CAR logo special (white bg) ── */
 .car-logo-img {
   object-fit: contain !important;

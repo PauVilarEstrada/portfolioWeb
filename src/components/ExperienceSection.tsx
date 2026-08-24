@@ -264,7 +264,7 @@ export default function ExperienceSection() {
 
         {/* Master's in AI & Big Data */}
         <div className="study-item">
-          <img src={monlauLogo} alt="Monlau Formación Profesional Logo" className="studiesMonlau-logo" />
+          <img src={monlauLogo} alt="Monlau Formación Profesional Logo" className="studiesPB-logo" />
           <h3>🤖 Master's in Artificial Intelligence &amp; Big Data · 2025 – 2026</h3>
           <p>
             I have successfully completed the <strong>Master's degree in Artificial Intelligence &amp; Big Data</strong>{" "}
