@@ -35,6 +35,7 @@ import teamPhoto from "../public/sananFotoEquipo.jpg";
 // Education logos
 import insPoblenouLogo from "../assets/poblenoulogo.png";
 import insCarLogo from "../assets/insCARlogo.png";
+import monlauLogo from "../assets/monlaulogo.svg";
 
 import sqliteLogo from "../assets/sqlitelogo.png";
 import virtualboxLogo from "../assets/virtualboxlogo.png";
@@ -263,11 +264,13 @@ export default function ExperienceSection() {
 
         {/* Master's in AI & Big Data */}
         <div className="study-item">
+          <img src={monlauLogo} alt="Monlau Formación Profesional Logo" className="studiesMonlau-logo" />
           <h3>🤖 Master's in Artificial Intelligence &amp; Big Data · 2025 – 2026</h3>
           <p>
-            I have successfully completed the <strong>Master's degree in Artificial Intelligence &amp; Big Data</strong>,
-            a high-intensity program covering the full spectrum of modern AI and data engineering — from supervised and
-            unsupervised learning to LLMs, agentic systems, production data pipelines, and real-world ML deployment.
+            I have successfully completed the <strong>Master's degree in Artificial Intelligence &amp; Big Data</strong>{" "}
+            at <strong>Monlau Formación Profesional</strong>, graduating with <strong>Matrícula de Honor</strong> (highest
+            academic distinction) — a high-intensity program covering the full spectrum of modern AI and data engineering —
+            from supervised and unsupervised learning to LLMs, agentic systems, production data pipelines, and real-world ML deployment.
           </p>
           <p>
             The program culminated in <strong>Ultimus Defensor</strong>, a full end-to-end AI cybersecurity
