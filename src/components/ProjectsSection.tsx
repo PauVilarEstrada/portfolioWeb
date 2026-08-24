@@ -15,11 +15,18 @@ import digimonLogo from "../components/myprojects/assets/logosApps/logodigimon.p
 import ecommerceLogo from "../components/myprojects/assets/logosApps/logo-ecommerce.png";
 import kddLogo from "../components/myprojects/assets/logosApps/kdd.png";
 import udLogo from "../components/myprojects/assets/logosApps/ultimusdefensorlogo.png";
+import mindflowLogo from "../components/myprojects/assets/logosApps/mindflowlogo.png";
 
 
 
 
 const projects = [
+  {
+    name: "MINDFLOW — Brain Puzzle Games",
+    description: "Published Android game: 4 puzzle modes, 1,200 verified levels, offline-first. React Native + TypeScript, live on Google Play.",
+    image: mindflowLogo,
+    path: "/projects/mindflow",
+  },
   {
     name: "Ultimus Defensor — BlueSentinel",
     description: "AI-powered BlueTeam platform with MITRE ATT&CK detection, Isolation Forest + XGBoost pipeline, and LLM cybersecurity assistant.",

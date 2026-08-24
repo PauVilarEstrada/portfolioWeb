@@ -1,0 +1,289 @@
+/* ═══════════════════════════════════════════════════
+   MINDFLOW — project page extras
+   Complements project-page.css (.pp-*)
+   ═══════════════════════════════════════════════════ */
+
+/* ── STAT STRIP ─────────────────────────────────── */
+.mf-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 0.4rem;
+}
+
+.mf-stat {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.15rem 1rem;
+  text-align: center;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.mf-stat:hover {
+  border-color: var(--pp-color, #6c9bff);
+  transform: translateY(-2px);
+}
+
+.mf-stat-value {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--pp-color, #6c9bff);
+  line-height: 1.1;
+}
+
+.mf-stat-label {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8e93a3;
+}
+
+/* ── GAME MODE CARDS ────────────────────────────── */
+.mf-modes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 1.35rem;
+}
+
+.mf-mode {
+  --mf-accent: #6c9bff;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 1.4rem 1.4rem 1.5rem;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.mf-mode:hover {
+  border-color: var(--mf-accent);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.mf-mode-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.mf-mode-index {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--mf-accent);
+  opacity: 0.9;
+}
+
+.mf-mode-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.mf-mode-kind {
+  margin-left: auto;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8e93a3;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 3px 9px;
+  white-space: nowrap;
+}
+
+.mf-board {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #12141d;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: block;
+}
+
+.mf-mode-text {
+  font-size: 0.88rem;
+  line-height: 1.72;
+  color: #b3b3b3;
+  margin: 0;
+}
+
+.mf-mode-text strong {
+  color: #e0e0e0;
+  font-weight: 600;
+}
+
+.mf-mode-rules {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.mf-mode-rules li {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #9aa0ad;
+  padding-left: 18px;
+  position: relative;
+}
+
+.mf-mode-rules li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--mf-accent);
+  opacity: 0.85;
+}
+
+/* ── DISCLAIMER NOTE ────────────────────────────── */
+.mf-note {
+  margin: 1.25rem 0 0;
+  padding: 0.9rem 1.1rem;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: #8e93a3;
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed rgba(255, 255, 255, 0.11);
+  border-radius: 10px;
+}
+
+.mf-note strong {
+  color: var(--pp-color, #6c9bff);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.mf-note a {
+  color: #b3b3b3;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.mf-note a:hover { color: var(--pp-color, #6c9bff); }
+
+/* ── TABLE ──────────────────────────────────────── */
+.mf-table-wrap {
+  overflow-x: auto;
+  margin-top: 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+}
+
+.mf-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  min-width: 460px;
+}
+
+.mf-table th {
+  text-align: left;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8e93a3;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  white-space: nowrap;
+}
+
+.mf-table td {
+  padding: 12px 16px;
+  color: #b3b3b3;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+  line-height: 1.5;
+}
+
+.mf-table tr:last-child td {
+  border-bottom: none;
+}
+
+.mf-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+  color: #d2d2d2;
+}
+
+.mf-table td:first-child {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  color: var(--pp-color, #6c9bff);
+  white-space: nowrap;
+}
+
+/* ── STORE CARD ─────────────────────────────────── */
+.mf-store {
+  display: flex;
+  align-items: center;
+  gap: 1.35rem;
+  flex-wrap: wrap;
+  background: rgba(108, 155, 255, 0.05);
+  border: 1px solid rgba(108, 155, 255, 0.18);
+  border-radius: 14px;
+  padding: 1.4rem 1.5rem;
+  margin-top: 1.1rem;
+}
+
+.mf-store-icon {
+  width: 74px;
+  height: 74px;
+  border-radius: 18px;
+  object-fit: contain;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 0 34px var(--pp-glow, rgba(108, 155, 255, 0.2));
+  flex-shrink: 0;
+}
+
+.mf-store-meta {
+  flex: 1;
+  min-width: 200px;
+}
+
+.mf-store-meta strong {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.mf-store-meta span {
+  font-size: 0.82rem;
+  color: #8e93a3;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+/* ── RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 860px) {
+  .mf-modes { grid-template-columns: 1fr; }
+  .mf-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .mf-stats { grid-template-columns: 1fr; }
+  .mf-store { flex-direction: column; align-items: flex-start; }
+}

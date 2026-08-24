@@ -10,10 +10,10 @@ const FLOAT_SYMBOLS = [
 import { FaDownload, FaEnvelope } from "react-icons/fa";
 
 // Project logos
+import mindflowLogo from "./myprojects/assets/logosApps/mindflowlogo.png";
 import udLogo from "./myprojects/assets/logosApps/ultimusdefensorlogo.png";
 import kddLogo from "./myprojects/assets/logosApps/kdd.png";
 import ecommerceLogo from "./myprojects/assets/logosApps/logo-ecommerce.png";
-import pacmanLogo from "./myprojects/assets/logosApps/pacmanlogo.png";
 
 // Tech logos
 import pythonLogo from "../assets/pythonlogo.webp";
@@ -47,6 +47,14 @@ const ROLES = [
 
 const featuredProjects = [
   {
+    name: "MINDFLOW",
+    desc: "My first published mobile game — 4 puzzle modes, 1,200 verified levels, fully offline. Live on Google Play.",
+    tags: ["React Native", "TypeScript", "Android"],
+    logo: mindflowLogo,
+    path: "/projects/mindflow",
+    color: "#6c9bff",
+  },
+  {
     name: "Ultimus Defensor",
     desc: "AI-powered BlueTeam platform with MITRE ATT&CK detection pipeline — Isolation Forest + XGBoost + LLM assistant.",
     tags: ["AI / ML", "Cybersecurity", "MITRE"],
@@ -69,14 +77,6 @@ const featuredProjects = [
     logo: ecommerceLogo,
     path: "/projects/ecommerce",
     color: "#a78bfa",
-  },
-  {
-    name: "Pacman Remake",
-    desc: "Classic arcade game rebuilt from scratch with custom ghost AI, collision system and level generation.",
-    tags: ["Java", "Game Dev", "OOP"],
-    logo: pacmanLogo,
-    path: "/projects/pacman",
-    color: "#facc15",
   },
 ];
 

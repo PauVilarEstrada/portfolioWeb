@@ -15,6 +15,7 @@ import DigimonDobleApi from "./components/myprojects/DigimonDobleApi";
 import Ecommerce from "./components/myprojects/Ecommerce";
 import KDD from "./components/myprojects/KDD";
 import UltimusDefensor from "./components/myprojects/UltimusDefensor";
+import MindFlow from "./components/myprojects/MindFlow";
 
 import "./index.css";
 
@@ -29,6 +30,7 @@ function AppContent() {
         <Route path="/projects" element={<ProjectsSection />} />
         <Route path="/experience" element={<ExperienceSection />} />
         <Route path="/contact" element={<ContactSection />} />
+        <Route path="/projects/mindflow" element={<MindFlow />} />
         <Route path="/projects/ultimusdefensor" element={<UltimusDefensor />} />
         <Route path="/projects/camerax" element={<CameraX />} />
         <Route path="/projects/flappybird" element={<FlappyBird />} />
