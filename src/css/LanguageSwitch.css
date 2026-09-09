@@ -1,0 +1,73 @@
+.lang-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(10, 10, 12, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.lang-thumb {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  width: calc(50% - 4px);
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-bright) 100%);
+  box-shadow: 0 4px 16px var(--accent-glow);
+  transition: transform 0.38s cubic-bezier(0.65, 0, 0.35, 1);
+  z-index: 0;
+}
+
+.lang-thumb--en { transform: translateX(0); }
+.lang-thumb--es { transform: translateX(100%); }
+
+.lang-opt {
+  position: relative;
+  z-index: 1;
+  appearance: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 6px 14px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.55);
+  transition: color 0.25s ease, transform 0.25s ease;
+  min-width: 44px;
+}
+
+.lang-opt:hover { color: #fff; }
+
+.lang-opt.is-active {
+  color: #05140b;
+}
+
+.lang-switch--compact .lang-opt {
+  padding: 5px 11px;
+  font-size: 0.66rem;
+  min-width: 36px;
+}
+
+/* Content fade when the language changes */
+.lang-fade {
+  animation: langFade 0.45s ease both;
+}
+
+@keyframes langFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lang-thumb { transition: none; }
+  .lang-fade { animation: none; }
+}

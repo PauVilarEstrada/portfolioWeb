@@ -911,3 +911,310 @@
   0%, 100% { box-shadow: 0 2px 12px rgba(56, 189, 248, 0.35); }
   50%      { box-shadow: 0 2px 20px rgba(56, 189, 248, 0.7); }
 }
+
+/* ═══════════════════════════════════════════════
+   V2 — richer home page
+   ═══════════════════════════════════════════════ */
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ── Hero: floating colour orbs ── */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-orb--a {
+  width: 46vw;
+  height: 46vw;
+  max-width: 620px;
+  max-height: 620px;
+  top: -12%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(29, 185, 84, 0.22) 0%, transparent 70%);
+  animation: orbFloatA 18s ease-in-out infinite alternate;
+}
+
+.hero-orb--b {
+  width: 40vw;
+  height: 40vw;
+  max-width: 540px;
+  max-height: 540px;
+  bottom: -14%;
+  right: -8%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.16) 0%, transparent 70%);
+  animation: orbFloatB 22s ease-in-out infinite alternate;
+}
+
+@keyframes orbFloatA {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(6%, 8%, 0) scale(1.12); }
+}
+
+@keyframes orbFloatB {
+  from { transform: translate3d(0, 0, 0) scale(1.06); }
+  to   { transform: translate3d(-7%, -6%, 0) scale(0.94); }
+}
+
+/* ── Hero: availability badge dot ── */
+.hero-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-bright);
+  box-shadow: 0 0 0 0 rgba(37, 224, 102, 0.7);
+  animation: badgePulse 2.2s ease-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes badgePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(37, 224, 102, 0.65); }
+  70%  { box-shadow: 0 0 0 9px rgba(37, 224, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 224, 102, 0); }
+}
+
+/* ── Hero: tagline ── */
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.35vw, 1.02rem);
+  line-height: 1.8;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 0 30px;
+}
+
+.hero-tagline strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.hero-role-prompt {
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  margin-right: 4px;
+}
+
+/* ── Hero: stats become cards ── */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 40px;
+  margin-bottom: 0;
+  width: 100%;
+  max-width: 620px;
+}
+
+.hero-stat {
+  padding: 16px 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.hero-stat:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(29, 185, 84, 0.4);
+}
+
+/* ── Badge marquee strip ── */
+.badge-marquee {
+  display: flex;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.015);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.badge-marquee-inner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+  animation: marquee 34s linear infinite;
+  padding: 14px 0;
+}
+
+.badge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  padding: 0 22px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  white-space: nowrap;
+}
+
+.badge-chip i {
+  font-style: normal;
+  color: var(--accent);
+  font-size: 0.5rem;
+  opacity: 0.8;
+}
+
+/* ── What I do — focus cards ── */
+.focus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.focus-card {
+  position: relative;
+  padding: 28px 24px;
+  border-radius: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+}
+
+.focus-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  opacity: 0.7;
+}
+
+.focus-card::after {
+  content: '';
+  position: absolute;
+  inset: auto -30% -60% auto;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(29, 185, 84, 0.16) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.focus-card:hover {
+  transform: translateY(-6px);
+  background: var(--bg-card-hover);
+  border-color: rgba(29, 185, 84, 0.35);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+}
+
+.focus-card:hover::after { opacity: 1; }
+
+.focus-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  font-size: 1.35rem;
+  background: rgba(29, 185, 84, 0.1);
+  border: 1px solid rgba(29, 185, 84, 0.22);
+  margin-bottom: 16px;
+}
+
+.focus-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 0 0 10px;
+}
+
+.focus-card p {
+  font-family: var(--font-body);
+  font-size: 0.89rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ── Featured project: wide hero card ── */
+.projects-grid > .reveal { display: flex; }
+.projects-grid > .reveal > .proj-card { width: 100%; }
+.grid-wide { grid-column: span 2; }
+
+.proj-card--wide {
+  padding: 34px 32px;
+}
+
+.proj-card--wide .proj-logo {
+  width: 76px;
+  height: 76px;
+}
+
+.proj-card--wide .proj-name {
+  font-size: 1.45rem;
+}
+
+.proj-card--wide .proj-desc {
+  font-size: 0.98rem;
+  max-width: 720px;
+}
+
+/* ── Timeline icon ── */
+.timeline-icon {
+  margin-right: 9px;
+  font-size: 0.98rem;
+}
+
+.timeline-item:hover .timeline-dot {
+  transform: scale(1.25);
+  transition: transform 0.25s ease;
+}
+
+/* ── Section note ── */
+.home-section-note {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* ── Second marquee row ── */
+.tech-marquee--reverse .tech-marquee-inner {
+  animation-direction: reverse;
+  animation-duration: 34s;
+}
+
+@media (max-width: 780px) {
+  .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .grid-wide { grid-column: span 1; }
+  .proj-card--wide { padding: 24px 20px; }
+  .proj-card--wide .proj-name { font-size: 1.15rem; }
+  .proj-card--wide .proj-logo { width: 56px; height: 56px; }
+  .badge-chip { font-size: 0.66rem; padding: 0 14px; gap: 14px; }
+}

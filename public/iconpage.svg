@@ -1,11 +1,58 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-	 width="800px" height="800px" viewBox="0 0 256 249" enable-background="new 0 0 256 249" xml:space="preserve">
-<path d="M47.522,170.287l11.172,76.681h138.612l11.172-76.681H47.522z M128,215.249c-5.748,0-10.407-3.063-10.407-6.84
-	s4.659-6.84,10.407-6.84c5.748,0,10.407,3.062,10.407,6.84S133.748,215.249,128,215.249z M233.315,233.054h-26.028l10.292-70.639
-	H38.421l10.292,70.639H22.685c-14.848,0-24.85-15.195-18.978-28.834l36.809-85.489c7.149-16.605,23.493-27.362,41.571-27.362h14.486
-	l22.885,34.061l4.665-22.254l-7.809-11.807h23.491l-7.81,11.807l4.655,22.098l22.78-33.905h14.486
-	c18.078,0,34.422,10.757,41.571,27.362l36.808,85.489C258.165,217.858,248.164,233.054,233.315,233.054z M128,2.033
-	c22.496,0,40.733,18.237,40.733,40.733S150.496,83.498,128,83.498S87.267,65.261,87.267,42.765S105.504,2.033,128,2.033z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Pau Vilar — Full Stack &amp; AI Engineer">
+  <defs>
+    <linearGradient id="ipBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#12171d"/>
+      <stop offset="100%" stop-color="#05070a"/>
+    </linearGradient>
+    <linearGradient id="ipAccent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#25e066"/>
+      <stop offset="100%" stop-color="#1DB954"/>
+    </linearGradient>
+    <linearGradient id="ipCyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#1DB954"/>
+    </linearGradient>
+    <linearGradient id="ipEdge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1DB954" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#1DB954" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.6"/>
+    </linearGradient>
+    <radialGradient id="ipGlowA" cx="22%" cy="12%" r="70%">
+      <stop offset="0%" stop-color="#1DB954" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#1DB954" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ipGlowB" cx="85%" cy="92%" r="65%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="ipDots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="1.6" cy="1.6" r="1.6" fill="#ffffff" opacity="0.055"/>
+    </pattern>
+    <clipPath id="ipClip">
+      <rect x="12" y="12" width="488" height="488" rx="112"/>
+    </clipPath>
+  </defs>
+
+  <rect x="12" y="12" width="488" height="488" rx="112" fill="url(#ipBg)"/>
+  <g clip-path="url(#ipClip)">
+    <rect x="12" y="12" width="488" height="488" fill="url(#ipDots)"/>
+    <rect x="12" y="12" width="488" height="488" fill="url(#ipGlowA)"/>
+    <rect x="12" y="12" width="488" height="488" fill="url(#ipGlowB)"/>
+  </g>
+  <rect x="12" y="12" width="488" height="488" rx="112" fill="none" stroke="url(#ipEdge)" stroke-width="3"/>
+
+  <!-- angle brackets -->
+  <g fill="none" stroke="url(#ipCyan)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+    <polyline points="132,196 88,256 132,316"/>
+    <polyline points="380,196 424,256 380,316"/>
+  </g>
+
+  <!-- P mark -->
+  <g fill="#ffffff">
+    <rect x="176" y="150" width="30" height="212" rx="10"/>
+    <path d="M206 150h74a68 68 0 0 1 0 136h-74v-32h72a36 36 0 0 0 0-72h-72z"/>
+  </g>
+
+  <!-- terminal cursor -->
+  <rect x="288" y="316" width="46" height="46" rx="12" fill="url(#ipAccent)"/>
 </svg>

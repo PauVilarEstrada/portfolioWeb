@@ -1,66 +1,60 @@
 import React from "react";
 import "../css/ContactSection.css";
-import { FaDownload, FaEnvelope } from "react-icons/fa";
-import githubIconWhite from "../assets/githublogoblanco.png";
-import linkedinIcon from "../assets/linkedinlogo.png";
+import { FaDownload, FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
+import { useI18n } from "../i18n/LanguageContext";
+import { rt } from "../i18n/rich";
+
+const LINKS: Record<string, { href: string; download?: boolean; icon: React.ReactNode }> = {
+  email: { href: "mailto:pvilardev@gmail.com", icon: <FaEnvelope /> },
+  linkedin: { href: "https://www.linkedin.com/in/pau-vilar/", icon: <FaLinkedin /> },
+  github: { href: "https://github.com/PauVilarEstrada", icon: <FaGithub /> },
+  cv: { href: `${import.meta.env.BASE_URL}VILAR_PAU.pdf`, download: true, icon: <FaDownload /> },
+};
 
 export default function ContactSection() {
+  const { t, lang } = useI18n();
+
   return (
     <section className="contact-section">
-      <div className="contact-container">
-        <h2>Let's Connect</h2>
+      <div className="contact-container lang-fade" key={lang}>
+        <span className="contact-eyebrow">{t.contact.eyebrow}</span>
+        <h2>{t.contact.title}</h2>
 
-        <p className="intro-paragraph">
-          Hi! I’m <strong>Pau Vilar</strong>, a software developer with a strong
-          interest in building robust, data-driven, and well-structured digital
-          solutions.
-        </p>
+        <p className="intro-paragraph">{rt(t.contact.lead)}</p>
 
-        <p>
-          I have <strong>graduated in Multiplatform Application Development (DAM)</strong> and completed a{" "}
-          <strong>Master’s degree in Artificial Intelligence &amp; Big Data</strong>.
-          My focus is on the <strong>development and implementation of AI-driven solutions</strong>,{" "}
-          <strong>agentic systems</strong>, and <strong>data analysis</strong> — with particular interest in
-          Machine Learning, applied AI, and real-world data pipelines.
-        </p>
+        {t.contact.paragraphs.map((p, i) => (
+          <p key={i}>{rt(p)}</p>
+        ))}
 
-        <p>
-          Alongside my academic and technical path, I work as a{" "}
-          <strong>professional water polo goalkeeper</strong>, competing with{" "}
-          <strong>Club Natació Sant Andreu</strong> in Spain’s top league. Balancing
-          high-performance sport with advanced technical training has strengthened
-          my discipline, consistency, and ability to perform under pressure.
-        </p>
+        <div className="looking-wrap">
+          <h3 className="contact-subhead">{t.contact.lookingTitle}</h3>
+          <div className="looking-chips">
+            {t.contact.looking.map(l => <span key={l} className="looking-chip">{l}</span>)}
+          </div>
+        </div>
 
-        <p>
-          I am open to new opportunities, including <strong>junior roles, internships,
-          and collaborations</strong> in <strong>software development, data analysis,
-          and artificial intelligence projects</strong>. If you think my profile
-          could be a good fit, feel free to reach out by email or connect with me on
-          LinkedIn.
-        </p>
-
-        <p>
-          You can find my <strong>GitHub and LinkedIn</strong> links at the top right
-          of the page. I’m continuously learning and working on new technical and
-          data-oriented projects.
-        </p>
-
-        <div className="quick-contact">
-          <p>
-            📧{" "}
-            <a href="mailto:pvilardev@gmail.com" className="email-link">
-              pvilardev@gmail.com
-            </a>
-          </p>
-
-          <a
-            href={`${import.meta.env.BASE_URL}VILAR_PAU.pdf`}
-            download
-            className="download-btn"
-          >
-            <FaDownload /> DOWNLOAD MY CV
-          </a>
+        <h3 className="contact-subhead">{t.contact.cardsTitle}</h3>
+        <div className="contact-cards">
+          {t.contact.cards.map(card => {
+            const link = LINKS[card.k];
+            const external = link.href.startsWith("http");
+            return (
+              <a
+                key={card.k}
+                className={`contact-card contact-card--${card.k}`}
+                href={link.href}
+                {...(link.download ? { download: true } : {})}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
+                <span className="contact-card-icon">{link.icon}</span>
+                <span className="contact-card-body">
+                  <span className="contact-card-h">{card.h}</span>
+                  <span className="contact-card-p">{card.p}</span>
+                  <span className="contact-card-cta">{card.cta} <i>↗</i></span>
+                </span>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>

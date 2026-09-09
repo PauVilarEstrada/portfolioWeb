@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../css/HomePage.css";
+import { FaDownload, FaEnvelope } from "react-icons/fa";
+import { useI18n } from "../i18n/LanguageContext";
+import { rt } from "../i18n/rich";
+import Reveal from "./Reveal";
 
 const FLOAT_SYMBOLS = [
   "const", "async", "import", "function", "return",
   "class", "await", "export", "interface", "{ }",
   "<AI/>", "01010", "while", "=>", "null", "type",
 ];
-import { FaDownload, FaEnvelope } from "react-icons/fa";
 
 // Project logos
 import mindflowLogo from "./myprojects/assets/logosApps/mindflowlogo.png";
 import udLogo from "./myprojects/assets/logosApps/ultimusdefensorlogo.png";
 import kddLogo from "./myprojects/assets/logosApps/kdd.png";
 import nbaLogo from "./myprojects/assets/logosApps/nbavisionlogo.png";
-import ecommerceLogo from "./myprojects/assets/logosApps/logo-ecommerce.png";
 
 // Tech logos
 import pythonLogo from "../assets/pythonlogo.webp";
@@ -39,66 +41,12 @@ import bashLogo from "../assets/bashlogo.png";
 import githubIconWhite from "../assets/githublogoblanco.png";
 import linkedinIcon from "../assets/linkedinlogo.png";
 
-const ROLES = [
-  "Full Stack Developer",
-  "AI & Big Data Engineer",
-  "Machine Learning Engineer",
-  "AI Educator & Trainer",
-];
-
-type FeaturedProject = {
-  name: string;
-  desc: string;
-  tags: string[];
-  logo: string;
-  path: string;
-  color: string;
-  featured?: boolean;
-};
-
-const featuredProjects: FeaturedProject[] = [
-  {
-    name: "Ultimus Defensor",
-    desc: "AI-powered BlueTeam platform with MITRE ATT&CK detection pipeline — Isolation Forest + XGBoost + LLM assistant.",
-    tags: ["AI / ML", "Cybersecurity", "MITRE"],
-    logo: udLogo,
-    path: "/projects/ultimusdefensor",
-    color: "#38bdf8",
-    featured: true,
-  },
-  {
-    name: "MINDFLOW",
-    desc: "My first published mobile game — 4 puzzle modes, 1,200 verified levels, fully offline. Live on Google Play.",
-    tags: ["React Native", "TypeScript", "Android"],
-    logo: mindflowLogo,
-    path: "/projects/mindflow",
-    color: "#6c9bff",
-  },
-  {
-    name: "NBA Vision",
-    desc: "Full-stack NBA analytics lab — quantile-regression projections, Elo game forecasts and a possession-level simulator. Live on Vercel.",
-    tags: ["React", "XGBoost", "Simulation"],
-    logo: nbaLogo,
-    path: "/projects/nbavision",
-    color: "#ef4444",
-  },
-  {
-    name: "KDD'99 Intrusion Detection",
-    desc: "Machine Learning IDS with hierarchical pipeline, dataset engineering and BI dashboards — 5M+ records processed.",
-    tags: ["ML", "Big Data", "Python"],
-    logo: kddLogo,
-    path: "/projects/kdd",
-    color: "#22c55e",
-  },
-  {
-    name: "Ecommerce Platform",
-    desc: "Full-stack shop with authentication, cart, admin panel, order management and real-time stock control.",
-    tags: ["React", "Node.js", "SQL"],
-    logo: ecommerceLogo,
-    path: "/projects/ecommerce",
-    color: "#a78bfa",
-  },
-];
+const PROJECT_META = [
+  { key: "ultimus", logo: udLogo, path: "/projects/ultimusdefensor", color: "#38bdf8", featured: true },
+  { key: "nba", logo: nbaLogo, path: "/projects/nbavision", color: "#ef4444" },
+  { key: "mindflow", logo: mindflowLogo, path: "/projects/mindflow", color: "#6c9bff" },
+  { key: "kdd", logo: kddLogo, path: "/projects/kdd", color: "#22c55e" },
+] as const;
 
 const techStack = [
   { name: "Python", logo: pythonLogo },
@@ -120,54 +68,16 @@ const techStack = [
   { name: "Bash", logo: bashLogo },
 ];
 
-const timelineItems = [
-  {
-    date: "2026",
-    role: "AI Trainer — Agentic Systems",
-    org: "Cambra de Comerç de Barcelona",
-    desc: "Designed and delivered training programs in agentic AI, automation workflows, and multi-agent orchestration for business professionals.",
-    active: true,
-  },
-  {
-    date: "2025 – 2026",
-    role: "Master's in AI & Big Data",
-    org: "Academic Program",
-    desc: "Completed a full Master's covering ML, LLMs, Big Data pipelines, and agentic systems. Final project: Ultimus Defensor.",
-    active: true,
-  },
-  {
-    date: "2025",
-    role: "Junior Full Stack Developer",
-    org: "Sycai Medical · Internship",
-    desc: "Modernized internal platform, redesigned AWS databases, implemented Docker deployments and cloud infrastructure.",
-    active: false,
-  },
-  {
-    date: "2023 – Present",
-    role: "Professional Goalkeeper",
-    org: "CN Sant Andreu · División de Honor",
-    desc: "Competing at Spain's top water polo league and EuroCup. Previously CN Barcelona — Champions League.",
-    active: false,
-  },
-  {
-    date: "2023 – 2025",
-    role: "Multiplatform App Development (DAM)",
-    org: "INS Poblenou",
-    desc: "Higher National Diploma focused on full-stack development, mobile apps, databases, and software engineering.",
-    active: false,
-  },
-];
+const techRowA = techStack.slice(0, 9);
+const techRowB = techStack.slice(9);
 
-const TERMINAL_LINES = [
-  { cmd: "$ ./welcome.sh", out: "👋  Welcome to Pau's portfolio!" },
-  { cmd: "$ git push origin --all --force-with-lease", out: "✓  All projects uploaded to GitHub" },
-  { cmd: "$ cat contact.txt", out: "📧  pvilardev@gmail.com — I reply fast!" },
-  { cmd: "$ open linkedin.com/in/pau-vilar", out: "🔗  Latest updates on my LinkedIn ↗" },
-  { cmd: "$ whoami", out: "AI Engineer · Full Stack · Water Polo GK 🤽" },
-  { cmd: "$ grep -r 'hire' ./candidates/", out: "✓  Match found → pau_vilar.json 🎯" },
+const MARQUEE_BADGES = [
+  "Google Play", "Vercel", "Render", "GitHub", "Matrícula de Honor",
+  "División de Honor", "XGBoost", "FastAPI", "React Native", "Docker",
 ];
 
 export default function HomePage() {
+  const { t, lang } = useI18n();
   const [roleIdx, setRoleIdx] = useState(0);
   const [fadeState, setFadeState] = useState<"in" | "out">("in");
   const [termIdx, setTermIdx] = useState(0);
@@ -175,47 +85,55 @@ export default function HomePage() {
   const [termOut, setTermOut] = useState("");
   const [termPhase, setTermPhase] = useState<"typing" | "output" | "pause">("typing");
 
+  const roles = t.home.roles;
+  const terminalLines = t.home.terminal;
+
   useEffect(() => {
     const interval = setInterval(() => {
       setFadeState("out");
       setTimeout(() => {
-        setRoleIdx((i) => (i + 1) % ROLES.length);
+        setRoleIdx(i => (i + 1) % roles.length);
         setFadeState("in");
       }, 500);
     }, 3200);
     return () => clearInterval(interval);
-  }, []);
+  }, [roles.length]);
 
-  // Terminal typing effect
+  // Reset the terminal when the language changes
   useEffect(() => {
-    const current = TERMINAL_LINES[termIdx];
+    setTermIdx(0); setTermText(""); setTermOut(""); setTermPhase("typing");
+  }, [lang]);
+
+  useEffect(() => {
+    const current = terminalLines[termIdx];
+    if (!current) return;
     if (termPhase === "typing") {
       if (termText.length < current.cmd.length) {
-        const t = setTimeout(() => setTermText(current.cmd.slice(0, termText.length + 1)), 38);
-        return () => clearTimeout(t);
-      } else {
-        const t = setTimeout(() => { setTermOut(current.out); setTermPhase("output"); }, 500);
-        return () => clearTimeout(t);
+        const to = setTimeout(() => setTermText(current.cmd.slice(0, termText.length + 1)), 38);
+        return () => clearTimeout(to);
       }
-    } else if (termPhase === "output") {
-      const t = setTimeout(() => setTermPhase("pause"), 2200);
-      return () => clearTimeout(t);
-    } else {
-      const t = setTimeout(() => {
-        setTermText(""); setTermOut("");
-        setTermIdx((i) => (i + 1) % TERMINAL_LINES.length);
-        setTermPhase("typing");
-      }, 400);
-      return () => clearTimeout(t);
+      const to = setTimeout(() => { setTermOut(current.out); setTermPhase("output"); }, 500);
+      return () => clearTimeout(to);
     }
-  }, [termText, termPhase, termIdx]);
+    if (termPhase === "output") {
+      const to = setTimeout(() => setTermPhase("pause"), 2200);
+      return () => clearTimeout(to);
+    }
+    const to = setTimeout(() => {
+      setTermText(""); setTermOut("");
+      setTermIdx(i => (i + 1) % terminalLines.length);
+      setTermPhase("typing");
+    }, 400);
+    return () => clearTimeout(to);
+  }, [termText, termPhase, termIdx, terminalLines]);
 
   return (
-    <>
+    <div key={lang} className="lang-fade">
       {/* ── HERO ── */}
       <section className="home-hero">
+        <div className="hero-orb hero-orb--a" aria-hidden="true" />
+        <div className="hero-orb hero-orb--b" aria-hidden="true" />
 
-        {/* Floating code symbols — decorative background */}
         <div className="hero-float-code" aria-hidden="true">
           {FLOAT_SYMBOLS.map((sym, i) => (
             <span key={i} className={`hfc hfc-${i}`}>{sym}</span>
@@ -223,42 +141,42 @@ export default function HomePage() {
         </div>
 
         <div className="hero-content">
-          <h1 className="hero-name" data-text="Pau Vilar I Estrada">Pau Vilar I Estrada</h1>
+          <span className="hero-badge">
+            <span className="hero-badge-dot" />
+            {t.home.badge}
+          </span>
+
+          <h1 className="hero-name" data-text={t.home.name}>{t.home.name}</h1>
 
           <div className="hero-role-wrap">
             <p className={`hero-role ${fadeState === "out" ? "fade-out" : "fade-in"}`}>
-              {ROLES[roleIdx]}
+              <span className="hero-role-prompt">&gt;</span> {roles[roleIdx]}
             </p>
           </div>
 
-          <div className="hero-stats">
-            <div className="hero-stat">
-              <span className="hero-stat-number">8+</span>
-              <span className="hero-stat-label">Projects</span>
-            </div>
-            <div className="hero-stat">
-              <span className="hero-stat-number">17+</span>
-              <span className="hero-stat-label">Technologies</span>
-            </div>
-            <div className="hero-stat">
-              <span className="hero-stat-number">AI</span>
-              <span className="hero-stat-label">Educator</span>
-            </div>
-          </div>
+          <p className="hero-tagline">{rt(t.home.tagline)}</p>
 
           <div className="hero-ctas">
-            <Link to="/projects" className="btn-primary">View my work</Link>
-            <Link to="/contact" className="btn-secondary">Get in touch</Link>
+            <Link to="/projects" className="btn-primary">{t.home.ctaWork}</Link>
+            <Link to="/contact" className="btn-secondary">{t.home.ctaContact}</Link>
+          </div>
+
+          <div className="hero-stats">
+            {t.home.stats.map(s => (
+              <div className="hero-stat" key={s.l}>
+                <span className="hero-stat-number">{s.n}</span>
+                <span className="hero-stat-label">{s.l}</span>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Terminal AI widget — visible on wide screens only */}
         <div className="hero-terminal" aria-hidden="true">
           <div className="hero-terminal-bar">
             <div className="hero-terminal-dot" />
             <div className="hero-terminal-dot" />
             <div className="hero-terminal-dot" />
-            <span className="hero-terminal-title">ai-console</span>
+            <span className="hero-terminal-title">{t.home.terminalTitle}</span>
           </div>
           <div className="hero-terminal-body">
             <div className="hero-terminal-cmd">
@@ -269,80 +187,121 @@ export default function HomePage() {
         </div>
 
         <div className="home-scroll-hint">
-          <span>scroll</span>
+          <span>{t.home.scroll}</span>
           <div className="scroll-line" />
+        </div>
+      </section>
+
+      {/* ── BADGE MARQUEE ── */}
+      <div className="badge-marquee" aria-hidden="true">
+        <div className="badge-marquee-inner">
+          {[...MARQUEE_BADGES, ...MARQUEE_BADGES].map((b, i) => (
+            <span key={i} className="badge-chip">{b}<i>◆</i></span>
+          ))}
+        </div>
+      </div>
+
+      {/* ── WHAT I DO ── */}
+      <section className="home-section">
+        <Reveal className="home-section-header">
+          <h2 className="home-section-title">
+            {t.home.focusTitle[0]} <span>{t.home.focusTitle[1]}</span>
+          </h2>
+        </Reveal>
+
+        <div className="focus-grid">
+          {t.home.focus.map((f, i) => (
+            <Reveal key={f.h} className="focus-card" delay={i * 90}>
+              <span className="focus-icon">{f.icon}</span>
+              <h3>{f.h}</h3>
+              <p>{f.p}</p>
+            </Reveal>
+          ))}
         </div>
       </section>
 
       {/* ── FEATURED PROJECTS ── */}
       <section className="home-section">
-        <div className="home-section-header">
+        <Reveal className="home-section-header">
           <h2 className="home-section-title">
-            Featured <span>Projects</span>
+            {t.home.featuredTitle[0]} <span>{t.home.featuredTitle[1]}</span>
           </h2>
-          <Link to="/projects" className="home-section-link">
-            See all projects →
-          </Link>
-        </div>
+          <Link to="/projects" className="home-section-link">{t.home.featuredLink}</Link>
+        </Reveal>
 
         <div className="projects-grid">
-          {featuredProjects.map((p) => (
-            <Link
-              key={p.path}
-              to={p.path}
-              className={`proj-card${p.featured ? " proj-card--featured" : ""}`}
-              style={{ "--proj-color": p.color } as React.CSSProperties}
-            >
-              {p.featured && <span className="proj-featured-badge">★ Featured</span>}
-              <div className="proj-card-top">
-                <img src={p.logo} alt={p.name} className="proj-logo" />
-                <span className="proj-arrow">↗</span>
-              </div>
-              <p className="proj-name">{p.name}</p>
-              <p className="proj-desc">{p.desc}</p>
-              <div className="proj-tags">
-                {p.tags.map((t) => (
-                  <span key={t} className="proj-tag">{t}</span>
-                ))}
-              </div>
-            </Link>
-          ))}
+          {PROJECT_META.map((meta, i) => {
+            const p = (t.projects as any)[meta.key];
+            return (
+              <Reveal key={meta.path} delay={i * 80} className={meta.featured ? "grid-wide" : ""}>
+                <Link
+                  to={meta.path}
+                  className={`proj-card${meta.featured ? " proj-card--featured proj-card--wide" : ""}`}
+                  style={{ "--proj-color": meta.color } as React.CSSProperties}
+                >
+                  {meta.featured && <span className="proj-featured-badge">★ Featured</span>}
+                  <div className="proj-card-top">
+                    <img src={meta.logo} alt={p.short} className="proj-logo" />
+                    <span className="proj-arrow">↗</span>
+                  </div>
+                  <p className="proj-name">{p.short}</p>
+                  <p className="proj-desc">{p.desc}</p>
+                  <div className="proj-tags">
+                    {p.tags.map((tag: string) => (
+                      <span key={tag} className="proj-tag">{tag}</span>
+                    ))}
+                  </div>
+                </Link>
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 
       {/* ── EXPERIENCE TIMELINE ── */}
       <section className="home-section exp-bg">
-        <div className="home-section-header">
+        <Reveal className="home-section-header">
           <h2 className="home-section-title">
-            Experience &amp; <span>Education</span>
+            {t.home.timelineTitle[0]} <span>{t.home.timelineTitle[1]}</span>
           </h2>
-          <Link to="/experience" className="home-section-link">
-            Full profile →
-          </Link>
-        </div>
+          <Link to="/experience" className="home-section-link">{t.home.timelineLink}</Link>
+        </Reveal>
 
         <div className="timeline">
-          {timelineItems.map((item, i) => (
-            <div key={i} className="timeline-item">
+          {t.home.timeline.map((item, i) => (
+            <Reveal key={i} className="timeline-item" delay={i * 70}>
               <div className={`timeline-dot ${item.active ? "" : "dim"}`} />
               <div className="timeline-date">{item.date}</div>
-              <div className="timeline-role">{item.role}</div>
+              <div className="timeline-role"><span className="timeline-icon">{item.icon}</span>{item.role}</div>
               <div className="timeline-org">{item.org}</div>
               <div className="timeline-desc">{item.desc}</div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* ── TECH STACK ── */}
       <section className="home-section tech-bg">
-        <div className="home-section-header" style={{ padding: "0 2rem", marginBottom: "32px" }}>
-          <h2 className="home-section-title">Tech <span>Stack</span></h2>
-        </div>
+        <Reveal className="home-section-header" >
+          <h2 className="home-section-title">
+            {t.home.techTitle[0]} <span>{t.home.techTitle[1]}</span>
+          </h2>
+          <span className="home-section-note">{t.home.techSubtitle}</span>
+        </Reveal>
+
         <div className="tech-marquee">
-          {/* Duplicated for seamless loop */}
           <div className="tech-marquee-inner">
-            {[...techStack, ...techStack].map((tech, i) => (
+            {[...techRowA, ...techRowA, ...techRowA].map((tech, i) => (
+              <span key={i} className="tech-chip">
+                <img src={tech.logo} alt={tech.name} />
+                {tech.name}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="tech-marquee tech-marquee--reverse">
+          <div className="tech-marquee-inner">
+            {[...techRowB, ...techRowB, ...techRowB].map((tech, i) => (
               <span key={i} className="tech-chip">
                 <img src={tech.logo} alt={tech.name} />
                 {tech.name}
@@ -354,29 +313,19 @@ export default function HomePage() {
 
       {/* ── CONTACT CTA ── */}
       <section className="home-section contact-bg">
-        <div className="contact-cta-box">
-          <p className="contact-cta-eyebrow">Let's work together</p>
-          <h2>Got a project in mind?</h2>
-          <p>
-            I'm open to junior roles, internships, and collaborations in{" "}
-            <strong style={{ color: "var(--text)" }}>software development</strong>,{" "}
-            <strong style={{ color: "var(--text)" }}>AI engineering</strong>, and{" "}
-            <strong style={{ color: "var(--text)" }}>data analysis</strong>.
-            Feel free to reach out — I reply fast.
-          </p>
+        <Reveal className="contact-cta-box">
+          <p className="contact-cta-eyebrow">{t.home.cta.eyebrow}</p>
+          <h2>{t.home.cta.title}</h2>
+          <p>{rt(t.home.cta.body)}</p>
 
           <div className="hero-ctas">
             <a href="mailto:pvilardev@gmail.com" className="btn-primary">
               <FaEnvelope style={{ marginRight: "8px" }} />
               pvilardev@gmail.com
             </a>
-            <a
-              href={`${import.meta.env.BASE_URL}VILAR_PAU.pdf`}
-              download
-              className="btn-secondary"
-            >
+            <a href={`${import.meta.env.BASE_URL}VILAR_PAU.pdf`} download className="btn-secondary">
               <FaDownload style={{ marginRight: "8px" }} />
-              Download CV
+              {t.home.cta.cv}
             </a>
           </div>
 
@@ -388,8 +337,8 @@ export default function HomePage() {
               <img src={linkedinIcon} alt="LinkedIn" className="contact-social-icon" />
             </a>
           </div>
-        </div>
+        </Reveal>
       </section>
-    </>
+    </div>
   );
 }

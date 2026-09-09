@@ -1,8 +1,13 @@
 import React from "react";
 import "../css/ExperienceSection.css";
+import { useI18n } from "../i18n/LanguageContext";
+import { rt } from "../i18n/rich";
+import Reveal from "./Reveal";
 
-// Sycai Medical Logos & Tech Stack
+// Company logo
 import sycaiLogo from "../assets/logoSycai.png";
+
+// Tech logos
 import awsLogo from "../assets/awslogo.png";
 import dockerLogo from "../assets/dockerlogo.png";
 import flaskLogo from "../assets/flasklogo.png";
@@ -19,271 +24,201 @@ import nodejsLogo from "../assets/nodejslogo.png";
 import typeScriptLogo from "../assets/typescriptlogo.png";
 import TailwindLogo from "../assets/tailwindlogo.svg";
 import pythonLogo from "../assets/pythonlogo.webp";
-
-// Water Polo Clubs & Competitions
-import cnbLogo from "../assets/cnb.png";
-import cnsaLogo from "../assets/cnsa_new.png";
-import lewaterpoloLogo from "../assets/lewaterpolo.png";
-import eurocupLogo from "../assets/logoeurocup.png";
-import championsLogo from "../assets/championslogo.webp";
-
-// Water Polo Photos
-import waterpoloImg1 from "../public/PauVilar_NegroPerfil.JPG";
-import waterpoloImg2 from "../public/PauVilar_NegroLado.JPG";
-import teamPhoto from "../public/sananFotoEquipo.jpg";
-
-// Education logos
-import insPoblenouLogo from "../assets/poblenoulogo.png";
-import insCarLogo from "../assets/insCARlogo.png";
-import monlauLogo from "../assets/monlaulogo.svg";
-
 import sqliteLogo from "../assets/sqlitelogo.png";
 import virtualboxLogo from "../assets/Virtualboxlogo.png";
 import figmaLogo from "../assets/figmalogo.png";
 import djangoLogo from "../assets/djangologo.svg";
-import junitLogo from "../assets/junitlogo.png";
 import bashLogo from "../assets/bashlogo.png";
 import springbootLogo from "../assets/springbootlogo.png";
 import hibernateLogo from "../assets/hibernatelogo.svg";
 import bootstrapLogo from "../assets/bootstraplogo.png";
 import kotlinLogo from "../assets/kotlinlogo.png";
 
+// Water polo clubs & competitions
+import cncLogo from "../assets/logo_cnc.png";
+import cnbLogo from "../assets/cnb.png";
+import cnsaLogo from "../assets/cnsa_new.png";
+import lewaterpoloLogo from "../assets/lewaterpolo.png";
+import eurocupLogo from "../assets/logoeurocup.png";
+import championsLogo from "../assets/championslogo.webp";
+
+// Water polo photos
+import waterpoloImg1 from "../public/PauVilar_NegroPerfil.JPG";
+import waterpoloImg2 from "../public/PauVilar_NegroLado.JPG";
+import teamPhoto from "../public/sananFotoEquipo.jpg";
+
+// Education logos & photos
+import insPoblenouLogo from "../assets/poblenoulogo.png";
+import insCarLogo from "../assets/insCARlogo.png";
+import monlauLogo from "../assets/monlaulogo.svg";
 import carLogo from "../assets/CARlogo.png";
 import carGeneral from "../assets/car_general.png";
 import carPiscinaFora from "../assets/carpiscinafora.jpg";
 
-export default function ExperienceSection() {
-  return (
-    <section className="experience-section">
+const SYCAI_TECH = [
+  { n: "React", l: reactLogo }, { n: "Flask", l: flaskLogo },
+  { n: "JavaScript", l: javascriptLogo }, { n: "TypeScript", l: typeScriptLogo },
+  { n: "Java", l: javaLogo }, { n: "Python", l: pythonLogo },
+  { n: "Angular", l: angularLogo }, { n: "SQL", l: sqlLogo },
+  { n: "Docker", l: dockerLogo }, { n: "AWS", l: awsLogo },
+  { n: "Git", l: gitLogo }, { n: "GitHub", l: githubLogo },
+  { n: "HTML", l: htmlLogo }, { n: "Tailwind", l: TailwindLogo },
+  { n: "XML", l: xmlLogo }, { n: "Node.js", l: nodejsLogo },
+];
 
-      {/* ── Agentic Systems Trainer ── */}
-      <div className="experience-container">
-        <h2>AI TRAINER <span className="highlight">· Cambra de Comerç de Barcelona</span></h2>
-        <p className="subtitle">
-          <strong>AI Trainer &amp; Educator</strong> at the <strong>Barcelona Chamber of Commerce</strong> — designed
-          and delivered specialized training programs in <strong>Agentic AI Systems, automation workflows, and
-          AI-powered business solutions</strong> for professionals and companies in Catalonia.
-        </p>
+const DAM_TECH = [
+  { n: "Java", l: javaLogo }, { n: "JavaScript", l: javascriptLogo },
+  { n: "TypeScript", l: typeScriptLogo }, { n: "Python", l: pythonLogo },
+  { n: "Kotlin", l: kotlinLogo }, { n: "React", l: reactLogo },
+  { n: "Angular", l: angularLogo }, { n: "Flask", l: flaskLogo },
+  { n: "Django", l: djangoLogo }, { n: "Spring Boot", l: springbootLogo },
+  { n: "Hibernate", l: hibernateLogo }, { n: "SQL", l: sqlLogo },
+  { n: "SQLite", l: sqliteLogo }, { n: "Docker", l: dockerLogo },
+  { n: "VirtualBox", l: virtualboxLogo }, { n: "Bash", l: bashLogo },
+  { n: "Git", l: gitLogo }, { n: "GitHub", l: githubLogo },
+  { n: "HTML", l: htmlLogo }, { n: "Bootstrap", l: bootstrapLogo },
+  { n: "Tailwind", l: TailwindLogo }, { n: "Figma", l: figmaLogo },
+];
+
+const CLUB_LOGOS = [cncLogo, cnsaLogo, cnbLogo];
+
+export default function ExperienceSection() {
+  const { t, lang } = useI18n();
+  const e = t.experience;
+
+  return (
+    <section className="experience-section lang-fade" key={lang}>
+
+      {/* ── PAGE HEADER ── */}
+      <Reveal className="exp-page-head">
+        <h1>{e.pageTitle}</h1>
+        <p>{e.pageSubtitle}</p>
+      </Reveal>
+
+      {/* ── AI TRAINER ── */}
+      <Reveal className="experience-container">
+        <h2>{e.trainer.title} <span className="highlight">{e.trainer.titleHighlight}</span></h2>
+        <p className="subtitle">{rt(e.trainer.subtitle)}</p>
 
         <div className="experience-content">
-          <h3>🎓 Training Programs Delivered</h3>
-          <p>
-            As an <strong>AI Instructor</strong> at the Cambra de Comerç de Barcelona — one of the most prestigious
-            institutions driving digital transformation for businesses in Catalonia — I designed and delivered
-            hands-on training covering the full lifecycle of agentic systems: from architecture and orchestration
-            to real-world production deployment and business impact.
-          </p>
+          {e.trainer.blocks.map(b => (
+            <React.Fragment key={b.h}>
+              <h3>{b.h}</h3>
+              <p>{rt(b.p)}</p>
+            </React.Fragment>
+          ))}
 
-          <h3>💡 Topics Taught</h3>
+          <h3>{e.trainer.topicsTitle}</h3>
           <ul className="achievements">
-            <li>
-              <span className="achievements-text">
-                <strong>Agent architecture design</strong> — planning, reasoning loops, and tool integration (ReAct, CoT, reflection)
-              </span>
-            </li>
-            <li>
-              <span className="achievements-text">
-                <strong>Business automation workflows</strong> — designing end-to-end automated pipelines for real company processes
-              </span>
-            </li>
-            <li>
-              <span className="achievements-text">
-                <strong>Multi-agent orchestration</strong> — supervisor patterns, parallel agents, and handoff protocols
-              </span>
-            </li>
-            <li>
-              <span className="achievements-text">
-                <strong>Memory &amp; state management</strong> — short-term context, long-term vector memory, and retrieval strategies
-              </span>
-            </li>
-            <li>
-              <span className="achievements-text">
-                <strong>Production deployment</strong> — evaluation, observability, and guardrails for autonomous systems in business contexts
-              </span>
-            </li>
+            {e.trainer.topics.map(topic => (
+              <li key={topic}><span className="achievements-text">{rt(topic)}</span></li>
+            ))}
           </ul>
         </div>
-      </div>
+      </Reveal>
 
       <div className="section-divider"></div>
 
-      {/* ── Sycai Medical ── */}
-      <div className="experience-container">
-        <img src={sycaiLogo} alt="Sycai Medical Logo" className="company-logo" />
-        <h2>EXPERIENCE AT <span className="highlight">SYCAI MEDICAL</span></h2>
-        <p className="subtitle">
-          Sycai Medical is a Barcelona-based startup that develops AI-powered tools for radiologists. Its innovative technology helps detect and monitor{" "}
-          <strong>precancerous abdominal lesions</strong> at early stages, significantly improving diagnosis and treatment efficiency.
-        </p>
+      {/* ── SYCAI MEDICAL ── */}
+      <Reveal className="experience-container">
+        <img src={sycaiLogo} alt="Sycai Medical" className="company-logo" />
+        <h2>{e.sycai.title} <span className="highlight">{e.sycai.titleHighlight}</span></h2>
+        <p className="subtitle">{rt(e.sycai.subtitle)}</p>
 
         <div className="experience-content">
-          <h3>🚀 Junior Full Stack Developer Internship (6 months)</h3>
-          <p>
-            As a <strong>Junior Full Stack Developer</strong>, I was responsible for <strong>modernizing</strong> the company's
-            internal software infrastructure, <strong>redesigning databases</strong>, and <strong>upgrading outdated technologies</strong> into a modern stack.
-          </p>
+          {e.sycai.blocks.map(b => (
+            <React.Fragment key={b.h}>
+              <h3>{b.h}</h3>
+              <p>{rt(b.p)}</p>
+            </React.Fragment>
+          ))}
 
-          <h3>🔧 AWS Infrastructure & Cloud Optimization</h3>
-          <p>
-            I worked on optimizing cloud-based solutions using <strong>AWS</strong>, improving scalability, security, and efficiency.
-            I also <strong>redesigned databases</strong>, implemented <strong>Docker-based containerized solutions</strong>, and contributed to{" "}
-            <strong>deployment automation</strong>.
-          </p>
-
-          <h3>🏆 About Sycai Medical</h3>
-          <p>
-            Founded in <strong>2020 in Barcelona</strong>, Sycai Medical specializes in <strong>medical AI</strong>, helping radiologists analyze{" "}
-            <strong>CT scans and MRI images</strong>. Their technology seamlessly integrates with <strong>hospital PACS systems</strong>, utilizing{" "}
-            <strong>DICOM standards</strong> for interoperability. Sycai has won <strong>multiple innovation awards</strong>, receiving funding from{" "}
-            <strong>European startup accelerators</strong> and <strong>health-tech grants</strong>.
-          </p>
-
-          <h3>⚡ Technologies Used</h3>
+          <h3>{e.sycai.techTitle}</h3>
           <div className="tech-list-container">
             <ul className="tech-list">
-              <li><img src={reactLogo} alt="React" /> React</li>
-              <li><img src={flaskLogo} alt="Flask" /> Flask</li>
-              <li><img src={javascriptLogo} alt="JavaScript" /> JavaScript</li>
-              <li><img src={typeScriptLogo} alt="TypeScript" /> TypeScript</li>
-              <li><img src={javaLogo} alt="Java" /> Java</li>
-              <li><img src={pythonLogo} alt="Python" /> Python</li>
-              <li><img src={angularLogo} alt="Angular" /> Angular</li>
-              <li><img src={sqlLogo} alt="SQL" /> SQL</li>
-              <li><img src={dockerLogo} alt="Docker" /> Docker</li>
-              <li><img src={awsLogo} alt="AWS" /> AWS</li>
-              <li><img src={gitLogo} alt="Git" /> Git</li>
-              <li><img src={githubLogo} alt="GitHub" /> GitHub</li>
-              <li><img src={htmlLogo} alt="HTML" /> HTML</li>
-              <li><img src={TailwindLogo} alt="Tailwind" /> Tailwind</li>
-              <li><img src={xmlLogo} alt="XML" /> XML</li>
-              <li><img src={nodejsLogo} alt="Node.js" /> Node.js</li>
+              {SYCAI_TECH.map(tech => (
+                <li key={tech.n}><img src={tech.l} alt={tech.n} /> {tech.n}</li>
+              ))}
             </ul>
           </div>
 
-          <h3>💡 Key Achievements</h3>
+          <h3>{e.sycai.achievementsTitle}</h3>
           <ul className="achievements">
-            <li>
-              <span className="highlight-text">Migrated the company's internal platform</span>
-              <span className="achievements-text"> from legacy systems to a modern full-stack architecture.</span>
-            </li>
-            <li>
-              <span className="highlight-text">Redesigned AWS databases</span>
-              <span className="achievements-text"> optimizing performance and reducing costs.</span>
-            </li>
-            <li>
-              <span className="highlight-text">Developed Docker-based environments</span>
-              <span className="achievements-text"> for scalable cloud deployments.</span>
-            </li>
-            <li>
-              <span className="highlight-text">Enhanced hospital PACS integration</span>
-              <span className="achievements-text"> improving efficiency for radiologists.</span>
-            </li>
+            {e.sycai.achievements.map(a => (
+              <li key={a.b}>
+                <span className="highlight-text">{a.b}</span>
+                <span className="achievements-text">{a.r}</span>
+              </li>
+            ))}
           </ul>
         </div>
-      </div>
+      </Reveal>
 
       <div className="section-divider"></div>
 
-      {/* ── Water Polo ── */}
-      <div className="experience-container">
-        <h2>PROFESSIONAL WATER POLO CAREER</h2>
-        <p className="subtitle">
-          Elite-level goalkeeper competing in <strong>Spain's División de Honor (DHM)</strong> and <strong>top-tier European competitions</strong>.
-        </p>
+      {/* ── WATER POLO ── */}
+      <Reveal className="experience-container">
+        <h2>{e.waterpolo.title}</h2>
+        <p className="subtitle">{rt(e.waterpolo.subtitle)}</p>
 
-        <div className="clubs">
-          <div className="club">
-            <img src={cnsaLogo} alt="CN Sant Andreu Logo" className="club-logo" />
-            <h3>CN Sant Andreu (2023 – Present)</h3>
-            <p>
-              <strong>Starting Goalkeeper</strong> for <strong>CN Sant Andreu</strong>, one of Spain's top professional water polo clubs.
-              Competing at the highest national and international levels:
-            </p>
-            <ul className="styled-list">
-              <li><strong>División de Honor (DHM)</strong> — The premier Spanish professional league · LEWATERPOLO</li>
-              <li><strong>Copa del Rey</strong> — Spain's most prestigious domestic cup tournament.</li>
-              <li><strong>EuroCup</strong> — The second-most important club competition in Europe.</li>
-            </ul>
-          </div>
-
-          <div className="small-section-divider"></div>
-
-          <div className="club">
-            <img src={cnbLogo} alt="CN Barcelona Logo" className="club-logo" />
-            <h3>CN Barcelona (2019 – 2023)</h3>
-            <p>
-              Former <strong>Goalkeeper</strong> at <strong>CN Barcelona</strong>, the <strong>most decorated</strong> water polo club in Spain, competing in:
-            </p>
-            <ul className="styled-list">
-              <li><strong>División de Honor (DHM)</strong> — The premier Spanish professional league · LEWATERPOLO</li>
-              <li><strong>Copa del Rey</strong> — Spain's most prestigious domestic cup tournament.</li>
-              <li><strong>Champions League</strong> — The top-tier club competition in European water polo.</li>
-              <li><strong>EuroCup</strong> — The second-most important club competition in Europe.</li>
-            </ul>
-          </div>
+        <div className="club-grid">
+          {e.waterpolo.clubs.map((club, i) => (
+            <article key={club.name} className={`club-card${club.current ? " club-card--current" : ""}`}>
+              <span className={`club-status${club.current ? " is-current" : ""}`}>
+                {club.current ? e.waterpolo.currentBadge : e.waterpolo.pastBadge}
+              </span>
+              <img src={CLUB_LOGOS[i]} alt={club.name} className="club-logo" />
+              <h3>{club.name}</h3>
+              <span className="club-years">{club.years}</span>
+              <p>{rt(club.p)}</p>
+              <ul className="styled-list">
+                {club.bullets.map(b => <li key={b}>{rt(b)}</li>)}
+              </ul>
+            </article>
+          ))}
         </div>
 
-        <h3>💡 Key Achievements</h3>
+        <h3>{e.waterpolo.achievementsTitle}</h3>
         <ul className="achievements">
-          <li>
-            <span className="highlight-text">Represented two elite clubs</span>
-            <span className="achievements-text"> in Spain's highest division and European competitions.</span>
-          </li>
-          <li>
-            <span className="highlight-text">Competed in the Champions League</span>
-            <span className="achievements-text"> facing the best water polo clubs in Europe and the world.</span>
-          </li>
-          <li>
-            <span className="highlight-text">Developed mental resilience and problem-solving abilities</span>
-            <span className="achievements-text"> through high-pressure international competition.</span>
-          </li>
-          <li>
-            <span className="highlight-text">Balanced a dual career in sports and academics</span>
-            <span className="achievements-text"> mastering time management and goal-oriented discipline.</span>
-          </li>
+          {e.waterpolo.achievements.map(a => (
+            <li key={a.b}>
+              <span className="highlight-text">{a.b}</span>
+              <span className="achievements-text">{a.r}</span>
+            </li>
+          ))}
         </ul>
 
         <div className="image-gallery">
-          <img src={waterpoloImg1} alt="Pau Vilar Profile" />
-          <img src={teamPhoto} alt="Team Photo CN Sant Andreu" />
-          <img src={waterpoloImg2} alt="Pau Vilar Side Profile" />
+          <img src={waterpoloImg1} alt="Pau Vilar" loading="lazy" />
+          <img src={teamPhoto} alt="Team" loading="lazy" />
+          <img src={waterpoloImg2} alt="Pau Vilar" loading="lazy" />
         </div>
 
         <div className="competition-gallery">
-          <img src={lewaterpoloLogo} alt="LEWATERPOLO DHM Logo" />
-          <img src={eurocupLogo} alt="EuroCup Logo" />
-          <img src={championsLogo} alt="Champions League Logo" />
+          <img src={lewaterpoloLogo} alt="LEWATERPOLO — División de Honor" loading="lazy" />
+          <img src={eurocupLogo} alt="EuroCup" loading="lazy" />
+          <img src={championsLogo} alt="Champions League" loading="lazy" />
         </div>
-      </div>
+      </Reveal>
 
       <div className="section-divider"></div>
 
-      {/* ── Studies ── */}
-      <div className="experience-container">
-        <h2>STUDIES</h2>
+      {/* ── STUDIES ── */}
+      <Reveal className="experience-container">
+        <h2>{e.studies.title}</h2>
 
-        {/* Master's in AI & Big Data */}
+        {/* Master */}
         <div className="study-item">
-          <img src={monlauLogo} alt="Monlau Formación Profesional Logo" className="studiesPB-logo" />
-          <h3>🤖 Master's in Artificial Intelligence &amp; Big Data · 2025 – 2026</h3>
-          <p>
-            I have successfully completed the <strong>Master's degree in Artificial Intelligence &amp; Big Data</strong>{" "}
-            at <strong>Monlau Formación Profesional</strong>, graduating with <strong>Matrícula de Honor</strong> (highest
-            academic distinction) — a high-intensity program covering the full spectrum of modern AI and data engineering —
-            from supervised and unsupervised learning to LLMs, agentic systems, production data pipelines, and real-world ML deployment.
-          </p>
-          <p>
-            The program culminated in <strong>Ultimus Defensor</strong>, a full end-to-end AI cybersecurity
-            platform combining anomaly detection, MITRE ATT&amp;CK classification, and an LLM-powered BlueTeam assistant.
-          </p>
-          <h3>📚 Key Areas of Study</h3>
+          <img src={monlauLogo} alt="Monlau Formación Profesional" className="studiesPB-logo" />
+          <h3>{e.studies.master.h}</h3>
+          <span className="study-badge study-badge--honors">{e.studies.master.statusBadge}</span>
+          <p>{rt(e.studies.master.p1)}</p>
+          <p>{rt(e.studies.master.p2)}</p>
+          <h3>{e.studies.master.areasTitle}</h3>
           <ul className="achievements">
-            <li><span className="achievements-text"><strong>AI Models</strong> — neural networks, NLP, computer vision, expert systems, ethics in AI</span></li>
-            <li><span className="achievements-text"><strong>Machine Learning</strong> — supervised, unsupervised, ensemble methods, model evaluation</span></li>
-            <li><span className="achievements-text"><strong>Big Data Systems</strong> — distributed computing, data pipelines, real-time processing</span></li>
-            <li><span className="achievements-text"><strong>Applied Big Data</strong> — production data engineering, analytics, BI dashboards</span></li>
-            <li><span className="achievements-text"><strong>AI Programming</strong> — Python, ML frameworks, API design, deployment</span></li>
-            <li><span className="achievements-text"><strong>Final Project (MP6)</strong> — Ultimus Defensor: full AI platform for cybersecurity BlueTeam operations</span></li>
+            {e.studies.master.areas.map(a => (
+              <li key={a}><span className="achievements-text">{rt(a)}</span></li>
+            ))}
           </ul>
         </div>
 
@@ -291,44 +226,18 @@ export default function ExperienceSection() {
 
         {/* DAM */}
         <div className="study-item">
-          <img src={insPoblenouLogo} alt="INS Poblenou Logo" className="studiesPB-logo" />
-          <h3>Multiplatform Application Development (DAM) · 2023 – 2025</h3>
-          <p>
-            I have successfully completed the <strong>Higher National Diploma in Multiplatform Application Development (DAM)</strong>{" "}
-            at <strong>INS Poblenou</strong>, a technical program focused on the design, development, and deployment of software
-            solutions across multiple platforms.
-          </p>
-          <p>
-            The program provided a strong foundation in <strong>software engineering</strong>, <strong>full-stack development</strong>,{" "}
-            <strong>databases</strong>, and <strong>application lifecycle management</strong>, with an emphasis on practical,
-            production-oriented projects.
-          </p>
+          <img src={insPoblenouLogo} alt="INS Poblenou" className="studiesPB-logo" />
+          <h3>{e.studies.dam.h}</h3>
+          <span className="study-badge">{e.studies.dam.statusBadge}</span>
+          <p>{rt(e.studies.dam.p1)}</p>
+          <p>{rt(e.studies.dam.p2)}</p>
 
-          <h3>👨‍💻 Core Technologies & Tools</h3>
+          <h3>{e.studies.dam.techTitle}</h3>
           <div className="tech-list-container">
             <ul className="tech-list">
-              <li><img src={javaLogo} alt="Java" /> Java</li>
-              <li><img src={javascriptLogo} alt="JavaScript" /> JavaScript</li>
-              <li><img src={typeScriptLogo} alt="TypeScript" /> TypeScript</li>
-              <li><img src={pythonLogo} alt="Python" /> Python</li>
-              <li><img src={kotlinLogo} alt="Kotlin" /> Kotlin</li>
-              <li><img src={reactLogo} alt="React" /> React</li>
-              <li><img src={angularLogo} alt="Angular" /> Angular</li>
-              <li><img src={flaskLogo} alt="Flask" /> Flask</li>
-              <li><img src={djangoLogo} alt="Django" /> Django</li>
-              <li><img src={springbootLogo} alt="Spring Boot" /> Spring Boot</li>
-              <li><img src={hibernateLogo} alt="Hibernate" /> Hibernate</li>
-              <li><img src={sqlLogo} alt="SQL" /> SQL</li>
-              <li><img src={sqliteLogo} alt="SQLite" /> SQLite</li>
-              <li><img src={dockerLogo} alt="Docker" /> Docker</li>
-              <li><img src={virtualboxLogo} alt="VirtualBox" /> VirtualBox</li>
-              <li><img src={bashLogo} alt="Bash" /> Bash</li>
-              <li><img src={gitLogo} alt="Git" /> Git</li>
-              <li><img src={githubLogo} alt="GitHub" /> GitHub</li>
-              <li><img src={htmlLogo} alt="HTML" /> HTML</li>
-              <li><img src={bootstrapLogo} alt="Bootstrap" /> Bootstrap</li>
-              <li><img src={TailwindLogo} alt="Tailwind" /> Tailwind</li>
-              <li><img src={figmaLogo} alt="Figma" /> Figma</li>
+              {DAM_TECH.map(tech => (
+                <li key={tech.n}><img src={tech.l} alt={tech.n} /> {tech.n}</li>
+              ))}
             </ul>
           </div>
         </div>
@@ -337,50 +246,42 @@ export default function ExperienceSection() {
 
         {/* Baccalaureate */}
         <div className="study-item">
-          <img src={insCarLogo} alt="INS CAR Logo" className="studiesCAR-logo" />
-          <h3>Social Sciences Baccalaureate · 2019 – 2021</h3>
-          <p>
-            I completed my <strong>Social Sciences Baccalaureate</strong> at the <strong>High-Performance Center (INS CAR)</strong>,
-            an institution exclusively designed for elite athletes at the national level.
-          </p>
-          <p>
-            At this center, I balanced <strong>6 hours of daily training</strong> with academic studies, developing exceptional
-            skills in <strong>time management, discipline, and working under pressure</strong>.
-          </p>
-          <p>
-            INS CAR hosts the top athletes in Spain across various disciplines, including the <strong>Spanish national water polo team</strong>.
-          </p>
+          <img src={insCarLogo} alt="INS CAR" className="studiesCAR-logo" />
+          <h3>{e.studies.bac.h}</h3>
+          <p>{rt(e.studies.bac.p1)}</p>
+          <p>{rt(e.studies.bac.p2)}</p>
+          <p>{rt(e.studies.bac.p3)}</p>
         </div>
 
         <div className="image-gallery landscape">
-          <img src={carGeneral} alt="CAR Aerial View" />
-          <img src={carLogo} alt="CAR Logo" className="car-logo-img" />
-          <img src={carPiscinaFora} alt="CAR Outdoor Pool" />
+          <img src={carGeneral} alt="CAR" loading="lazy" />
+          <img src={carLogo} alt="CAR" className="car-logo-img" loading="lazy" />
+          <img src={carPiscinaFora} alt="CAR" loading="lazy" />
         </div>
 
         <div className="small-section-divider"></div>
 
-        {/* Certifications */}
         <div className="certifications">
-          <h3>CERTIFICATIONS</h3>
+          <h3>{e.studies.certificationsTitle}</h3>
           <ul className="styled-list">
-            <li><strong>Google &amp; Banco Santander:</strong> Artificial Intelligence and Productivity (Oct 2024)</li>
-            <li><strong>IBM:</strong> Python (Aug 2024)</li>
+            {e.studies.certifications.map(c => <li key={c}>{rt(c)}</li>)}
           </ul>
         </div>
 
         <div className="small-section-divider"></div>
 
-        {/* Languages */}
         <div className="languages">
-          <h3>LANGUAGES</h3>
-          <ul className="styled-list">
-            <li><strong>Spanish</strong> — Native</li>
-            <li><strong>Catalan</strong> — Native</li>
-            <li><strong>English</strong> — B1</li>
-          </ul>
+          <h3>{e.studies.languagesTitle}</h3>
+          <div className="lang-grid">
+            {e.studies.languages.map(l => (
+              <div key={l.l} className="lang-item">
+                <span className="lang-name">{l.l}</span>
+                <span className="lang-level">{l.v}</span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </Reveal>
 
     </section>
   );

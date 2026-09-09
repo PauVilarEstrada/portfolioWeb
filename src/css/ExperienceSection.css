@@ -391,3 +391,202 @@ p {
   display: block;
   opacity: 0.9;
 }
+
+/* ═══════════════════════════════════════════
+   V2 — experience page
+   ═══════════════════════════════════════════ */
+
+.exp-page-head {
+  max-width: 900px;
+  margin: 0 auto 46px;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.exp-page-head h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 14px;
+  background: linear-gradient(110deg, #ffffff 0%, #9fe6bd 55%, #ffffff 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: expHeadShimmer 7s ease-in-out infinite;
+}
+
+@keyframes expHeadShimmer {
+  0%, 100% { background-position: 0% 0; }
+  50%      { background-position: 100% 0; }
+}
+
+.exp-page-head p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin: 0 auto;
+  max-width: 620px;
+}
+
+/* ── Club cards ── */
+.club-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  margin: 28px 0 34px;
+}
+
+.club-card {
+  position: relative;
+  padding: 26px 22px 22px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.club-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(29, 185, 84, 0.32);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.5);
+}
+
+.club-card--current {
+  border-color: rgba(29, 185, 84, 0.42);
+  background:
+    linear-gradient(160deg, rgba(29, 185, 84, 0.09) 0%, rgba(255, 255, 255, 0.02) 55%);
+  box-shadow: 0 0 0 1px rgba(29, 185, 84, 0.14), 0 0 48px rgba(29, 185, 84, 0.09);
+}
+
+.club-status {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.club-status.is-current {
+  color: #05140b;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-bright) 100%);
+  border-color: transparent;
+  box-shadow: 0 2px 14px var(--accent-glow);
+}
+
+.club-card .club-logo {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  margin: 4px 0 16px;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.55));
+  transition: transform 0.35s ease;
+}
+
+.club-card:hover .club-logo { transform: scale(1.06); }
+
+.club-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 4px;
+}
+
+.club-years {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.club-card p {
+  font-family: var(--font-body);
+  font-size: 0.89rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0 0 12px;
+}
+
+/* ── Study status badges ── */
+.study-badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.study-badge--honors {
+  color: #ffe9a8;
+  background: linear-gradient(135deg, rgba(250, 204, 21, 0.16), rgba(250, 204, 21, 0.05));
+  border-color: rgba(250, 204, 21, 0.4);
+  box-shadow: 0 0 22px rgba(250, 204, 21, 0.12);
+}
+
+/* ── Languages ── */
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.lang-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.lang-item:hover {
+  border-color: rgba(29, 185, 84, 0.35);
+  transform: translateY(-3px);
+}
+
+.lang-name {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.lang-level {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.rt-accent {
+  font-style: normal;
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .club-card .club-logo { width: 70px; height: 70px; }
+}

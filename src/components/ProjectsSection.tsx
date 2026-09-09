@@ -7,6 +7,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
 import "../css/ProjectsSection.css";
+import { useI18n } from "../i18n/LanguageContext";
+
 import pacmanLogo from "../components/myprojects/assets/logosApps/pacmanlogo.png";
 import flappyLogo from "../components/myprojects/assets/logosApps/flappybirdLogoSection.png";
 import ecommerceLogo from "../components/myprojects/assets/logosApps/logo-ecommerce.png";
@@ -15,81 +17,50 @@ import udLogo from "../components/myprojects/assets/logosApps/ultimusdefensorlog
 import mindflowLogo from "../components/myprojects/assets/logosApps/mindflowlogo.png";
 import nbaLogo from "../components/myprojects/assets/logosApps/nbavisionlogo.png";
 
-
-
-
-type Project = {
-  name: string;
-  description: string;
+type ProjectMeta = {
+  key: "ultimus" | "nba" | "mindflow" | "kdd" | "ecommerce" | "pacman" | "flappy";
   image: string;
   path: string;
   featured?: boolean;
 };
 
-const projects: Project[] = [
-  {
-    name: "Ultimus Defensor — BlueSentinel",
-    description: "AI-powered BlueTeam platform with MITRE ATT&CK detection, Isolation Forest + XGBoost pipeline, and LLM cybersecurity assistant.",
-    image: udLogo,
-    path: "/projects/ultimusdefensor",
-    featured: true,
-  },
-  {
-    name: "NBA Vision",
-    description: "Full-stack NBA analytics lab: quantile-regression projections, Elo game forecasts and a possession-level simulator. Live on Vercel.",
-    image: nbaLogo,
-    path: "/projects/nbavision",
-  },
-  {
-    name: "MINDFLOW — Brain Puzzle Games",
-    description: "Published Android game: 4 puzzle modes, 1,200 verified levels, offline-first. React Native + TypeScript, live on Google Play.",
-    image: mindflowLogo,
-    path: "/projects/mindflow",
-  },
-  {
-    name: "Intrusion Detection System (KDD’99)",
-    description: "Machine Learning–based IDS with hierarchical classification, dataset engineering and analytical dashboards.",
-    image: kddLogo,
-    path: "/projects/kdd",
-  },
-  {
-    name: "Ecommerce",
-    description: "Full-stack shop with auth, cart, admin & orders",
-    image: ecommerceLogo,
-    path: "/projects/ecommerce",
-  },
-  {
-    name: "Pacman",
-    description: "A remake of the legendary Pacman",
-    image: pacmanLogo,
-    path: "/projects/pacman",
-  },
-  {
-    name: "Flappy Bird",
-    description: "Improved clone of the classic game",
-    image: flappyLogo,
-    path: "/projects/flappybird",
-  }
+const PROJECTS: ProjectMeta[] = [
+  { key: "ultimus", image: udLogo, path: "/projects/ultimusdefensor", featured: true },
+  { key: "nba", image: nbaLogo, path: "/projects/nbavision" },
+  { key: "mindflow", image: mindflowLogo, path: "/projects/mindflow" },
+  { key: "kdd", image: kddLogo, path: "/projects/kdd" },
+  { key: "ecommerce", image: ecommerceLogo, path: "/projects/ecommerce" },
+  { key: "pacman", image: pacmanLogo, path: "/projects/pacman" },
+  { key: "flappy", image: flappyLogo, path: "/projects/flappybird" },
 ];
-
 
 const PS_SYMBOLS = ["const", "async", "import", "class", "await", "<AI/>", "01010", "=>"];
 
 export default function ProjectsSection() {
+  const { t, lang } = useI18n();
+
   return (
     <section className="projects-section">
       <div className="ps-float-code" aria-hidden="true">
         {PS_SYMBOLS.map((sym, i) => <span key={i}>{sym}</span>)}
       </div>
-      <h2>My Projects</h2>
+
+      <div className="ps-head lang-fade" key={lang}>
+        <h2>
+          {t.projectsPage.title[0]} <span className="ps-head-accent">{t.projectsPage.title[1]}</span>
+        </h2>
+        <p className="ps-sub">{t.projectsPage.subtitle}</p>
+      </div>
+
       <Swiper
+        key={lang}
         modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
         effect="coverflow"
         spaceBetween={50}
         slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        autoplay={{ delay: 3600, disableOnInteraction: false }}
         loop={true}
         initialSlide={0}
         centeredSlides={true}
@@ -102,20 +73,21 @@ export default function ProjectsSection() {
         }}
         className="projects-swiper"
       >
-        {projects.map((project, index) => (
-          <SwiperSlide key={index} className="project-slide">
-            <Link to={project.path} className="project-link">
-              <div className={`project-card${project.featured ? " project-card--featured" : ""}`}>
-                {project.featured && (
-                  <span className="project-featured-badge">★ Featured</span>
-                )}
-                <img src={project.image} alt={project.name} className="project-logo" />
-                <h3>{project.name}</h3>
-                <p>{project.description}</p>
-              </div>
-            </Link>
-          </SwiperSlide>
-        ))}
+        {PROJECTS.map((meta) => {
+          const p = (t.projects as any)[meta.key];
+          return (
+            <SwiperSlide key={meta.path} className="project-slide">
+              <Link to={meta.path} className="project-link">
+                <div className={`project-card${meta.featured ? " project-card--featured" : ""}`}>
+                  {meta.featured && <span className="project-featured-badge">★ Featured</span>}
+                  <img src={meta.image} alt={p.name} className="project-logo" />
+                  <h3>{p.name}</h3>
+                  <p>{p.desc}</p>
+                </div>
+              </Link>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </section>
   );
