@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 730" role="img" aria-label="Monlau Formación Profesional">
+  <rect x="10" y="10" width="840" height="710" rx="14" fill="#005AA7"/>
+  <g fill="#FFED00">
+    <path d="M118 95 h70 l-58 175 h-70 z"/>
+    <path d="M198 95 h70 l-58 175 h-70 z"/>
+    <path d="M278 95 h70 l-58 175 h-70 z"/>
+  </g>
+  <g fill="#FFFFFF" font-family="'Arial Black','Arial',sans-serif" font-weight="900" text-anchor="middle">
+    <text x="430" y="430" font-size="150" letter-spacing="4">MONLAU</text>
+  </g>
+  <g fill="#FFFFFF" font-family="'Arial','Helvetica',sans-serif" font-weight="400" text-anchor="middle">
+    <text x="430" y="560" font-size="86" letter-spacing="6">FORMACIÓN</text>
+    <text x="430" y="655" font-size="86" letter-spacing="6">PROFESIONAL</text>
+  </g>
+</svg>
