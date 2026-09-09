@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../css/NavBar.css";
+import "../css/Navbar.css";
 import cursorIcon from "../assets/cursor_1.png"; 
 import githubIcon from "../assets/githublogo.png";
 import githubIconWhite from "../assets/githublogoblanco.png"; 

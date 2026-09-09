@@ -13,6 +13,7 @@ import { FaDownload, FaEnvelope } from "react-icons/fa";
 import mindflowLogo from "./myprojects/assets/logosApps/mindflowlogo.png";
 import udLogo from "./myprojects/assets/logosApps/ultimusdefensorlogo.png";
 import kddLogo from "./myprojects/assets/logosApps/kdd.png";
+import nbaLogo from "./myprojects/assets/logosApps/nbavisionlogo.png";
 import ecommerceLogo from "./myprojects/assets/logosApps/logo-ecommerce.png";
 
 // Tech logos
@@ -45,7 +46,26 @@ const ROLES = [
   "AI Educator & Trainer",
 ];
 
-const featuredProjects = [
+type FeaturedProject = {
+  name: string;
+  desc: string;
+  tags: string[];
+  logo: string;
+  path: string;
+  color: string;
+  featured?: boolean;
+};
+
+const featuredProjects: FeaturedProject[] = [
+  {
+    name: "Ultimus Defensor",
+    desc: "AI-powered BlueTeam platform with MITRE ATT&CK detection pipeline — Isolation Forest + XGBoost + LLM assistant.",
+    tags: ["AI / ML", "Cybersecurity", "MITRE"],
+    logo: udLogo,
+    path: "/projects/ultimusdefensor",
+    color: "#38bdf8",
+    featured: true,
+  },
   {
     name: "MINDFLOW",
     desc: "My first published mobile game — 4 puzzle modes, 1,200 verified levels, fully offline. Live on Google Play.",
@@ -55,12 +75,12 @@ const featuredProjects = [
     color: "#6c9bff",
   },
   {
-    name: "Ultimus Defensor",
-    desc: "AI-powered BlueTeam platform with MITRE ATT&CK detection pipeline — Isolation Forest + XGBoost + LLM assistant.",
-    tags: ["AI / ML", "Cybersecurity", "MITRE"],
-    logo: udLogo,
-    path: "/projects/ultimusdefensor",
-    color: "#38bdf8",
+    name: "NBA Vision",
+    desc: "Full-stack NBA analytics lab — quantile-regression projections, Elo game forecasts and a possession-level simulator. Live on Vercel.",
+    tags: ["React", "XGBoost", "Simulation"],
+    logo: nbaLogo,
+    path: "/projects/nbavision",
+    color: "#ef4444",
   },
   {
     name: "KDD'99 Intrusion Detection",
@@ -270,9 +290,10 @@ export default function HomePage() {
             <Link
               key={p.path}
               to={p.path}
-              className="proj-card"
+              className={`proj-card${p.featured ? " proj-card--featured" : ""}`}
               style={{ "--proj-color": p.color } as React.CSSProperties}
             >
+              {p.featured && <span className="proj-featured-badge">★ Featured</span>}
               <div className="proj-card-top">
                 <img src={p.logo} alt={p.name} className="proj-logo" />
                 <span className="proj-arrow">↗</span>
