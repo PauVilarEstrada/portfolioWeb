@@ -2,7 +2,6 @@ import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import NavBar from "./components/Navbar";
 import CustomCursor from "./components/CustomCursor";
-import NavHint from "./components/NavHint";
 import HomePage from "./components/HomePage";
 import ProjectsSection from "./components/ProjectsSection";
 import ExperienceSection from "./components/ExperienceSection";
@@ -21,7 +20,6 @@ function AppContent() {
   return (
     <div className="app-container">
       <CustomCursor />
-      <NavHint />
       <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />

@@ -6,17 +6,12 @@ import { useI18n } from "../i18n/LanguageContext";
 import { rt } from "../i18n/rich";
 import Reveal from "./Reveal";
 
-const FLOAT_SYMBOLS = [
-  "const", "async", "import", "function", "return",
-  "class", "await", "export", "interface", "{ }",
-  "<AI/>", "01010", "while", "=>", "null", "type",
-];
-
 // Project logos
 import mindflowLogo from "./myprojects/assets/logosApps/mindflowlogo.png";
 import udLogo from "./myprojects/assets/logosApps/ultimusdefensorlogo.png";
 import kddLogo from "./myprojects/assets/logosApps/kdd.png";
 import nbaLogo from "./myprojects/assets/logosApps/nbavisionlogo.png";
+import ecommerceLogo from "./myprojects/assets/logosApps/logo-ecommerce.png";
 
 // Tech logos
 import pythonLogo from "../assets/pythonlogo.webp";
@@ -46,6 +41,7 @@ const PROJECT_META = [
   { key: "nba", logo: nbaLogo, path: "/projects/nbavision", color: "#ef4444" },
   { key: "mindflow", logo: mindflowLogo, path: "/projects/mindflow", color: "#6c9bff" },
   { key: "kdd", logo: kddLogo, path: "/projects/kdd", color: "#22c55e" },
+  { key: "ecommerce", logo: ecommerceLogo, path: "/projects/ecommerce", color: "#a78bfa" },
 ] as const;
 
 const techStack = [
@@ -68,13 +64,6 @@ const techStack = [
   { name: "Bash", logo: bashLogo },
 ];
 
-const techRowA = techStack.slice(0, 9);
-const techRowB = techStack.slice(9);
-
-const MARQUEE_BADGES = [
-  "Google Play", "Vercel", "Render", "GitHub", "Matrícula de Honor",
-  "División de Honor", "XGBoost", "FastAPI", "React Native", "Docker",
-];
 
 export default function HomePage() {
   const { t, lang } = useI18n();
@@ -134,18 +123,7 @@ export default function HomePage() {
         <div className="hero-orb hero-orb--a" aria-hidden="true" />
         <div className="hero-orb hero-orb--b" aria-hidden="true" />
 
-        <div className="hero-float-code" aria-hidden="true">
-          {FLOAT_SYMBOLS.map((sym, i) => (
-            <span key={i} className={`hfc hfc-${i}`}>{sym}</span>
-          ))}
-        </div>
-
         <div className="hero-content">
-          <span className="hero-badge">
-            <span className="hero-badge-dot" />
-            {t.home.badge}
-          </span>
-
           <h1 className="hero-name" data-text={t.home.name}>{t.home.name}</h1>
 
           <div className="hero-role-wrap">
@@ -169,37 +147,24 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-        </div>
 
-        <div className="hero-terminal" aria-hidden="true">
-          <div className="hero-terminal-bar">
-            <div className="hero-terminal-dot" />
-            <div className="hero-terminal-dot" />
-            <div className="hero-terminal-dot" />
-            <span className="hero-terminal-title">{t.home.terminalTitle}</span>
-          </div>
-          <div className="hero-terminal-body">
-            <div className="hero-terminal-cmd">
-              {termText}<span className="hero-terminal-cursor" />
+          <div className="hero-terminal" aria-hidden="true">
+            <div className="hero-terminal-bar">
+              <div className="hero-terminal-dot" />
+              <div className="hero-terminal-dot" />
+              <div className="hero-terminal-dot" />
+              <span className="hero-terminal-title">{t.home.terminalTitle}</span>
             </div>
-            {termOut && <div className="hero-terminal-output">{termOut}</div>}
+            <div className="hero-terminal-body">
+              <div className="hero-terminal-cmd">
+                {termText}<span className="hero-terminal-cursor" />
+              </div>
+              {termOut && <div className="hero-terminal-output">{termOut}</div>}
+            </div>
           </div>
         </div>
 
-        <div className="home-scroll-hint">
-          <span>{t.home.scroll}</span>
-          <div className="scroll-line" />
-        </div>
       </section>
-
-      {/* ── BADGE MARQUEE ── */}
-      <div className="badge-marquee" aria-hidden="true">
-        <div className="badge-marquee-inner">
-          {[...MARQUEE_BADGES, ...MARQUEE_BADGES].map((b, i) => (
-            <span key={i} className="badge-chip">{b}<i>◆</i></span>
-          ))}
-        </div>
-      </div>
 
       {/* ── WHAT I DO ── */}
       <section className="home-section">
@@ -258,25 +223,84 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── EXPERIENCE TIMELINE ── */}
+      {/* ── DUAL CAREER ── */}
+      <section className="home-section dual-bg">
+        <Reveal className="home-section-header home-section-header--stack">
+          <h2 className="home-section-title">
+            {t.home.dualTitle[0]} <span>{t.home.dualTitle[1]}</span>
+          </h2>
+          <p className="home-section-lead">{t.home.dualLead}</p>
+        </Reveal>
+
+        <div className="dual-grid">
+          {t.home.dual.map((d, i) => (
+            <Reveal key={d.h} className="dual-card" delay={i * 80}>
+              <span className="dual-num">{String(i + 1).padStart(2, "0")}</span>
+              <h3>{d.h}</h3>
+              <p>{d.p}</p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ── CAREER & EDUCATION ── */}
       <section className="home-section exp-bg">
         <Reveal className="home-section-header">
           <h2 className="home-section-title">
-            {t.home.timelineTitle[0]} <span>{t.home.timelineTitle[1]}</span>
+            {t.home.careerTitle[0]} <span>{t.home.careerTitle[1]}</span>
           </h2>
-          <Link to="/experience" className="home-section-link">{t.home.timelineLink}</Link>
+          <Link to="/experience" className="home-section-link">{t.home.careerLink}</Link>
         </Reveal>
 
-        <div className="timeline">
-          {t.home.timeline.map((item, i) => (
-            <Reveal key={i} className="timeline-item" delay={i * 70}>
-              <div className={`timeline-dot ${item.active ? "" : "dim"}`} />
-              <div className="timeline-date">{item.date}</div>
-              <div className="timeline-role"><span className="timeline-icon">{item.icon}</span>{item.role}</div>
-              <div className="timeline-org">{item.org}</div>
-              <div className="timeline-desc">{item.desc}</div>
+        <div className="career">
+          <Reveal className="career-now">
+            <span className="career-label">{t.home.careerNowLabel}</span>
+            <div className="career-now-grid">
+              {t.home.careerNow.map(n => (
+                <article key={n.org} className="career-now-card">
+                  <span className="career-meta">{n.meta}</span>
+                  <h3>{n.role}</h3>
+                  <p className="career-org">{n.org}</p>
+                  <p className="career-note">{n.note}</p>
+                </article>
+              ))}
+            </div>
+          </Reveal>
+
+          <div className="career-cols">
+            <Reveal className="career-col" delay={80}>
+              <span className="career-label">{t.home.careerExpLabel}</span>
+              <ul className="career-list">
+                {t.home.careerExp.map(r => (
+                  <li key={r.year + r.role}>
+                    <span className="career-year">{r.year}</span>
+                    <span className="career-body">
+                      <span className="career-role">{r.role}</span>
+                      <span className="career-org">{r.org}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </Reveal>
-          ))}
+
+            <Reveal className="career-col" delay={140}>
+              <span className="career-label">{t.home.careerEduLabel}</span>
+              <ul className="career-list">
+                {t.home.careerEdu.map(r => (
+                  <li key={r.year + r.role}>
+                    <span className="career-year">{r.year}</span>
+                    <span className="career-body">
+                      <span className="career-role">
+                        {r.role}
+                        {r.badge ? <em className="career-badge">{r.badge}</em> : null}
+                      </span>
+                      <span className="career-org">{r.org}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -291,17 +315,7 @@ export default function HomePage() {
 
         <div className="tech-marquee">
           <div className="tech-marquee-inner">
-            {[...techRowA, ...techRowA, ...techRowA].map((tech, i) => (
-              <span key={i} className="tech-chip">
-                <img src={tech.logo} alt={tech.name} />
-                {tech.name}
-              </span>
-            ))}
-          </div>
-        </div>
-        <div className="tech-marquee tech-marquee--reverse">
-          <div className="tech-marquee-inner">
-            {[...techRowB, ...techRowB, ...techRowB].map((tech, i) => (
+            {[...techStack, ...techStack].map((tech, i) => (
               <span key={i} className="tech-chip">
                 <img src={tech.logo} alt={tech.name} />
                 {tech.name}

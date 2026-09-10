@@ -1,4 +1,7 @@
+import { pagesEn } from "./pages.en";
+
 export const en = {
+  pages: pagesEn,
   meta: {
     title: "Pau Vilar — Full Stack & AI Engineer",
     switchLabel: "Change language",
@@ -9,11 +12,11 @@ export const en = {
     work: "Work",
     experience: "Experience",
     contact: "Contact",
-    hint: "hover to navigate",
+    hint: "hover or tap to navigate",
   },
 
   home: {
-    badge: "Open to work · Barcelona",
+    badge: "Open to work · based in Barcelona",
     name: "Pau Vilar i Estrada",
     roles: [
       "Full Stack Developer",
@@ -22,7 +25,7 @@ export const en = {
       "AI Educator & Trainer",
     ],
     tagline:
-      "I build software that actually ships — **AI systems**, **data pipelines**, **web platforms** and a **game live on Google Play**. Ten years as an elite water polo goalkeeper taught me the rest: show up, iterate, perform under pressure.",
+      "I'm a developer from Barcelona, and what I enjoy most is watching something I built end up in somebody's hands — **AI systems**, **data pipelines**, **web platforms**, and a **game that's live on Google Play**. Ten years in goal as an elite water polo keeper taught me the rest: keep turning up, keep iterating, and stay calm when it actually counts.",
     stats: [
       { n: "9", l: "Projects shipped" },
       { n: "20+", l: "Technologies" },
@@ -45,57 +48,55 @@ export const en = {
     featuredTitle: ["Featured", "Projects"],
     featuredLink: "See all projects →",
 
-    timelineTitle: ["Experience &", "Education"],
-    timelineLink: "Full profile →",
-    timeline: [
+    dualTitle: ["A dual", "career"],
+    dualLead:
+      "For ten years I have trained twice a day as an elite goalkeeper while studying software full time. Very few people get to build both habits at once — and it shows in how I work.",
+    dual: [
       {
-        date: "2026 – Present",
-        icon: "🤽",
+        h: "Calm when it counts",
+        p: "A penalty in the last minute gives you no rehearsal. Neither does a production incident at 6pm on a Friday. I have spent a decade learning to think clearly with the clock running.",
+      },
+      {
+        h: "Consistency beats motivation",
+        p: "Six in the morning, every morning, for years. Shipping software is the same discipline: the unglamorous, repeated work is what actually gets a project finished.",
+      },
+      {
+        h: "Built for a team",
+        p: "A goalkeeper reads the whole pool and talks non-stop. That is the same instinct that makes code reviews, stand-ups and handovers work instead of being a formality.",
+      },
+      {
+        h: "Feedback without ego",
+        p: "In sport you get corrected every single day: you adapt or you sit on the bench. I bring exactly that attitude to a review comment.",
+      },
+    ],
+    careerTitle: ["Career", "& education"],
+    careerLink: "Full profile →",
+    careerNowLabel: "Right now",
+    careerExpLabel: "Experience",
+    careerEduLabel: "Education",
+    careerNow: [
+      {
         role: "Goalkeeper · División de Honor",
         org: "Club Natació Catalunya",
-        desc: "Signed for the new season at CN Catalunya, competing in Spain's top league and the Copa del Rey.",
-        active: true,
+        meta: "2026 – Present",
+        note: "Spain's top league and the Copa del Rey.",
       },
       {
-        date: "2026",
-        icon: "🧠",
         role: "AI Trainer — Agentic Systems",
         org: "Cambra de Comerç de Barcelona",
-        desc: "Designing and delivering training in agentic AI, automation workflows and multi-agent orchestration for businesses.",
-        active: true,
+        meta: "2026",
+        note: "Training companies on agentic AI and automation.",
       },
-      {
-        date: "2025 – 2026",
-        icon: "🎓",
-        role: "Master's in AI & Big Data — completed",
-        org: "Monlau Formación Profesional",
-        desc: "Graduated with Matrícula de Honor. ML, LLMs, big-data pipelines and agentic systems. Final project: Ultimus Defensor.",
-        active: true,
-      },
-      {
-        date: "2025",
-        icon: "💼",
-        role: "Junior Full Stack Developer",
-        org: "Sycai Medical · Internship",
-        desc: "Modernised the internal platform, redesigned AWS databases and containerised deployments with Docker.",
-        active: false,
-      },
-      {
-        date: "2023 – 2026",
-        icon: "🥅",
-        role: "Goalkeeper",
-        org: "CN Sant Andreu · División de Honor",
-        desc: "Three seasons in Spain's top league and the EuroCup. Previously CN Barcelona — Champions League.",
-        active: false,
-      },
-      {
-        date: "2023 – 2025",
-        icon: "💻",
-        role: "Multiplatform App Development (DAM)",
-        org: "INS Poblenou",
-        desc: "Higher diploma in full-stack development, mobile apps, databases and software engineering.",
-        active: false,
-      },
+    ],
+    careerExp: [
+      { year: "2025", role: "Junior Full Stack Developer", org: "Sycai Medical · Internship" },
+      { year: "2023 – 2026", role: "Goalkeeper", org: "CN Sant Andreu · División de Honor & EuroCup" },
+      { year: "2019 – 2023", role: "Goalkeeper", org: "CN Barcelona · Champions League" },
+    ],
+    careerEdu: [
+      { year: "2025 – 2026", role: "Master's in AI & Big Data", org: "Monlau Formación Profesional", badge: "Matrícula de Honor" },
+      { year: "2023 – 2025", role: "Multiplatform App Development (DAM)", org: "INS Poblenou", badge: "" },
+      { year: "2019 – 2021", role: "Baccalaureate · Social Sciences", org: "INS CAR — High-Performance Centre", badge: "" },
     ],
 
     techTitle: ["Tech", "Stack"],
@@ -106,22 +107,22 @@ export const en = {
       {
         icon: "🧠",
         h: "AI & Machine Learning",
-        p: "Anomaly detection, gradient boosting, quantile regression and LLM assistants — models that ship with their uncertainty attached, not just a demo notebook.",
+        p: "Anomaly detection, gradient boosting, quantile regression, LLM assistants. I care less about the leaderboard score than about a model you can trust in production — so mine ship with their uncertainty attached, never as a pretty notebook.",
       },
       {
         icon: "⚙️",
         h: "Full-stack engineering",
-        p: "React and TypeScript on the front, FastAPI, Node and Spring on the back, PostgreSQL and Redis underneath, Docker around it.",
+        p: "React and TypeScript up front, FastAPI, Node or Spring behind it, PostgreSQL and Redis underneath and Docker around the whole thing. I like owning a feature end to end, from the button to the query plan.",
       },
       {
         icon: "📊",
         h: "Data engineering",
-        p: "Ingest, clean, cache and serve. Point-in-time feature stores, rate-limited scrapers and pipelines that survive a real production day.",
+        p: "Ingest, clean, cache, serve. It is the least glamorous half of any AI project and usually the half that decides whether it works — so I build pipelines that survive a real production day, not just a demo.",
       },
       {
         icon: "📱",
         h: "Mobile & games",
-        p: "React Native and Unity. MINDFLOW is published on Google Play: 4 modes, 1,200 verified levels, fully offline.",
+        p: "React Native and Unity. MINDFLOW is on Google Play with four modes and 1,200 hand-verified levels, fully offline — the most useful lesson in polish I have had, because players notice everything.",
       },
     ],
 
@@ -129,14 +130,14 @@ export const en = {
       eyebrow: "Let's work together",
       title: "Got a project in mind?",
       body:
-        "I'm open to **junior roles, internships and collaborations** in software development, AI engineering and data analysis. Tell me what you're building — I reply fast.",
+        "I'm looking for **junior roles, internships and collaborations** in software development, AI engineering and data analysis. If you're building something and think I could help, tell me about it — I read everything and I answer quickly.",
       cv: "Download CV",
     },
   },
 
   projectsPage: {
     title: ["My", "Projects"],
-    subtitle: "Nine things I built, from AI platforms to arcade games. Click any card for the full story.",
+    subtitle: "Nine things I have built, from AI platforms to arcade games. Each one has its own page with the story behind it — what it does, how it works and what I learned making it. Have a look around.",
   },
 
   projects: {
@@ -194,7 +195,7 @@ export const en = {
   experience: {
     pageTitle: "Experience",
     pageSubtitle:
-      "Engineering, teaching and elite sport — the three tracks I've been running at the same time.",
+      "Engineering, teaching and elite sport, all running at once for the past few years. It sounds like a lot, and it is — but each one has made me better at the other two.",
 
     trainer: {
       title: "AI TRAINER",
@@ -344,11 +345,11 @@ export const en = {
     title: "Let's Connect",
     eyebrow: "Contact",
     lead:
-      "Hi — I'm **Pau Vilar**, a developer who likes building things that are robust, data-driven and actually finished.",
+      "Hi, I'm **Pau Vilar** — a developer who likes building things that are solid, data-driven and, above all, actually finished. Thanks for making it this far down the page.",
     paragraphs: [
-      "I hold a **Higher Diploma in Multiplatform Application Development (DAM)** and a **Master's in Artificial Intelligence & Big Data**, completed with **Matrícula de Honor**. My focus is **AI-driven products**, **agentic systems** and **data analysis** — machine learning that ends up in front of a user, not in a notebook.",
-      "Alongside that I'm a **professional water polo goalkeeper**, this season with **Club Natació Catalunya** in Spain's **División de Honor** and the **Copa del Rey**. Ten years of balancing elite sport with technical study is the reason I'm calm when a deadline gets loud.",
-      "I'm open to **junior roles, internships and collaborations** in software development, AI engineering and data analysis. If my profile looks like a fit, write to me — I reply fast.",
+      "I hold a **Higher Diploma in Multiplatform Application Development (DAM)** and a **Master's in Artificial Intelligence & Big Data**, which I finished with **Matrícula de Honor**. What I care about is **AI-driven products**, **agentic systems** and **data analysis** — machine learning that ends up in front of a real user rather than in a notebook nobody opens again.",
+      "Alongside all that I'm a **professional water polo goalkeeper**, this season with **Club Natació Catalunya** in Spain's **División de Honor** and the **Copa del Rey**. Ten years of training at six in the morning before class is probably why deadlines don't rattle me much.",
+      "I'm open to **junior roles, internships and collaborations** in software development, AI engineering and data analysis. If any of this sounds like a fit, drop me a line — even if it's just to say hello or ask what something on this site does. I always reply.",
     ],
     cardsTitle: "Where to find me",
     cards: [

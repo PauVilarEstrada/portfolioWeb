@@ -1,6 +1,8 @@
 import type { Dict } from "./en";
+import { pagesEs } from "./pages.es";
 
 export const es: Dict = {
+  pages: pagesEs,
   meta: {
     title: "Pau Vilar — Desarrollador Full Stack e Ingeniero de IA",
     switchLabel: "Cambiar idioma",
@@ -11,11 +13,11 @@ export const es: Dict = {
     work: "Proyectos",
     experience: "Experiencia",
     contact: "Contacto",
-    hint: "pasa el ratón para navegar",
+    hint: "pasa el ratón o toca para navegar",
   },
 
   home: {
-    badge: "Disponible para trabajar · Barcelona",
+    badge: "Disponible para trabajar · desde Barcelona",
     name: "Pau Vilar i Estrada",
     roles: [
       "Desarrollador Full Stack",
@@ -24,7 +26,7 @@ export const es: Dict = {
       "Formador en IA",
     ],
     tagline:
-      "Construyo software que llega a producción — **sistemas de IA**, **pipelines de datos**, **plataformas web** y un **juego publicado en Google Play**. Diez años como portero de waterpolo de élite me enseñaron el resto: aparecer cada día, iterar y rendir bajo presión.",
+      "Soy desarrollador, de Barcelona, y lo que más me gusta es ver algo que he construido acabar en manos de alguien: **sistemas de IA**, **pipelines de datos**, **plataformas web** y un **juego que ya está en Google Play**. Diez años bajo palos en waterpolo de élite me enseñaron el resto: aparecer cada día, iterar y mantener la calma justo cuando importa.",
     stats: [
       { n: "9", l: "Proyectos" },
       { n: "20+", l: "Tecnologías" },
@@ -36,7 +38,7 @@ export const es: Dict = {
     scroll: "scroll",
     terminalTitle: "consola-ia",
     terminal: [
-      { cmd: "$ ./bienvenida.sh", out: "👋  ¡Bienvenido al portfolio de Pau!" },
+      { cmd: "$ ./bienvenid@.sh", out: "👋  ¡Bienvenid@ al portfolio de Pau!" },
       { cmd: "$ git push origin --all", out: "✓  9 proyectos publicados en GitHub" },
       { cmd: "$ cat contacto.txt", out: "📧  pvilardev@gmail.com — respondo rápido" },
       { cmd: "$ open linkedin.com/in/pau-vilar", out: "🔗  Últimas novedades en LinkedIn ↗" },
@@ -47,57 +49,55 @@ export const es: Dict = {
     featuredTitle: ["Proyectos", "destacados"],
     featuredLink: "Ver todos los proyectos →",
 
-    timelineTitle: ["Experiencia y", "formación"],
-    timelineLink: "Perfil completo →",
-    timeline: [
+    dualTitle: ["Una carrera", "dual"],
+    dualLead:
+      "Llevo diez años entrenando dos veces al día como portero de élite mientras estudiaba programación a tiempo completo. Muy poca gente construye los dos hábitos a la vez — y se nota en cómo trabajo.",
+    dual: [
       {
-        date: "2026 – Actualidad",
-        icon: "🤽",
+        h: "Calma cuando aprieta",
+        p: "Un penalti en el último minuto no se ensaya. Una incidencia en producción un viernes a las seis, tampoco. Llevo una década aprendiendo a pensar con claridad con el reloj corriendo.",
+      },
+      {
+        h: "La constancia gana a la motivación",
+        p: "A las seis de la mañana, cada mañana, durante años. Sacar software adelante es la misma disciplina: el trabajo repetitivo y poco vistoso es el que termina los proyectos.",
+      },
+      {
+        h: "Hecho para un equipo",
+        p: "Un portero lee toda la piscina y no para de hablar. Es el mismo instinto que hace que una revisión de código, una daily o un traspaso funcionen de verdad y no sean un trámite.",
+      },
+      {
+        h: "Feedback sin ego",
+        p: "En el deporte te corrigen cada día: te adaptas o te quedas en el banquillo. Con un comentario en una review, exactamente igual.",
+      },
+    ],
+    careerTitle: ["Trayectoria", "y formación"],
+    careerLink: "Perfil completo →",
+    careerNowLabel: "Ahora mismo",
+    careerExpLabel: "Experiencia",
+    careerEduLabel: "Formación",
+    careerNow: [
+      {
         role: "Portero · División de Honor",
         org: "Club Natació Catalunya",
-        desc: "Fichado para la nueva temporada por el CN Catalunya, compitiendo en la máxima liga española y en la Copa del Rey.",
-        active: true,
+        meta: "2026 – Actualidad",
+        note: "La máxima liga española y la Copa del Rey.",
       },
       {
-        date: "2026",
-        icon: "🧠",
         role: "Formador en IA — Sistemas Agénticos",
         org: "Cambra de Comerç de Barcelona",
-        desc: "Diseño e imparto formación en IA agéntica, automatización y orquestación multiagente para empresas.",
-        active: true,
+        meta: "2026",
+        note: "Formo a empresas en IA agéntica y automatización.",
       },
-      {
-        date: "2025 – 2026",
-        icon: "🎓",
-        role: "Máster en IA y Big Data — finalizado",
-        org: "Monlau Formación Profesional",
-        desc: "Finalizado con Matrícula de Honor. ML, LLMs, pipelines de big data y sistemas agénticos. Proyecto final: Ultimus Defensor.",
-        active: true,
-      },
-      {
-        date: "2025",
-        icon: "💼",
-        role: "Desarrollador Full Stack Junior",
-        org: "Sycai Medical · Prácticas",
-        desc: "Modernicé la plataforma interna, rediseñé las bases de datos en AWS y containericé los despliegues con Docker.",
-        active: false,
-      },
-      {
-        date: "2023 – 2026",
-        icon: "🥅",
-        role: "Portero",
-        org: "CN Sant Andreu · División de Honor",
-        desc: "Tres temporadas en la máxima liga española y en la EuroCup. Anteriormente CN Barcelona — Champions League.",
-        active: false,
-      },
-      {
-        date: "2023 – 2025",
-        icon: "💻",
-        role: "Desarrollo de Aplicaciones Multiplataforma (DAM)",
-        org: "INS Poblenou",
-        desc: "Ciclo superior en desarrollo full-stack, apps móviles, bases de datos e ingeniería del software.",
-        active: false,
-      },
+    ],
+    careerExp: [
+      { year: "2025", role: "Desarrollador Full Stack Junior", org: "Sycai Medical · Prácticas" },
+      { year: "2023 – 2026", role: "Portero", org: "CN Sant Andreu · División de Honor y EuroCup" },
+      { year: "2019 – 2023", role: "Portero", org: "CN Barcelona · Champions League" },
+    ],
+    careerEdu: [
+      { year: "2025 – 2026", role: "Máster en IA y Big Data", org: "Monlau Formación Profesional", badge: "Matrícula de Honor" },
+      { year: "2023 – 2025", role: "Desarrollo de Aplicaciones Multiplataforma (DAM)", org: "INS Poblenou", badge: "" },
+      { year: "2019 – 2021", role: "Bachillerato de Ciencias Sociales", org: "INS CAR — Centro de Alto Rendimiento", badge: "" },
     ],
 
     techTitle: ["Stack", "técnico"],
@@ -108,22 +108,22 @@ export const es: Dict = {
       {
         icon: "🧠",
         h: "IA y Machine Learning",
-        p: "Detección de anomalías, gradient boosting, regresión cuantílica y asistentes con LLM — modelos que salen con su incertidumbre incluida, no un notebook de demo.",
+        p: "Detección de anomalías, gradient boosting, regresión cuantílica, asistentes con LLM. Me importa menos la métrica del leaderboard que poder fiarme del modelo en producción, así que los míos salen con su incertidumbre puesta, nunca como un notebook bonito.",
       },
       {
         icon: "⚙️",
         h: "Ingeniería full-stack",
-        p: "React y TypeScript delante, FastAPI, Node y Spring detrás, PostgreSQL y Redis debajo, y Docker envolviéndolo todo.",
+        p: "React y TypeScript delante, FastAPI, Node o Spring detrás, PostgreSQL y Redis debajo y Docker envolviéndolo todo. Me gusta llevar una funcionalidad de punta a punta, desde el botón hasta el plan de la consulta.",
       },
       {
         icon: "📊",
         h: "Ingeniería de datos",
-        p: "Ingerir, limpiar, cachear y servir. Feature stores sin fuga temporal, scrapers con rate limit y pipelines que aguantan un día real de producción.",
+        p: "Ingerir, limpiar, cachear y servir. Es la mitad menos vistosa de cualquier proyecto de IA y casi siempre la que decide si funciona, así que construyo pipelines que aguantan un día real de producción, no solo una demo.",
       },
       {
         icon: "📱",
         h: "Móvil y videojuegos",
-        p: "React Native y Unity. MINDFLOW está publicado en Google Play: 4 modos, 1.200 niveles verificados y 100% offline.",
+        p: "React Native y Unity. MINDFLOW está en Google Play con cuatro modos y 1.200 niveles verificados a mano, totalmente offline — la mejor lección de acabado que he tenido, porque los jugadores se dan cuenta de todo.",
       },
     ],
 
@@ -131,14 +131,14 @@ export const es: Dict = {
       eyebrow: "Trabajemos juntos",
       title: "¿Tienes un proyecto en mente?",
       body:
-        "Estoy abierto a **posiciones junior, prácticas y colaboraciones** en desarrollo de software, ingeniería de IA y análisis de datos. Cuéntame qué estás construyendo — respondo rápido.",
+        "Busco **posiciones junior, prácticas y colaboraciones** en desarrollo de software, ingeniería de IA y análisis de datos. Si estás construyendo algo y crees que puedo aportar, cuéntamelo — lo leo todo y contesto enseguida.",
       cv: "Descargar CV",
     },
   },
 
   projectsPage: {
     title: ["Mis", "proyectos"],
-    subtitle: "Nueve cosas que he construido, desde plataformas de IA hasta juegos arcade. Entra en cualquiera para ver la historia completa.",
+    subtitle: "Nueve cosas que he construido, desde plataformas de IA hasta juegos arcade. Cada una tiene su propia página con la historia detrás: qué hace, cómo funciona y qué aprendí montándola. Curiosea a gusto.",
   },
 
   projects: {
@@ -196,7 +196,7 @@ export const es: Dict = {
   experience: {
     pageTitle: "Experiencia",
     pageSubtitle:
-      "Ingeniería, docencia y deporte de élite — las tres vías que llevo en paralelo.",
+      "Ingeniería, docencia y deporte de élite, las tres a la vez desde hace unos años. Suena a mucho, y lo es — pero cada una me ha hecho mejor en las otras dos.",
 
     trainer: {
       title: "FORMADOR EN IA",
@@ -346,11 +346,11 @@ export const es: Dict = {
     title: "Hablemos",
     eyebrow: "Contacto",
     lead:
-      "Hola — soy **Pau Vilar**, desarrollador al que le gusta construir cosas robustas, guiadas por datos y, sobre todo, terminadas.",
+      "Hola, soy **Pau Vilar** — desarrollador al que le gusta construir cosas sólidas, guiadas por datos y, sobre todo, terminadas. Gracias por llegar hasta aquí abajo.",
     paragraphs: [
-      "Tengo el **CFGS en Desarrollo de Aplicaciones Multiplataforma (DAM)** y el **Máster en Inteligencia Artificial y Big Data**, finalizado con **Matrícula de Honor**. Me centro en **productos con IA**, **sistemas agénticos** y **análisis de datos** — machine learning que acaba delante de un usuario, no en un notebook.",
-      "En paralelo soy **portero profesional de waterpolo**, esta temporada en el **Club Natació Catalunya**, en **División de Honor** y **Copa del Rey**. Diez años compaginando deporte de élite y formación técnica son la razón de que no me ponga nervioso cuando aprieta una entrega.",
-      "Estoy abierto a **posiciones junior, prácticas y colaboraciones** en desarrollo de software, ingeniería de IA y análisis de datos. Si mi perfil te encaja, escríbeme — respondo rápido.",
+      "Tengo el **CFGS en Desarrollo de Aplicaciones Multiplataforma (DAM)** y el **Máster en Inteligencia Artificial y Big Data**, que terminé con **Matrícula de Honor**. Lo que me mueve son los **productos con IA**, los **sistemas agénticos** y el **análisis de datos** — machine learning que acaba delante de un usuario de verdad y no en un notebook que nadie vuelve a abrir.",
+      "En paralelo soy **portero profesional de waterpolo**, esta temporada en el **Club Natació Catalunya**, en **División de Honor** y **Copa del Rey**. Diez años entrenando a las seis de la mañana antes de clase son, probablemente, la razón de que las entregas no me pongan nervioso.",
+      "Estoy abierto a **posiciones junior, prácticas y colaboraciones** en desarrollo de software, ingeniería de IA y análisis de datos. Si algo de esto te encaja, escríbeme — aunque sea solo para saludar o preguntar cómo está hecho algo de esta web. Siempre contesto.",
     ],
     cardsTitle: "Dónde encontrarme",
     cards: [

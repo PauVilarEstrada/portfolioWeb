@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./css/project-page.css";
+import { useI18n } from "../../i18n/LanguageContext";
+import { rt } from "../../i18n/rich";
 import udLogo from "./assets/logosApps/ultimusdefensorlogo.png";
 import portada from "./assets/ultimusdefensor/portada.png";
 import chatbot1 from "./assets/ultimusdefensor/chatbot_bluesentinel.png";
@@ -12,29 +14,32 @@ import modelHealth from "./assets/ultimusdefensor/salud_de_modelos.png";
 import origenes from "./assets/ultimusdefensor/origenes_de_amenaza.png";
 import informes from "./assets/ultimusdefensor/informes.png";
 
+const TEAM = [
+  { n: "Adrià Garzón", u: "https://www.linkedin.com/in/adria-garzon/" },
+  { n: "Joel Mateos", u: "https://www.linkedin.com/in/joel-mateos-ab36501b9/" },
+  { n: "Alex Montes", u: "https://www.linkedin.com/in/alex-montes-terraz-9857a1288/" },
+  { n: "Alejandro Soriano", u: "https://www.linkedin.com/in/alejandro-soriano-mata-96a8792a8/" },
+  { n: "Pau Vilar", u: "https://www.linkedin.com/in/pau-vilar/" },
+];
+
+const DEMO = "https://drive.google.com/file/d/13rt9_dGvuwnIcSyVd4cBmkYH3SqQZw4R/view?usp=sharing";
+
 export default function UltimusDefensor() {
+  const { t, lang } = useI18n();
+  const c = t.pages.ultimus;
+  const g = t.pages.common;
+
   return (
-    <div className="pp-page" style={{ "--pp-color": "#38bdf8", "--pp-glow": "rgba(56, 189, 248, 0.2)" } as React.CSSProperties}>
+    <div key={lang} className="pp-page lang-fade" style={{ "--pp-color": "#38bdf8", "--pp-glow": "rgba(56, 189, 248, 0.2)" } as React.CSSProperties}>
 
       <header className="pp-hero">
-        <img src={udLogo} alt="Ultimus Defensor" className="pp-hero-logo" />
+        <img src={udLogo} alt={c.title} className="pp-hero-logo" />
         <div className="pp-hero-content">
-          <span className="pp-hero-label">Master's Final Project · AI Cybersecurity Platform</span>
-          <h1 className="pp-title">Ultimus Defensor — BlueSentinel</h1>
-          <p className="pp-subtitle">
-            An end-to-end <strong>AI-powered cybersecurity platform</strong> combining anomaly detection,
-            MITRE ATT&amp;CK threat classification, and an intelligent BlueTeam assistant — built as the
-            final project of a Master's in <strong>Artificial Intelligence &amp; Big Data</strong>.
-          </p>
+          <span className="pp-hero-label">{c.label}</span>
+          <h1 className="pp-title">{c.title}</h1>
+          <p className="pp-subtitle">{rt(c.subtitle)}</p>
           <div className="pp-tags">
-            <span className="pp-tag">AI / ML</span>
-            <span className="pp-tag">Cybersecurity</span>
-            <span className="pp-tag">MITRE ATT&CK</span>
-            <span className="pp-tag">Isolation Forest</span>
-            <span className="pp-tag">XGBoost</span>
-            <span className="pp-tag">LLM / RAG</span>
-            <span className="pp-tag">Python</span>
-            <span className="pp-tag">Big Data</span>
+            {c.tags.map(x => <span key={x} className="pp-tag">{x}</span>)}
           </div>
         </div>
       </header>
@@ -42,141 +47,79 @@ export default function UltimusDefensor() {
       <div className="pp-body">
 
         <div className="pp-section">
-          <h2 className="pp-section-title">Project Overview</h2>
-          <p className="pp-text">
-            <strong>Ultimus Defensor</strong> is a comprehensive cybersecurity platform designed for BlueTeam
-            analysts. It integrates a <strong>real-time anomaly detection pipeline</strong> with an{" "}
-            <strong>AI-powered assistant (BlueSentinel)</strong> capable of identifying, classifying, and
-            explaining cyber threats using the MITRE ATT&amp;CK framework.
-          </p>
-          <p className="pp-text">
-            The platform processes security logs from multiple sources, detects anomalies using a specialized
-            ensemble ML pipeline, maps findings to MITRE ATT&amp;CK techniques, and provides expert-level
-            explanations through a conversational AI assistant grounded in a curated knowledge base of{" "}
-            <strong>+1,000 cybersecurity documents</strong>.
-          </p>
-          <div className="pp-gallery c1">
-            <img src={portada} alt="Ultimus Defensor Platform Overview" />
-          </div>
+          <h2 className="pp-section-title">{c.overviewTitle}</h2>
+          <p className="pp-text">{rt(c.overviewP1)}</p>
+          <p className="pp-text">{rt(c.overviewP2)}</p>
+          <div className="pp-gallery c1"><img src={portada} alt={c.title} loading="lazy" /></div>
         </div>
 
         <div className="pp-section">
-          <h2 className="pp-section-title">Team &amp; Collaboration</h2>
-          <p className="pp-text">
-            Developed as a <strong>group project (5 members)</strong> for the Master's in AI &amp; Big Data.
-            Each member contributed across different components: ML pipeline, RAG system, frontend, data
-            engineering, and integration.
-          </p>
+          <h2 className="pp-section-title">{c.teamTitle}</h2>
+          <p className="pp-text">{rt(c.teamP)}</p>
           <div className="pp-team">
-            <a href="https://www.linkedin.com/in/adria-garzon/" target="_blank" rel="noopener noreferrer">Adrià Garzón</a>
-            <a href="https://www.linkedin.com/in/joel-mateos-ab36501b9/" target="_blank" rel="noopener noreferrer">Joel Mateos</a>
-            <a href="https://www.linkedin.com/in/alex-montes-terraz-9857a1288/" target="_blank" rel="noopener noreferrer">Alex Montes</a>
-            <a href="https://www.linkedin.com/in/alejandro-soriano-mata-96a8792a8/" target="_blank" rel="noopener noreferrer">Alejandro Soriano</a>
-            <a href="https://www.linkedin.com/in/pau-vilar/" target="_blank" rel="noopener noreferrer">Pau Vilar</a>
-          </div>
-        </div>
-
-        <div className="pp-section">
-          <h2 className="pp-section-title">BlueSentinel — AI BlueTeam Assistant</h2>
-          <p className="pp-text">
-            BlueSentinel is a conversational AI assistant specialized in cybersecurity, powered by an{" "}
-            <strong>LLM with RAG (Retrieval-Augmented Generation)</strong> over a curated corpus of security
-            documents. It operates in two modes:
-          </p>
-          <ol className="pp-steps">
-            <li>
-              <strong>Consultor Mode:</strong> General cybersecurity Q&amp;A — threat explanations,
-              mitigation strategies, MITRE technique details, and BlueTeam best practices.
-            </li>
-            <li>
-              <strong>Log Mode:</strong> Paste raw logs, SIEM alerts, or suspicious code snippets and receive
-              structured analysis: technique identification (MITRE ID), tactic classification, attack mechanics,
-              and recommended response actions.
-            </li>
-          </ol>
-          <div className="pp-gallery c2">
-            <img src={chatbot1} alt="BlueSentinel Chat Interface" />
-            <img src={chatbot2} alt="BlueSentinel Log Analysis" />
-          </div>
-        </div>
-
-        <div className="pp-section">
-          <h2 className="pp-section-title">ML Detection Pipeline — Isolation Forest → XGBoost</h2>
-          <p className="pp-text">
-            The anomaly detection system is a <strong>two-stage cascade pipeline</strong> that processes real
-            security logs and maps detected anomalies to MITRE ATT&amp;CK techniques:
-          </p>
-          <ol className="pp-steps">
-            <li>
-              <strong>Stage 1 — Isolation Forest Ensemble:</strong> 5 specialized unsupervised models
-              (process, network, file, general, other) detect anomalous behavior without labeled data. Each
-              model focuses on a different data domain.
-            </li>
-            <li>
-              <strong>Stage 2 — XGBoost Classifier:</strong> Anomalous samples are classified into one of{" "}
-              <strong>12 MITRE ATT&amp;CK techniques</strong>, producing a confidence score and technique
-              mapping.
-            </li>
-            <li>
-              <strong>Output:</strong> Structured JSON with detected techniques, confidence levels, anomaly
-              rates, job IDs, and per-source attribution. Exportable as CSV or JSON.
-            </li>
-          </ol>
-          <div className="pp-gallery c2">
-            <img src={mitreCoverage} alt="MITRE ATT&CK Coverage Dashboard" />
-            <img src={modelHealth} alt="Model Health Dashboard" />
-          </div>
-        </div>
-
-        <div className="pp-section">
-          <h2 className="pp-section-title">Platform Dashboards &amp; Analytics</h2>
-          <p className="pp-text">
-            Beyond detection, Ultimus Defensor provides rich analytical views for security operations:
-          </p>
-          <ul className="pp-features">
-            <li>Executive View — risk summary &amp; KPIs at a glance</li>
-            <li>Threat Origins — geolocation &amp; source attribution mapping</li>
-            <li>Attack Reports — exportable incident summaries</li>
-            <li>Model Health — per-model performance metrics</li>
-            <li>MITRE Coverage — mapped technique heatmap</li>
-            <li>Detection Queue — real-time log processing status</li>
-          </ul>
-          <div className="pp-gallery c2">
-            <img src={vistaEjecutiva1} alt="Executive Dashboard 1" />
-            <img src={vistaEjecutiva2} alt="Executive Dashboard 2" />
-            <img src={origenes} alt="Threat Origins Dashboard" />
-            <img src={informes} alt="Reports Dashboard" />
-          </div>
-        </div>
-
-        <div className="pp-section">
-          <h2 className="pp-section-title">Key Technologies</h2>
-          <div className="pp-tech-grid">
-            {["Python", "Isolation Forest", "XGBoost", "LLM + RAG", "MITRE ATT&CK", "FastAPI", "React", "TypeScript", "Docker", "Big Data Pipelines", "COMISET Dataset", "JSON / CSV"].map(t => (
-              <span key={t} className="pp-tech-badge">{t}</span>
+            {TEAM.map(m => (
+              <a key={m.n} href={m.u} target="_blank" rel="noopener noreferrer">{m.n}</a>
             ))}
           </div>
         </div>
 
-        <div className="pp-section pp-notice">
-          <h2 className="pp-section-title">Availability — Academic &amp; Confidential</h2>
-          <p className="pp-text">
-            This project is <strong>not publicly available on GitHub</strong>. It was developed as the final
-            Master's project and involves proprietary security datasets, trained ML models, and LLM
-            configurations kept private for academic integrity and data protection reasons.
-          </p>
-          <p className="pp-text">
-            If you are interested in the full technical report, methodology, or a detailed walkthrough,
-            feel free to reach out directly.
-          </p>
-          <div className="pp-contact-box">
-            <p>Email: <a href="mailto:pvilardev@gmail.com">pvilardev@gmail.com</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/pau-vilar/" target="_blank" rel="noopener noreferrer">linkedin.com/in/pau-vilar</a></p>
-            <p>Demo: <a href="https://drive.google.com/file/d/13rt9_dGvuwnIcSyVd4cBmkYH3SqQZw4R/view?usp=sharing" target="_blank" rel="noopener noreferrer">Watch Demo Video →</a></p>
+        <div className="pp-section">
+          <h2 className="pp-section-title">{c.assistantTitle}</h2>
+          <p className="pp-text">{rt(c.assistantP)}</p>
+          <ol className="pp-steps">
+            {c.assistantModes.map(m => <li key={m}>{rt(m)}</li>)}
+          </ol>
+          <div className="pp-gallery c2">
+            <img src={chatbot1} alt="BlueSentinel" loading="lazy" />
+            <img src={chatbot2} alt="BlueSentinel" loading="lazy" />
           </div>
         </div>
 
-        <Link to="/projects" className="pp-back">Back to Projects</Link>
+        <div className="pp-section">
+          <h2 className="pp-section-title">{c.pipelineTitle}</h2>
+          <p className="pp-text">{rt(c.pipelineP)}</p>
+          <ol className="pp-steps">
+            {c.pipelineSteps.map(s => <li key={s}>{rt(s)}</li>)}
+          </ol>
+          <div className="pp-gallery c2">
+            <img src={mitreCoverage} alt="MITRE ATT&CK" loading="lazy" />
+            <img src={modelHealth} alt="Model health" loading="lazy" />
+          </div>
+        </div>
+
+        <div className="pp-section">
+          <h2 className="pp-section-title">{c.dashboardsTitle}</h2>
+          <p className="pp-text">{c.dashboardsP}</p>
+          <ul className="pp-features">
+            {c.dashboards.map(d => <li key={d}>{d}</li>)}
+          </ul>
+          <div className="pp-gallery c2">
+            <img src={vistaEjecutiva1} alt="" loading="lazy" />
+            <img src={vistaEjecutiva2} alt="" loading="lazy" />
+            <img src={origenes} alt="" loading="lazy" />
+            <img src={informes} alt="" loading="lazy" />
+          </div>
+        </div>
+
+        <div className="pp-section">
+          <h2 className="pp-section-title">{c.techTitle}</h2>
+          <div className="pp-tech-grid">
+            {c.tech.map(x => <span key={x} className="pp-tech-badge">{x}</span>)}
+          </div>
+        </div>
+
+        <div className="pp-section pp-notice">
+          <h2 className="pp-section-title">{c.availabilityTitle}</h2>
+          <p className="pp-text">{rt(c.availabilityP1)}</p>
+          <p className="pp-text">{c.availabilityP2}</p>
+          <div className="pp-contact-box">
+            <p>Email: <a href="mailto:pvilardev@gmail.com">pvilardev@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/pau-vilar/" target="_blank" rel="noopener noreferrer">linkedin.com/in/pau-vilar</a></p>
+            <p>Demo: <a href={DEMO} target="_blank" rel="noopener noreferrer">{c.demoLabel}</a></p>
+          </div>
+        </div>
+
+        <Link to="/projects" className="pp-back">{g.back}</Link>
       </div>
     </div>
   );
