@@ -94,10 +94,10 @@ export default function NBAVision() {
             ))}
           </div>
           <div className="pp-gallery c2">
-            <img src={shotStandings} alt="" loading="lazy" />
-            <img src={shotTeam} alt="" loading="lazy" />
-            <img src={shotRookies} alt="" loading="lazy" />
-            <img src={shotH2H} alt="" loading="lazy" />
+            <img src={shotStandings} alt={c.routes[1].path} loading="lazy" />
+            <img src={shotTeam} alt={c.routes[5].path} loading="lazy" />
+            <img src={shotRookies} alt={c.routes[3].path} loading="lazy" />
+            <img src={shotH2H} alt={c.routes[6].path} loading="lazy" />
           </div>
         </div>
 
@@ -106,10 +106,10 @@ export default function NBAVision() {
           <p className="pp-text">{rt(c.playersP1)}</p>
           <p className="pp-text">{rt(c.playersP2)}</p>
           <div className="pp-gallery c2">
-            <img src={shotPlayer} alt="" loading="lazy" />
-            <img src={shotScouting} alt="" loading="lazy" />
+            <img src={shotPlayer} alt={c.playersTitle} loading="lazy" />
+            <img src={shotScouting} alt={c.playersTitle} loading="lazy" />
           </div>
-          <div className="pp-gallery c1"><img src={shotCompare} alt="" loading="lazy" /></div>
+          <div className="pp-gallery c1"><img src={shotCompare} alt={c.routes[4].path} loading="lazy" /></div>
         </div>
 
         <div className="pp-section nba-highlight">
@@ -119,7 +119,7 @@ export default function NBAVision() {
           <ul className="pp-features">
             {c.assistantBullets.map(b => <li key={b}>{rt(b)}</li>)}
           </ul>
-          <div className="pp-gallery c1"><img src={shotAssistant} alt="" loading="lazy" /></div>
+          <div className="pp-gallery c1"><img src={shotAssistant} alt={c.assistantTitle} loading="lazy" /></div>
         </div>
 
         <div className="pp-section">
@@ -138,8 +138,8 @@ export default function NBAVision() {
             ))}
           </div>
           <div className="pp-gallery c2">
-            <img src={shotPredictPlayer} alt="" loading="lazy" />
-            <img src={shotPredictTeam} alt="" loading="lazy" />
+            <img src={shotPredictPlayer} alt={c.routes[7].path} loading="lazy" />
+            <img src={shotPredictTeam} alt={c.routes[8].path} loading="lazy" />
           </div>
         </div>
 
@@ -154,10 +154,10 @@ export default function NBAVision() {
           <p className="pp-text">{rt(c.simP1)}</p>
           <p className="pp-text">{rt(c.simP2)}</p>
           <div className="pp-gallery c2">
-            <img src={shotSimulate} alt="" loading="lazy" />
-            <img src={shotSimulatePbp} alt="" loading="lazy" />
-            <img src={shotLeague} alt="" loading="lazy" />
-            <img src={shotAwards} alt="" loading="lazy" />
+            <img src={shotSimulate} alt={c.simTitle} loading="lazy" />
+            <img src={shotSimulatePbp} alt={c.simTitle} loading="lazy" />
+            <img src={shotLeague} alt={c.routes[2].path} loading="lazy" />
+            <img src={shotAwards} alt={c.routes[1].path} loading="lazy" />
           </div>
         </div>
 
@@ -165,7 +165,7 @@ export default function NBAVision() {
           <h2 className="pp-section-title">{c.builderTitle}</h2>
           <p className="pp-text">{rt(c.builderP1)}</p>
           <p className="pp-text">{rt(c.builderP2)}</p>
-          <div className="pp-gallery c1"><img src={shotBuilder} alt="" loading="lazy" /></div>
+          <div className="pp-gallery c1"><img src={shotBuilder} alt={c.builderTitle} loading="lazy" /></div>
         </div>
 
         <div className="pp-section">
@@ -198,7 +198,7 @@ export default function NBAVision() {
           <h2 className="pp-section-title">{c.i18nTitle}</h2>
           <p className="pp-text">{rt(c.i18nP1)}</p>
           <p className="pp-text">{rt(c.i18nP2)}</p>
-          <div className="pp-gallery c1"><img src={shotEs} alt="" loading="lazy" /></div>
+          <div className="pp-gallery c1"><img src={shotEs} alt={c.i18nTitle} loading="lazy" /></div>
         </div>
 
         <div className="pp-section">

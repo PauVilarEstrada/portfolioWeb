@@ -4,7 +4,6 @@ export const pagesEs: PagesDict = {
   common: {
     back: "Volver a proyectos",
     repo: "Código en GitHub ↗",
-    live: "Abrir la web ↗",
     tech: "Stack técnico",
   },
 

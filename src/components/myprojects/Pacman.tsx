@@ -5,15 +5,15 @@ import "./css/showcase.css";
 import { useI18n } from "../../i18n/LanguageContext";
 import { rt } from "../../i18n/rich";
 import pacmanLogo from "./assets/logosApps/pacmanlogo.png";
-import pacmanInicio from "./assets/PacmanInicio.png";
-import pacmanElegir from "./assets/PacmanElegir.png";
-import pacmanCustom from "./assets/PacmanCustom.png";
-import pacmanLevel2 from "./assets/PacmanLevel2.png";
-import pacmanLevel2Map from "./assets/PacmanLevel2Map.png";
-import pacmanMap2 from "./assets/PacmanMap2.png";
-import pacmanMap from "./assets/PacmanMap.png";
-import pacmanSettings from "./assets/PacmanSettings.png";
-import pacmanStop from "./assets/PacmanStop.png";
+import pacmanInicio from "./assets/PacmanInicio.webp";
+import pacmanElegir from "./assets/PacmanElegir.webp";
+import pacmanCustom from "./assets/PacmanCustom.webp";
+import pacmanLevel2 from "./assets/PacmanLevel2.webp";
+import pacmanLevel2Map from "./assets/PacmanLevel2Map.webp";
+import pacmanMap2 from "./assets/PacmanMap2.webp";
+import pacmanMap from "./assets/PacmanMap.webp";
+import pacmanSettings from "./assets/PacmanSettings.webp";
+import pacmanStop from "./assets/PacmanStop.webp";
 
 const REPO = "https://github.com/PauVilarEstrada/pacman";
 

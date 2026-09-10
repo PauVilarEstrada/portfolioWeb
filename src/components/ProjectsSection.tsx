@@ -12,9 +12,9 @@ import { useI18n } from "../i18n/LanguageContext";
 import pacmanLogo from "../components/myprojects/assets/logosApps/pacmanlogo.png";
 import flappyLogo from "../components/myprojects/assets/logosApps/flappybirdLogoSection.png";
 import ecommerceLogo from "../components/myprojects/assets/logosApps/logo-ecommerce.png";
-import kddLogo from "../components/myprojects/assets/logosApps/kdd.png";
-import udLogo from "../components/myprojects/assets/logosApps/ultimusdefensorlogo.png";
-import mindflowLogo from "../components/myprojects/assets/logosApps/mindflowlogo.png";
+import kddLogo from "../components/myprojects/assets/logosApps/kdd.webp";
+import udLogo from "../components/myprojects/assets/logosApps/ultimusdefensorlogo.webp";
+import mindflowLogo from "../components/myprojects/assets/logosApps/mindflowlogo.webp";
 import nbaLogo from "../components/myprojects/assets/logosApps/nbavisionlogo.png";
 
 type ProjectMeta = {

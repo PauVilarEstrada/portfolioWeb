@@ -1,6 +1,15 @@
-/* ── Custom Cursor ── */
-*, *::before, *::after {
-  cursor: none !important;
+/* ── Custom Cursor ──
+   The native cursor is only hidden where the custom one really runs:
+   a device with a fine pointer and no reduced-motion preference. */
+@media (hover: hover) and (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { cursor: auto !important; }
+  .c-dot, .c-ring { display: none !important; }
 }
 
 .c-dot {

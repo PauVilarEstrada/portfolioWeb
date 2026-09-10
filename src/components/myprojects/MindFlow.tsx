@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./css/project-page.css";
 import "./css/mindflow.css";
-import mfLogo from "./assets/logosApps/mindflowlogo.png";
-import mfFeature from "./assets/mindflow/mindflow_feature.png";
+import mfLogo from "./assets/logosApps/mindflowlogo.webp";
+import mfFeature from "./assets/mindflow/mindflow_feature.webp";
 import { useI18n } from "../../i18n/LanguageContext";
 import { rt } from "../../i18n/rich";
 

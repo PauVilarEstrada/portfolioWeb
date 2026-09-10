@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 import "./css/project-page.css";
 import { useI18n } from "../../i18n/LanguageContext";
 import { rt } from "../../i18n/rich";
-import udLogo from "./assets/logosApps/ultimusdefensorlogo.png";
-import portada from "./assets/ultimusdefensor/portada.png";
-import chatbot1 from "./assets/ultimusdefensor/chatbot_bluesentinel.png";
-import chatbot2 from "./assets/ultimusdefensor/chatbot_bluesentinel_2.png";
-import mitreCoverage from "./assets/ultimusdefensor/mitre_cobertura.png";
-import vistaEjecutiva1 from "./assets/ultimusdefensor/vista_ejectuiva_1.png";
-import vistaEjecutiva2 from "./assets/ultimusdefensor/vista_ejecutiva_2.png";
-import modelHealth from "./assets/ultimusdefensor/salud_de_modelos.png";
-import origenes from "./assets/ultimusdefensor/origenes_de_amenaza.png";
-import informes from "./assets/ultimusdefensor/informes.png";
+import udLogo from "./assets/logosApps/ultimusdefensorlogo.webp";
+import portada from "./assets/ultimusdefensor/portada.webp";
+import chatbot1 from "./assets/ultimusdefensor/chatbot_bluesentinel.webp";
+import chatbot2 from "./assets/ultimusdefensor/chatbot_bluesentinel_2.webp";
+import mitreCoverage from "./assets/ultimusdefensor/mitre_cobertura.webp";
+import vistaEjecutiva1 from "./assets/ultimusdefensor/vista_ejectuiva_1.webp";
+import vistaEjecutiva2 from "./assets/ultimusdefensor/vista_ejecutiva_2.webp";
+import modelHealth from "./assets/ultimusdefensor/salud_de_modelos.webp";
+import origenes from "./assets/ultimusdefensor/origenes_de_amenaza.webp";
+import informes from "./assets/ultimusdefensor/informes.webp";
 
 const TEAM = [
   { n: "Adrià Garzón", u: "https://www.linkedin.com/in/adria-garzon/" },

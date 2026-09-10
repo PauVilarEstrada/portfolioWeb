@@ -10,7 +10,7 @@ import sycaiLogo from "../assets/logoSycai.png";
 // Tech logos
 import awsLogo from "../assets/awslogo.png";
 import dockerLogo from "../assets/dockerlogo.png";
-import flaskLogo from "../assets/flasklogo.png";
+import flaskLogo from "../assets/flasklogo.webp";
 import javaLogo from "../assets/javalogo.png";
 import javascriptLogo from "../assets/javascriptlogo.webp";
 import angularLogo from "../assets/angularlogo.webp";
@@ -25,35 +25,35 @@ import typeScriptLogo from "../assets/typescriptlogo.png";
 import TailwindLogo from "../assets/tailwindlogo.svg";
 import pythonLogo from "../assets/pythonlogo.webp";
 import sqliteLogo from "../assets/sqlitelogo.png";
-import virtualboxLogo from "../assets/Virtualboxlogo.png";
+import virtualboxLogo from "../assets/Virtualboxlogo.webp";
 import figmaLogo from "../assets/figmalogo.png";
 import djangoLogo from "../assets/djangologo.svg";
-import bashLogo from "../assets/bashlogo.png";
+import bashLogo from "../assets/bashlogo.webp";
 import springbootLogo from "../assets/springbootlogo.png";
 import hibernateLogo from "../assets/hibernatelogo.svg";
-import bootstrapLogo from "../assets/bootstraplogo.png";
+import bootstrapLogo from "../assets/bootstraplogo.webp";
 import kotlinLogo from "../assets/kotlinlogo.png";
 
 // Water polo clubs & competitions
-import cncLogo from "../assets/logo_cnc.png";
+import cncLogo from "../assets/logo_cnc.webp";
 import cnbLogo from "../assets/cnb.png";
-import cnsaLogo from "../assets/cnsa_new.png";
+import cnsaLogo from "../assets/cnsa_new.webp";
 import lewaterpoloLogo from "../assets/lewaterpolo.png";
-import eurocupLogo from "../assets/logoeurocup.png";
+import eurocupLogo from "../assets/logoeurocup.webp";
 import championsLogo from "../assets/championslogo.webp";
 
 // Water polo photos
-import waterpoloImg1 from "../public/PauVilar_NegroPerfil.JPG";
-import waterpoloImg2 from "../public/PauVilar_NegroLado.JPG";
-import teamPhoto from "../public/sananFotoEquipo.jpg";
+import waterpoloImg1 from "../public/PauVilar_NegroPerfil.webp";
+import waterpoloImg2 from "../public/PauVilar_NegroLado.webp";
+import teamPhoto from "../public/sananFotoEquipo.webp";
 
 // Education logos & photos
 import insPoblenouLogo from "../assets/poblenoulogo.png";
 import insCarLogo from "../assets/insCARlogo.png";
 import monlauLogo from "../assets/monlaulogo.svg";
 import carLogo from "../assets/CARlogo.png";
-import carGeneral from "../assets/car_general.png";
-import carPiscinaFora from "../assets/carpiscinafora.jpg";
+import carGeneral from "../assets/car_general.webp";
+import carPiscinaFora from "../assets/carpiscinafora.webp";
 
 const SYCAI_TECH = [
   { n: "React", l: reactLogo }, { n: "Flask", l: flaskLogo },

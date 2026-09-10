@@ -2,7 +2,6 @@ export const pagesEn = {
   common: {
     back: "Back to Projects",
     repo: "Source on GitHub ↗",
-    live: "Open the live site ↗",
     tech: "Tech stack",
   },
 

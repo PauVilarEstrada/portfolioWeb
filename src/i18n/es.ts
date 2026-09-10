@@ -5,6 +5,8 @@ export const es: Dict = {
   pages: pagesEs,
   meta: {
     title: "Pau Vilar — Desarrollador Full Stack e Ingeniero de IA",
+    description:
+      "Portfolio de Pau Vilar — desarrollador full-stack e ingeniero de IA y Big Data. Plataformas de IA, pipelines de datos, apps web y un juego publicado en Google Play. Y portero profesional de waterpolo en División de Honor.",
     switchLabel: "Cambiar idioma",
   },
 
@@ -13,11 +15,11 @@ export const es: Dict = {
     work: "Proyectos",
     experience: "Experiencia",
     contact: "Contacto",
+    skip: "Saltar al contenido",
     hint: "pasa el ratón o toca para navegar",
   },
 
   home: {
-    badge: "Disponible para trabajar · desde Barcelona",
     name: "Pau Vilar i Estrada",
     roles: [
       "Desarrollador Full Stack",
@@ -35,7 +37,6 @@ export const es: Dict = {
     ],
     ctaWork: "Ver mis proyectos",
     ctaContact: "Hablemos",
-    scroll: "scroll",
     terminalTitle: "consola-ia",
     terminal: [
       { cmd: "$ ./bienvenid@.sh", out: "👋  ¡Bienvenid@ al portfolio de Pau!" },

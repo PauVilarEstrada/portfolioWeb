@@ -289,3 +289,10 @@
   color: var(--text-secondary);
   margin: 0;
 }
+
+@keyframes hfcFloat {
+  0%   { opacity: 0; transform: translateY(12px) scale(0.95); }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-12px) scale(1.02); }
+}

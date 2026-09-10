@@ -4,6 +4,8 @@ export const en = {
   pages: pagesEn,
   meta: {
     title: "Pau Vilar — Full Stack & AI Engineer",
+    description:
+      "Portfolio of Pau Vilar — full-stack developer and AI & Big Data engineer. AI platforms, data pipelines, web apps and a game live on Google Play. Also a professional water polo goalkeeper in Spain's División de Honor.",
     switchLabel: "Change language",
   },
 
@@ -12,11 +14,11 @@ export const en = {
     work: "Work",
     experience: "Experience",
     contact: "Contact",
+    skip: "Skip to content",
     hint: "hover or tap to navigate",
   },
 
   home: {
-    badge: "Open to work · based in Barcelona",
     name: "Pau Vilar i Estrada",
     roles: [
       "Full Stack Developer",
@@ -34,7 +36,6 @@ export const en = {
     ],
     ctaWork: "View my work",
     ctaContact: "Get in touch",
-    scroll: "scroll",
     terminalTitle: "ai-console",
     terminal: [
       { cmd: "$ ./welcome.sh", out: "👋  Welcome to Pau's portfolio!" },

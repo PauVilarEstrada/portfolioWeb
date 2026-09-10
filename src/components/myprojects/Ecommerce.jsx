@@ -5,11 +5,11 @@ import "./css/showcase.css";
 import { useI18n } from "../../i18n/LanguageContext";
 import { rt } from "../../i18n/rich";
 import ecommerceLogo from "./assets/logosApps/logo-ecommerce.png";
-import ecommerceHome from "./assets/ecommerce-home.png";
-import ecommerceShoes from "./assets/ecommerce-shoes.png";
-import ecommerceCart from "./assets/ecommerce-cart.png";
-import ecommerceSection from "./assets/ecommerce-sections.png";
-import ecommerceDashboard from "./assets/ecommerce-dashboard.png";
+import ecommerceHome from "./assets/ecommerce-home.webp";
+import ecommerceShoes from "./assets/ecommerce-shoes.webp";
+import ecommerceCart from "./assets/ecommerce-cart.webp";
+import ecommerceSection from "./assets/ecommerce-sections.webp";
+import ecommerceDashboard from "./assets/ecommerce-dashboard.webp";
 
 const LIVE = "https://ecommerce-yrau.onrender.com";
 const REPO = "https://github.com/PauVilarEstrada/e-commerceWeb";

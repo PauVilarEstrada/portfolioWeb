@@ -5,11 +5,11 @@ import "./css/showcase.css";
 import { useI18n } from "../../i18n/LanguageContext";
 import { rt } from "../../i18n/rich";
 import flappyLogo from "./assets/logosApps/flappybirdLogoSection.png";
-import flappy1 from "./assets/flappyBird1.png";
-import flappy2 from "./assets/flappyBird2.png";
-import flappy3 from "./assets/FlappyBird3.png";
-import flappyGeneral from "./assets/FlappyBirdGeneral.png";
-import flappyVideo from "./assets/DemostracioVideoFlappyBird.mp4";
+import flappy1 from "./assets/flappyBird1.webp";
+import flappy2 from "./assets/flappyBird2.webp";
+import flappy3 from "./assets/FlappyBird3.webp";
+import flappyGeneral from "./assets/FlappyBirdGeneral.webp";
+import flappyVideo from "./assets/DemostracioVideoFlappyBird_opt.mp4";
 
 const REPO = "https://github.com/PauVilarEstrada/Flappy-Bird";
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./css/project-page.css";
 import { useI18n } from "../../i18n/LanguageContext";
 import { rt } from "../../i18n/rich";
-import kddLogo from "./assets/logosApps/kdd.png";
+import kddLogo from "./assets/logosApps/kdd.webp";
 
 const TEAM = [
   { n: "Adrià Garzón", u: "https://www.linkedin.com/in/adria-garzon/" },

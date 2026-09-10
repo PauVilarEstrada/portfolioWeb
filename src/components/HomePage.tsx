@@ -7,9 +7,9 @@ import { rt } from "../i18n/rich";
 import Reveal from "./Reveal";
 
 // Project logos
-import mindflowLogo from "./myprojects/assets/logosApps/mindflowlogo.png";
-import udLogo from "./myprojects/assets/logosApps/ultimusdefensorlogo.png";
-import kddLogo from "./myprojects/assets/logosApps/kdd.png";
+import mindflowLogo from "./myprojects/assets/logosApps/mindflowlogo.webp";
+import udLogo from "./myprojects/assets/logosApps/ultimusdefensorlogo.webp";
+import kddLogo from "./myprojects/assets/logosApps/kdd.webp";
 import nbaLogo from "./myprojects/assets/logosApps/nbavisionlogo.png";
 import ecommerceLogo from "./myprojects/assets/logosApps/logo-ecommerce.png";
 
@@ -18,7 +18,7 @@ import pythonLogo from "../assets/pythonlogo.webp";
 import reactLogo from "../assets/reactlogo.webp";
 import dockerLogo from "../assets/dockerlogo.png";
 import awsLogo from "../assets/awslogo.png";
-import flaskLogo from "../assets/flasklogo.png";
+import flaskLogo from "../assets/flasklogo.webp";
 import javaLogo from "../assets/javalogo.png";
 import javascriptLogo from "../assets/javascriptlogo.webp";
 import typeScriptLogo from "../assets/typescriptlogo.png";
@@ -30,7 +30,7 @@ import springbootLogo from "../assets/springbootlogo.png";
 import TailwindLogo from "../assets/tailwindlogo.svg";
 import nodejsLogo from "../assets/nodejslogo.png";
 import djangoLogo from "../assets/djangologo.svg";
-import bashLogo from "../assets/bashlogo.png";
+import bashLogo from "../assets/bashlogo.webp";
 
 // Social icons
 import githubIconWhite from "../assets/githublogoblanco.png";

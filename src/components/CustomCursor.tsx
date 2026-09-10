@@ -1,7 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import "../css/CustomCursor.css";
 
+const supportsFinePointer = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia?.("(hover: hover) and (pointer: fine)").matches === true &&
+  window.matchMedia?.("(prefers-reduced-motion: reduce)").matches !== true;
+
 export default function CustomCursor() {
+  const enabled = supportsFinePointer();
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const pos = useRef({ x: -200, y: -200 });
@@ -9,6 +15,7 @@ export default function CustomCursor() {
   const rafId = useRef<number>(0);
 
   useEffect(() => {
+    if (!enabled) return;
     const onMove = (e: MouseEvent) => {
       pos.current = { x: e.clientX, y: e.clientY };
     };
@@ -57,7 +64,9 @@ export default function CustomCursor() {
       document.removeEventListener("mouseenter", onEnter);
       cancelAnimationFrame(rafId.current);
     };
-  }, []);
+  }, [enabled]);
+
+  if (!enabled) return null;
 
   return (
     <>

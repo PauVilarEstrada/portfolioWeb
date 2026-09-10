@@ -43,6 +43,8 @@ export default function NavBar() {
 
   return (
     <>
+      <a className="skip-link" href="#main">{t.nav.skip}</a>
+
       <div className={`social-container${isExpanded ? " is-dimmed" : ""}`}>
         <LanguageSwitch compact />
         <a href="https://github.com/PauVilarEstrada" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -59,7 +61,7 @@ export default function NavBar() {
         onMouseEnter={() => setIsExpanded(true)}
         onMouseLeave={() => setIsExpanded(false)}
         onFocus={() => setIsExpanded(true)}
-        aria-label={t.nav.work}
+        aria-label="Pau Vilar"
       >
         <button
           type="button"
