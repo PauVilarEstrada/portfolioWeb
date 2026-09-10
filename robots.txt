@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pauvilarestrada.github.io/portfolioWeb/sitemap.xml
