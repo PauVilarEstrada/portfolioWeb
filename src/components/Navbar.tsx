@@ -68,7 +68,7 @@ export default function NavBar() {
           className="nav-logo"
           aria-expanded={isExpanded}
           aria-label={t.nav.hint}
-          onClick={() => setIsExpanded(v => !v)}
+          onClick={() => setIsExpanded(true)}
         >
           <img src={cursorIcon} alt="" className="nav-icon" />
           <span className="nav-logo-pulse" aria-hidden="true" />
