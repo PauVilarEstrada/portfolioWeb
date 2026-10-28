@@ -19,8 +19,14 @@
   transition: none;
   -webkit-mask: radial-gradient(circle at 50% 50%, transparent var(--hole), #000 calc(var(--hole) + 1px));
   mask: radial-gradient(circle at 50% 50%, transparent var(--hole), #000 calc(var(--hole) + 1px));
-  animation: intro-burst 0.8s cubic-bezier(0.65, 0, 0.25, 1) forwards;
+  animation: intro-burst 1.5s cubic-bezier(0.6, 0, 0.2, 1) forwards;
 }
+.intro.is-burst .intro-stage {
+  transform: scale(1.14);
+  transition: transform 1.5s cubic-bezier(0.3, 0, 0.2, 1);
+  will-change: transform;
+}
+.intro.is-burst .intro-ui { opacity: 0; transition: opacity 0.4s; }
 @keyframes intro-burst { to { --hole: 120vmax; } }
 html.intro-open, html.intro-open body { overflow: hidden; }
 

@@ -3,8 +3,11 @@ import "../css/IntroLoader.css";
 import { useI18n } from "../i18n/LanguageContext";
 
 const SEEN_KEY = "pv-intro-seen";
-/** Must match the exit transition in IntroLoader.css. */
-const EXIT_MS = 800;
+/** Must match the exit animations in IntroLoader.css. */
+const EXIT_MS = { wipe: 800, burst: 1500 };
+/** A short pause after the intro has gone before the hero's WebGL scene starts. */
+const HERO_DELAY_MS = 120;
+const whenIdle = cb => (window.requestIdleCallback ? window.requestIdleCallback(cb, { timeout: 1000 }) : window.setTimeout(cb, 200));
 
 function shouldPlay() {
   try {
@@ -31,10 +34,14 @@ export default function IntroLoader() {
     closing.current = true;
     app.current?.stop?.();
     try { sessionStorage.setItem(SEEN_KEY, "1"); } catch { /* ignore */ }
-    setLeaving(kind === "impact" ? "burst" : "wipe");
+    const mode = kind === "impact" ? "burst" : "wipe";
+    setLeaving(mode);
     document.documentElement.classList.remove("intro-open");
-    window.dispatchEvent(new Event("pv:intro-done"));
-    window.setTimeout(() => setActive(false), EXIT_MS);
+    // The hero's WebGL starts only once the intro has left, so the two never fight over the frame.
+    window.setTimeout(() => {
+      setActive(false);
+      window.setTimeout(() => window.dispatchEvent(new Event("pv:intro-done")), HERO_DELAY_MS);
+    }, EXIT_MS[mode]);
   };
 
   // The Game page can play the intro again.
@@ -67,8 +74,10 @@ export default function IntroLoader() {
       cancelled = true;
       window.removeEventListener("keydown", onKey);
       document.documentElement.classList.remove("intro-open");
-      app.current?.dispose();
+      // Free the scene's GPU memory once the browser is idle, not in the middle of the exit.
+      const scene = app.current;
       app.current = null;
+      if (scene) whenIdle(() => scene.dispose());
     };
     // The scene only takes the scoreboard label once, when it starts.
     // eslint-disable-next-line react-hooks/exhaustive-deps
