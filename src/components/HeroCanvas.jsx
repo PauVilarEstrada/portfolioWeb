@@ -21,7 +21,9 @@ export default function HeroCanvas() {
     };
     // Don't compete with the intro loader for the GPU: start once it has gone.
     let id = 0;
-    const schedule = () => { id = window.setTimeout(start, START_DELAY_MS); };
+    // Build the scene when the browser has a quiet moment, so it never stalls an animation.
+    const idle = cb => (window.requestIdleCallback ? window.requestIdleCallback(cb, { timeout: 800 }) : cb());
+    const schedule = () => { id = window.setTimeout(() => idle(start), START_DELAY_MS); };
     const introRunning = document.documentElement.classList.contains("intro-open");
     if (introRunning) window.addEventListener("pv:intro-done", schedule, { once: true });
     else schedule();

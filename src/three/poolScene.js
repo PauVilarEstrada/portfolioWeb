@@ -27,7 +27,7 @@ const T = {
   throw: 3.05,
   release: 3.12,
   save: 3.55,
-  impact: 4.1,
+  impact: 4.5,
 };
 
 // Diorama, in metres. The pool runs along x; the front (+z) is cut away.
@@ -646,8 +646,8 @@ const beamShader = {
     }`,
 };
 
-/** Floodlight mast with a six-lamp head; `aim` points the head, its beam and its spot light. */
-function buildFloodlight(height, poleMat, strength) {
+/** Floodlight mast with a six-lamp head; `aim` points the head, its beam and (with `spotLight`) a real spot light. */
+function buildFloodlight(height, poleMat, strength, spotLight) {
   const group = new Group();
   const mast = new Mesh(new CylinderGeometry(0.06, 0.09, height, 12), poleMat);
   mast.position.y = height / 2;
@@ -681,10 +681,12 @@ function buildFloodlight(height, poleMat, strength) {
   }));
   beam.renderOrder = 6;
   head.add(beam);
-  const spot = new SpotLight("#fff4dc", 90, 0, 0.42, 0.7, 2);
-  head.add(spot);
-  head.add(spot.target);
-  spot.target.position.set(0, 0, 1);
+  if (spotLight) {
+    const spot = new SpotLight("#fff4dc", 90, 0, 0.42, 0.7, 2);
+    head.add(spot);
+    head.add(spot.target);
+    spot.target.position.set(0, 0, 1);
+  }
   const aim = point => {
     group.updateMatrixWorld(true);
     head.lookAt(point);
@@ -974,9 +976,9 @@ export function createPoolScene(container, { onDone, labels = DEFAULT_LABELS }) 
     return { ...flag, phase: Math.random() * Math.PI * 2 };
   });
 
-  // Floodlights on the back corners, aimed down at the water.
+  // Floodlights on the back corners, aimed down at the water. Phones get the beams without the extra lights.
   [-1, 1].forEach(side => {
-    const light = buildFloodlight(7.6, poleMat, dark ? 0.32 : 0.16);
+    const light = buildFloodlight(7.6, poleMat, dark ? 0.32 : 0.16, !mobile);
     light.group.position.set(side * (STANDS.halfX - 0.35), BASE, standsBack - 0.45);
     scene.add(light.group);
     light.aim(new Vector3(side * 2.4, -0.4, 0.4));
@@ -1201,7 +1203,7 @@ export function createPoolScene(container, { onDone, labels = DEFAULT_LABELS }) 
       const k = span(t, T.save, T.impact);
       camera.getWorldDirection(aim);
       target.copy(camera.position).addScaledVector(aim, 0.22);
-      ball.position.lerpVectors(ballState.pos, target, Math.pow(k, 2.2));
+      ball.position.lerpVectors(ballState.pos, target, Math.pow(k, 1.7));
       ball.position.y += Math.sin(k * Math.PI) * 0.8 * (1 - k);
       ball.rotation.x += dt * 14;
       ball.rotation.y += dt * 9;
