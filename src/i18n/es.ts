@@ -121,6 +121,8 @@ export const es: Dict = {
       "Una selección de lo que he construido: plataformas de IA, analítica de datos, aplicaciones web y juegos. Cada proyecto tiene su página con qué hace, cómo está hecho y qué decisiones tomé.",
     filters: { all: "Todos", ai: "IA y datos", web: "Web", games: "Juegos y móvil" },
     featured: "Proyecto destacado",
+    cols: { project: "Proyecto", type: "Tipo", stack: "Stack", status: "Estado" },
+    count: "proyectos",
     open: "Ver proyecto",
     empty: "No hay proyectos en esta categoría.",
   },
@@ -134,6 +136,7 @@ export const es: Dict = {
       tags: ["SaaS", "React", "FastAPI"],
       cat: "web",
       context: "En producción",
+      kind: "SaaS de gestión deportiva",
     },
     ultimus: {
       name: "Ultimus Defensor: BlueSentinel",
@@ -143,6 +146,7 @@ export const es: Dict = {
       tags: ["IA / ML", "Ciberseguridad", "LLM"],
       cat: "ai",
       context: "Proyecto final del máster",
+      kind: "Ciberseguridad con IA",
     },
     nba: {
       name: "NBA Vision",
@@ -152,6 +156,7 @@ export const es: Dict = {
       tags: ["React", "XGBoost", "Simulación"],
       cat: "ai",
       context: "En producción",
+      kind: "Analítica y predicción",
     },
     mindflow: {
       name: "MINDFLOW: Brain Puzzle Games",
@@ -161,6 +166,7 @@ export const es: Dict = {
       tags: ["React Native", "TypeScript", "Android"],
       cat: "games",
       context: "Google Play",
+      kind: "Juego móvil",
     },
     kdd: {
       name: "Sistema de detección de intrusiones (KDD'99)",
@@ -169,7 +175,8 @@ export const es: Dict = {
         "IDS con machine learning: clasificación jerárquica, ingeniería del dataset y cuadros de mando analíticos sobre más de 5 millones de registros.",
       tags: ["ML", "Big Data", "Python"],
       cat: "ai",
-      context: "Big Data",
+      context: "Proyecto del máster",
+      kind: "Detección con machine learning",
     },
     ecommerce: {
       name: "Plataforma e-commerce",
@@ -178,7 +185,8 @@ export const es: Dict = {
         "Tienda full-stack: autenticación JWT, carrito persistente, panel de administración, imágenes en Cloudinary y caché Redis en las rutas críticas.",
       tags: ["React", "Node.js", "MongoDB"],
       cat: "web",
-      context: "Full stack",
+      context: "Desplegada",
+      kind: "Tienda online",
     },
     pacman: {
       name: "Pacman Remake",
@@ -187,7 +195,8 @@ export const es: Dict = {
         "El clásico arcade reconstruido en Java: mapas personalizados cargados desde ficheros, personajes seleccionables e IA de fantasmas.",
       tags: ["Java", "POO", "IA de juego"],
       cat: "games",
-      context: "Java",
+      context: "Código en GitHub",
+      kind: "Juego arcade",
     },
     flappy: {
       name: "Flappy Bird, clon mejorado",
@@ -196,7 +205,8 @@ export const es: Dict = {
         "Unity y C#: físicas 2D ajustadas a mano, obstáculos procedurales con object pooling y ranking online.",
       tags: ["Unity", "C#", "Physics2D"],
       cat: "games",
-      context: "Unity",
+      context: "Código en GitHub",
+      kind: "Juego arcade",
     },
   },
 

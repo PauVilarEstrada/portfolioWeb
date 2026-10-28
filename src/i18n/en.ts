@@ -120,6 +120,8 @@ export const en = {
       "A selection of what I've built: AI platforms, data analytics, web applications and games. Each project has its own page covering what it does, how it's built and the decisions behind it.",
     filters: { all: "All", ai: "AI and data", web: "Web", games: "Games and mobile" },
     featured: "Featured project",
+    cols: { project: "Project", type: "Type", stack: "Stack", status: "Status" },
+    count: "projects",
     open: "View project",
     empty: "There are no projects in this category.",
   },
@@ -133,6 +135,7 @@ export const en = {
       tags: ["SaaS", "React", "FastAPI"],
       cat: "web",
       context: "Live",
+      kind: "Sports management SaaS",
     },
     ultimus: {
       name: "Ultimus Defensor: BlueSentinel",
@@ -142,6 +145,7 @@ export const en = {
       tags: ["AI / ML", "Cybersecurity", "LLM"],
       cat: "ai",
       context: "Master's final project",
+      kind: "AI cybersecurity",
     },
     nba: {
       name: "NBA Vision",
@@ -151,6 +155,7 @@ export const en = {
       tags: ["React", "XGBoost", "Simulation"],
       cat: "ai",
       context: "Live",
+      kind: "Analytics and forecasting",
     },
     mindflow: {
       name: "MINDFLOW: Brain Puzzle Games",
@@ -160,6 +165,7 @@ export const en = {
       tags: ["React Native", "TypeScript", "Android"],
       cat: "games",
       context: "Google Play",
+      kind: "Mobile game",
     },
     kdd: {
       name: "Intrusion Detection System (KDD'99)",
@@ -168,7 +174,8 @@ export const en = {
         "Machine-learning IDS: hierarchical classification, dataset engineering and analytical dashboards over 5M+ records.",
       tags: ["ML", "Big Data", "Python"],
       cat: "ai",
-      context: "Big Data",
+      context: "Master's project",
+      kind: "Machine-learning detection",
     },
     ecommerce: {
       name: "E-commerce platform",
@@ -177,7 +184,8 @@ export const en = {
         "Full-stack shop: JWT auth, persistent cart, admin dashboard, Cloudinary images and Redis caching on the hot paths.",
       tags: ["React", "Node.js", "MongoDB"],
       cat: "web",
-      context: "Full stack",
+      context: "Deployed",
+      kind: "Online shop",
     },
     pacman: {
       name: "Pacman Remake",
@@ -186,7 +194,8 @@ export const en = {
         "The arcade classic rebuilt in Java: custom maps loaded from files, selectable characters and ghost AI.",
       tags: ["Java", "OOP", "Game AI"],
       cat: "games",
-      context: "Java",
+      context: "Code on GitHub",
+      kind: "Arcade game",
     },
     flappy: {
       name: "Flappy Bird, improved clone",
@@ -195,7 +204,8 @@ export const en = {
         "Unity and C#: hand-tuned 2D physics, pooled procedural obstacles and an online leaderboard.",
       tags: ["Unity", "C#", "Physics2D"],
       cat: "games",
-      context: "Unity",
+      context: "Code on GitHub",
+      kind: "Arcade game",
     },
   },
 
