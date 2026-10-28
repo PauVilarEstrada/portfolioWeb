@@ -45,6 +45,11 @@
 .play-section .pgame { margin-top: 0; }
 
 /* ── Pool of projects ── */
+.swim-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 1fr);
+  gap: 16px;
+}
 .swim-stage {
   position: relative;
   height: min(76vh, 640px);
@@ -67,21 +72,82 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.swim-progress, .swim-hint {
+.swim-hud {
   position: absolute;
-  top: 16px;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
   margin: 0;
-  padding: 8px 14px;
+  pointer-events: none;
+}
+.swim-hud span, .swim-toast {
+  padding: 7px 12px;
   border-radius: var(--pill);
   background: var(--glass-strong);
   backdrop-filter: blur(10px);
   color: var(--ink);
   font-size: var(--fs-small);
   font-weight: 600;
-  pointer-events: none;
+  font-variant-numeric: tabular-nums;
 }
-.swim-progress { left: 16px; font-variant-numeric: tabular-nums; }
-.swim-hint { right: 16px; color: var(--ink-2); font-weight: 500; }
+.swim-sound {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--glass-strong);
+  backdrop-filter: blur(10px);
+  color: var(--ink);
+  cursor: pointer;
+}
+.swim-toast {
+  position: absolute;
+  left: 50%;
+  top: 64px;
+  transform: translateX(-50%);
+  margin: 0;
+  max-width: calc(100% - 32px);
+  text-align: center;
+  pointer-events: none;
+  animation: swim-in 0.3s var(--ease-out);
+}
+.swim-shoot {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  animation: swim-pulse 1.2s ease-in-out infinite;
+}
+.swim-goal {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 10px;
+  padding: 24px;
+  text-align: center;
+  color: #fff;
+  background: radial-gradient(closest-side, rgba(12, 22, 17, 0.55), rgba(12, 22, 17, 0.2));
+  animation: swim-in 0.5s var(--ease-out);
+}
+.swim-goal-title {
+  font-size: clamp(3rem, 9vw, 6rem);
+  font-weight: 800;
+  font-stretch: 120%;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.35);
+}
+.swim-goal p { max-width: 44ch; }
+.swim-goal-time { font-variant-numeric: tabular-nums; opacity: 0.85; }
 .swim-fallback {
   position: absolute;
   inset: 0;
@@ -90,43 +156,73 @@
   color: #fff;
   font-weight: 600;
 }
-.swim-card {
-  position: absolute;
-  left: 16px;
-  bottom: 16px;
-  width: min(420px, calc(100% - 32px));
-  padding: 20px 22px;
-  border-radius: var(--r-lg);
-  border-top: 4px solid var(--accent);
-  background: var(--glass-strong);
-  backdrop-filter: blur(14px);
-  box-shadow: var(--shadow);
-  animation: swim-card-in 0.35s var(--ease-out);
+
+.swim-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: min(76vh, 640px);
+  min-height: 420px;
+  padding: 20px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  background: var(--surface);
 }
-.swim-card-sub { color: var(--ink-3); font-size: var(--fs-small); font-weight: 600; }
-.swim-card h3 { margin: 4px 0 8px; font-size: 1.35rem; letter-spacing: -0.02em; line-height: 1.15; }
-.swim-card-body {
-  color: var(--ink-2);
-  font-size: 0.95rem;
-  line-height: 1.5;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+.swim-panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.swim-panel-head h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
+.swim-panel-head span { color: var(--ink-3); font-weight: 600; font-variant-numeric: tabular-nums; }
+.swim-panel-empty { color: var(--ink-2); line-height: 1.55; }
+.swim-info {
+  padding-left: 14px;
+  border-left: 4px solid var(--accent);
+  animation: swim-in 0.4s var(--ease-out);
 }
-.swim-card-link {
+.swim-info-sub { color: var(--ink-3); font-size: var(--fs-small); font-weight: 600; }
+.swim-info h4 { margin: 6px 0 10px; font-size: 1.45rem; letter-spacing: -0.03em; line-height: 1.1; }
+.swim-info-body { color: var(--ink-2); line-height: 1.55; }
+.swim-info-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 12px;
+  margin-top: 14px;
   color: var(--ink);
   font-weight: 600;
   border-bottom: 2px solid var(--accent);
 }
+.swim-found {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: auto 0 0;
+  padding: 0;
+  list-style: none;
+}
+.swim-found button {
+  padding: 6px 10px;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  cursor: pointer;
+}
+.swim-found button.is-active { background: var(--ink); color: var(--paper); }
 .swim-help { margin-top: 12px; color: var(--ink-3); font-size: var(--fs-small); }
-@keyframes swim-card-in {
-  from { opacity: 0; transform: translateY(12px); }
+@keyframes swim-in {
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: none; }
+}
+@keyframes swim-pulse {
+  50% { transform: translateX(-50%) scale(1.06); }
+}
+.swim-toast { animation-name: swim-toast-in; }
+@keyframes swim-toast-in {
+  from { opacity: 0; transform: translate(-50%, -8px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
 }
 
 /* ── Automation puzzle ── */
@@ -162,6 +258,24 @@
   grid-template-columns: repeat(4, 1fr);
   gap: clamp(16px, 4vw, 56px);
   margin-top: 28px;
+}
+.puzzle-board--mixed {
+  grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+  gap: 10px;
+}
+.puzzle-board--mixed .puzzle-node { position: relative; z-index: 1; }
+.puzzle-node-label { flex: 1; }
+.puzzle-node-order {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 .puzzle-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
 .puzzle-lines line {
@@ -219,7 +333,7 @@
   padding-top: 16px;
   border-top: 1px solid var(--line);
   color: var(--ink-2);
-  animation: swim-card-in 0.35s var(--ease-out);
+  animation: swim-in 0.35s var(--ease-out);
 }
 .puzzle-all { color: var(--ink); font-weight: 600; }
 
@@ -242,12 +356,12 @@
 @media (max-width: 760px) {
   .play-section-head { grid-template-columns: 1fr; }
   .play-section-head p { grid-column: 1; }
-  .swim-stage { height: 72vh; min-height: 380px; }
-  .swim-hint { display: none; }
-  .swim-card { padding: 16px 18px; }
-  .puzzle-board { grid-template-columns: 1fr 1fr; }
+  .swim-layout { grid-template-columns: 1fr; }
+  .swim-stage { height: 64vh; min-height: 360px; }
+  .swim-panel { max-height: none; min-height: 0; }
+  .puzzle-board, .puzzle-board--mixed { grid-template-columns: 1fr 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .puzzle-lines line, .swim-card, .puzzle-result { animation: none; }
+  .puzzle-lines line, .swim-info, .swim-toast, .swim-shoot, .swim-goal, .puzzle-result { animation: none; }
 }
