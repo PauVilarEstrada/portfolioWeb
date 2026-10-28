@@ -4,8 +4,8 @@ import {
   CanvasTexture,
   Color,
   Group,
-  LineBasicMaterial,
-  LineSegments,
+  LineDashedMaterial,
+  LineLoop,
   MathUtils,
   Matrix4,
   PerspectiveCamera,
@@ -27,8 +27,10 @@ import { readThemeColors, onThemeChange } from "./themeColors";
 
 /**
  * Hero background: a particle field that assembles into "PV" and scatters
- * under the pointer, wrapped in a slowly turning graph of the tools Pau
- * connects (apps → n8n → private LLM), with data pulses running into PV.
+ * under the pointer, circled by the tools Pau works with on two tilted
+ * orbits, like a small planetary system. Nodes in front are larger and
+ * sharper, nodes behind PV fade back; data pulses run from each node into
+ * PV, and a node's name shows when the pointer is over it.
  */
 
 /** @typedef {{ label: string, icon: { path: string, hex: string } | null }} NodeDef */
@@ -57,16 +59,17 @@ const CFG = {
   particlesDesktop: 6000,
   particlesMobile: 2200,
   ambientShare: 0.14,
-  glyphWidth: 2.7,
+  glyphWidth: 3.1,
   glyphDepth: 0.35,
   spring: 0.045,
   damping: 0.86,
   repelRadius: 0.9,
   repelForce: 0.06,
   drift: 0.035,
-  ringRadius: 2.05,
-  nodeScale: 0.46,
-  nodeSpin: 0.06,
+  nodeScale: 0.6,
+  nodeHover: 1.18,
+  labelOffset: 0.4,
+  labelHeight: 0.2,
   pulseSpeed: 0.28,
   parallax: 0.35,
   parallaxEase: 0.05,
@@ -108,27 +111,36 @@ function sampleGlyph(count, width) {
   return out;
 }
 
-/** A round white plate with the brand mark (or a text monogram) and its label underneath. */
-function nodeTexture(def, ink) {
+/** Two orbits: the AI core close in, the company stack further out, turning the other way. */
+const ORBITS = [
+  { radius: 2.0, tiltX: 0.38, roll: -0.16, speed: 0.13, nodes: [0, 1, 2, 3, 4, 5] },
+  { radius: 2.65, tiltX: 0.5, roll: 0.2, speed: -0.085, nodes: [6, 7, 8, 9, 10, 11, 12] },
+];
+
+/** A round white plate with the brand mark, or a text monogram. */
+function nodeTexture(def) {
   const S = 256;
-  const LABEL_W = 420;
   const c = document.createElement("canvas");
-  c.width = LABEL_W;
-  c.height = S + 72;
+  c.width = S;
+  c.height = S;
   const ctx = c.getContext("2d");
-  const r = S * 0.36;
+  const r = S * 0.42;
+  ctx.shadowColor = "rgba(12,22,17,0.18)";
+  ctx.shadowBlur = 14;
+  ctx.shadowOffsetY = 4;
   ctx.beginPath();
-  ctx.arc(LABEL_W / 2, S / 2, r, 0, Math.PI * 2);
+  ctx.arc(S / 2, S / 2, r, 0, Math.PI * 2);
   ctx.fillStyle = "#ffffff";
   ctx.fill();
+  ctx.shadowColor = "transparent";
   ctx.lineWidth = 3;
-  ctx.strokeStyle = "rgba(12,22,17,0.12)";
+  ctx.strokeStyle = "rgba(12,22,17,0.1)";
   ctx.stroke();
   if (def.icon) {
     const p = new Path2D(def.icon.path);
-    const size = r * 1.05;
+    const size = r * 0.95;
     ctx.save();
-    ctx.translate(LABEL_W / 2 - size / 2, S / 2 - size / 2);
+    ctx.translate(S / 2 - size / 2, S / 2 - size / 2);
     ctx.scale(size / 24, size / 24);
     const hex = def.icon.hex.toUpperCase();
     ctx.fillStyle = hex === "FFFFFF" ? "#0c1611" : `#${hex}`;
@@ -136,33 +148,39 @@ function nodeTexture(def, ink) {
     ctx.restore();
   } else {
     ctx.fillStyle = "#0c1611";
-    ctx.font = `700 ${Math.round(r * 0.62)}px "Archivo", system-ui, sans-serif`;
+    ctx.font = `700 ${Math.round(r * 0.56)}px "Archivo", system-ui, sans-serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText("M365", LABEL_W / 2, S / 2 + 2);
+    ctx.fillText("M365", S / 2, S / 2 + 2);
   }
-  ctx.fillStyle = ink;
-  ctx.font = `600 34px "Archivo", system-ui, sans-serif`;
-  ctx.textAlign = "center";
-  ctx.textBaseline = "alphabetic";
-  ctx.fillText(def.label, LABEL_W / 2, S + 46);
   const tex = new CanvasTexture(c);
   tex.colorSpace = SRGBColorSpace;
   tex.anisotropy = 4;
   return tex;
 }
 
-/** Even spread of n points on a sphere, flattened a little so the graph reads as a ring. */
-function fibonacciSphere(n, radius) {
-  const pts = [];
-  const golden = Math.PI * (3 - Math.sqrt(5));
-  for (let i = 0; i < n; i++) {
-    const y = 1 - (i / (n - 1)) * 2;
-    const rad = Math.sqrt(1 - y * y);
-    const th = golden * i;
-    pts.push(new Vector3(Math.cos(th) * rad * radius, y * radius * 0.72, Math.sin(th) * rad * radius));
-  }
-  return pts;
+/** Name pill shown on hover: ink background, paper text. Returns the texture and its aspect ratio. */
+function labelTexture(text, ink, paper) {
+  const H = 72;
+  const font = `600 34px "Archivo", system-ui, sans-serif`;
+  const c = document.createElement("canvas");
+  const ctx = c.getContext("2d");
+  ctx.font = font;
+  const W = Math.ceil(ctx.measureText(text).width) + 48;
+  c.width = W;
+  c.height = H;
+  ctx.fillStyle = ink;
+  ctx.beginPath();
+  ctx.roundRect(0, 0, W, H, H / 2);
+  ctx.fill();
+  ctx.font = font;
+  ctx.fillStyle = paper;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(text, W / 2, H / 2 + 2);
+  const tex = new CanvasTexture(c);
+  tex.colorSpace = SRGBColorSpace;
+  return { tex, aspect: W / H };
 }
 
 /** @param {HTMLElement} container @returns {{ dispose: () => void }} */
@@ -267,47 +285,54 @@ export function createHeroScene(container) {
   const points = new Points(pGeo, pMat);
   rig.add(points);
 
-  // ── Network ──────────────────────────────────────────────
+  // ── Orbits ───────────────────────────────────────────────
   const net = new Group();
   rig.add(net);
-  const nodePos = fibonacciSphere(NODES.length, CFG.ringRadius);
-  const textures = NODES.map(n => nodeTexture(n, colors.ink));
-  const sprites = NODES.map((_, i) => {
-    const mat = new SpriteMaterial({ map: textures[i], transparent: true, depthWrite: false });
-    const s = new Sprite(mat);
-    s.scale.set(CFG.nodeScale * (420 / 256), CFG.nodeScale * (328 / 256), 1);
-    s.position.copy(nodePos[i]);
-    net.add(s);
-    return s;
-  });
+  const nodeTextures = NODES.map(n => nodeTexture(n));
+  const labels = NODES.map(n => labelTexture(n.label, colors.ink, colors.paper));
+  const nodes = [];
+  const pathMats = [];
+  const pulseSets = [];
+  ORBITS.forEach(orbit => {
+    const group = new Group();
+    group.rotation.set(orbit.tiltX, 0, orbit.roll);
+    net.add(group);
 
-  // Edges: every node to the centre, plus each node to its nearest neighbour.
-  const edges = [];
-  const origin = new Vector3();
-  nodePos.forEach(p => edges.push([p, origin]));
-  const lineArr = new Float32Array(edges.length * 6);
-  edges.forEach(([a, b], i) => {
-    lineArr.set([a.x, a.y, a.z, b.x * 0.18, b.y * 0.18, b.z * 0.18], i * 6);
-    if (b !== origin) lineArr.set([b.x, b.y, b.z], i * 6 + 3);
-  });
-  const lGeo = new BufferGeometry();
-  lGeo.setAttribute("position", new BufferAttribute(lineArr, 3));
-  const lMat = new LineBasicMaterial({ color: colors.ink, transparent: true, opacity: 0.12 });
-  net.add(new LineSegments(lGeo, lMat));
+    const path = [];
+    const SEG = 160;
+    for (let k = 0; k < SEG; k++) {
+      const a = (k / SEG) * Math.PI * 2;
+      path.push(Math.cos(a) * orbit.radius, 0, Math.sin(a) * orbit.radius);
+    }
+    const pathGeo = new BufferGeometry();
+    pathGeo.setAttribute("position", new BufferAttribute(new Float32Array(path), 3));
+    const pathMat = new LineDashedMaterial({ color: colors.ink, transparent: true, opacity: 0.22, dashSize: 0.07, gapSize: 0.07, depthWrite: false });
+    const loop = new LineLoop(pathGeo, pathMat);
+    loop.computeLineDistances();
+    group.add(loop);
+    pathMats.push(pathMat);
 
-  // Pulses travel from each node into PV.
-  const pulseArr = new Float32Array(NODES.length * 3);
-  const pulseGeo = new BufferGeometry();
-  pulseGeo.setAttribute("position", new BufferAttribute(pulseArr, 3));
-  const pulseMat = new PointsMaterial({
-    color: colors.green,
-    size: 0.11,
-    transparent: true,
-    opacity: 0.95,
-    depthWrite: false,
+    orbit.nodes.forEach((idx, k) => {
+      const sprite = new Sprite(new SpriteMaterial({ map: nodeTextures[idx], transparent: true, depthTest: false, depthWrite: false }));
+      group.add(sprite);
+      const label = new Sprite(new SpriteMaterial({ map: labels[idx].tex, transparent: true, depthTest: false, depthWrite: false, opacity: 0 }));
+      label.scale.set(CFG.labelHeight * labels[idx].aspect, CFG.labelHeight, 1);
+      group.add(label);
+      nodes.push({ idx, orbit, sprite, label, base: (k / orbit.nodes.length) * Math.PI * 2, hover: 0, front: 0 });
+    });
+
+    // Pulses run from each node of this orbit into PV.
+    const arr = new Float32Array(orbit.nodes.length * 3);
+    const geo = new BufferGeometry();
+    geo.setAttribute("position", new BufferAttribute(arr, 3));
+    const mat = new PointsMaterial({ color: colors.green, size: 0.1, transparent: true, opacity: 0.9, depthWrite: false });
+    const pts = new Points(geo, mat);
+    pts.renderOrder = 2;
+    group.add(pts);
+    pulseSets.push({ orbit, arr, geo, mat, phase: orbit.nodes.map(() => Math.random()) });
   });
-  net.add(new Points(pulseGeo, pulseMat));
-  const pulsePhase = NODES.map(() => Math.random());
+  points.renderOrder = 1;
+  const sprites = nodes.map(n => n.sprite);
 
   // ── Layout ───────────────────────────────────────────────
   const layout = () => {
@@ -319,12 +344,12 @@ export function createHeroScene(container) {
     const viewH = 2 * CFG.cameraZ * Math.tan(MathUtils.degToRad(CFG.fov / 2));
     const viewW = viewH * camera.aspect;
     if (isMobile()) {
-      rig.position.set(viewW * 0.04, viewH * 0.26, 0);
-      rig.scale.setScalar(0.5);
+      rig.position.set(0, viewH * 0.25, 0);
+      rig.scale.setScalar(Math.min(0.5, viewW / 7.4));
     } else {
-      // Right third of the hero, centred on the band between the nav and the rule
-      rig.position.set(viewW * 0.3, viewH * 0.13, 0);
-      rig.scale.setScalar(Math.min(0.95, Math.max(0.62, viewW / 12)));
+      // Right of the hero copy, centred on the band between the nav and the rule
+      rig.position.set(viewW * 0.31, viewH * 0.2, 0);
+      rig.scale.setScalar(Math.min(0.62, Math.max(0.48, viewW / 17)));
     }
   };
   layout();
@@ -351,13 +376,13 @@ export function createHeroScene(container) {
     colors = readThemeColors();
     pMat.uniforms.uInk.value.set(colors.ink);
     pMat.uniforms.uGreen.value.set(colors.green);
-    lMat.color.set(colors.ink);
-    pulseMat.color.set(colors.green);
-    NODES.forEach((n, i) => {
-      textures[i].dispose();
-      textures[i] = nodeTexture(n, colors.ink);
-      sprites[i].material.map = textures[i];
-      sprites[i].material.needsUpdate = true;
+    pathMats.forEach(m => m.color.set(colors.ink));
+    pulseSets.forEach(p => p.mat.color.set(colors.green));
+    nodes.forEach(n => {
+      labels[n.idx].tex.dispose();
+      labels[n.idx] = labelTexture(NODES[n.idx].label, colors.ink, colors.paper);
+      n.label.material.map = labels[n.idx].tex;
+      n.label.material.needsUpdate = true;
     });
     if (reduce) renderer.render(scene, camera);
   });
@@ -417,19 +442,48 @@ export function createHeroScene(container) {
     }
     pGeo.attributes.position.needsUpdate = true;
 
-    net.rotation.y = t * CFG.nodeSpin + tilt.y;
-    net.rotation.x = 0.18 + tilt.x * 0.6;
+    net.rotation.y = tilt.y * 0.6;
+    net.rotation.x = tilt.x * 0.5;
     points.rotation.y = tilt.y * 0.35;
     points.rotation.x = tilt.x * 0.25;
 
-    NODES.forEach((_, i) => {
-      const k = (pulsePhase[i] + t * CFG.pulseSpeed) % 1;
-      const p = nodePos[i];
-      pulseArr[i * 3] = p.x * (1 - k) + p.x * 0.18 * k;
-      pulseArr[i * 3 + 1] = p.y * (1 - k) + p.y * 0.18 * k;
-      pulseArr[i * 3 + 2] = p.z * (1 - k) + p.z * 0.18 * k;
+    // Hover: the node under the pointer grows and shows its name.
+    let hovered = null;
+    if (Math.abs(ndc.x) <= 1 && Math.abs(ndc.y) <= 1) {
+      const hits = raycaster.intersectObjects(sprites, false);
+      if (hits.length) hovered = hits[0].object;
+    }
+    container.style.cursor = hovered ? "default" : "";
+
+    nodes.forEach(n => {
+      const { orbit } = n;
+      const a = n.base + t * orbit.speed;
+      const x = Math.cos(a) * orbit.radius;
+      const z = Math.sin(a) * orbit.radius;
+      n.front = Math.sin(a); // +1 nearest the camera, -1 behind PV
+      const depth = (n.front + 1) / 2;
+      n.hover += ((n.sprite === hovered ? 1 : 0) - n.hover) * 0.18;
+      const size = CFG.nodeScale * (0.72 + depth * 0.36) * (1 + (CFG.nodeHover - 1) * n.hover);
+      n.sprite.position.set(x, 0, z);
+      n.sprite.scale.set(size, size, 1);
+      n.sprite.material.opacity = 0.3 + depth * 0.7;
+      n.sprite.renderOrder = n.front > 0 ? 3 : 0;
+      n.label.position.set(x, -CFG.labelOffset * (0.8 + depth * 0.4), z);
+      n.label.material.opacity = n.hover;
+      n.label.renderOrder = 4;
     });
-    pulseGeo.attributes.position.needsUpdate = true;
+
+    pulseSets.forEach(set => {
+      set.orbit.nodes.forEach((_, k) => {
+        const n = nodes.find(m => m.orbit === set.orbit && m.idx === set.orbit.nodes[k]);
+        const f = (set.phase[k] + t * CFG.pulseSpeed) % 1;
+        const p = n.sprite.position;
+        set.arr[k * 3] = p.x * (1 - f) * 0.92;
+        set.arr[k * 3 + 1] = 0;
+        set.arr[k * 3 + 2] = p.z * (1 - f) * 0.92;
+      });
+      set.geo.attributes.position.needsUpdate = true;
+    });
 
     renderer.render(scene, camera);
   };
@@ -477,12 +531,12 @@ export function createHeroScene(container) {
       document.removeEventListener("pointerleave", onLeave);
       pGeo.dispose();
       pMat.dispose();
-      lGeo.dispose();
-      lMat.dispose();
-      pulseGeo.dispose();
-      pulseMat.dispose();
-      textures.forEach(tx => tx.dispose());
-      sprites.forEach(s => s.material.dispose());
+      net.traverse(o => {
+        if (o.geometry) o.geometry.dispose();
+        if (o.material) o.material.dispose();
+      });
+      nodeTextures.forEach(tx => tx.dispose());
+      labels.forEach(l => l.tex.dispose());
       renderer.dispose();
       renderer.domElement.remove();
     },

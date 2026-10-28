@@ -16,12 +16,11 @@ function shouldPlay() {
   return play;
 }
 
-/** First-visit intro: the water polo pool scene with a 0–100 counter. Skippable. */
+/** First-visit intro: the pool diorama fills and the keeper makes a save. Esc, Enter, Space or a click skips it. */
 export default function IntroLoader() {
   const { t } = useI18n();
   const [active, setActive] = useState(shouldPlay);
   const [leaving, setLeaving] = useState(false);
-  const [progress, setProgress] = useState(0);
   const stage = useRef(null);
   const app = useRef(null);
   const closing = useRef(false);
@@ -31,7 +30,6 @@ export default function IntroLoader() {
     closing.current = true;
     app.current?.stop?.();
     try { sessionStorage.setItem(SEEN_KEY, "1"); } catch { /* ignore */ }
-    setProgress(1);
     setLeaving(true);
     document.documentElement.classList.remove("intro-open");
     window.dispatchEvent(new Event("pv:intro-done"));
@@ -43,11 +41,8 @@ export default function IntroLoader() {
     document.documentElement.classList.add("intro-open");
     let cancelled = false;
     import("../three/poolScene").then(({ createPoolScene }) => {
-      if (cancelled || !stage.current) return;
-      app.current = createPoolScene(stage.current, {
-        onProgress: p => setProgress(p),
-        onDone: close,
-      });
+      if (cancelled || closing.current || !stage.current) return;
+      app.current = createPoolScene(stage.current, { onDone: close });
     }).catch(close);
     const onKey = e => { if (e.key === "Escape" || e.key === "Enter" || e.key === " ") close(); };
     window.addEventListener("keydown", onKey);
@@ -61,7 +56,6 @@ export default function IntroLoader() {
   }, [active]);
 
   if (!active) return null;
-  const pct = Math.round(progress * 100);
 
   return (
     <div className={`intro${leaving ? " is-leaving" : ""}`} role="dialog" aria-label={t.intro.label} onClick={close}>
@@ -71,16 +65,6 @@ export default function IntroLoader() {
           <span className="intro-mark">PV</span>
           <span>Pau Vilar</span>
         </div>
-        <div className="intro-bottom">
-          <div>
-            <p className="intro-status">{t.intro.status}</p>
-            <p className="intro-count" aria-live="off">{String(pct).padStart(3, "0")}</p>
-          </div>
-          <button type="button" className="intro-skip" onClick={e => { e.stopPropagation(); close(); }} autoFocus>
-            {t.intro.skip}
-          </button>
-        </div>
-        <span className="intro-bar" style={{ transform: `scaleX(${progress})` }} />
       </div>
     </div>
   );
