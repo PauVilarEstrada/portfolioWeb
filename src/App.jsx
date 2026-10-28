@@ -4,6 +4,7 @@ import NavBar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import PageTransition from "./components/PageTransition";
+import IntroLoader from "./components/IntroLoader";
 import DocumentMeta from "./components/DocumentMeta";
 import HomePage from "./components/HomePage";
 
@@ -56,6 +57,7 @@ export default function App() {
   return (
     <>
       <DocumentMeta />
+      <IntroLoader />
       <NavBar />
       <main id="main" tabIndex={-1}>
         <PageTransition>

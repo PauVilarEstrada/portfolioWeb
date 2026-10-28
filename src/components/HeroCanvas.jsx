@@ -19,10 +19,16 @@ export default function HeroCanvas() {
         ref.current.classList.add("is-ready");
       }
     };
-    const id = window.setTimeout(start, START_DELAY_MS);
+    // Don't compete with the intro loader for the GPU: start once it has gone.
+    let id = 0;
+    const schedule = () => { id = window.setTimeout(start, START_DELAY_MS); };
+    const introRunning = document.documentElement.classList.contains("intro-open");
+    if (introRunning) window.addEventListener("pv:intro-done", schedule, { once: true });
+    else schedule();
     return () => {
       cancelled = true;
       window.clearTimeout(id);
+      window.removeEventListener("pv:intro-done", schedule);
       app?.dispose();
     };
   }, []);

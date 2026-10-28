@@ -23,6 +23,12 @@ export const es: Dict = {
     themeLight: "Cambiar a tema claro",
   },
 
+  intro: {
+    status: "Calentando en la piscina",
+    skip: "Saltar intro",
+    label: "Pau Vilar, portero de waterpolo y responsable de IA",
+  },
+
   footer: {
     title: "¿Hablamos de tu proyecto?",
     body:

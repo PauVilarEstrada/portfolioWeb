@@ -22,6 +22,12 @@ export const en = {
     themeLight: "Switch to light theme",
   },
 
+  intro: {
+    status: "Warming up in the pool",
+    skip: "Skip intro",
+    label: "Pau Vilar, water polo goalkeeper and AI lead",
+  },
+
   footer: {
     title: "Shall we talk about your project?",
     body:

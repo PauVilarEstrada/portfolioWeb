@@ -1,0 +1,76 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: var(--paper);
+  cursor: pointer;
+  transition: clip-path 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+  clip-path: inset(0 0 0 0);
+}
+.intro.is-leaving { clip-path: inset(0 0 100% 0); }
+html.intro-open, html.intro-open body { overflow: hidden; }
+
+.intro-stage { position: absolute; inset: 0; }
+.intro-stage canvas { display: block; width: 100% !important; height: 100% !important; }
+
+.intro-ui {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(20px, 3vw, 36px) var(--gutter);
+  pointer-events: none;
+  color: var(--ink);
+}
+.intro-top { display: flex; align-items: center; gap: 12px; font-weight: 600; font-stretch: 108%; }
+.intro-mark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-stretch: 120%;
+}
+.intro-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+.intro-status { font-weight: 500; color: var(--ink-2); margin-bottom: 4px; }
+.intro-status, .intro-count, .intro-top { text-shadow: 0 0 18px var(--paper), 0 0 36px var(--paper); }
+.intro-count {
+  font-size: clamp(4.5rem, 14vw, 11rem);
+  font-weight: 600;
+  font-stretch: 116%;
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+  font-variant-numeric: tabular-nums;
+}
+.intro-skip {
+  pointer-events: auto;
+  height: 46px;
+  padding: 0 20px;
+  border-radius: var(--pill);
+  border: 1px solid var(--line-strong);
+  background: var(--glass-strong);
+  backdrop-filter: blur(10px);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.intro-skip:hover { background: var(--ink); color: var(--paper); }
+.intro-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--green);
+  transform-origin: left;
+}
+
+/* Hold the hero's entrance until the intro has gone, so it plays for the visitor */
+html.intro-open .hero *,
+html.intro-open .page-enter { animation-play-state: paused !important; }
