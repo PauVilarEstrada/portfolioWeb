@@ -239,7 +239,7 @@ export const en = {
         lead:
           "Brontobyte Cloud's private AI project. Based on what each company needs, we set up an environment with an LLM that queries all of the company's applications and automates processes, without the data ever leaving our data centre.",
         facts: [
-          { h: "Our own data centre in Madrid", p: "Dedicated virtual machines on NVIDIA RTX PRO 6000 Blackwell GPUs." },
+          { h: "Our own data centre in Madrid", p: "Dedicated virtual machines on NVIDIA RTX PRO 6000 Blackwell GPUs with 96 GB of VRAM." },
           { h: "An LLM connected to your company", p: "Natural-language questions about your applications, and automations on top of them, orchestrated with n8n." },
           { h: "Cloud and on-premise", p: "Any cloud application integrates through n8n. On-premise applications are assessed case by case." },
           { h: "Your data stays there", p: "We don't train models on it, we don't use it for anything else and we don't sell it." },

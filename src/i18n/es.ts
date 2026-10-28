@@ -240,7 +240,7 @@ export const es: Dict = {
         lead:
           "El proyecto de IA privada de Brontobyte Cloud. Según lo que necesita cada empresa, montamos un entorno con un LLM que consulta todas las aplicaciones de la compañía y automatiza procesos, sin que los datos salgan de nuestro centro de datos.",
         facts: [
-          { h: "Centro de datos propio en Madrid", p: "Máquinas virtuales dedicadas sobre GPUs NVIDIA RTX PRO 6000 Blackwell." },
+          { h: "Centro de datos propio en Madrid", p: "Máquinas virtuales dedicadas sobre GPUs NVIDIA RTX PRO 6000 Blackwell con 96 GB de VRAM." },
           { h: "Un LLM conectado a tu empresa", p: "Consultas en lenguaje natural sobre tus aplicaciones y automatizaciones sobre ellas, orquestadas con n8n." },
           { h: "Cloud y on-premise", p: "Cualquier aplicación cloud se integra vía n8n. Las on-premise se estudian caso por caso." },
           { h: "Tus datos no salen de ahí", p: "No entrenamos modelos con ellos, no los usamos para otra cosa y no los vendemos." },
