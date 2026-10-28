@@ -3,9 +3,9 @@ import { pagesEn } from "./pages.en";
 export const en = {
   pages: pagesEn,
   meta: {
-    title: "Pau Vilar — IT & AI Consultant at Brontobyte Cloud",
+    title: "Pau Vilar — AI Lead & IT Consultant at Brontobyte Cloud",
     description:
-      "Pau Vilar, consultant and IT & AI lead and coordinator at Brontobyte Cloud. Private AI for companies, n8n automation and custom software. Available for specific projects.",
+      "Pau Vilar, AI lead and coordinator and IT consultant at Brontobyte Cloud. Private AI for companies, n8n automation, AI training and custom software.",
     switchLabel: "Change language",
   },
 
@@ -18,12 +18,14 @@ export const en = {
     menu: "Menu",
     close: "Close menu",
     homeLabel: "Pau Vilar, go to home",
+    themeDark: "Switch to dark theme",
+    themeLight: "Switch to light theme",
   },
 
   footer: {
-    title: "Got a specific project?",
+    title: "Shall we talk about your project?",
     body:
-      "I'm not looking for a job, but I'm always up for talking about AI, automation or custom software projects. And if you'd just like to meet, that works too.",
+      "Private AI, automation, training or custom software. If you have something specific in mind, or just want to meet, write to me.",
     cta: "Write to me",
     secondary: "See contact options",
     navTitle: "Navigation",
@@ -31,13 +33,14 @@ export const en = {
     rights: "Pau Vilar i Estrada",
     place: "Catalonia, Spain",
     top: "Back to top",
+    localTime: "Local time in Catalonia",
   },
 
   home: {
     badge: "Available for new projects · ",
     badgeLabel: "Available for projects. Go to contact",
     nameLines: ["Pau Vilar", "i Estrada"],
-    rolePre: "Consultant, IT & AI lead and coordinator at",
+    rolePre: "AI Lead & Coordinator · IT Consultant at",
     company: "Brontobyte Cloud",
     intro:
       "I design and build private AI, automations and custom software for companies. If you have a specific project in mind, let's talk.",
@@ -80,7 +83,7 @@ export const en = {
     careerExpLabel: "Experience",
     careerEduLabel: "Education",
     careerExp: [
-      { year: "2026 – now", role: "Consultant, IT & AI lead and coordinator", org: "Brontobyte Cloud", badge: "" },
+      { year: "2026 – now", role: "AI Lead & Coordinator · IT Consultant", org: "Brontobyte Cloud", badge: "" },
       { year: "2026", role: "Agentic AI trainer", org: "Barcelona Chamber of Commerce", badge: "" },
       { year: "2025", role: "Full Stack Developer", org: "Sycai Medical", badge: "" },
     ],
@@ -103,10 +106,11 @@ export const en = {
     stackTitle: "Tools",
     stackLead: "What I use day to day, grouped by what it's for.",
     stack: [
-      { h: "AI and data", items: ["Python", "LLMs & RAG", "n8n", "PyTorch", "scikit-learn", "XGBoost", "pandas"] },
-      { h: "Backend", items: ["FastAPI", "Node.js", "Spring Boot", "Django", "PostgreSQL", "Redis", "MongoDB"] },
-      { h: "Frontend and mobile", items: ["React", "TypeScript", "React Native", "Angular", "Kotlin", "Tailwind"] },
-      { h: "Infrastructure", items: ["Docker", "AWS", "Linux", "Git", "Microsoft 365", "Veeam"] },
+      { h: "AI and data", items: ["Python", "LLMs & RAG", "Local LLMs (Ollama)", "n8n", "Agents", "PyTorch", "scikit-learn", "XGBoost", "pandas", "Big Data"] },
+      { h: "Languages and backend", items: ["Java", "JavaScript", "TypeScript", "C#", "Kotlin", "SQL", "Bash", "FastAPI", "Flask", "Django", "Node.js", "Spring Boot", "Hibernate"] },
+      { h: "Frontend, mobile and games", items: ["React", "React Native", "Angular", "HTML & CSS", "Tailwind", "Bootstrap", "Unity", "Figma"] },
+      { h: "Data and infrastructure", items: ["PostgreSQL", "MongoDB", "Redis", "SQLite", "Docker", "AWS", "Linux", "VirtualBox", "Git"] },
+      { h: "Workplace stack", items: ["Microsoft 365", "Google Workspace", "Zoho", "Veeam", "Bitdefender GravityZone"] },
     ],
   },
 
@@ -218,7 +222,7 @@ export const en = {
 
     bronto: {
       org: "Brontobyte Cloud",
-      role: "Consultant, IT & AI lead and coordinator",
+      role: "AI Lead & Coordinator · IT Consultant",
       period: "2026 – present",
       location: "Girona",
       summary:
@@ -358,13 +362,26 @@ export const en = {
   contact: {
     title: "Let's talk",
     lead:
-      "I'm not looking for a job. I am open to **specific projects** in AI, automation or software, to collaborations and to conversations with people building something interesting.",
-    reasonsTitle: "Good reasons to write",
+      "Open to **collaborations, training and specific projects** in AI, automation and software. Tell me what you're working on and we'll see how it fits.",
+    routesTitle: "Two ways to work together",
+    routes: [
+      {
+        h: "Companies: private AI and IT",
+        p: "Private AI environments, n8n automation and IT infrastructure for your company, through Brontobyte Cloud, where I coordinate the AI area.",
+        tag: "With Brontobyte Cloud",
+      },
+      {
+        h: "AI training and development",
+        p: "If your company or you want to understand AI, learn to use it for something specific or build a custom tool, I can help you directly.",
+        tag: "With me",
+      },
+    ],
+    reasonsTitle: "How can I help?",
     reasons: [
-      { h: "A private AI environment", p: "You want an LLM to work with your company's data without it leaving a controlled environment." },
-      { h: "Automate a process", p: "You have a repetitive task between applications and want n8n or agents to take it over." },
-      { h: "A custom application", p: "You need a website, a mobile app or an internal tool, end to end." },
-      { h: "Training for your team", p: "A hands-on agentic AI workshop adapted to how you work." },
+      { h: "AI training", p: "Courses and workshops for companies and individuals: from understanding generative AI to agents and automation applied to your case." },
+      { h: "A private AI environment", p: "An LLM that works with your company's data without it leaving a controlled environment." },
+      { h: "Automate a process", p: "Taking repetitive work between applications off your plate with n8n or agents." },
+      { h: "A custom application", p: "A website, a mobile app or an internal tool, end to end." },
       { h: "Just to meet", p: "No specific project yet. A coffee or a call is fine too." },
     ],
     formTitle: "Tell me about your project",
@@ -373,7 +390,7 @@ export const en = {
       name: "Name",
       company: "Company (optional)",
       topic: "Topic",
-      topics: ["Private AI", "Automation", "Custom software", "Training", "Just to meet"],
+      topics: ["AI training", "Private AI", "Automation", "Custom software", "Just to meet"],
       message: "Message",
       messagePlaceholder: "What you need, rough timelines and any useful context.",
       submit: "Prepare email",

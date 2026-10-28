@@ -4,9 +4,9 @@ import { pagesEs } from "./pages.es";
 export const es: Dict = {
   pages: pagesEs,
   meta: {
-    title: "Pau Vilar — Consultor de IT e IA en Brontobyte Cloud",
+    title: "Pau Vilar — Responsable de IA y consultor IT en Brontobyte Cloud",
     description:
-      "Pau Vilar, consultor, responsable y coordinador de IT e IA en Brontobyte Cloud. IA privada para empresas, automatización con n8n y software a medida. Disponible para proyectos concretos.",
+      "Pau Vilar, responsable y coordinador de IA y consultor IT en Brontobyte Cloud. IA privada para empresas, automatización con n8n, formación en IA y software a medida.",
     switchLabel: "Cambiar idioma",
   },
 
@@ -19,12 +19,14 @@ export const es: Dict = {
     menu: "Menú",
     close: "Cerrar menú",
     homeLabel: "Pau Vilar, ir al inicio",
+    themeDark: "Cambiar a tema oscuro",
+    themeLight: "Cambiar a tema claro",
   },
 
   footer: {
-    title: "¿Tienes un proyecto concreto?",
+    title: "¿Hablamos de tu proyecto?",
     body:
-      "No estoy buscando empleo, pero me interesa hablar de proyectos de IA, automatización o software a medida. Y si solo quieres conocernos, también.",
+      "IA privada, automatización, formación o software a medida. Si tienes algo concreto en mente, o simplemente quieres conocernos, escríbeme.",
     cta: "Escríbeme",
     secondary: "Ver formas de contacto",
     navTitle: "Navegación",
@@ -32,13 +34,14 @@ export const es: Dict = {
     rights: "Pau Vilar i Estrada",
     place: "Catalunya, España",
     top: "Volver arriba",
+    localTime: "Hora local en Catalunya",
   },
 
   home: {
     badge: "Disponible para proyectos · ",
     badgeLabel: "Disponible para proyectos. Ir a contacto",
     nameLines: ["Pau Vilar", "i Estrada"],
-    rolePre: "Consultor, responsable y coordinador de IT e IA en",
+    rolePre: "Responsable y coordinador de IA · Consultor IT en",
     company: "Brontobyte Cloud",
     intro:
       "Diseño y construyo IA privada, automatizaciones y software a medida para empresas. Si tienes un proyecto concreto, hablemos.",
@@ -81,7 +84,7 @@ export const es: Dict = {
     careerExpLabel: "Experiencia",
     careerEduLabel: "Formación",
     careerExp: [
-      { year: "2026 – hoy", role: "Consultor, responsable y coordinador de IT e IA", org: "Brontobyte Cloud", badge: "" },
+      { year: "2026 – hoy", role: "Responsable y coordinador de IA · Consultor IT", org: "Brontobyte Cloud", badge: "" },
       { year: "2026", role: "Formador en IA agéntica", org: "Cambra de Comerç de Barcelona", badge: "" },
       { year: "2025", role: "Desarrollador Full Stack", org: "Sycai Medical", badge: "" },
     ],
@@ -104,10 +107,11 @@ export const es: Dict = {
     stackTitle: "Herramientas",
     stackLead: "Lo que uso a diario, agrupado por para qué sirve.",
     stack: [
-      { h: "IA y datos", items: ["Python", "LLMs y RAG", "n8n", "PyTorch", "scikit-learn", "XGBoost", "pandas"] },
-      { h: "Backend", items: ["FastAPI", "Node.js", "Spring Boot", "Django", "PostgreSQL", "Redis", "MongoDB"] },
-      { h: "Frontend y móvil", items: ["React", "TypeScript", "React Native", "Angular", "Kotlin", "Tailwind"] },
-      { h: "Infraestructura", items: ["Docker", "AWS", "Linux", "Git", "Microsoft 365", "Veeam"] },
+      { h: "IA y datos", items: ["Python", "LLMs y RAG", "LLMs locales (Ollama)", "n8n", "Agentes", "PyTorch", "scikit-learn", "XGBoost", "pandas", "Big Data"] },
+      { h: "Lenguajes y backend", items: ["Java", "JavaScript", "TypeScript", "C#", "Kotlin", "SQL", "Bash", "FastAPI", "Flask", "Django", "Node.js", "Spring Boot", "Hibernate"] },
+      { h: "Frontend, móvil y juegos", items: ["React", "React Native", "Angular", "HTML y CSS", "Tailwind", "Bootstrap", "Unity", "Figma"] },
+      { h: "Datos e infraestructura", items: ["PostgreSQL", "MongoDB", "Redis", "SQLite", "Docker", "AWS", "Linux", "VirtualBox", "Git"] },
+      { h: "Entorno de empresa", items: ["Microsoft 365", "Google Workspace", "Zoho", "Veeam", "Bitdefender GravityZone"] },
     ],
   },
 
@@ -219,7 +223,7 @@ export const es: Dict = {
 
     bronto: {
       org: "Brontobyte Cloud",
-      role: "Consultor, responsable y coordinador de IT e IA",
+      role: "Responsable y coordinador de IA · Consultor IT",
       period: "2026 – actualidad",
       location: "Girona",
       summary:
@@ -359,13 +363,26 @@ export const es: Dict = {
   contact: {
     title: "Hablemos",
     lead:
-      "No estoy buscando empleo. Sí estoy abierto a **proyectos concretos** de IA, automatización o software, a colaboraciones y a conversaciones con gente que esté construyendo algo interesante.",
-    reasonsTitle: "Buenos motivos para escribirme",
+      "Abierto a **colaboraciones, formación y proyectos concretos** de IA, automatización y software. Cuéntame qué tienes entre manos y vemos cómo encaja.",
+    routesTitle: "Dos formas de trabajar juntos",
+    routes: [
+      {
+        h: "Empresas: IA privada e IT",
+        p: "Entornos de IA privada, automatización con n8n e infraestructura IT para tu empresa, a través de Brontobyte Cloud, donde coordino el área de IA.",
+        tag: "Con Brontobyte Cloud",
+      },
+      {
+        h: "Formación en IA y desarrollo",
+        p: "Si tu empresa o tú queréis entender la IA, aprender a usarla en algo concreto o montar una herramienta a medida, puedo ayudaros directamente.",
+        tag: "Conmigo",
+      },
+    ],
+    reasonsTitle: "¿En qué te puedo ayudar?",
     reasons: [
-      { h: "Un entorno de IA privada", p: "Quieres que un LLM trabaje con los datos de tu empresa sin que salgan de un entorno controlado." },
-      { h: "Automatizar un proceso", p: "Tienes una tarea repetitiva entre aplicaciones y quieres quitártela de encima con n8n o agentes." },
-      { h: "Una aplicación a medida", p: "Necesitas una web, una app móvil o una herramienta interna, de punta a punta." },
-      { h: "Formación para tu equipo", p: "Un taller práctico de IA agéntica adaptado a vuestra realidad." },
+      { h: "Formación en IA", p: "Cursos y talleres para empresas y particulares: desde entender la IA generativa hasta agentes y automatización aplicados a tu caso." },
+      { h: "Un entorno de IA privada", p: "Que un LLM trabaje con los datos de tu empresa sin que salgan de un entorno controlado." },
+      { h: "Automatizar un proceso", p: "Quitarte de encima tareas repetitivas entre aplicaciones con n8n o agentes." },
+      { h: "Una aplicación a medida", p: "Una web, una app móvil o una herramienta interna, de punta a punta." },
       { h: "Conocernos", p: "Sin proyecto concreto todavía. Un café o una llamada también está bien." },
     ],
     formTitle: "Cuéntame tu proyecto",
@@ -374,7 +391,7 @@ export const es: Dict = {
       name: "Nombre",
       company: "Empresa (opcional)",
       topic: "Tema",
-      topics: ["IA privada", "Automatización", "Software a medida", "Formación", "Conocernos"],
+      topics: ["Formación en IA", "IA privada", "Automatización", "Software a medida", "Conocernos"],
       message: "Mensaje",
       messagePlaceholder: "Qué necesitas, plazos aproximados y cualquier contexto útil.",
       submit: "Preparar correo",

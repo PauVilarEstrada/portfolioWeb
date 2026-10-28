@@ -103,7 +103,7 @@
   display: inline-flex;
   padding: 12px 20px;
   border-radius: var(--pill);
-  background: var(--surface);
+  background: var(--logo-plate);
 }
 .implemai-logo img { height: 26px; width: auto; }
 .implemai h3 {
