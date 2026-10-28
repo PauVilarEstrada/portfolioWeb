@@ -69,6 +69,15 @@ export default function Footer() {
               <li><Link to="/contact">{t.nav.contact}</Link></li>
             </ul>
           </nav>
+          <nav aria-label={f.playTitle}>
+            <h3>{f.playTitle}</h3>
+            <ul>
+              <li><Link to="/play#swim">{t.play.index.swim}</Link></li>
+              <li><Link to="/play#penalties">{t.play.index.penalties}</Link></li>
+              <li><Link to="/play#puzzle">{t.play.index.puzzle}</Link></li>
+              <li><Link to="/play#lab">{t.play.index.lab}</Link></li>
+            </ul>
+          </nav>
           <div>
             <h3>{f.elsewhereTitle}</h3>
             <ul>

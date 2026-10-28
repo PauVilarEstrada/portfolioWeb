@@ -11,6 +11,7 @@ export const es: Dict = {
   },
 
   nav: {
+    play: "Juego",
     home: "Inicio",
     work: "Proyectos",
     experience: "Experiencia",
@@ -35,7 +36,84 @@ export const es: Dict = {
     projects: "Ver proyectos",
   },
 
+  play: {
+    title: "Juego",
+    lead:
+      "Un rincón para jugar. Recorre a nado mis proyectos y mi trayectoria en el waterpolo, lánzale penaltis a Pau, monta una automatización como las que hago en Brontobyte Cloud o juega con las animaciones de la web.",
+    count: "juegos",
+    index: { swim: "Piscina de proyectos", penalties: "Penaltis", puzzle: "Puzzle de automatización", lab: "Zona PV" },
+    swim: {
+      title: "Piscina de proyectos",
+      lead: "Nada por la piscina y acércate a cada boya: cada una es un proyecto, un club o una etapa de lo que hago.",
+      start: "Empezar a nadar",
+      controls: "Flechas o WASD para nadar. En el móvil, mantén pulsado y arrastra hacia donde quieras ir.",
+      found: "descubiertas",
+      hint: "Acércate a una boya para ver qué hay.",
+      done: "¡Lo has visto todo! Gracias por nadar hasta aquí.",
+      open: "Ver proyecto",
+      more: "Ver experiencia",
+      masterLabel: "Máster IA y Big Data",
+      kinds: { project: "Proyecto", club: "Waterpolo", work: "Trabajo", study: "Formación" },
+      fallback: "Tu navegador no puede mostrar el juego en 3D.",
+    },
+    penalties: {
+      title: "Penaltis contra Pau",
+      lead: "Cinco tiros contra el portero. Tu mejor marca se guarda en este navegador.",
+    },
+    puzzle: {
+      title: "Puzzle de automatización",
+      lead:
+        "Monta la automatización uniendo las piezas en orden: de dónde salen los datos, qué los mueve, qué los entiende y dónde acaba el resultado. Son ejemplos del tipo de trabajo que hago con n8n e IA privada.",
+      columns: { source: "Datos", flow: "Orquestación", ai: "IA", output: "Resultado" },
+      nodes: {
+        gmail: "Gmail",
+        zoho: "Zoho CRM",
+        veeam: "Veeam",
+        drive: "Google Drive",
+        n8n: "n8n",
+        llm: "LLM privado",
+        teams: "Resumen en Teams",
+        crm: "Ficha en Zoho CRM",
+        email: "Aviso por email",
+      },
+      scenario: "Reto",
+      of: "de",
+      pick: "Siguiente pieza",
+      wrong: "Esa pieza no va ahí. Prueba otra.",
+      done: "¡Automatización montada!",
+      next: "Siguiente reto",
+      restart: "Volver a empezar",
+      allDone:
+        "Has montado las tres. Así trabajo en Brontobyte Cloud: n8n conecta las aplicaciones de la empresa y un LLM privado entiende sus datos, sin que salgan del centro de datos.",
+      scenarios: [
+        {
+          goal: "Cada mañana, un resumen de los correos de clientes para el equipo.",
+          path: ["gmail", "n8n", "llm", "teams"],
+          explain: "n8n recoge los correos nuevos, el LLM privado los resume y el equipo recibe el resumen en Teams. Los correos no salen del entorno privado.",
+        },
+        {
+          goal: "Clasificar los leads nuevos del CRM sin hacerlo a mano.",
+          path: ["zoho", "n8n", "llm", "crm"],
+          explain: "n8n detecta cada lead nuevo, el LLM lo puntúa y lo etiqueta según su interés, y la ficha de Zoho CRM se actualiza sola.",
+        },
+        {
+          goal: "Revisar las copias de seguridad y avisar solo si algo falla.",
+          path: ["veeam", "n8n", "llm", "email"],
+          explain: "n8n lee los informes de Veeam, el LLM detecta los trabajos con errores y envía un email con lo que hay que revisar.",
+        },
+      ],
+    },
+    lab: {
+      title: "Zona PV",
+      lead: "Las animaciones de la web, para trastear: pasa el ratón por PV, hazlo explotar o vuelve a ver la intro y el telón entre páginas.",
+      explode: "Explotar PV",
+      intro: "Repetir la intro",
+      curtain: "Ver el telón",
+    },
+  },
+
   footer: {
+    playTitle: "Juego",
     title: "¿Hablamos de tu proyecto?",
     body:
       "IA privada, automatización, formación o software a medida. Si tienes algo concreto en mente, o simplemente quieres conocernos, escríbeme.",
@@ -126,6 +204,7 @@ export const es: Dict = {
       saves: "Paradas",
       shot: "Tiro",
       of: "de",
+      best: "Récord",
       again: "Otra tanda",
       resultWin: "¡Has ganado a Pau!",
       resultLose: "Gana Pau. ¿Otra tanda?",

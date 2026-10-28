@@ -44,17 +44,17 @@ const GRAVITY = 9.8;
 const PLAYER_SCALE = 1.3;
 const BALL_R = 0.17;
 
-const clamp01 = t => Math.min(1, Math.max(0, t));
-const span = (t, a, b) => clamp01((t - a) / (b - a));
-const easeOut = t => 1 - Math.pow(1 - t, 3);
+export const clamp01 = t => Math.min(1, Math.max(0, t));
+export const span = (t, a, b) => clamp01((t - a) / (b - a));
+export const easeOut = t => 1 - Math.pow(1 - t, 3);
 const easeIn = t => t * t * t;
-const easeInOut = t => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+export const easeInOut = t => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 const easeOutBack = t => 1 + 2.4 * Math.pow(t - 1, 3) + 1.4 * Math.pow(t - 1, 2);
-const smoother = t => t * t * t * (t * (t * 6 - 15) + 10);
+export const smoother = t => t * t * t * (t * (t * 6 - 15) + 10);
 
 // ── Canvas textures ──
 
-const canvasTexture = (w, h, draw) => {
+export const canvasTexture = (w, h, draw) => {
   const c = document.createElement("canvas");
   c.width = w;
   c.height = h;
@@ -66,7 +66,7 @@ const canvasTexture = (w, h, draw) => {
 };
 
 /** Square pool tiles, n per row. */
-const drawTiles = (ctx, w, h, base, grout, n) => {
+export const drawTiles = (ctx, w, h, base, grout, n) => {
   ctx.fillStyle = grout;
   ctx.fillRect(0, 0, w, h);
   const s = w / n;
@@ -77,23 +77,20 @@ const drawTiles = (ctx, w, h, base, grout, n) => {
 };
 
 /** One texture repeat covers 2 m (8 × 25 cm tiles). */
-function tileTexture(repeatX, repeatY) {
+export function tileTexture(repeatX, repeatY) {
   const tex = canvasTexture(256, 256, (ctx, w, h) => drawTiles(ctx, w, h, "#e4f5f8", "#bcdbe3", 8));
   tex.wrapS = tex.wrapT = RepeatWrapping;
   tex.repeat.set(repeatX, repeatY);
   return tex;
 }
 
-/** Pool floor: tiles plus the dark lane lines with their T ends. */
-function floorTexture() {
-  const L = POOL.halfL * 2;
-  const W = POOL.halfW * 2;
-  const px = 128; // pixels per metre
+/** Pool floor: tiles plus the dark lane lines with their T ends (px = pixels per metre). */
+export function floorTexture(L = POOL.halfL * 2, W = POOL.halfW * 2, lanes = [-1.75, 0, 1.75], px = 128) {
   return canvasTexture(L * px, W * px, (ctx, w, h) => {
     drawTiles(ctx, w, h, "#e4f5f8", "#bcdbe3", L * 4);
     ctx.fillStyle = "#1c4f87";
-    [-1.75, 0, 1.75].forEach(z => {
-      const y = (z + POOL.halfW) * px;
+    lanes.forEach(z => {
+      const y = (z + W / 2) * px;
       ctx.fillRect(1.5 * px, y - 0.125 * px, (L - 3) * px, 0.25 * px);
       [1.5, L - 1.5].forEach(x => ctx.fillRect(x * px - 0.125 * px, y - 0.5 * px, 0.25 * px, px));
     });
@@ -101,7 +98,7 @@ function floorTexture() {
 }
 
 /** Deck: large pale slabs, one per metre. */
-function deckTexture(repeatX, repeatY, base) {
+export function deckTexture(repeatX, repeatY, base) {
   const tex = canvasTexture(256, 256, (ctx, w, h) => {
     ctx.fillStyle = base;
     ctx.fillRect(0, 0, w, h);
@@ -115,7 +112,7 @@ function deckTexture(repeatX, repeatY, base) {
 }
 
 /** Cap with the number on both sides and the back (the seam sits at the front). */
-const capTexture = (bg, number, ink) => canvasTexture(512, 256, (ctx, w, h) => {
+export const capTexture = (bg, number, ink) => canvasTexture(512, 256, (ctx, w, h) => {
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, w, h);
   ctx.fillStyle = ink;
@@ -125,7 +122,7 @@ const capTexture = (bg, number, ink) => canvasTexture(512, 256, (ctx, w, h) => {
   [0.25, 0.5, 0.75].forEach(u => ctx.fillText(number, u * w, h * 0.62));
 });
 
-const ballTexture = () => canvasTexture(256, 128, (ctx, w, h) => {
+export const ballTexture = () => canvasTexture(256, 128, (ctx, w, h) => {
   ctx.fillStyle = "#f9cf2e";
   ctx.fillRect(0, 0, w, h);
   ctx.strokeStyle = "#2453d4";
@@ -150,7 +147,7 @@ const shadowTexture = () => canvasTexture(256, 256, (ctx, w, h) => {
 
 // ── Shaders ──
 
-const CAUSTIC_GLSL = /* glsl */ `
+export const CAUSTIC_GLSL = /* glsl */ `
   float caustic(vec2 uv, float time) {
     vec2 p = mod(uv * 6.28318530718, 6.28318530718) - 250.0;
     vec2 i = p;
@@ -168,7 +165,7 @@ const CAUSTIC_GLSL = /* glsl */ `
 `;
 
 /** Shared swell, plus rings around the two players (xz in uBodies, strength in uBodyAmp). */
-const HEIGHT_GLSL = /* glsl */ `
+export const HEIGHT_GLSL = /* glsl */ `
   uniform float uTime;
   uniform float uAmp;
   uniform vec4 uBodies;
@@ -186,7 +183,7 @@ const HEIGHT_GLSL = /* glsl */ `
   }
 `;
 
-const surfaceShader = {
+export const surfaceShader = {
   vertex: /* glsl */ `
     ${HEIGHT_GLSL}
     varying vec3 vWorld;
@@ -272,7 +269,7 @@ const sectionShader = {
 };
 
 /** Adds animated caustics and a wet tint under the water line to a standard material. */
-function withCaustics(material, uniforms) {
+export function withCaustics(material, uniforms) {
   material.onBeforeCompile = shader => {
     Object.assign(shader.uniforms, uniforms);
     shader.vertexShader = shader.vertexShader
@@ -297,7 +294,7 @@ function withCaustics(material, uniforms) {
 // ── Builders ──
 
 /** Wire net: back, top and both sides. */
-function netGeometry(w, h, d, step) {
+export function netGeometry(w, h, d, step) {
   const pts = [];
   const line = (a, b) => pts.push(...a, ...b);
   for (let y = 0; y <= h + 1e-6; y += step) line([d, y, -w / 2], [d, y, w / 2]);
@@ -315,7 +312,7 @@ function netGeometry(w, h, d, step) {
   return g;
 }
 
-function buildGoal(side, mats) {
+export function buildGoal(side, mats) {
   const g = new Group();
   const { width: w, height: h, depth: d } = GOAL;
   const r = 0.065;
@@ -367,7 +364,7 @@ function buildRopes() {
  * cap, ear guards and chin strap, a friendly face, rounded body and
  * bendable mitten arms; short legs for the eggbeater under the water.
  */
-function buildPlayer({ cap, capInk, guard, number, suit }) {
+export function buildPlayer({ cap, capInk, guard, number, suit }) {
   const skin = new MeshPhysicalMaterial({ color: "#f2bf9a", roughness: 0.42, clearcoat: 0.35, clearcoatRoughness: 0.35 });
   const suitMat = new MeshPhysicalMaterial({ color: suit, roughness: 0.3, clearcoat: 0.6 });
   const capMat = new MeshPhysicalMaterial({ map: capTexture(cap, number, capInk), roughness: 0.3, clearcoat: 0.7 });
@@ -462,7 +459,7 @@ function buildPlayer({ cap, capInk, guard, number, suit }) {
 }
 
 /** Arm poses: [shoulder x, shoulder z, elbow z, elbow x], mirrored by side. */
-const POSE = {
+export const POSE = {
   down: [0.15, 0.35, 0.25, 0],
   ready: [-0.3, 1.25, 1.35, 0],
   reach: [-0.2, 2.8, 0.12, 0],
@@ -472,14 +469,14 @@ const POSE = {
   follow: [-1.35, 1.7, 0.15, 0],
 };
 
-function poseArm(arm, s, a, b, k, wobble = 0) {
+export function poseArm(arm, s, a, b, k, wobble = 0) {
   const p = i => MathUtils.lerp(a[i], b[i], k);
   arm.shoulder.rotation.set(p(0), 0, s * (p(1) + wobble));
   arm.elbow.rotation.set(p(3), 0, s * p(2));
   arm.wrist.rotation.set(0, 0, s * wobble);
 }
 
-function treadLegs(legs, t) {
+export function treadLegs(legs, t) {
   legs.forEach((leg, i) => {
     const s = i === 0 ? 1 : -1;
     const ph = t * 6.4 + i * Math.PI;
@@ -496,7 +493,7 @@ const SKIN = ["#f2c3a0", "#e0a47c", "#c68660", "#8d5a3b", "#f5d0b5"];
 const pick = list => list[Math.floor(Math.random() * list.length)];
 
 /** Senyera: nine stripes, five gold and four red. */
-const senyeraTexture = () => canvasTexture(270, 180, (ctx, w, h) => {
+export const senyeraTexture = () => canvasTexture(270, 180, (ctx, w, h) => {
   for (let i = 0; i < 9; i++) {
     ctx.fillStyle = i % 2 ? "#da121a" : "#fcdd09";
     ctx.fillRect(0, (i * h) / 9, w, h / 9 + 1);
@@ -504,7 +501,7 @@ const senyeraTexture = () => canvasTexture(270, 180, (ctx, w, h) => {
 });
 
 /** Blue and white club stripes. */
-const clubTexture = () => canvasTexture(270, 180, (ctx, w, h) => {
+export const clubTexture = () => canvasTexture(270, 180, (ctx, w, h) => {
   for (let i = 0; i < 6; i++) {
     ctx.fillStyle = i % 2 ? "#ffffff" : "#1f5fbf";
     ctx.fillRect((i * w) / 6, 0, w / 6 + 1, h);
@@ -527,7 +524,7 @@ const bannerTexture = (text, bg, ink, edge) => canvasTexture(1024, 180, (ctx, w,
 });
 
 /** A flag on a pole; `update` waves the cloth. */
-function buildFlag(tex, w, h, poleH, poleMat) {
+export function buildFlag(tex, w, h, poleH, poleMat) {
   const group = new Group();
   const pole = new Mesh(new CylinderGeometry(0.03, 0.03, poleH, 10), poleMat);
   pole.position.y = poleH / 2;

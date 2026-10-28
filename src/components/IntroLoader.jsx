@@ -37,6 +37,19 @@ export default function IntroLoader() {
     window.setTimeout(() => setActive(false), EXIT_MS);
   };
 
+  // The Game page can play the intro again.
+  useEffect(() => {
+    const replay = () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      closing.current = false;
+      setLeaving(null);
+      document.documentElement.classList.add("intro-open");
+      setActive(true);
+    };
+    window.addEventListener("pv:replay-intro", replay);
+    return () => window.removeEventListener("pv:replay-intro", replay);
+  }, []);
+
   useEffect(() => {
     if (!active) return;
     document.documentElement.classList.add("intro-open");

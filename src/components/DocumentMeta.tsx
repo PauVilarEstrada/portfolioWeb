@@ -7,6 +7,7 @@ const ROUTE_KEYS: Record<string, string> = {
   "/projects": "work",
   "/experience": "experience",
   "/contact": "contact",
+  "/play": "play",
 };
 
 /** Keeps <title>, the meta description and og:* in sync with the route and the language. */

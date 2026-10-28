@@ -23,6 +23,7 @@ const loaders = {
   flappy: () => import("./components/myprojects/FlappyBird"),
   pacman: () => import("./components/myprojects/Pacman"),
   kdd: () => import("./components/myprojects/kdd"),
+  play: () => import("./components/play/PlayPage"),
   notFound: () => import("./components/NotFound"),
 };
 const ProjectsSection = lazy(loaders.projects);
@@ -35,6 +36,7 @@ const UltimusDefensor = lazy(loaders.ultimus);
 const FlappyBird = lazy(loaders.flappy);
 const Pacman = lazy(loaders.pacman);
 const KDD = lazy(loaders.kdd);
+const PlayPage = lazy(loaders.play);
 const NotFound = lazy(loaders.notFound);
 
 /** Wait for the first paint to settle before prefetching the other pages. */
@@ -71,6 +73,7 @@ export default function App() {
                     <Route path="/projects" element={<ProjectsSection />} />
                     <Route path="/experience" element={<ExperienceSection />} />
                     <Route path="/contact" element={<ContactSection />} />
+                    <Route path="/play" element={<PlayPage />} />
                     <Route path="/projects/tactiq360" element={<Tactiq360 />} />
                     <Route path="/projects/nbavision" element={<NBAVision />} />
                     <Route path="/projects/mindflow" element={<MindFlow />} />

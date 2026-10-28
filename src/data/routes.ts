@@ -5,6 +5,7 @@ const PAGE_KEYS: Record<string, keyof Dict["nav"]> = {
   "/projects": "work",
   "/experience": "experience",
   "/contact": "contact",
+  "/play": "play",
 };
 
 export const PROJECT_ROUTE_KEYS: Record<string, keyof Dict["projects"]> = {
