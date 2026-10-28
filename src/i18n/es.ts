@@ -4,7 +4,7 @@ import { pagesEs } from "./pages.es";
 export const es: Dict = {
   pages: pagesEs,
   meta: {
-    title: "Pau Vilar — Responsable de IA y consultor IT en Brontobyte Cloud",
+    title: "Pau Vilar",
     description:
       "Pau Vilar, responsable y coordinador de IA y consultor IT en Brontobyte Cloud. IA privada para empresas, automatización con n8n, formación en IA y software a medida.",
     switchLabel: "Cambiar idioma",
@@ -24,6 +24,7 @@ export const es: Dict = {
   },
 
   intro: {
+    save: "¡PARADA DE PAU!",
     label: "Pau Vilar, portero de waterpolo y responsable de IA",
   },
 
@@ -126,9 +127,9 @@ export const es: Dict = {
       shot: "Tiro",
       of: "de",
       again: "Otra tanda",
-      resultWin: "Le has ganado la tanda a Pau. Pocos lo consiguen.",
-      resultLose: "Pau gana la tanda. Diez años bajo palos se notan.",
-      resultDraw: "Empate. Pau pide la revancha.",
+      resultWin: "¡Has ganado a Pau!",
+      resultLose: "Gana Pau. ¿Otra tanda?",
+      resultDraw: "Empate.",
     },
 
     stackTitle: "Herramientas",
@@ -205,16 +206,6 @@ export const es: Dict = {
       cat: "ai",
       context: "Proyecto del máster",
       kind: "Detección con machine learning",
-    },
-    ecommerce: {
-      name: "Plataforma e-commerce",
-      short: "Plataforma e-commerce",
-      desc:
-        "Tienda full-stack: autenticación JWT, carrito persistente, panel de administración, imágenes en Cloudinary y caché Redis en las rutas críticas.",
-      tags: ["React", "Node.js", "MongoDB"],
-      cat: "web",
-      context: "Desplegada",
-      kind: "Tienda online",
     },
     pacman: {
       name: "Pacman Remake",

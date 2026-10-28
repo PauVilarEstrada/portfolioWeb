@@ -123,65 +123,6 @@ export const pagesEs: PagesDict = {
     playOutro: "El proyecto de Unity completo — scripts, prefabs y escenas — está en GitHub.",
   },
 
-  ecommerce: {
-    label: "Aplicación web full stack · React + Node.js",
-    title: "Plataforma E-Commerce",
-    subtitle:
-      "Una tienda online completa, de punta a punta: navegar el catálogo, llenar un carrito que sobrevive a un refresco, iniciar sesión de forma segura y gestionar todo el inventario desde un **panel de administración** — con **caché Redis** en las rutas calientes y las imágenes servidas desde un CDN.",
-    tags: ["React", "Node.js", "MongoDB", "Redis", "Cloudinary", "JWT", "Zustand"],
-    ctaLive: "Abrir la tienda",
-    specs: [
-      { v: "MERN", l: "Stack" },
-      { v: "JWT", l: "Autenticación" },
-      { v: "Redis", l: "Caché caliente" },
-      { v: "CDN", l: "Imágenes" },
-      { v: "REST", l: "API" },
-    ],
-    storefrontTitle: "La tienda",
-    storefrontP:
-      "La tienda abre con los productos destacados — la única consulta que lanza todo el mundo y que casi nadie cambia, que es justamente por lo que vive en Redis.",
-    storefrontCaption: "Página de inicio — destacados servidos desde caché.",
-    flowTitle: "De navegar a pagar",
-    catKicker: "Catálogo",
-    catH: "Primero filtrar, después pedir",
-    catP:
-      "Las categorías y los filtros forman parte de la ruta, así que un listado se puede compartir, funciona con el botón atrás y lo responde una consulta dirigida en vez de mandar el catálogo entero al navegador para esconder casi todo.",
-    cartKicker: "Carrito",
-    cartH: "Persistente, reconciliado y honesto",
-    cartP:
-      "El carrito se guarda por usuario y se restaura en la siguiente visita. Los totales se recalculan en el servidor al pagar — el número del cliente es una vista previa, nunca la fuente de verdad.",
-    authKicker: "Cuentas",
-    authH: "Iniciar sesión sin sustos",
-    authP:
-      "Las contraseñas se hashean antes de tocar la base de datos y el token de sesión vive en una cookie http-only. El rol viaja en el token, así que el área de administración la protege la API y no un simple ocultar en la interfaz.",
-    adminTitle: "La parte de administración",
-    adminP:
-      "Una tienda es medio proyecto sin las herramientas para gestionarla. El panel crea, edita, borra y destaca productos, sube sus imágenes y refleja cada cambio en la tienda al momento — las claves cacheadas se invalidan al escribir.",
-    adminCaption: "Panel de administración — inventario contra la misma API REST.",
-    featuresTitle: "Qué hace",
-    features: [
-      { icon: "🔐", t: "Autenticación que aguanta un refresco", p: "El registro y el login emiten un JWT guardado en una cookie http-only en vez de en local storage, así que recargar no te desloguea y ningún script suelto puede leer el token." },
-      { icon: "🛒", t: "Un carrito que se acuerda", p: "El estado del carrito vive en Zustand y se persiste por usuario, así que lo que añadiste en una visita sigue ahí en la siguiente — y las cantidades se contrastan con el stock real antes de pagar." },
-      { icon: "🗂️", t: "Navegación que acota rápido", p: "Las rutas de categoría y los filtros disparan consultas en servidor en lugar de filtrar un payload gigante en el cliente, así que el listado sigue siendo rápido cuando crece el catálogo." },
-      { icon: "🖼️", t: "Imágenes en un CDN", p: "Las subidas van a Cloudinary y la base de datos guarda solo la URL. La API nunca hace de proxy de binarios y las imágenes se sirven desde un edge cercano al comprador." },
-      { icon: "⚡", t: "Redis en la ruta caliente", p: "La consulta de productos destacados es la más pedida y la que menos cambia, así que se cachea en Redis (Upstash) y se invalida al escribir, en vez de golpear MongoDB en cada carga." },
-      { icon: "🛠️", t: "Un panel de admin de verdad", p: "Crear, actualizar, borrar y destacar productos desde el navegador — la misma API REST que lee la tienda, detrás de una comprobación de rol." },
-    ],
-    archTitle: "Cómo está montado",
-    flow: [
-      { t: "Cliente", p: "React + Vite, con Tailwind y Framer Motion. Zustand guarda los dos estados que cruzan toda la app — carrito y sesión — así que no hay prop drilling ni espaguetis de contextos." },
-      { t: "API", p: "Express expone una superficie REST: productos, categorías, carrito, auth y admin. El middleware verifica el token y el rol en un único sitio en vez de ruta por ruta." },
-      { t: "Datos", p: "MongoDB con Mongoose, alojado en Atlas. Los esquemas validan antes de escribir, así que un producto mal formado nunca llega a la colección." },
-      { t: "Caché", p: "Redis se sitúa delante de los endpoints de lectura intensiva. Las escrituras invalidan las claves afectadas, que es lo que evita que la caché sea el motivo de que un precio se vea mal." },
-      { t: "Multimedia", p: "Cloudinary almacena y transforma las imágenes de producto; la app solo guarda URLs." },
-      { t: "Despliegue", p: "Desplegado en Render contra MongoDB Atlas y Upstash — una build pública y accesible, no una demo en localhost." },
-    ],
-    tryTitle: "Pruébala",
-    tryP:
-      "La tienda está desplegada y es código abierto. La instancia gratuita de Render se duerme cuando está inactiva, así que la primera carga tras un rato puede tardar unos segundos en despertar.",
-    liveBtn: "Ver la tienda",
-    demoBtn: "Vídeo demo",
-  },
   nba: {
     label: "Analítica deportiva full-stack · ML y simulación",
     title: "NBA Vision",

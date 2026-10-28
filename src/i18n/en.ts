@@ -3,7 +3,7 @@ import { pagesEn } from "./pages.en";
 export const en = {
   pages: pagesEn,
   meta: {
-    title: "Pau Vilar — AI Lead & IT Consultant at Brontobyte Cloud",
+    title: "Pau Vilar",
     description:
       "Pau Vilar, AI lead and coordinator and IT consultant at Brontobyte Cloud. Private AI for companies, n8n automation, AI training and custom software.",
     switchLabel: "Change language",
@@ -23,6 +23,7 @@ export const en = {
   },
 
   intro: {
+    save: "PAU SAVES IT!",
     label: "Pau Vilar, water polo goalkeeper and AI lead",
   },
 
@@ -125,9 +126,9 @@ export const en = {
       shot: "Shot",
       of: "of",
       again: "Another round",
-      resultWin: "You beat Pau in the shoot-out. Not many do.",
-      resultLose: "Pau wins the shoot-out. Ten years in goal show.",
-      resultDraw: "A draw. Pau wants a rematch.",
+      resultWin: "You beat Pau!",
+      resultLose: "Pau wins. Another round?",
+      resultDraw: "It's a draw.",
     },
 
     stackTitle: "Tools",
@@ -204,16 +205,6 @@ export const en = {
       cat: "ai",
       context: "Master's project",
       kind: "Machine-learning detection",
-    },
-    ecommerce: {
-      name: "E-commerce platform",
-      short: "E-commerce platform",
-      desc:
-        "Full-stack shop: JWT auth, persistent cart, admin dashboard, Cloudinary images and Redis caching on the hot paths.",
-      tags: ["React", "Node.js", "MongoDB"],
-      cat: "web",
-      context: "Deployed",
-      kind: "Online shop",
     },
     pacman: {
       name: "Pacman Remake",

@@ -22,7 +22,6 @@ const loaders = {
   ultimus: () => import("./components/myprojects/UltimusDefensor"),
   flappy: () => import("./components/myprojects/FlappyBird"),
   pacman: () => import("./components/myprojects/Pacman"),
-  ecommerce: () => import("./components/myprojects/Ecommerce"),
   kdd: () => import("./components/myprojects/kdd"),
   notFound: () => import("./components/NotFound"),
 };
@@ -35,7 +34,6 @@ const MindFlow = lazy(loaders.mindflow);
 const UltimusDefensor = lazy(loaders.ultimus);
 const FlappyBird = lazy(loaders.flappy);
 const Pacman = lazy(loaders.pacman);
-const Ecommerce = lazy(loaders.ecommerce);
 const KDD = lazy(loaders.kdd);
 const NotFound = lazy(loaders.notFound);
 
@@ -79,7 +77,6 @@ export default function App() {
                     <Route path="/projects/ultimusdefensor" element={<UltimusDefensor />} />
                     <Route path="/projects/flappybird" element={<FlappyBird />} />
                     <Route path="/projects/pacman" element={<Pacman />} />
-                    <Route path="/projects/ecommerce" element={<Ecommerce />} />
                     <Route path="/projects/kdd" element={<KDD />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>

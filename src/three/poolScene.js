@@ -1,6 +1,6 @@
 import {
   WebGLRenderer, Scene, PerspectiveCamera, Color, HemisphereLight, DirectionalLight, PMREMGenerator,
-  PlaneGeometry, BoxGeometry, CylinderGeometry, SphereGeometry, CapsuleGeometry, RingGeometry, TorusGeometry,
+  PlaneGeometry, BoxGeometry, CylinderGeometry, ConeGeometry, CircleGeometry, SpotLight, AdditiveBlending, SphereGeometry, CapsuleGeometry, RingGeometry, TorusGeometry,
   BufferGeometry, Float32BufferAttribute, LineSegments, LineBasicMaterial, InstancedMesh, Object3D, Mesh,
   MeshStandardMaterial, MeshPhysicalMaterial, MeshBasicMaterial, ShaderMaterial, Group, Vector2, Vector3, Vector4,
   CanvasTexture, SRGBColorSpace, RepeatWrapping, DoubleSide, MathUtils, PCFShadowMap, NeutralToneMapping,
@@ -9,11 +9,12 @@ import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { readThemeColors } from "./themeColors";
 
 /**
- * Intro loader: a cut-away diorama of a water polo pool floating on the page.
+ * Intro loader: a cut-away diorama of a water polo pool floating on the page,
+ * with a stand of cheering fans, banners, flags, floodlights and a scoreboard.
  * The empty basin fills through two spouts, then two toy-like players surface:
  * a shooter in a white cap and the goalkeeper (Pau, red cap number 1). The
- * shooter fires at the top corner and the keeper gets a hand to it. The camera
- * holds one shot and slowly closes in on the goal. `onDone` fires at the end.
+ * shooter fires at the top corner, the keeper tips it away and the ball flies
+ * straight into the camera. `onDone("impact")` fires as it fills the screen.
  */
 
 /** Timeline in seconds. */
@@ -26,9 +27,7 @@ const T = {
   throw: 3.05,
   release: 3.12,
   save: 3.55,
-  hold: 3.8,
-  recover: 4.25,
-  end: 4.75,
+  impact: 4.1,
 };
 
 // Diorama, in metres. The pool runs along x; the front (+z) is cut away.
@@ -330,10 +329,6 @@ function buildGoal(side, mats) {
   bar.rotation.x = Math.PI / 2;
   bar.position.y = h;
   g.add(bar);
-  const floatBar = new Mesh(new CapsuleGeometry(0.09, w, 6, 14), mats.float);
-  floatBar.rotation.x = Math.PI / 2;
-  floatBar.position.set(d * 0.55, 0.02, 0);
-  g.add(floatBar);
   g.add(new LineSegments(netGeometry(w, h, d, 0.18), mats.net));
   g.traverse(o => { if (o.isMesh) o.castShadow = true; });
   g.position.x = side * GOAL.x;
@@ -493,9 +488,278 @@ function treadLegs(legs, t) {
   });
 }
 
+// ── Stands, crowd, banners, flags and scoreboard ──
+
+const STANDS = { rows: 4, depth: 0.7, rise: 0.36, halfX: POOL.halfL + POOL.rim, front: BACK - POOL.rim };
+const SHIRTS = ["#1f5fbf", "#1f5fbf", "#1f5fbf", "#f4f6f8", "#f4f6f8", "#f4f6f8", "#d42a32", "#f6c929", "#16233f"];
+const SKIN = ["#f2c3a0", "#e0a47c", "#c68660", "#8d5a3b", "#f5d0b5"];
+const pick = list => list[Math.floor(Math.random() * list.length)];
+
+/** Senyera: nine stripes, five gold and four red. */
+const senyeraTexture = () => canvasTexture(270, 180, (ctx, w, h) => {
+  for (let i = 0; i < 9; i++) {
+    ctx.fillStyle = i % 2 ? "#da121a" : "#fcdd09";
+    ctx.fillRect(0, (i * h) / 9, w, h / 9 + 1);
+  }
+});
+
+/** Blue and white club stripes. */
+const clubTexture = () => canvasTexture(270, 180, (ctx, w, h) => {
+  for (let i = 0; i < 6; i++) {
+    ctx.fillStyle = i % 2 ? "#ffffff" : "#1f5fbf";
+    ctx.fillRect((i * w) / 6, 0, w / 6 + 1, h);
+  }
+});
+
+const bannerTexture = (text, bg, ink, edge) => canvasTexture(1024, 180, (ctx, w, h) => {
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, w, h);
+  if (edge) {
+    ctx.strokeStyle = edge;
+    ctx.lineWidth = 16;
+    ctx.strokeRect(8, 8, w - 16, h - 16);
+  }
+  ctx.fillStyle = ink;
+  ctx.font = '800 112px "Archivo", system-ui, sans-serif';
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(text, w / 2, h / 2 + 6);
+});
+
+/** A flag on a pole; `update` waves the cloth. */
+function buildFlag(tex, w, h, poleH, poleMat) {
+  const group = new Group();
+  const pole = new Mesh(new CylinderGeometry(0.03, 0.03, poleH, 10), poleMat);
+  pole.position.y = poleH / 2;
+  pole.castShadow = true;
+  group.add(pole);
+  const geo = new PlaneGeometry(w, h, 18, 10);
+  geo.translate(w / 2, 0, 0);
+  const base = geo.attributes.position.array.slice();
+  const cloth = new Mesh(geo, new MeshStandardMaterial({ map: tex, side: DoubleSide, roughness: 0.8 }));
+  cloth.position.y = poleH - h / 2 - 0.04;
+  cloth.castShadow = true;
+  group.add(cloth);
+  const update = (t, phase) => {
+    const p = geo.attributes.position;
+    for (let i = 0; i < p.count; i++) {
+      const x = base[i * 3];
+      const y = base[i * 3 + 1];
+      const u = x / w;
+      p.setZ(i, Math.sin(u * 5 - t * 6 + phase + y * 1.5) * 0.12 * u);
+      p.setY(i, y - u * u * 0.04);
+    }
+    p.needsUpdate = true;
+    geo.computeVertexNormals();
+  };
+  return { group, update };
+}
+
+/** Fans standing on the rows: instanced bodies, heads and arms; `update` makes them cheer. */
+function buildCrowd() {
+  const fans = [];
+  for (let r = 0; r < STANDS.rows; r++) {
+    const y = STANDS.rise * (r + 1);
+    const z = STANDS.front - STANDS.depth * (r + 0.5);
+    for (let x = -STANDS.halfX + 0.45; x <= STANDS.halfX - 0.45; x += 0.5) {
+      if (Math.random() < 0.14) continue;
+      fans.push({
+        x: x + (Math.random() - 0.5) * 0.12,
+        y,
+        z: z + (Math.random() - 0.5) * 0.1,
+        phase: Math.random() * Math.PI * 2,
+        clap: Math.random() < 0.4,
+        shirt: pick(SHIRTS),
+        skin: pick(SKIN),
+      });
+    }
+  }
+  const n = fans.length;
+  const bodyGeo = new CapsuleGeometry(0.13, 0.2, 4, 12);
+  bodyGeo.translate(0, 0.23, 0);
+  const headGeo = new SphereGeometry(0.115, 16, 12);
+  headGeo.translate(0, 0.6, 0);
+  const armGeo = new CapsuleGeometry(0.042, 0.2, 4, 8);
+  armGeo.translate(0, -0.13, 0);
+  const bodies = new InstancedMesh(bodyGeo, new MeshStandardMaterial({ roughness: 0.6 }), n);
+  const heads = new InstancedMesh(headGeo, new MeshStandardMaterial({ roughness: 0.5 }), n);
+  const arms = new InstancedMesh(armGeo, new MeshStandardMaterial({ roughness: 0.6 }), n * 2);
+  const c = new Color();
+  fans.forEach((f, i) => {
+    bodies.setColorAt(i, c.set(f.shirt));
+    heads.setColorAt(i, c.set(f.skin));
+    arms.setColorAt(i * 2, c.set(f.shirt));
+    arms.setColorAt(i * 2 + 1, c);
+  });
+  const meshes = [bodies, heads, arms];
+  meshes.forEach(m => {
+    m.castShadow = true;
+    m.frustumCulled = false;
+  });
+  const d = new Object3D();
+  const update = (t, cheer) => {
+    fans.forEach((f, i) => {
+      const jump = cheer * Math.abs(Math.sin(t * 8 + f.phase)) * 0.2;
+      const bob = Math.max(0, Math.sin(t * 3.2 + f.phase)) * 0.035 + jump;
+      d.position.set(f.x, f.y + bob, f.z);
+      d.rotation.set(0, 0, 0);
+      d.updateMatrix();
+      bodies.setMatrixAt(i, d.matrix);
+      heads.setMatrixAt(i, d.matrix);
+      [-1, 1].forEach((s, k) => {
+        const wave = 2.55 + Math.sin(t * 7 + f.phase + k) * 0.35;
+        const up = MathUtils.lerp(wave, 2.8 + Math.sin(t * 10 + f.phase) * 0.25, cheer);
+        const clapping = f.clap && cheer === 0;
+        d.position.set(f.x + s * 0.15, f.y + bob + 0.4, f.z);
+        d.rotation.set(clapping ? -1.25 : 0, 0, clapping ? -s * Math.max(0, Math.sin(t * 9 + f.phase)) * 0.35 : s * up);
+        d.updateMatrix();
+        arms.setMatrixAt(i * 2 + k, d.matrix);
+      });
+    });
+    meshes.forEach(m => { m.instanceMatrix.needsUpdate = true; });
+  };
+  return { meshes, fans, update };
+}
+
+/** Soft additive light cone; fades along its length and towards its edges. */
+const beamShader = {
+  vertex: /* glsl */ `
+    uniform float uLength;
+    varying float vAlong;
+    varying vec3 vNormalW;
+    varying vec3 vWorld;
+    void main() {
+      vAlong = clamp(length(position) / uLength, 0.0, 1.0);
+      vec4 w = modelMatrix * vec4(position, 1.0);
+      vWorld = w.xyz;
+      vNormalW = normalize(mat3(modelMatrix) * normal);
+      gl_Position = projectionMatrix * viewMatrix * w;
+    }`,
+  fragment: /* glsl */ `
+    uniform vec3 uColor;
+    uniform float uStrength;
+    varying float vAlong;
+    varying vec3 vNormalW;
+    varying vec3 vWorld;
+    void main() {
+      vec3 v = normalize(cameraPosition - vWorld);
+      float edge = pow(abs(dot(normalize(vNormalW), v)), 1.6);
+      float a = (1.0 - vAlong) * (1.0 - vAlong) * edge * uStrength;
+      gl_FragColor = vec4(uColor * a, a);
+    }`,
+};
+
+/** Floodlight mast with a six-lamp head; `aim` points the head, its beam and its spot light. */
+function buildFloodlight(height, poleMat, strength) {
+  const group = new Group();
+  const mast = new Mesh(new CylinderGeometry(0.06, 0.09, height, 12), poleMat);
+  mast.position.y = height / 2;
+  mast.castShadow = true;
+  group.add(mast);
+  const head = new Group();
+  head.position.y = height;
+  group.add(head);
+  const housing = new Mesh(new BoxGeometry(1.05, 0.66, 0.14), new MeshPhysicalMaterial({ color: "#26302b", roughness: 0.4, clearcoat: 0.4 }));
+  housing.castShadow = true;
+  head.add(housing);
+  const lamp = new CircleGeometry(0.12, 24);
+  const lampMat = new MeshBasicMaterial({ color: "#fff8e1", toneMapped: false });
+  for (let i = 0; i < 6; i++) {
+    const m = new Mesh(lamp, lampMat);
+    m.position.set(((i % 3) - 1) * 0.32, (Math.floor(i / 3) - 0.5) * 0.3, 0.075);
+    head.add(m);
+  }
+  const length = 9;
+  const beamGeo = new ConeGeometry(1.9, length, 40, 1, true);
+  beamGeo.translate(0, -length / 2, 0);
+  beamGeo.rotateX(-Math.PI / 2);
+  const beam = new Mesh(beamGeo, new ShaderMaterial({
+    uniforms: { uLength: { value: length }, uColor: { value: new Color("#fff3d6") }, uStrength: { value: strength } },
+    vertexShader: beamShader.vertex,
+    fragmentShader: beamShader.fragment,
+    transparent: true,
+    depthWrite: false,
+    blending: AdditiveBlending,
+    side: DoubleSide,
+  }));
+  beam.renderOrder = 6;
+  head.add(beam);
+  const spot = new SpotLight("#fff4dc", 90, 0, 0.42, 0.7, 2);
+  head.add(spot);
+  head.add(spot.target);
+  spot.target.position.set(0, 0, 1);
+  const aim = point => {
+    group.updateMatrixWorld(true);
+    head.lookAt(point);
+  };
+  return { group, aim };
+}
+
+/** LED scoreboard on two posts; `draw` repaints the screen only when its content changes. */
+function buildScoreboard(labels, height) {
+  const c = document.createElement("canvas");
+  c.width = 1024;
+  c.height = 512;
+  const ctx = c.getContext("2d");
+  const tex = new CanvasTexture(c);
+  tex.colorSpace = SRGBColorSpace;
+  tex.anisotropy = 8;
+  const font = (weight, size) => `${weight} ${size}px "Archivo", system-ui, sans-serif`;
+  let last = "";
+  const draw = (clock, flash) => {
+    const key = `${clock}|${flash}`;
+    if (key === last) return;
+    last = key;
+    const { width: w, height: h } = c;
+    ctx.fillStyle = "#0b100d";
+    ctx.fillRect(0, 0, w, h);
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = "#e9f1ec";
+    ctx.font = font(700, 60);
+    ctx.fillText(labels.home, w * 0.2, h * 0.15);
+    ctx.fillText(labels.away, w * 0.8, h * 0.15);
+    ctx.fillStyle = "#ffb627";
+    ctx.font = font(800, 180);
+    ctx.fillText("3", w * 0.2, h * 0.47);
+    ctx.fillText("2", w * 0.8, h * 0.47);
+    ctx.fillStyle = "#e9f1ec";
+    ctx.font = font(700, 54);
+    ctx.fillText("Q4", w * 0.5, h * 0.18);
+    ctx.fillStyle = "#ff5a4e";
+    ctx.font = font(700, 110);
+    ctx.fillText(clock, w * 0.5, h * 0.47);
+    ctx.fillStyle = flash === 1 ? "#3cbf63" : flash === 2 ? "#1f7a43" : "#15201a";
+    ctx.fillRect(28, h * 0.74, w - 56, h * 0.2);
+    ctx.fillStyle = flash ? "#ffffff" : "#3f5a4a";
+    ctx.font = font(800, 66);
+    ctx.fillText(flash ? labels.save : "WATERPOLO", w * 0.5, h * 0.845);
+    tex.needsUpdate = true;
+  };
+  const frame = new MeshPhysicalMaterial({ color: "#1b2420", roughness: 0.4, clearcoat: 0.5 });
+  const screen = new MeshBasicMaterial({ map: tex, toneMapped: false });
+  const group = new Group();
+  const W = 3.4;
+  const H = 1.7;
+  const board = new Mesh(new BoxGeometry(W, H, 0.18), [frame, frame, frame, frame, screen, frame]);
+  board.castShadow = true;
+  group.add(board);
+  const postLen = height - H / 2;
+  [-1.2, 1.2].forEach(x => {
+    const post = new Mesh(new CylinderGeometry(0.06, 0.06, postLen, 12), frame);
+    post.position.set(x, -H / 2 - postLen / 2, -0.03);
+    post.castShadow = true;
+    group.add(post);
+  });
+  draw("0:08", 0);
+  return { group, draw };
+}
+
 // ── Scene ──
 
-export function createPoolScene(container, { onDone }) {
+const DEFAULT_LABELS = { home: "PV", away: "RIVAL", save: "SAVE!" };
+
+export function createPoolScene(container, { onDone, labels = DEFAULT_LABELS }) {
   let renderer;
   try {
     renderer = new WebGLRenderer({ antialias: true, alpha: false });
@@ -528,7 +792,7 @@ export function createPoolScene(container, { onDone }) {
   sun.position.copy(sunDir).multiplyScalar(18);
   sun.castShadow = true;
   sun.shadow.mapSize.set(mobile ? 1024 : 2048, mobile ? 1024 : 2048);
-  Object.assign(sun.shadow.camera, { left: -10, right: 10, top: 9, bottom: -9, near: 1, far: 45 });
+  Object.assign(sun.shadow.camera, { left: -13, right: 13, top: 13, bottom: -13, near: 1, far: 60 });
   sun.shadow.bias = -0.0004;
   sun.shadow.normalBias = 0.03;
   sun.shadow.radius = 5;
@@ -586,7 +850,8 @@ export function createPoolScene(container, { onDone }) {
     new MeshBasicMaterial({ map: shadowTexture(), color: "#000000", transparent: true, opacity: dark ? 0.55 : 0.2, depthWrite: false }),
   );
   ground.rotation.x = -Math.PI / 2;
-  ground.position.y = BASE - 0.9;
+  ground.position.set(0, BASE - 0.9, -2.4);
+  ground.scale.set(1.05, 1.35, 1);
   scene.add(ground);
 
   // ── Water: top surface and the cut section ──
@@ -655,13 +920,74 @@ export function createPoolScene(container, { onDone }) {
   // ── Floating kit ──
   const mats = {
     frame: new MeshPhysicalMaterial({ color: "#ffffff", roughness: 0.25, clearcoat: 0.6 }),
-    float: new MeshPhysicalMaterial({ color: "#f9cf2e", roughness: 0.3, clearcoat: 0.6 }),
     net: new LineBasicMaterial({ color: "#ffffff", transparent: true, opacity: 0.6 }),
   };
   const goals = [buildGoal(1, mats), buildGoal(-1, mats)];
   goals.forEach(g => scene.add(g));
   const ropes = buildRopes();
   scene.add(ropes);
+
+  // ── Stands behind the back deck ──
+  const riser = new MeshStandardMaterial({ color: dark ? "#b9c0bb" : "#dcd8cf", roughness: 0.8 });
+  for (let r = 0; r < STANDS.rows; r++) {
+    const top = STANDS.rise * (r + 1);
+    const size = [STANDS.halfX * 2, top - BASE, STANDS.depth];
+    const seats = new MeshStandardMaterial({ map: deckTexture(size[0], 1, dark ? "#7d93b8" : "#a9c1e3"), roughness: 0.6 });
+    const row = new Mesh(new BoxGeometry(...size), [section, section, seats, section, riser, section]);
+    row.position.set(0, (top + BASE) / 2, STANDS.front - STANDS.depth * (r + 0.5));
+    row.castShadow = true;
+    row.receiveShadow = true;
+    scene.add(row);
+  }
+  const parapet = new Mesh(new BoxGeometry(STANDS.halfX * 2, 0.55, 0.12), riser);
+  parapet.position.set(0, 0.275, STANDS.front + 0.06);
+  parapet.castShadow = true;
+  scene.add(parapet);
+  [
+    ["VAMOS PAU!", "#1f5fbf", "#ffffff"],
+    ["PAU #1", "#ffffff", "#1f5fbf", "#d42a32"],
+    ["AMUNT PAU!", "#fcdd09", "#da121a"],
+  ].forEach(([text, bg, ink, edge], i) => {
+    const banner = new Mesh(new PlaneGeometry(2.4, 0.42), new MeshStandardMaterial({ map: bannerTexture(text, bg, ink, edge), roughness: 0.7 }));
+    banner.position.set((i - 1) * 4.7, 0.29, STANDS.front + 0.125);
+    banner.rotation.z = (i - 1) * 0.025;
+    scene.add(banner);
+  });
+
+  const crowd = buildCrowd();
+  crowd.meshes.forEach(m => scene.add(m));
+
+  const poleMat = new MeshPhysicalMaterial({ color: "#e9ece9", roughness: 0.3, clearcoat: 0.5 });
+  const standsTop = STANDS.rise * STANDS.rows;
+  const standsBack = STANDS.front - STANDS.depth * STANDS.rows;
+  const flags = [
+    [senyeraTexture(), -STANDS.halfX + 0.25],
+    [clubTexture(), STANDS.halfX - 1.6],
+  ].map(([tex, x]) => {
+    const flag = buildFlag(tex, 1.35, 0.9, 3.2, poleMat);
+    flag.group.position.set(x, standsTop, standsBack + 0.25);
+    scene.add(flag.group);
+    return flag;
+  });
+  // A few fans wave small flags.
+  const handFlags = crowd.fans.filter((_, i) => i % 17 === 6).map((fan, i) => {
+    const flag = buildFlag(i % 2 ? clubTexture() : senyeraTexture(), 0.55, 0.36, 1, poleMat);
+    flag.group.position.set(fan.x + 0.17, fan.y + 0.3, fan.z + 0.05);
+    scene.add(flag.group);
+    return { ...flag, phase: Math.random() * Math.PI * 2 };
+  });
+
+  // Floodlights on the back corners, aimed down at the water.
+  [-1, 1].forEach(side => {
+    const light = buildFloodlight(7.6, poleMat, dark ? 0.32 : 0.16);
+    light.group.position.set(side * (STANDS.halfX - 0.35), BASE, standsBack - 0.45);
+    scene.add(light.group);
+    light.aim(new Vector3(side * 2.4, -0.4, 0.4));
+  });
+
+  const board = buildScoreboard(labels, 2.3);
+  board.group.position.set(0, standsTop + 2.3, standsBack - 0.15);
+  scene.add(board.group);
 
   // ── Players ──
   const keeper = buildPlayer({ cap: "#e0323b", capInk: "#ffffff", guard: "#c4232c", number: "1", suit: "#1d2c52" });
@@ -684,7 +1010,9 @@ export function createPoolScene(container, { onDone }) {
   scene.add(ball);
   const hand = new Vector3();
   const from = new Vector3();
-  const ballState = { phase: "held", pos: new Vector3(), vel: new Vector3(), at: 0 };
+  const ballState = { phase: "held", pos: new Vector3() };
+  const aim = new Vector3();
+  const target = new Vector3();
 
   // ── Splashes: rings on the water and droplets ──
   const ringGeo = new RingGeometry(0.2, 0.27, 56);
@@ -730,10 +1058,10 @@ export function createPoolScene(container, { onDone }) {
   };
 
   // ── Camera: one shot that slowly closes in on the goal ──
-  const camFrom = mobile ? new Vector3(-6, 17, 33) : new Vector3(-12, 12, 27);
-  const camTo = mobile ? new Vector3(-2.5, 11.5, 26) : new Vector3(-5, 7, 19);
-  const lookFrom = mobile ? new Vector3(0, -1.6, -0.6) : new Vector3(0, -1.4, -0.6);
-  const lookTo = mobile ? new Vector3(1.2, -1.2, 0) : new Vector3(1.4, -1.5, 0);
+  const camFrom = mobile ? new Vector3(-6, 21, 41) : new Vector3(-14, 14, 31);
+  const camTo = mobile ? new Vector3(-3, 15, 34) : new Vector3(-7, 9, 24);
+  const lookFrom = mobile ? new Vector3(0, 0.2, -2.6) : new Vector3(0, 0, -2.6);
+  const lookTo = mobile ? new Vector3(1, 0.2, -2.2) : new Vector3(1, 0.1, -2.2);
   const look = new Vector3();
 
   const layout = () => {
@@ -822,7 +1150,7 @@ export function createPoolScene(container, { onDone }) {
 
     if (keeper.root.visible) {
       const ready = easeOut(span(t, T.surface + 0.45, T.surfaced + 0.1));
-      const reach = easeOut(span(t, T.save - 0.3, T.save)) * (1 - span(t, T.hold, T.recover));
+      const reach = easeOut(span(t, T.save - 0.3, T.save));
       const wobble = Math.sin(t * 7) * 0.06 * (1 - reach);
       poseArm(keeper.right, 1, POSE.down, POSE.ready, ready, wobble);
       poseArm(keeper.left, -1, POSE.down, POSE.ready, ready, -wobble);
@@ -867,28 +1195,30 @@ export function createPoolScene(container, { onDone }) {
       ball.position.y += Math.sin(k * Math.PI) * 0.45;
       ball.rotation.z -= dt * 16;
       if (k >= 1) {
-        ballState.phase = "rebound";
+        ballState.phase = "incoming";
         ballState.pos.copy(hand);
-        ballState.vel.set(-1.7, 3, 1.5);
-        ballState.at = t;
         burst(hand.x, hand.y, hand.z, 12, 0.45);
       }
-    } else if (ballState.phase === "rebound") {
-      const s = t - ballState.at;
-      const y = ballState.pos.y + ballState.vel.y * s - 0.5 * GRAVITY * s * s;
-      ball.position.set(ballState.pos.x + ballState.vel.x * s, y, ballState.pos.z + ballState.vel.z * s);
-      ball.rotation.x += dt * 10;
-      if (y <= level + BALL_R * 0.3) {
-        ballState.phase = "floating";
-        ballState.at = t;
-        ballState.pos.copy(ball.position);
-        ripple(t, ball.position.x, ball.position.z, 1.2);
-        burst(ball.position.x, level, ball.position.z, 26, 0.75);
-      }
-    } else if (ballState.phase === "floating") {
-      const s = t - ballState.at;
-      ball.position.set(ballState.pos.x - s * 0.2, level + BALL_R * 0.5 + Math.sin(s * 5) * 0.015, ballState.pos.z + s * 0.12);
+    } else if (ballState.phase === "incoming") {
+      // Tipped away by the keeper, straight into the lens.
+      const k = span(t, T.save, T.impact);
+      camera.getWorldDirection(aim);
+      target.copy(camera.position).addScaledVector(aim, 0.22);
+      ball.position.lerpVectors(ballState.pos, target, Math.pow(k, 2.2));
+      ball.position.y += Math.sin(k * Math.PI) * 0.8 * (1 - k);
+      ball.rotation.x += dt * 14;
+      ball.rotation.y += dt * 9;
     }
+
+    // Crowd, flags and scoreboard.
+    const cheer = span(t, T.save, T.save + 0.2);
+    crowd.update(t, cheer);
+    flags.forEach((f, i) => f.update(t, i * 1.7));
+    handFlags.forEach(f => {
+      f.update(t, f.phase);
+      f.group.rotation.z = Math.sin(t * 3 + f.phase) * 0.4 - 0.1;
+    });
+    board.draw(`0:0${Math.max(0, Math.ceil(8 - t))}`, t >= T.save ? (Math.floor((t - T.save) * 8) % 2) + 1 : 0);
 
     // Rings and droplets.
     rings.forEach(r => {
@@ -916,8 +1246,8 @@ export function createPoolScene(container, { onDone }) {
     drops.instanceMatrix.needsUpdate = true;
 
     renderer.render(scene, camera);
-    if (t >= T.end) {
-      if (!finished) { finished = true; onDone(); }
+    if (t >= T.impact) {
+      if (!finished) { finished = true; onDone("impact"); }
       return;
     }
     raf = requestAnimationFrame(frame);

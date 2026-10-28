@@ -7,7 +7,21 @@
   transition: clip-path 0.8s cubic-bezier(0.76, 0, 0.24, 1);
   clip-path: inset(0 0 0 0);
 }
-.intro.is-leaving { clip-path: inset(0 0 100% 0); }
+.intro.is-wipe { clip-path: inset(0 0 100% 0); }
+
+/* The ball hits the lens: a hole opens from the centre and the site shows through it */
+@property --hole {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+.intro.is-burst {
+  transition: none;
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent var(--hole), #000 calc(var(--hole) + 1px));
+  mask: radial-gradient(circle at 50% 50%, transparent var(--hole), #000 calc(var(--hole) + 1px));
+  animation: intro-burst 0.8s cubic-bezier(0.65, 0, 0.25, 1) forwards;
+}
+@keyframes intro-burst { to { --hole: 120vmax; } }
 html.intro-open, html.intro-open body { overflow: hidden; }
 
 .intro-stage { position: absolute; inset: 0; }

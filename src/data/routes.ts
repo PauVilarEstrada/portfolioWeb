@@ -13,7 +13,6 @@ export const PROJECT_ROUTE_KEYS: Record<string, keyof Dict["projects"]> = {
   "/projects/nbavision": "nba",
   "/projects/mindflow": "mindflow",
   "/projects/kdd": "kdd",
-  "/projects/ecommerce": "ecommerce",
   "/projects/pacman": "pacman",
   "/projects/flappybird": "flappy",
 };
