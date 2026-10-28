@@ -199,18 +199,28 @@ export function createPenaltyGame(canvas, { colors, onState }) {
     }
     ctx.save();
     ctx.translate(px, py);
-    ctx.rotate(t * 0.01);
     ctx.fillStyle = "#f6c929";
     ctx.beginPath();
     ctx.arc(0, 0, r, 0, Math.PI * 2);
     ctx.fill();
+    // Seams are drawn inside the ball only, and the ball spins only while it flies.
+    ctx.clip();
+    ctx.save();
+    ctx.rotate(sh ? (t - sh.start) * 0.012 : 0);
     ctx.strokeStyle = "#1d4ed8";
-    ctx.lineWidth = Math.max(2, r * 0.18);
-    [-0.45, 0.45].forEach(o => {
+    ctx.lineWidth = Math.max(2, r * 0.16);
+    [-1, 1].forEach(side => {
       ctx.beginPath();
-      ctx.arc(o * r * 2.2, 0, r * 1.6, Math.PI * 0.8, Math.PI * 1.2);
+      ctx.arc(side * r * 1.35, 0, r, 0, Math.PI * 2);
       ctx.stroke();
     });
+    ctx.restore();
+    const shade = ctx.createRadialGradient(-r * 0.35, -r * 0.4, r * 0.1, 0, 0, r);
+    shade.addColorStop(0, "rgba(255,255,255,0.45)");
+    shade.addColorStop(0.5, "rgba(255,255,255,0)");
+    shade.addColorStop(1, "rgba(0,0,0,0.2)");
+    ctx.fillStyle = shade;
+    ctx.fillRect(-r, -r, r * 2, r * 2);
     ctx.restore();
   };
 
