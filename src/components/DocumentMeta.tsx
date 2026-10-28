@@ -25,6 +25,7 @@ export default function DocumentMeta() {
     } else {
       const navKey = ROUTE_KEYS[pathname];
       if (navKey) title = `${(t.nav as any)[navKey]} — Pau Vilar`;
+      else if (pathname !== "/") title = `${t.notFound.title} — Pau Vilar`;
     }
 
     document.title = title;

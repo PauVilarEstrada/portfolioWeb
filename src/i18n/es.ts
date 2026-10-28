@@ -24,9 +24,14 @@ export const es: Dict = {
   },
 
   intro: {
-    status: "Calentando en la piscina",
-    skip: "Saltar intro",
     label: "Pau Vilar, portero de waterpolo y responsable de IA",
+  },
+
+  notFound: {
+    title: "Fuera de juego",
+    lead: "Esta página no existe o se ha movido. Ya que estás aquí, tira unos penaltis antes de volver.",
+    home: "Volver al inicio",
+    projects: "Ver proyectos",
   },
 
   footer: {

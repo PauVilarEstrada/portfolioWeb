@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -24,6 +24,7 @@ const loaders = {
   pacman: () => import("./components/myprojects/Pacman"),
   ecommerce: () => import("./components/myprojects/Ecommerce"),
   kdd: () => import("./components/myprojects/kdd"),
+  notFound: () => import("./components/NotFound"),
 };
 const ProjectsSection = lazy(loaders.projects);
 const ExperienceSection = lazy(loaders.experience);
@@ -36,6 +37,7 @@ const FlappyBird = lazy(loaders.flappy);
 const Pacman = lazy(loaders.pacman);
 const Ecommerce = lazy(loaders.ecommerce);
 const KDD = lazy(loaders.kdd);
+const NotFound = lazy(loaders.notFound);
 
 /** Wait for the first paint to settle before prefetching the other pages. */
 const PREFETCH_DELAY_MS = 2500;
@@ -79,8 +81,7 @@ export default function App() {
                     <Route path="/projects/pacman" element={<Pacman />} />
                     <Route path="/projects/ecommerce" element={<Ecommerce />} />
                     <Route path="/projects/kdd" element={<KDD />} />
-                    {/* Old links and typos land on the home page instead of a blank screen */}
-                    <Route path="*" element={<Navigate to="/" replace />} />
+                    <Route path="*" element={<NotFound />} />
                   </Routes>
                 </div>
               </Suspense>

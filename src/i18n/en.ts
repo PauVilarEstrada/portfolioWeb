@@ -23,9 +23,14 @@ export const en = {
   },
 
   intro: {
-    status: "Warming up in the pool",
-    skip: "Skip intro",
     label: "Pau Vilar, water polo goalkeeper and AI lead",
+  },
+
+  notFound: {
+    title: "Offside",
+    lead: "This page doesn't exist or has moved. While you're here, take a few penalties before heading back.",
+    home: "Back to home",
+    projects: "See projects",
   },
 
   footer: {

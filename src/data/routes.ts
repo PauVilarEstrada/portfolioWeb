@@ -23,5 +23,5 @@ export function routeTitle(pathname: string, t: Dict): string {
   const project = PROJECT_ROUTE_KEYS[pathname];
   if (project) return t.projects[project].short;
   const page = PAGE_KEYS[pathname];
-  return page ? t.nav[page] : t.nav.home;
+  return page ? t.nav[page] : t.notFound.title;
 }

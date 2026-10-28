@@ -62,11 +62,13 @@ radii 20 / 28 / 44px for images, panels and the footer.
 
 ## Motion and interactive pieces
 
-- **Intro** (first visit per session): three.js water polo pool, goalkeeper save, camera dive, 0–100 counter. Skippable.
+- **Intro** (first visit per session): a cut-away three.js diorama of a water polo pool that fills through two spouts;
+  two toy-like players surface, the shooter fires and Pau (red cap, number 1) saves. No counter or button; Esc, Enter,
+  Space or a click skips it.
 - **Hero**: CSS entrance (name lines rise, rule draws, badge spins in) over a three.js scene — particles forming PV that
-  scatter under the pointer, inside a turning graph of tool marks (simple-icons) with data pulses into PV.
+  scatter under the pointer, circled by tool marks (simple-icons) on two tilted orbits; a mark's name shows on hover.
 - **Page curtain**: the night panel sweeps in with the destination's name, the route swaps underneath, the panel leaves.
-- **Penalty mini-game** (home, sport section): 2D canvas, five shots against Pau.
+- **Penalty mini-game** (home and the 404 page): 2D canvas, five shots against Pau, who saves about two in three.
 - Interaction feedback otherwise (row tint in the project colour, arrow rotation, underline sweep).
 - `prefers-reduced-motion` disables the intro, curtain and animation loops; WebGL failures fall back to the plain hero.
 
