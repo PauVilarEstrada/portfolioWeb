@@ -29,6 +29,7 @@ export default function IntroLoader() {
   const close = () => {
     if (closing.current) return;
     closing.current = true;
+    app.current?.stop?.();
     try { sessionStorage.setItem(SEEN_KEY, "1"); } catch { /* ignore */ }
     setProgress(1);
     setLeaving(true);

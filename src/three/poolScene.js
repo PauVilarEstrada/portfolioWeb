@@ -363,6 +363,8 @@ export function createPoolScene(container, { onProgress, onDone }) {
   raf = requestAnimationFrame(frame);
 
   return {
+    /** Freeze on the current frame (used while the loader slides away). */
+    stop: () => cancelAnimationFrame(raf),
     dispose: () => {
       cancelAnimationFrame(raf);
       ro.disconnect();

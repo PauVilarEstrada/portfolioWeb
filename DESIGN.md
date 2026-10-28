@@ -23,7 +23,11 @@ never decoration.
 | `--ink-3` | `#6b766f` | Labels, meta |
 | `--green` | `#2fa24f` | Accent marks (dots, badge, current item) |
 | `--green-ink` | `#1a7a39` | Accent as text / hover (AA on paper) |
-| `--night` | `#0c1611` | Footer, IMPLEMAI block, closing CTAs |
+| `--night` | `#0c1611` | Footer, IMPLEMAI block, closing CTAs, page curtain |
+
+**Dark theme** (`:root[data-theme="dark"]`) re-tunes the same roles: paper `#0b120e`, surface `#17221b`,
+ink `#e8eee9`, green `#3cbf63` / `#74d993`, night `#16231b`. Light is the default; the choice is stored in
+`localStorage` (`pv-theme`) and applied before first paint. Logos always sit on `--logo-plate` (white).
 
 Project pages set `--pp-color` to the project's own colour; it only tints marks
 (dots, numbers, rings), never body text.
@@ -56,15 +60,18 @@ Large type uses negative tracking (−0.045em to −0.06em). Labels are sentence
 Pills (`999px`) for buttons, tags and filters; discs for logos and markers;
 radii 20 / 28 / 44px for images, panels and the footer.
 
-## Motion
+## Motion and interactive pieces
 
-- One orchestrated moment: the home hero (name lines rise, rule draws, badge spins in, copy fades).
-- Route changes: 0.7s fade-and-rise on the page wrapper.
-- Interaction feedback only otherwise (hover preview on the work list, arrow rotation, underline sweep).
-- `prefers-reduced-motion` disables all of it.
+- **Intro** (first visit per session): three.js water polo pool, goalkeeper save, camera dive, 0–100 counter. Skippable.
+- **Hero**: CSS entrance (name lines rise, rule draws, badge spins in) over a three.js scene — particles forming PV that
+  scatter under the pointer, inside a turning graph of tool marks (simple-icons) with data pulses into PV.
+- **Page curtain**: the night panel sweeps in with the destination's name, the route swaps underneath, the panel leaves.
+- **Penalty mini-game** (home, sport section): 2D canvas, five shots against Pau.
+- Interaction feedback otherwise (row tint in the project colour, arrow rotation, underline sweep).
+- `prefers-reduced-motion` disables the intro, curtain and animation loops; WebGL failures fall back to the plain hero.
 
 ## Components
 
-`Navbar` (floating pill, full-screen sheet below 900px), `Footer` (contact CTA, hidden on /contact),
-`WorkList` (rows with pointer-following preview), `ProjectCover`, `ProjectNav` (next project),
+`Navbar` (fixed floating pill with language and theme toggles, full-screen sheet below 900px), `PageTransition`, `IntroLoader`, `HeroCanvas`, `PenaltyGame`, `Footer` (contact CTA, hidden on /contact),
+`WorkList` (rows with pointer-following preview), projects index (`.pindex`, pinned row with a paperclip), `ProjectCover`, `ProjectNav` (next project),
 `.btn`, `.tag`, `.logo-disc`, `.dot-list`, `.page-head`, `.sec-head`.
