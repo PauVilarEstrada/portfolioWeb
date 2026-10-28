@@ -1,136 +1,39 @@
-# 🌐 Portfolio Website - Pau Vilar Estrada
+# Pau Vilar — portfolio
 
-This is the personal portfolio of **Pau Vilar Estrada**, created to showcase my work, experience and technical background as a web developer and game creator.
+Personal site of **Pau Vilar i Estrada**, consultant, IT & AI lead and coordinator at
+[Brontobyte Cloud](https://www.brontobytecloud.com/). Live at
+[pauvilarestrada.github.io/portfolioWeb](https://pauvilarestrada.github.io/portfolioWeb/).
 
----
+Bilingual (Spanish / English), with pages for home, projects, experience and contact,
+plus one page per project (TactiQ 360, Ultimus Defensor, NBA Vision, MINDFLOW, KDD'99,
+e-commerce, Pacman and Flappy Bird).
 
-## 🚀 Technologies Used
+## Stack
 
-- ⚛️ React 19
-- 🌍 React Router DOM 7
-- 🎨 Custom CSS
-- ⚡ Vite
-- 🎥 Framer Motion
-- 🧭 Swiper.js
-- 🎮 Three.js
-- 📦 Node.js & npm
-- 🖼️ React Icons
-- ☁️ Deployed on **GitHub Pages**
+- React 19 + React Router 7, built with Vite 6
+- Plain CSS with design tokens (see [DESIGN.md](DESIGN.md))
+- `react-icons` for icons; no animation library (CSS only)
+- Deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main`
 
----
+## Structure
 
-## 🌐 Language
+```
+src/
+  components/          pages and shared components
+  components/myprojects/  one page per project + shared project CSS
+  css/                 page and component styles
+  data/projects.ts     project list (routes, covers, colours) and contact links
+  i18n/                es.ts / en.ts (site) and pages.*.ts (project pages)
+```
 
-The entire portfolio is written in **English** to ensure accessibility and understanding for an international professional audience.
+All copy lives in `src/i18n`; `es.ts` is typed against the shape of `en.ts`, so editors flag a missing key.
 
----
-
-## 📂 Sections
-
-- Hero page with intro and subtle animations
-- Featured project gallery (apps, games, tools)
-- Professional experience summary
-- Contact section with direct links to GitHub and LinkedIn
-- Hidden interactive navigation via top-center circle (hover or tap to reveal)
-
----
-
-## 🎯 Purpose
-
-This portfolio was designed not just to list projects, but to reflect who I am: creative, focused, and passionate about development and digital design.  
-It aims to provide a clean, interactive, and aesthetic experience for anyone visiting.
-
----
-
-## 🔓 Open Source
-
-This portfolio is **100% open-source**.  
-You're welcome to explore the code, reuse it, or use it as a learning reference for building your own portfolio.
-
----
-
-## 🛠️ Deployment Instructions
+## Commands
 
 ```bash
-# Install dependencies
 npm install
-
-
-# Local development
-npm run dev
-
-# Production build
+npm run dev       # http://localhost:5173/portfolioWeb/
+npm run lint
 npm run build
-
-# Deploy to GitHub Pages
-npm run deploy
-````
-
-
-# 🌐 Portfolio Web - Pau Vilar Estrada
-
-Este es el portfolio personal de **Pau Vilar Estrada**, creado para mostrar mis proyectos, experiencia profesional y habilidades técnicas como desarrollador web y creador de videojuegos.
-
----
-
-## 🚀 Tecnologías utilizadas
-
-- ⚛️ React 19  
-- 🌍 React Router DOM 7  
-- 🎨 CSS personalizado  
-- ⚡ Vite  
-- 🎥 Framer Motion  
-- 🧭 Swiper.js  
-- 🎮 Three.js  
-- 📦 Node.js & npm  
-- 🖼️ React Icons  
-- ☁️ Desplegado en **GitHub Pages**
-
----
-
-## 🗣️ Idioma
-
-Todo el contenido está redactado en **inglés**, con el objetivo de ofrecer una presentación profesional accesible a nivel internacional.
-
----
-
-## 📂 Contenido del portfolio
-
-- Página de bienvenida con animaciones suaves
-- Galería interactiva de proyectos destacados (apps, juegos, herramientas)
-- Sección de experiencia profesional
-- Página de contacto con enlaces a GitHub y LinkedIn
-- Menú de navegación oculto que se despliega al hacer hover o clic sobre el círculo negro centrado en la parte superior
-
----
-
-## 🎯 Objetivo
-
-Este portfolio no es simplemente una recopilación de proyectos.  
-Está diseñado para ser una experiencia interactiva que refleje mi identidad profesional y creativa.  
-Es una carta de presentación digital que representa mi pasión por el desarrollo, el diseño y la innovación.
-
----
-
-## 🔓 Proyecto de código abierto
-
-Este proyecto es **100% open source**.  
-Puedes utilizarlo libremente como inspiración, base para tu propio portfolio o recurso de aprendizaje.
-
----
-
-## 🛠️ Cómo ejecutar o desplegar
-
-```bash
-# Instalar dependencias
-npm install
-
-# Servidor local para desarrollo
-npm run dev
-
-# Generar build de producción
-npm run build
-
-# Subir a GitHub Pages
-npm run deploy
-````
+npm run deploy    # manual publish to gh-pages (CI does this on main)
+```

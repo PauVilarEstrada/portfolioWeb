@@ -2,11 +2,11 @@ import React from "react";
 
 /**
  * Minimal inline formatter for dictionary strings.
- * `**bold**` -> <strong>, `__accent__` -> <em class="rt-accent">
+ * `**bold**` -> <strong>, `*italic*` and `__accent__` -> <em class="rt-accent">, backticks -> <code>
  */
 export function rt(text: string): React.ReactNode[] {
   const out: React.ReactNode[] = [];
-  const re = /(\*\*[^*]+\*\*|__[^_]+__)/g;
+  const re = /(\*\*[^*]+\*\*|__[^_]+__|`[^`]+`|\*[^*\s][^*]*\*)/g;
   let last = 0;
   let m: RegExpExecArray | null;
   let k = 0;
@@ -15,8 +15,12 @@ export function rt(text: string): React.ReactNode[] {
     const token = m[0];
     if (token.startsWith("**")) {
       out.push(<strong key={k++}>{token.slice(2, -2)}</strong>);
-    } else {
+    } else if (token.startsWith("`")) {
+      out.push(<code key={k++} className="rt-code">{token.slice(1, -1)}</code>);
+    } else if (token.startsWith("__")) {
       out.push(<em key={k++} className="rt-accent">{token.slice(2, -2)}</em>);
+    } else {
+      out.push(<em key={k++} className="rt-accent">{token.slice(1, -1)}</em>);
     }
     last = m.index + token.length;
   }

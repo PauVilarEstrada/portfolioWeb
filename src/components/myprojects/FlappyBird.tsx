@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./css/project-page.css";
 import "./css/showcase.css";
 import { useI18n } from "../../i18n/LanguageContext";
+import ProjectNav from "./ProjectNav";
 import { rt } from "../../i18n/rich";
 import flappyLogo from "./assets/logosApps/flappybirdLogoSection.png";
 import flappy1 from "./assets/flappyBird1.webp";
@@ -22,6 +23,7 @@ export default function FlappyBird() {
     <div key={lang} className="pp-page lang-fade" style={{ "--pp-color": "#4ade80", "--pp-glow": "rgba(74, 222, 128, 0.2)" } as React.CSSProperties}>
 
       <header className="pp-hero">
+        <Link to="/projects" className="pp-crumb">{g.back}</Link>
         <img src={flappyLogo} alt={c.title} className="pp-hero-logo" />
         <div className="pp-hero-content">
           <span className="pp-hero-label">{c.label}</span>
@@ -123,12 +125,12 @@ export default function FlappyBird() {
           <p className="pp-text">{c.playOutro}</p>
           <div className="pp-actions">
             <a className="pp-btn-primary" href={REPO} target="_blank" rel="noopener noreferrer">
-              github.com/PauVilarEstrada/Flappy-Bird ↗
+              github.com/PauVilarEstrada/Flappy-Bird
             </a>
           </div>
         </div>
 
-        <Link to="/projects" className="pp-back">{g.back}</Link>
+        <ProjectNav current="flappy" />
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./css/project-page.css";
 import "./css/nbavision.css";
 import { useI18n } from "../../i18n/LanguageContext";
+import ProjectNav from "./ProjectNav";
 import { rt } from "../../i18n/rich";
 
 import nbaLogo from "./assets/logosApps/nbavisionlogo.png";
@@ -46,6 +47,7 @@ export default function NBAVision() {
       style={{ "--pp-color": "#ef4444", "--pp-glow": "rgba(239, 68, 68, 0.2)" } as React.CSSProperties}
     >
       <header className="pp-hero">
+        <Link to="/projects" className="pp-crumb">{g.back}</Link>
         <img src={nbaLogo} alt={c.title} className="pp-hero-logo" />
         <div className="pp-hero-content">
           <span className="pp-hero-label">{c.label}</span>
@@ -219,13 +221,13 @@ export default function NBAVision() {
           <h2 className="pp-section-title">{c.seeTitle}</h2>
           <p className="pp-text">{c.seeP}</p>
           <div className="pp-actions">
-            <a className="pp-btn-primary" href={LIVE_URL} target="_blank" rel="noopener noreferrer">nba-woat.vercel.app ↗</a>
-            <a className="pp-btn-secondary" href={REPO_URL} target="_blank" rel="noopener noreferrer">github.com/PauVilarEstrada/NBA ↗</a>
+            <a className="pp-btn-primary" href={LIVE_URL} target="_blank" rel="noopener noreferrer">nba-woat.vercel.app</a>
+            <a className="pp-btn-secondary" href={REPO_URL} target="_blank" rel="noopener noreferrer">github.com/PauVilarEstrada/NBA</a>
           </div>
           <p className="pp-text nba-disclaimer">{c.disclaimer}</p>
         </div>
 
-        <Link to="/projects" className="pp-back">{g.back}</Link>
+        <ProjectNav current="nba" />
       </div>
     </div>
   );

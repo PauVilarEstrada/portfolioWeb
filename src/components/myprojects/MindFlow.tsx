@@ -5,6 +5,7 @@ import "./css/mindflow.css";
 import mfLogo from "./assets/logosApps/mindflowlogo.webp";
 import mfFeature from "./assets/mindflow/mindflow_feature.webp";
 import { useI18n } from "../../i18n/LanguageContext";
+import ProjectNav from "./ProjectNav";
 import { rt } from "../../i18n/rich";
 
 const PLAY_STORE_URL =
@@ -280,6 +281,7 @@ export default function MindFlow() {
       style={{ "--pp-color": "#6C9BFF", "--pp-glow": "rgba(108, 155, 255, 0.22)" } as React.CSSProperties}
     >
       <header className="pp-hero">
+        <Link to="/projects" className="pp-crumb">{g.back}</Link>
         <img src={mfLogo} alt="MINDFLOW" className="pp-hero-logo" />
         <div className="pp-hero-content">
           <span className="pp-hero-label">{c.label}</span>
@@ -422,7 +424,7 @@ export default function MindFlow() {
           </div>
         </div>
 
-        <Link to="/projects" className="pp-back">{g.back}</Link>
+        <ProjectNav current="mindflow" />
       </div>
     </div>
   );

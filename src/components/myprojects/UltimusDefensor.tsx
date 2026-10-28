@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./css/project-page.css";
 import { useI18n } from "../../i18n/LanguageContext";
+import ProjectNav from "./ProjectNav";
 import { rt } from "../../i18n/rich";
 import udLogo from "./assets/logosApps/ultimusdefensorlogo.webp";
 import portada from "./assets/ultimusdefensor/portada.webp";
@@ -33,6 +34,7 @@ export default function UltimusDefensor() {
     <div key={lang} className="pp-page lang-fade" style={{ "--pp-color": "#38bdf8", "--pp-glow": "rgba(56, 189, 248, 0.2)" } as React.CSSProperties}>
 
       <header className="pp-hero">
+        <Link to="/projects" className="pp-crumb">{g.back}</Link>
         <img src={udLogo} alt={c.title} className="pp-hero-logo" />
         <div className="pp-hero-content">
           <span className="pp-hero-label">{c.label}</span>
@@ -119,7 +121,7 @@ export default function UltimusDefensor() {
           </div>
         </div>
 
-        <Link to="/projects" className="pp-back">{g.back}</Link>
+        <ProjectNav current="ultimus" />
       </div>
     </div>
   );

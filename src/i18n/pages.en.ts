@@ -1,8 +1,9 @@
 export const pagesEn = {
   common: {
-    back: "Back to Projects",
-    repo: "Source on GitHub ↗",
+    back: "All projects",
+    repo: "Source on GitHub",
     tech: "Tech stack",
+    next: "Next project",
   },
 
   pacman: {
@@ -126,7 +127,7 @@ export const pagesEn = {
     subtitle:
       "A complete online shop, front to back: browse a catalogue, fill a cart that survives a reload, sign in securely, and manage the whole inventory from an **admin dashboard** — with **Redis caching** on the hot paths and product imagery served from a CDN.",
     tags: ["React", "Node.js", "MongoDB", "Redis", "Cloudinary", "JWT", "Zustand"],
-    ctaLive: "Open the live shop ↗",
+    ctaLive: "Open the live shop",
     specs: [
       { v: "MERN", l: "Stack" },
       { v: "JWT", l: "Auth" },
@@ -176,8 +177,8 @@ export const pagesEn = {
     tryTitle: "Try it",
     tryP:
       "The shop is deployed and open source. The free Render instance sleeps when idle, so the first load after a while can take a few seconds to wake up.",
-    liveBtn: "Live app ↗",
-    demoBtn: "Demo video ↗",
+    liveBtn: "Live app",
+    demoBtn: "Demo video",
   },
   nba: {
     label: "Full-Stack Sports Analytics · ML & Simulation",
@@ -185,7 +186,7 @@ export const pagesEn = {
     subtitle:
       "A full-stack **NBA analytics, projection and simulation lab**. Compare players and teams, project a line against a specific defence, forecast a game, and build a roster under a budget to play a real NBA team with a **possession-level simulator** — in English and Castellano.",
     tags: ["React + TypeScript", "FastAPI", "XGBoost", "Quantile Regression", "Monte Carlo", "PostgreSQL", "Bilingual"],
-    ctaLive: "Visit the live site ↗",
+    ctaLive: "Visit the live site",
     glance: [
       { v: "14", l: "Routes" },
       { v: "4", l: "Models" },
@@ -441,7 +442,7 @@ export const pagesEn = {
     subtitle:
       "My **first published mobile game**: four logic puzzle modes in one offline, completely silent Android app built with **React Native and TypeScript**. Over 1,200 generated and solution-verified levels, bilingual, ad-supported — designed, built, tested and shipped to the Play Store end to end.",
     tags: ["React Native", "TypeScript", "Redux Toolkit", "Android", "AdMob", "Offline-first", "i18n", "Published"],
-    ctaStore: "Download on Google Play ↗",
+    ctaStore: "Download on Google Play",
     ctaModes: "See the game modes",
     glanceTitle: "At a glance",
     glance: [
@@ -555,8 +556,151 @@ export const pagesEn = {
     downloadP:
       "MINDFLOW is **published and free on the Google Play Store**, worldwide, for Android. No account, no sign-up and no internet connection required to play.",
     storeMeta: "com.pvilar.mindflow · v1.1.1 · Free · Android",
-    storeBtn: "Get it on Google Play ↗",
+    storeBtn: "Get it on Google Play",
     storeListing: "Store listing:",
+  },
+
+  tactiq: {
+    label: "Multi-club SaaS · Football club management",
+    title: "TactiQ 360",
+    subtitle:
+      "A platform to run an entire football club from one app: teams, player profiles, call-ups, tactics board, **live match report**, automatic stats and PDF reports. For 11-a-side and 7-a-side, men's, women's and mixed teams.",
+    tags: ["React", "TypeScript", "FastAPI", "PostgreSQL", "Offline PWA"],
+    ctaLive: "Open tactiq360.vercel.app",
+    ctaPlans: "See plans",
+    specs: [
+      { v: "3", l: "Club roles" },
+      { v: "F11 · F7", l: "Formats" },
+      { v: "720", l: "Automated tests" },
+      { v: "Offline", l: "Live match report" },
+    ],
+    forTitle: "Who it's for",
+    forP:
+      "For clubs and academies that want to organise their day-to-day football without spreadsheets or paper match reports, and for coaches who run their own teams. It works the same for a whole club, a single section or one coach.",
+    audiences: [
+      { h: "Club management", p: "An overview of every team, comparisons between them, and the club's identity (crest and colours) in the app and on every PDF." },
+      { h: "Coordinators", p: "An overview of their section or age group: their coaches, their teams and how each is doing, without seeing what isn't theirs." },
+      { h: "Coaches", p: "Squad, call-ups, tactics board and live match report from the phone, on the touchline. Stats are ready as soon as the match ends." },
+    ],
+    whatTitle: "What it solves",
+    whatP1:
+      "It grew out of **TactiQ**, the virtual match report I built for the coaching staff of Sant Vicenç dels Horts women's team: replacing the paper report with an app where every match action takes one or two taps and the stats calculate themselves.",
+    whatP2:
+      "TactiQ 360 takes that idea to **whole clubs**: several teams, several people in different roles and a permission system that guarantees everyone sees and manages only what's theirs. It's a standalone application with its own repository, database and deployment.",
+    profilesTitle: "Three roles, each with its own scope",
+    profilesP:
+      "The club's structure is drawn as a tree: club lead, coordinators, coaches and teams. Each person can only create accounts below themselves, and every permission is checked on the server, not by hiding buttons.",
+    profiles: [
+      {
+        h: "Club lead",
+        sub: "The club's management",
+        sees: "Sees the whole club: coordinators, coaches and every team.",
+        can: ["Adds coordinators and coaches", "Overview and comparisons across teams", "Club crest, colours and profile", "PDF reports for any team"],
+      },
+      {
+        h: "Coordinator",
+        sub: "Runs a section or age group",
+        sees: "Sees their section: their coaches and their teams.",
+        can: ["Adds their coaches", "Overview and comparison of their teams", "Squads, matches and reports in their section"],
+      },
+      {
+        h: "Coach",
+        sub: "Day to day with their team",
+        sees: "Sees only the teams assigned to them.",
+        can: ["Squad and player profiles", "Call-ups and tactics board", "Live match report", "Stats and PDFs"],
+      },
+    ],
+    profilesNote: "Players don't need an account: they're profiles inside their team.",
+    matchdayTitle: "A match day, start to finish",
+    matchdayP: "The whole flow works end to end, on a phone too:",
+    matchday: [
+      "**Call-up** with a three-tap cycle; injured or unavailable players are locked out.",
+      "**Tactics board** with mouse, touch and keyboard drag, and a formation per match.",
+      "**Live report**: a clock per half and 15+ action types, each logged in one or two taps.",
+      "**Automatic stats** at the final whistle: individual, team, per match and historical.",
+      "**PDF reports** for the match report, call-up, team or a player, with the club crest.",
+    ],
+    liveTitle: "Live match report, even without signal",
+    liveP1:
+      "Many pitches have no signal. Every report action is saved on the device first (IndexedDB) and uploaded as soon as the network is back. The server recognises retries, so **nothing is ever duplicated** however patchy the connection.",
+    liveP2:
+      "If someone logs something late, they can set the real minute of the action. And once the match is over, the report can be corrected by adding or removing actions: the stats recalculate on their own.",
+    statsTitle: "Stats that calculate themselves",
+    statsP:
+      "There are no stored totals that can drift out of sync: everything is computed from the report's events, a single source of truth.",
+    statsBullets: [
+      "Filters by season, last 5 or 10 matches and competition (league, cup, friendlies).",
+      "Balls won and lost: totals, per match, per 90 minutes and ratio.",
+      "Head-to-head comparisons or a table of up to 6 players.",
+      "A “How's it going” overview for anyone running several teams.",
+    ],
+    plansTitle: "Two plans, no lock-in",
+    plansP: "Pick the one that fits and move up or down whenever you like.",
+    plans: [
+      {
+        name: "Coach",
+        for: "For coaches running their own teams.",
+        price: "€8",
+        per: "/month",
+        yearly: "or €80 a year, 1 team included",
+        extra: "+€2 a month per extra team",
+        features: ["Squad and player profiles", "Call-ups and tactics board", "Live match report", "Stats and PDF reports"],
+        example: "A coach with 3 teams pays €12 a month.",
+      },
+      {
+        name: "Club",
+        for: "The whole club in one app, with its structure.",
+        price: "€10",
+        per: "/month",
+        yearly: "or €100 a year, 1 team included",
+        extra: "+€10 a month per extra team",
+        features: ["Everything in the Coach plan", "Unlimited club leads and coordinators", "Coaches for every team included", "Overview and comparisons across teams", "Club crest and colours in the app and PDFs"],
+        example: "A club with 6 teams pays €60 a month.",
+      },
+    ],
+    plansFeatured: "Whole club",
+    plansNote: "Annual billing: two months free. Pay for 10 months, use it for 12.",
+    onboardTitle: "How a club gets started",
+    onboardP: "Three pieces of information and the club is ready to go shortly:",
+    onboard: [
+      { h: "The club", p: "Its full name, exactly as it should appear in the app and on PDFs." },
+      { h: "The people", p: "Name, email and role of each club lead, coordinator and coach, and which coaches each coordinator manages." },
+      { h: "The teams", p: "Name, age group, men's, women's or mixed, 11 or 7-a-side, and which coach runs it." },
+    ],
+    onboardNote:
+      "Everyone gets their username and a temporary password by email; the app asks them to change it the first time they sign in.",
+    mobileTitle: "Built for the touchline",
+    mobileP:
+      "Responsive on phone, tablet and desktop, installable as an app (PWA), with dark mode and wording that adapts to each team's gender, on screen and in PDFs.",
+    archTitle: "How it's built",
+    archSteps: [
+      "**Frontend:** React 18, TypeScript, Vite and Tailwind. TanStack Query for server data, Recharts for charts and dnd-kit for the tactics board. Every screen loads on demand.",
+      "**Backend:** FastAPI, SQLAlchemy 2, Pydantic v2 and Alembic. Repositories that always apply the club filter, plus services for stats, quotas, PDFs, email and storage.",
+      "**Security:** JWT with automatic refresh and Argon2id password hashing. **Club isolation above all:** every row carries its club and anything foreign returns 404.",
+      "**Data:** SQLite in development, PostgreSQL (Supabase) in production. Only migrations change the schema; teams, players and matches are archived rather than deleted.",
+      "**Deployment:** web on Vercel, API on Render. URLs, email and storage are environment variables: upgrading a plan touches no code.",
+    ],
+    qualityTitle: "Verified quality",
+    quality: [
+      { v: "547", l: "Backend tests (pytest)" },
+      { v: "173", l: "Frontend tests (Vitest)" },
+      { v: "50/50", l: "E2E steps in a real browser" },
+      { v: "0", l: "Type and lint errors" },
+    ],
+    qualityP:
+      "Tested with all four roles across nine screen sizes, with no overflow and no console errors. The final audit found and fixed real bugs that weren't visible from reading the code, all now covered by tests.",
+    ctaTitle: "Want it for your club?",
+    ctaP: "If you run a club, a section or your own teams, write to me and I'll walk you through the app with sample data. The code is private.",
+    ctaContact: "Request a demo",
+    shotCaptions: {
+      panorama: "“How's it going”: several teams at a glance.",
+      live: "Live report of a finished match, with its actions by minute.",
+      team: "Team home: next match, shortcuts and squad status.",
+      squad: "Squad with statuses: active, injured, unavailable or left.",
+      lineup: "Tactics board with the match formation and call-up.",
+      stats: "Team stats with season and competition filters.",
+      mobile: "On a phone, with bottom navigation built for one-handed use.",
+    },
   },
 };
 export type PagesDict = typeof pagesEn;

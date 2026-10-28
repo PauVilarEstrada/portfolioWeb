@@ -2,9 +2,10 @@ import type { PagesDict } from "./pages.en";
 
 export const pagesEs: PagesDict = {
   common: {
-    back: "Volver a proyectos",
-    repo: "Código en GitHub ↗",
+    back: "Todos los proyectos",
+    repo: "Código en GitHub",
     tech: "Stack técnico",
+    next: "Siguiente proyecto",
   },
 
   pacman: {
@@ -128,7 +129,7 @@ export const pagesEs: PagesDict = {
     subtitle:
       "Una tienda online completa, de punta a punta: navegar el catálogo, llenar un carrito que sobrevive a un refresco, iniciar sesión de forma segura y gestionar todo el inventario desde un **panel de administración** — con **caché Redis** en las rutas calientes y las imágenes servidas desde un CDN.",
     tags: ["React", "Node.js", "MongoDB", "Redis", "Cloudinary", "JWT", "Zustand"],
-    ctaLive: "Abrir la tienda ↗",
+    ctaLive: "Abrir la tienda",
     specs: [
       { v: "MERN", l: "Stack" },
       { v: "JWT", l: "Autenticación" },
@@ -178,8 +179,8 @@ export const pagesEs: PagesDict = {
     tryTitle: "Pruébala",
     tryP:
       "La tienda está desplegada y es código abierto. La instancia gratuita de Render se duerme cuando está inactiva, así que la primera carga tras un rato puede tardar unos segundos en despertar.",
-    liveBtn: "Ver la tienda ↗",
-    demoBtn: "Vídeo demo ↗",
+    liveBtn: "Ver la tienda",
+    demoBtn: "Vídeo demo",
   },
   nba: {
     label: "Analítica deportiva full-stack · ML y simulación",
@@ -187,7 +188,7 @@ export const pagesEs: PagesDict = {
     subtitle:
       "Un **laboratorio full-stack de analítica, proyección y simulación NBA**. Compara jugadores y equipos, proyecta una línea contra una defensa concreta, pronostica un partido y monta una plantilla con presupuesto para jugar contra un equipo real con un **simulador posesión a posesión** — en inglés y en castellano.",
     tags: ["React + TypeScript", "FastAPI", "XGBoost", "Regresión cuantílica", "Monte Carlo", "PostgreSQL", "Bilingüe"],
-    ctaLive: "Ver la web en directo ↗",
+    ctaLive: "Ver la web en directo",
     glance: [
       { v: "14", l: "Rutas" },
       { v: "4", l: "Modelos" },
@@ -443,7 +444,7 @@ export const pagesEs: PagesDict = {
     subtitle:
       "Mi **primer juego móvil publicado**: cuatro modos de puzzle lógico en una app Android offline y completamente silenciosa, hecha con **React Native y TypeScript**. Más de 1.200 niveles generados y verificados por solución, bilingüe y con anuncios — diseñado, construido, probado y publicado en la Play Store de principio a fin.",
     tags: ["React Native", "TypeScript", "Redux Toolkit", "Android", "AdMob", "Offline-first", "i18n", "Publicado"],
-    ctaStore: "Descargar en Google Play ↗",
+    ctaStore: "Descargar en Google Play",
     ctaModes: "Ver los modos de juego",
     glanceTitle: "De un vistazo",
     glance: [
@@ -557,7 +558,151 @@ export const pagesEs: PagesDict = {
     downloadP:
       "MINDFLOW está **publicada y es gratuita en Google Play**, en todo el mundo, para Android. Sin cuenta, sin registro y sin conexión a internet para jugar.",
     storeMeta: "com.pvilar.mindflow · v1.1.1 · Gratis · Android",
-    storeBtn: "Consíguela en Google Play ↗",
+    storeBtn: "Consíguela en Google Play",
     storeListing: "Ficha en la tienda:",
+  },
+
+  tactiq: {
+    label: "SaaS multi-club · Gestión deportiva de fútbol",
+    title: "TactiQ 360",
+    subtitle:
+      "La plataforma para gestionar un club de fútbol entero desde una sola app: equipos, fichas, convocatorias, pizarra táctica, **acta del partido en directo**, estadísticas automáticas e informes en PDF. Para fútbol 11 y fútbol 7, masculino, femenino y mixto.",
+    tags: ["React", "TypeScript", "FastAPI", "PostgreSQL", "PWA offline"],
+    ctaLive: "Abrir tactiq360.vercel.app",
+    ctaPlans: "Ver planes",
+    specs: [
+      { v: "3", l: "Perfiles de club" },
+      { v: "F11 · F7", l: "Formatos" },
+      { v: "720", l: "Tests automáticos" },
+      { v: "Offline", l: "Acta en directo" },
+    ],
+    forTitle: "Para quién es",
+    forP:
+      "Para clubes y academias que quieren ordenar el día a día deportivo sin hojas de cálculo ni actas en papel, y para entrenadores que llevan sus equipos por su cuenta. Sirve igual para un club entero, para una sección o para un único entrenador.",
+    audiences: [
+      { h: "Dirección del club", p: "Visión global de todos los equipos, comparativas entre ellos y la imagen del club (escudo y colores) en la app y en cada PDF." },
+      { h: "Coordinadores", p: "Un panorama de su sección o categoría: sus entrenadores, sus equipos y cómo va cada uno, sin ver lo que no les toca." },
+      { h: "Entrenadores", p: "Plantilla, convocatoria, pizarra y acta en directo desde el móvil, en la banda. Las estadísticas salen solas al terminar." },
+    ],
+    whatTitle: "Qué resuelve",
+    whatP1:
+      "Nace de **TactiQ**, el acta virtual que construí para el cuerpo técnico del Sant Vicenç dels Horts femenino: sustituir el acta de papel por una app en la que cada acción del partido se registra con uno o dos toques y las estadísticas se calculan solas.",
+    whatP2:
+      "TactiQ 360 lleva esa idea a **clubes completos**: varios equipos, varias personas con distintos cargos y un sistema de permisos que garantiza que cada uno ve y gestiona solo lo suyo. Es una aplicación independiente, con su propio repositorio, base de datos y despliegue.",
+    profilesTitle: "Tres perfiles, cada uno a lo suyo",
+    profilesP:
+      "La estructura del club se dibuja como un árbol: responsable, coordinadores, entrenadores y equipos. Cada persona solo da de alta por debajo de sí misma, y todos los permisos se comprueban en el servidor, no ocultando botones.",
+    profiles: [
+      {
+        h: "Responsable",
+        sub: "La dirección del club",
+        sees: "Ve todo el club: coordinadores, entrenadores y todos los equipos.",
+        can: ["Da de alta coordinadores y entrenadores", "Visión global y comparativas entre equipos", "Escudo, colores y ficha del club", "Informes en PDF de cualquier equipo"],
+      },
+      {
+        h: "Coordinador",
+        sub: "Quien lleva una sección o categoría",
+        sees: "Ve su sección: sus entrenadores y sus equipos.",
+        can: ["Da de alta a sus entrenadores", "Panorama y comparativa de sus equipos", "Plantillas, partidos y actas de su sección"],
+      },
+      {
+        h: "Entrenador",
+        sub: "El día a día con su equipo",
+        sees: "Ve solo los equipos que tiene asignados.",
+        can: ["Plantilla y fichas de jugadores", "Convocatorias y pizarra táctica", "Acta del partido en directo", "Estadísticas y PDF"],
+      },
+    ],
+    profilesNote: "Los jugadores no necesitan cuenta: son fichas dentro de su equipo.",
+    matchdayTitle: "Un día de partido, de principio a fin",
+    matchdayP:
+      "El flujo completo funciona de punta a punta, también desde el móvil:",
+    matchday: [
+      "**Convocatoria** con un ciclo de tres toques; quien está lesionado o no disponible queda bloqueado.",
+      "**Pizarra táctica** con arrastre por ratón, dedo y teclado, y la formación de cada partido.",
+      "**Acta en directo**: reloj por partes y más de 15 tipos de acción, registrados con uno o dos toques.",
+      "**Estadísticas automáticas** al finalizar: individuales, de equipo, por partido e históricas.",
+      "**Informes en PDF** del acta, la convocatoria, el equipo o un jugador, con el escudo del club.",
+    ],
+    liveTitle: "Acta en directo, incluso sin cobertura",
+    liveP1:
+      "En muchos campos no hay cobertura. Cada acción del acta se guarda primero en el dispositivo (IndexedDB) y se sube en cuanto vuelve la red. El servidor reconoce los reintentos, así que **nada se duplica** aunque la conexión vaya y venga.",
+    liveP2:
+      "Si alguien apunta algo tarde, puede indicar el minuto real de la acción. Y con el partido terminado, el acta se puede corregir añadiendo o borrando acciones: las estadísticas se recalculan solas.",
+    statsTitle: "Estadísticas que se calculan solas",
+    statsP:
+      "No hay totales guardados que se puedan desincronizar: todo se calcula a partir de los eventos del acta, una sola fuente de verdad.",
+    statsBullets: [
+      "Filtros por temporada, últimos 5 o 10 partidos y competición (liga, copa, amistosos).",
+      "Balones recuperados y perdidos: totales, por partido, por 90 minutos y ratio.",
+      "Comparativas cara a cara o en tabla de hasta 6 jugadores.",
+      "Panorama «Cómo va todo» para quien lleva varios equipos.",
+    ],
+    plansTitle: "Dos planes, sin permanencia",
+    plansP: "Se elige el que encaja y se puede subir o bajar cuando se quiera.",
+    plans: [
+      {
+        name: "Entrenador",
+        for: "Para el entrenador que lleva sus propios equipos.",
+        price: "8 €",
+        per: "/mes",
+        yearly: "o 80 € al año, 1 equipo incluido",
+        extra: "+2 € al mes por cada equipo extra",
+        features: ["Plantilla y fichas de jugadores", "Convocatorias y pizarra táctica", "Acta del partido en directo", "Estadísticas e informes en PDF"],
+        example: "Un entrenador con 3 equipos paga 12 € al mes.",
+      },
+      {
+        name: "Club",
+        for: "Todo el club en una sola app, con su estructura.",
+        price: "10 €",
+        per: "/mes",
+        yearly: "o 100 € al año, 1 equipo incluido",
+        extra: "+10 € al mes por cada equipo extra",
+        features: ["Todo lo del plan Entrenador", "Responsables y coordinadores ilimitados", "Entrenadores de cada equipo incluidos", "Visión global y comparativas entre equipos", "Escudo y colores del club en la app y los PDF"],
+        example: "Un club con 6 equipos paga 60 € al mes.",
+      },
+    ],
+    plansFeatured: "Todo el club",
+    plansNote: "Pago anual: dos meses gratis. Se pagan 10 meses y se usan 12.",
+    onboardTitle: "Cómo se da de alta un club",
+    onboardP: "Con tres datos el club queda listo para empezar en poco tiempo:",
+    onboard: [
+      { h: "El club", p: "El nombre completo, tal como aparecerá en la app y en los PDF." },
+      { h: "Las personas", p: "Nombre, correo y cargo de cada responsable, coordinador y entrenador, y qué entrenadores lleva cada coordinador." },
+      { h: "Los equipos", p: "Nombre, categoría, masculino, femenino o mixto, fútbol 11 o 7, y qué entrenador lo lleva." },
+    ],
+    onboardNote:
+      "Cada persona recibe en su correo su usuario y una contraseña temporal; al entrar por primera vez la app le pide cambiarla.",
+    mobileTitle: "Pensada para la banda",
+    mobileP:
+      "Diseño adaptable a móvil, tablet y escritorio, instalable como app (PWA), con modo oscuro y textos que se adaptan al género de cada equipo, en pantalla y en los PDF.",
+    archTitle: "Cómo está construido",
+    archSteps: [
+      "**Frontend:** React 18, TypeScript, Vite y Tailwind. TanStack Query para los datos del servidor, Recharts para las gráficas y dnd-kit para la pizarra. Cada pantalla se carga bajo demanda.",
+      "**Backend:** FastAPI, SQLAlchemy 2, Pydantic v2 y Alembic. Repositorios con el filtro de club siempre aplicado y servicios para estadísticas, cupos, PDF, correo y almacenamiento.",
+      "**Seguridad:** JWT con renovación automática y contraseñas con Argon2id. **Aislamiento entre clubes por encima de todo:** cada fila lleva su club y lo ajeno responde 404.",
+      "**Datos:** SQLite en desarrollo y PostgreSQL (Supabase) en producción. El esquema solo lo cambian las migraciones; equipos, fichas y partidos se archivan en lugar de borrarse.",
+      "**Despliegue:** web en Vercel y API en Render. URLs, correo y almacenamiento son variables de entorno: subir de plan no toca código.",
+    ],
+    qualityTitle: "Calidad comprobada",
+    quality: [
+      { v: "547", l: "Tests de backend (pytest)" },
+      { v: "173", l: "Tests de frontend (Vitest)" },
+      { v: "50/50", l: "Pasos E2E con navegador real" },
+      { v: "0", l: "Errores de tipos y de lint" },
+    ],
+    qualityP:
+      "Probada con los cuatro perfiles en nueve tamaños de pantalla, sin desbordes ni errores de consola. La auditoría final encontró y corrigió errores reales que no se veían leyendo el código, todos cubiertos ahora por tests.",
+    ctaTitle: "¿La quieres para tu club?",
+    ctaP: "Si llevas un club, una sección o tus propios equipos, escríbeme y te enseño la app con datos de ejemplo. El código es privado.",
+    ctaContact: "Pedir una demo",
+    shotCaptions: {
+      panorama: "«Cómo va todo»: el panorama de varios equipos de un vistazo.",
+      live: "Acta en directo de un partido terminado, con sus acciones por minuto.",
+      team: "Inicio de equipo: próximo partido, accesos rápidos y estado de la plantilla.",
+      squad: "Plantilla con estados: activa, lesionada, no disponible o baja.",
+      lineup: "Pizarra táctica con la formación y la convocatoria del partido.",
+      stats: "Estadísticas de equipo con filtros por temporada y competición.",
+      mobile: "En el móvil, con la navegación inferior pensada para usar con una mano.",
+    },
   },
 };

@@ -1,18 +1,28 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-/** Every route change starts at the top — otherwise a project page opens mid-scroll. */
+/** Lazy pages need a moment to mount before an in-page anchor exists. */
+const HASH_RETRY_MS = 60;
+const HASH_MAX_TRIES = 30;
+
+/** Every route change starts at the top, unless the URL points at an anchor. */
 export default function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    if (window.location.hash) return; // let in-page anchors work
-    try {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
-    } catch {
-      window.scrollTo(0, 0); // older browsers without the options object
+    if (hash) {
+      let tries = 0;
+      const id = window.setInterval(() => {
+        const el = document.getElementById(decodeURIComponent(hash.slice(1)));
+        if (el || ++tries > HASH_MAX_TRIES) {
+          window.clearInterval(id);
+          el?.scrollIntoView({ block: "start" });
+        }
+      }, HASH_RETRY_MS);
+      return () => window.clearInterval(id);
     }
-  }, [pathname]);
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
 
   return null;
 }
