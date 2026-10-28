@@ -6,6 +6,7 @@ import { useI18n } from "../i18n/LanguageContext";
 import Reveal from "./Reveal";
 import WorkList from "./WorkList";
 import HeroCanvas from "./HeroCanvas";
+import PenaltyGame from "./game/PenaltyGame";
 import { SOCIAL } from "../data/projects";
 
 import brontoMark from "../assets/brontobyte/brontobyte-mark.webp";
@@ -179,6 +180,9 @@ export default function HomePage() {
               {h.sportLink} <FiArrowRight aria-hidden="true" />
             </Link>
           </div>
+        </div>
+        <div className="container">
+          <PenaltyGame />
         </div>
       </section>
 
