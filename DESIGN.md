@@ -68,8 +68,9 @@ radii 20 / 28 / 44px for images, panels and the footer.
 - **Hero**: CSS entrance (name lines rise, rule draws, badge spins in) over a three.js scene — particles forming PV that
   scatter under the pointer, circled by tool marks (simple-icons) on two tilted orbits; a mark's name shows on hover.
 - **Page curtain**: the night panel sweeps in with the destination's name, the route swaps underneath, the panel leaves.
-- **Game page** (`/play`, linked from the footer): a 3D pool to swim through, with a buoy per project, club and
-  career step; the penalty game with a best score; an automation puzzle (data → n8n → private LLM → result);
+- **Game page** (`/play`, linked from the footer): a water polo match in a 3D pool (mystery buoys that open with the
+  ball, three defenders who steal it, a side panel with what each buoy hides, a final shot at goal, synthesised
+  sound); the penalty game with a best score; an automation puzzle (six challenges, pieces mixed with decoys);
   and the PV playground (blow up PV, replay the intro, run the curtain).
 - **Penalty mini-game** (home, the Game page and the 404 page): 2D canvas, five shots against Pau, who saves a bit over half.
 - Interaction feedback otherwise (row tint in the project colour, arrow rotation, underline sweep).

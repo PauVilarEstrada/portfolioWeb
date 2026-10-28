@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { FiArrowUpRight, FiPlay } from "react-icons/fi";
+import { FiArrowUpRight, FiPlay, FiRotateCcw, FiVolume2, FiVolumeX } from "react-icons/fi";
 import { useI18n } from "../../i18n/LanguageContext";
 import { rt } from "../../i18n/rich";
 import { PROJECTS } from "../../data/projects";
+import { createSfx } from "./sfx";
 
 // Where each buoy floats (x, z in metres): projects on the left half, work and
 // study in the middle, the clubs near the goal on the right.
@@ -65,61 +65,191 @@ function useStations() {
   }, [t]);
 }
 
-/** "Pool of projects": the 3D swim game, loaded when the visitor presses start. */
+const BEST_KEY = "pv-swim-best";
+const SOUND_KEY = "pv-sound";
+/** How long a hint stays up. */
+const HINT_MS = 2600;
+const TICK_MS = 250;
+
+const store = {
+  get: key => { try { return localStorage.getItem(key); } catch { return null; } },
+  set: (key, value) => { try { localStorage.setItem(key, value); } catch { /* storage blocked */ } },
+};
+const clock = seconds => `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, "0")}`;
+/** Links open in a new tab so the match isn't lost. */
+const pageUrl = to => `${import.meta.env.BASE_URL}${to.replace(/^\//, "")}`;
+
+/** "Pool of projects": the water polo game, loaded when the visitor presses start; the panel tells what each buoy hides. */
 export default function SwimGame() {
   const { t } = useI18n();
   const s = t.play.swim;
   const stations = useStations();
   const stage = useRef(null);
   const game = useRef(null);
+  const sfx = useRef(null);
+  const startedAt = useRef(0);
+  const hintTimer = useRef(0);
   const [started, setStarted] = useState(false);
   const [failed, setFailed] = useState(false);
-  const [near, setNear] = useState(null);
   const [found, setFound] = useState(() => new Set());
+  const [selected, setSelected] = useState(null);
+  const [hint, setHint] = useState(null);
+  const [won, setWon] = useState(false);
+  const [elapsed, setElapsed] = useState(0);
+  const [best, setBest] = useState(() => Number(store.get(BEST_KEY)) || 0);
+  const [muted, setMuted] = useState(() => store.get(SOUND_KEY) === "off");
 
-  useEffect(() => () => game.current?.dispose(), []);
+  const goalReady = found.size === stations.length;
 
-  const start = async () => {
-    setStarted(true);
-    const { createSwimGame } = await import("../../three/swimScene");
-    if (!stage.current) return;
-    game.current = createSwimGame(stage.current, {
-      stations,
-      onNear: i => setNear(i),
-      onDiscover: i => setFound(prev => new Set(prev).add(i)),
-    });
-    if (!game.current) setFailed(true);
-    stage.current.focus();
+  useEffect(() => () => {
+    game.current?.dispose();
+    window.clearTimeout(hintTimer.current);
+  }, []);
+
+  useEffect(() => {
+    if (!started || won || failed) return undefined;
+    const id = window.setInterval(() => setElapsed((performance.now() - startedAt.current) / 1000), TICK_MS);
+    return () => window.clearInterval(id);
+  }, [started, won, failed]);
+
+  const showHint = kind => {
+    setHint(kind);
+    window.clearTimeout(hintTimer.current);
+    if (kind !== "goalReady") hintTimer.current = window.setTimeout(() => setHint(null), HINT_MS);
   };
 
-  const card = near === null ? null : stations[near];
-  const allFound = found.size === stations.length;
+  const launch = async () => {
+    const { createSwimGame } = await import("../../three/swimScene");
+    if (!stage.current) return;
+    startedAt.current = performance.now();
+    game.current = createSwimGame(stage.current, {
+      stations,
+      sfx: sfx.current,
+      onNear: i => { if (i !== null) setSelected(i); },
+      onDiscover: i => {
+        setFound(prev => new Set(prev).add(i));
+        setSelected(i);
+      },
+      onHint: showHint,
+      onGoal: () => {
+        const time = (performance.now() - startedAt.current) / 1000;
+        setWon(true);
+        setHint(null);
+        setElapsed(time);
+        setBest(prev => {
+          if (prev && prev <= time) return prev;
+          store.set(BEST_KEY, String(time));
+          return time;
+        });
+      },
+    });
+    if (!game.current) setFailed(true);
+    stage.current.focus({ preventScroll: true });
+  };
+
+  const start = () => {
+    sfx.current = sfx.current || createSfx();
+    sfx.current.setMuted(muted);
+    sfx.current.unlock();
+    setStarted(true);
+    launch();
+  };
+
+  const restart = () => {
+    game.current?.dispose();
+    game.current = null;
+    setFound(new Set());
+    setSelected(null);
+    setHint(null);
+    setWon(false);
+    setElapsed(0);
+    launch();
+  };
+
+  const toggleSound = () => {
+    const next = !muted;
+    setMuted(next);
+    sfx.current?.setMuted(next);
+    store.set(SOUND_KEY, next ? "off" : "on");
+  };
+
+  const current = selected === null ? null : stations[selected];
 
   return (
     <div className="swim">
-      <div ref={stage} className={`swim-stage${started ? " is-started" : ""}`} tabIndex={started ? 0 : -1} aria-label={`${s.title}. ${s.controls}`}>
-        {!started && (
-          <button type="button" className="btn btn--primary swim-start" onClick={start}>
-            <FiPlay aria-hidden="true" /> {s.start}
-          </button>
-        )}
-        {failed && <p className="swim-fallback">{s.fallback}</p>}
-        {started && !failed && (
-          <p className="swim-progress" aria-live="polite">
-            {allFound ? s.done : `${found.size}/${stations.length} ${s.found}`}
-          </p>
-        )}
-        {started && !failed && !card && !allFound && <p className="swim-hint">{s.hint}</p>}
-        {card && (
-          <article className="swim-card" style={{ "--accent": card.color }} aria-live="polite">
-            <p className="swim-card-sub">{card.sub}</p>
-            <h3>{card.title}</h3>
-            <p className="swim-card-body">{rt(card.body)}</p>
-            <Link to={card.link.to} className="swim-card-link">
-              {card.link.label} <FiArrowUpRight aria-hidden="true" />
-            </Link>
-          </article>
-        )}
+      <div className="swim-layout">
+        <div ref={stage} className={`swim-stage${started ? " is-started" : ""}`} tabIndex={started ? 0 : -1} aria-label={`${s.title}. ${s.controls}`}>
+          {!started && (
+            <button type="button" className="btn btn--primary swim-start" onClick={start}>
+              <FiPlay aria-hidden="true" /> {s.start}
+            </button>
+          )}
+          {failed && <p className="swim-fallback">{s.fallback}</p>}
+          {started && !failed && (
+            <>
+              <p className="swim-hud">
+                <span>{found.size}/{stations.length} {s.found}</span>
+                <span>{s.time} {clock(elapsed)}</span>
+                {best > 0 && <span>{s.best} {clock(best)}</span>}
+              </p>
+              <button type="button" className="swim-sound" onClick={toggleSound} aria-label={muted ? s.soundOn : s.soundOff} title={muted ? s.soundOn : s.soundOff}>
+                {muted ? <FiVolumeX aria-hidden="true" /> : <FiVolume2 aria-hidden="true" />}
+              </button>
+              {hint && !won && <p className="swim-toast" role="status">{s.hints[hint]}</p>}
+              {goalReady && !won && (
+                <button type="button" className="btn btn--primary swim-shoot" onClick={() => game.current?.shoot()}>
+                  {s.shoot}
+                </button>
+              )}
+              {won && (
+                <div className="swim-goal" role="status">
+                  <p className="swim-goal-title">{s.goal}</p>
+                  <p>{s.goalText}</p>
+                  <p className="swim-goal-time">{s.time} {clock(elapsed)} · {s.best} {clock(best)}</p>
+                  <button type="button" className="btn btn--light" onClick={restart}>
+                    <FiRotateCcw aria-hidden="true" /> {s.again}
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+
+        <aside className="swim-panel" aria-live="polite">
+          <div className="swim-panel-head">
+            <h3>{s.panelTitle}</h3>
+            <span>{found.size}/{stations.length}</span>
+          </div>
+          {current ? (
+            <article key={selected} className="swim-info" style={{ "--accent": current.color }}>
+              <p className="swim-info-sub">{current.sub}</p>
+              <h4>{current.title}</h4>
+              <p className="swim-info-body">{rt(current.body)}</p>
+              <a href={pageUrl(current.link.to)} target="_blank" rel="noopener noreferrer" className="swim-info-link">
+                {current.link.label} <FiArrowUpRight aria-hidden="true" />
+                <span className="sr-only"> ({s.newTab})</span>
+              </a>
+            </article>
+          ) : (
+            <p className="swim-panel-empty">{s.panelEmpty}</p>
+          )}
+          {found.size > 0 && (
+            <ul className="swim-found">
+              {[...found].map(i => (
+                <li key={i}>
+                  <button
+                    type="button"
+                    className={i === selected ? "is-active" : undefined}
+                    style={{ "--accent": stations[i].color }}
+                    onClick={() => setSelected(i)}
+                  >
+                    {stations[i].label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </aside>
       </div>
       <p className="swim-help">{s.controls}</p>
     </div>

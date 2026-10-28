@@ -1,38 +1,71 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { FiMail, FiMessageSquare, FiRotateCcw, FiUserCheck, FiArrowRight } from "react-icons/fi";
-import { siGmail, siZoho, siVeeam, siGoogledrive, siN8n, siOllama } from "simple-icons";
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  FiArrowRight, FiCheckSquare, FiClock, FiDatabase, FiEdit3, FiFileText, FiFilter, FiGitBranch,
+  FiInbox, FiMail, FiMessageSquare, FiRotateCcw, FiSave, FiSend, FiTag, FiUserCheck, FiZap,
+} from "react-icons/fi";
+import { siGmail, siZoho, siVeeam, siGoogledrive, siN8n, siOllama, siBitdefender } from "simple-icons";
 import { useI18n } from "../../i18n/LanguageContext";
 
-const COLUMNS = [
-  { key: "source", nodes: ["gmail", "zoho", "veeam", "drive"] },
-  { key: "flow", nodes: ["n8n"] },
-  { key: "ai", nodes: ["llm"] },
-  { key: "output", nodes: ["teams", "crm", "email"] },
-];
-const BRAND = { gmail: siGmail, zoho: siZoho, veeam: siVeeam, drive: siGoogledrive, n8n: siN8n, llm: siOllama };
-const GLYPH = { teams: FiMessageSquare, crm: FiUserCheck, email: FiMail };
+/** Every piece in the box: its kind and its icon (a brand mark or a line icon). */
+const NODES = {
+  cron: { type: "trigger", icon: FiClock },
+  mailIn: { type: "trigger", icon: FiInbox },
+  form: { type: "trigger", icon: FiFileText },
+  webhook: { type: "trigger", icon: FiZap },
+  gmail: { type: "source", brand: siGmail },
+  outlook: { type: "source", icon: FiMail },
+  zoho: { type: "source", brand: siZoho },
+  veeam: { type: "source", brand: siVeeam },
+  drive: { type: "source", brand: siGoogledrive },
+  bitdefender: { type: "source", brand: siBitdefender },
+  n8n: { type: "flow", brand: siN8n },
+  ifNode: { type: "logic", icon: FiGitBranch },
+  filter: { type: "logic", icon: FiFilter },
+  approve: { type: "logic", icon: FiCheckSquare },
+  llm: { type: "ai", brand: siOllama },
+  rag: { type: "ai", icon: FiDatabase },
+  crm: { type: "action", icon: FiUserCheck },
+  ticket: { type: "action", icon: FiTag },
+  save: { type: "action", icon: FiSave },
+  reply: { type: "action", icon: FiEdit3 },
+  teams: { type: "notify", icon: FiMessageSquare },
+  email: { type: "notify", icon: FiSend },
+};
 /** How long a wrong piece shakes. */
 const WRONG_MS = 650;
 
-function NodeIcon({ id }) {
-  const icon = BRAND[id];
-  if (icon) {
-    const color = icon.hex.toUpperCase() === "FFFFFF" ? "#0c1611" : `#${icon.hex}`;
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true" fill={color}><path d={icon.path} /></svg>
-    );
+/** The same shuffle every time for a given challenge, so pieces don't jump around on re-render. */
+function shuffled(list, seed) {
+  const out = [...list];
+  let x = seed + 1;
+  for (let i = out.length - 1; i > 0; i--) {
+    x = (x * 9301 + 49297) % 233280;
+    const j = Math.floor((x / 233280) * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
   }
-  const Glyph = GLYPH[id];
-  return <Glyph aria-hidden="true" />;
+  return out;
 }
 
-/** Click the pieces in order (data → n8n → LLM → result) to build each automation. */
+function NodeIcon({ id }) {
+  const node = NODES[id];
+  if (node.brand) {
+    const hex = node.brand.hex.toUpperCase();
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill={hex === "FFFFFF" ? "#0c1611" : `#${hex}`}><path d={node.brand.path} /></svg>
+    );
+  }
+  const Icon = node.icon;
+  return <Icon aria-hidden="true" />;
+}
+
+/** Pick the pieces in order to build each automation; six challenges, pieces mixed with decoys. */
 export default function AutomationPuzzle() {
   const { t } = useI18n();
   const z = t.play.puzzle;
   const [level, setLevel] = useState(0);
   const [picks, setPicks] = useState([]);
   const [wrong, setWrong] = useState(null);
+  const [mistakes, setMistakes] = useState(0);
   const [lines, setLines] = useState([]);
   const board = useRef(null);
   const nodeRefs = useRef({});
@@ -40,6 +73,7 @@ export default function AutomationPuzzle() {
   const scenario = z.scenarios[level];
   const done = picks.length === scenario.path.length;
   const last = level === z.scenarios.length - 1;
+  const pieces = useMemo(() => shuffled(Object.keys(NODES), level), [level]);
 
   const measure = useCallback(() => {
     const root = board.current?.getBoundingClientRect();
@@ -57,7 +91,7 @@ export default function AutomationPuzzle() {
     setLines(next);
   }, [picks]);
 
-  useLayoutEffect(measure, [measure]);
+  useLayoutEffect(measure, [measure, pieces]);
   useEffect(() => {
     const ro = new ResizeObserver(measure);
     if (board.current) ro.observe(board.current);
@@ -65,61 +99,62 @@ export default function AutomationPuzzle() {
   }, [measure]);
 
   const pick = id => {
-    if (done) return;
+    if (done || picks.includes(id)) return;
     if (id === scenario.path[picks.length]) {
       setPicks(p => [...p, id]);
       setWrong(null);
     } else {
       setWrong(id);
+      setMistakes(m => m + 1);
       window.setTimeout(() => setWrong(w => (w === id ? null : w)), WRONG_MS);
     }
   };
   const advance = () => {
     setPicks([]);
+    if (last) setMistakes(0);
     setLevel(l => (last ? 0 : l + 1));
   };
 
   return (
     <div className="puzzle">
       <div className="puzzle-brief">
-        <p className="puzzle-step">{z.scenario} {level + 1} {z.of} {z.scenarios.length}</p>
+        <p className="puzzle-step">
+          {z.scenario} {level + 1} {z.of} {z.scenarios.length} · {mistakes} {z.mistakes}
+        </p>
         <p className="puzzle-goal">{scenario.goal}</p>
-        <ol className="puzzle-progress" aria-label={z.pick}>
+        <ol className="puzzle-progress">
           {scenario.path.map((id, i) => (
-            <li key={id} className={i < picks.length ? "is-done" : i === picks.length ? "is-next" : undefined}>
-              {i < picks.length ? z.nodes[id] : z.columns[COLUMNS[i].key]}
+            <li key={`${id}-${i}`} className={i < picks.length ? "is-done" : i === picks.length ? "is-next" : undefined}>
+              {i < picks.length ? z.nodes[id] : z.types[NODES[id].type]}
             </li>
           ))}
         </ol>
       </div>
 
-      <div ref={board} className="puzzle-board">
+      <div ref={board} className="puzzle-board puzzle-board--mixed">
         <svg className="puzzle-lines" aria-hidden="true">
           {lines.map(l => (
             <line key={l.key} x1={l.a.x} y1={l.a.y} x2={l.b.x} y2={l.b.y} />
           ))}
         </svg>
-        {COLUMNS.map(col => (
-          <div key={col.key} className="puzzle-col">
-            <p className="puzzle-col-title">{z.columns[col.key]}</p>
-            {col.nodes.map(id => {
-              const state = picks.includes(id) ? " is-picked" : wrong === id ? " is-wrong" : "";
-              return (
-                <button
-                  key={id}
-                  ref={el => { nodeRefs.current[id] = el; }}
-                  type="button"
-                  className={`puzzle-node${state}`}
-                  onClick={() => pick(id)}
-                  aria-pressed={picks.includes(id)}
-                >
-                  <span className="puzzle-node-icon"><NodeIcon id={id} /></span>
-                  {z.nodes[id]}
-                </button>
-              );
-            })}
-          </div>
-        ))}
+        {pieces.map(id => {
+          const order = picks.indexOf(id);
+          const state = order >= 0 ? " is-picked" : wrong === id ? " is-wrong" : "";
+          return (
+            <button
+              key={id}
+              ref={el => { nodeRefs.current[id] = el; }}
+              type="button"
+              className={`puzzle-node${state}`}
+              onClick={() => pick(id)}
+              aria-pressed={order >= 0}
+            >
+              <span className="puzzle-node-icon"><NodeIcon id={id} /></span>
+              <span className="puzzle-node-label">{z.nodes[id]}</span>
+              {order >= 0 && <span className="puzzle-node-order">{order + 1}</span>}
+            </button>
+          );
+        })}
       </div>
 
       <p className="puzzle-status" role="status">
