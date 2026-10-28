@@ -19,8 +19,19 @@
   background: radial-gradient(circle, rgba(47, 162, 79, 0.16), rgba(47, 162, 79, 0) 64%);
   pointer-events: none;
 }
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.2s var(--ease);
+}
+.hero-canvas.is-ready { opacity: 1; }
+.hero-canvas canvas { display: block; width: 100% !important; height: 100% !important; }
 .hero-inner {
   position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gutter);
@@ -39,12 +50,18 @@
 .hero-line-text { display: inline-block; }
 .hero-line--1 { padding-left: 1.05em; color: var(--ink-3); font-weight: 400; }
 
+/* The badge sits on the rule like a seal, in the gap between the role and the intro */
 .hero-badge-wrap {
-  position: absolute;
-  right: var(--gutter);
-  top: 0;
-  translate: 0 -40%;
+  grid-column: 6 / span 2;
+  grid-row: 2;
+  justify-self: center;
+  align-self: center;
+  z-index: 2;
+  height: 0;
+  display: flex;
+  align-items: center;
 }
+.hero-rule { grid-row: 2; }
 .hero-badge {
   position: relative;
   display: grid;
@@ -119,7 +136,7 @@
   width: 1.15em;
   height: 1.15em;
   border-radius: 50%;
-  background: var(--surface);
+  background: var(--logo-plate);
   box-shadow: 0 0 0 1px var(--line);
   padding: 0.14em;
 }
@@ -132,8 +149,11 @@
   .hero-role, .hero-side { grid-column: 1 / -1; }
 }
 @media (max-width: 720px) {
-  .hero { min-height: auto; padding-top: calc(var(--nav-h) + 72px); }
-  .hero-badge-wrap { position: static; translate: none; grid-column: 1 / -1; grid-row: 1; justify-self: end; margin-bottom: 16px; }
+  .hero { min-height: auto; }
+  /* On phones the WebGL graph fills the space above the name, so the badge steps aside */
+  .hero-badge-wrap { display: none; }
+  .hero { padding-top: calc(var(--nav-h) + 30vh); }
+  .hero-rule { grid-row: auto; }
   .hero-line--1 { padding-left: 0.5em; }
 }
 
@@ -292,13 +312,14 @@
 .sec-head--tight { margin-bottom: 40px; }
 .tool-groups {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 32px var(--gutter);
 }
 .tool-group { border-top: 1px solid var(--ink); padding-top: 18px; }
 .tool-group h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 14px; }
 .tool-group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; color: var(--ink-2); }
-@media (max-width: 900px) { .tool-groups { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 1100px) { .tool-groups { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .tool-groups { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 340px) { .tool-groups { grid-template-columns: 1fr; } }
 
 /* ── Hero load sequence (the one orchestrated motion on the site) ── */

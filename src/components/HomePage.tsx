@@ -5,6 +5,8 @@ import "../css/HomePage.css";
 import { useI18n } from "../i18n/LanguageContext";
 import Reveal from "./Reveal";
 import WorkList from "./WorkList";
+import HeroCanvas from "./HeroCanvas";
+import PenaltyGame from "./game/PenaltyGame";
 import { SOCIAL } from "../data/projects";
 
 import brontoMark from "../assets/brontobyte/brontobyte-mark.webp";
@@ -13,7 +15,7 @@ import portrait from "../public/PauVilar_NegroPerfil.webp";
 
 /** The badge text is written once in the dictionary and repeated to close the circle. */
 const BADGE_REPEAT = 2;
-const FEATURED = ["tactiq", "ultimus", "nba", "mindflow", "kdd"] as const;
+const FEATURED = ["ultimus", "tactiq", "nba", "mindflow", "kdd"] as const;
 
 function RotatingBadge({ text, label }: { text: string; label: string }) {
   return (
@@ -43,6 +45,7 @@ export default function HomePage() {
     <div className="home lang-fade" key={lang}>
       {/* ── HERO ── */}
       <section className="hero">
+        <HeroCanvas />
         <div className="container hero-inner">
           <h1 className="hero-name">
             {h.nameLines.map((l, i) => (
@@ -177,6 +180,9 @@ export default function HomePage() {
               {h.sportLink} <FiArrowRight aria-hidden="true" />
             </Link>
           </div>
+        </div>
+        <div className="container">
+          <PenaltyGame />
         </div>
       </section>
 

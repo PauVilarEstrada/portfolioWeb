@@ -69,7 +69,7 @@
   pointer-events: none;
   opacity: 0;
   scale: 0.7;
-  box-shadow: 0 30px 60px -20px rgba(12, 22, 17, 0.4);
+  box-shadow: 0 30px 60px -20px var(--shadow);
   transition: opacity 0.35s var(--ease), scale 0.5s var(--ease-out);
   will-change: transform;
 }

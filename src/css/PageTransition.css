@@ -1,0 +1,71 @@
+/* Page-transition curtain. Durations match COVER_MS / REVEAL_MS in PageTransition.tsx. */
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--gutter);
+  padding-bottom: clamp(32px, 7vw, 88px);
+  background: var(--night);
+  color: var(--on-night);
+  pointer-events: none;
+  transform: translateY(100%);
+  visibility: hidden;
+}
+.curtain.is-cover {
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  transition: transform 0.65s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.curtain.is-reveal {
+  visibility: visible;
+  transform: translateY(-100%);
+  transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.curtain::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: var(--green);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+.curtain.is-cover::before { transform: scaleX(1); transition: transform 0.8s var(--ease-out) 0.15s; }
+.curtain.is-reveal::before { transform: scaleX(1); }
+
+.curtain-inner {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  display: grid;
+  gap: 18px;
+  overflow: hidden;
+}
+.curtain-mark {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--on-night);
+  color: var(--night);
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-stretch: 120%;
+}
+.curtain-title {
+  display: block;
+  font-size: clamp(3rem, 11vw, 10rem);
+  font-weight: 600;
+  font-stretch: 116%;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  transform: translateY(110%);
+}
+.curtain.is-cover .curtain-title { transform: none; transition: transform 0.7s var(--ease-out) 0.2s; }
+.curtain.is-reveal .curtain-title { transform: translateY(-30%); opacity: 0; transition: transform 0.6s var(--ease), opacity 0.4s var(--ease); }

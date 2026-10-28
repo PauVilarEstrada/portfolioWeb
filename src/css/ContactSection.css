@@ -1,3 +1,15 @@
+.contact-routes { margin-bottom: clamp(56px, 8vw, 104px); }
+.routes { display: grid; grid-template-columns: 1fr 1fr; gap: 0 var(--gutter); }
+.route { display: grid; gap: 12px; justify-items: start; padding-top: 24px; border-top: 1px solid var(--ink); }
+.route h3 {
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  font-stretch: 110%;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+.route p { color: var(--ink-2); max-width: 52ch; }
+@media (max-width: 760px) { .routes { grid-template-columns: 1fr; gap: 36px; } }
+
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -60,7 +72,7 @@
   padding: clamp(28px, 4vw, 44px);
   border-radius: var(--r-xl);
   background: var(--surface);
-  box-shadow: 0 0 0 1px var(--line), 0 40px 80px -48px rgba(12, 22, 17, 0.35);
+  box-shadow: 0 0 0 1px var(--line), 0 40px 80px -48px var(--shadow);
 }
 .contact-form-title {
   font-size: clamp(1.6rem, 2.6vw, 2.2rem);
@@ -113,8 +125,8 @@
 .field textarea { min-height: 120px; line-height: 1.5; }
 .field input::placeholder, .field textarea::placeholder { color: var(--ink-3); }
 .field input:focus, .field textarea:focus { outline: none; border-bottom-color: var(--green); }
-.field [aria-invalid="true"] { border-bottom-color: #c2410c; }
-.form-error { color: #b4380a; font-size: var(--fs-small); font-weight: 500; }
+.field [aria-invalid="true"] { border-bottom-color: var(--danger); }
+.form-error { color: var(--danger); font-size: var(--fs-small); font-weight: 500; }
 .form-foot { display: grid; gap: 14px; justify-items: start; }
 .form-note { color: var(--ink-3); font-size: var(--fs-small); }
 

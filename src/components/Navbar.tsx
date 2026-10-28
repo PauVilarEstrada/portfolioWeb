@@ -2,22 +2,18 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "../css/Navbar.css";
 import LanguageSwitch from "./LanguageSwitch";
+import ThemeToggle from "./ThemeToggle";
 import { useI18n } from "../i18n/LanguageContext";
 import { SOCIAL } from "../data/projects";
 
-/** Past this many pixels the bar tucks away while scrolling down. */
-const HIDE_AFTER = 240;
-/** Ignore scroll jitter smaller than this. */
-const SCROLL_SLACK = 4;
+/** The bar gets its shadow once the page has moved this far. */
 const SHADOW_AFTER = 12;
 
 export default function NavBar() {
   const { t } = useI18n();
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const lastY = useRef(0);
   const toggleRef = useRef<HTMLButtonElement | null>(null);
 
   const links = [
@@ -29,15 +25,9 @@ export default function NavBar() {
 
   useEffect(() => { setOpen(false); }, [pathname]);
 
-  // Tuck the bar away while reading downwards, bring it back on any upward scroll.
+  // The bar stays put; scrolling only adds a shadow so it reads as floating above the page.
   useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > SHADOW_AFTER);
-      setHidden(y > HIDE_AFTER && y > lastY.current + SCROLL_SLACK);
-      if (y < lastY.current - SCROLL_SLACK || y < HIDE_AFTER) setHidden(false);
-      lastY.current = y;
-    };
+    const onScroll = () => setScrolled(window.scrollY > SHADOW_AFTER);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -62,7 +52,7 @@ export default function NavBar() {
     <>
       <a className="skip-link" href="#main">{t.nav.skip}</a>
 
-      <header className={`nav${hidden && !open ? " is-hidden" : ""}${scrolled ? " is-scrolled" : ""}`}>
+      <header className={`nav${scrolled ? " is-scrolled" : ""}`}>
         <nav className="nav-pill" aria-label={t.nav.menu}>
           <Link to="/" className="nav-brand" aria-label={t.nav.homeLabel}>
             <span className="nav-mark" aria-hidden="true">PV</span>
@@ -81,6 +71,7 @@ export default function NavBar() {
 
           <div className="nav-end">
             <LanguageSwitch />
+            <ThemeToggle />
             <button
               ref={toggleRef}
               type="button"

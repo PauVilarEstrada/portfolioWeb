@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FiArrowUpRight, FiArrowUp } from "react-icons/fi";
 import "../css/Footer.css";
 import { useI18n } from "../i18n/LanguageContext";
 import { SOCIAL } from "../data/projects";
 
+/** The clock only shows minutes, so a 20-second tick is precise enough. */
+const CLOCK_TICK_MS = 20000;
+
+function useCatalanTime(lang: string) {
+  const format = () =>
+    new Intl.DateTimeFormat(lang === "es" ? "es-ES" : "en-GB", {
+      hour: "2-digit", minute: "2-digit", timeZone: "Europe/Madrid", timeZoneName: "short",
+    }).format(new Date());
+  const [now, setNow] = useState(format);
+  useEffect(() => {
+    setNow(format());
+    const id = window.setInterval(() => setNow(format()), CLOCK_TICK_MS);
+    return () => window.clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
+  return now;
+}
+
 export default function Footer() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const { pathname } = useLocation();
+  const time = useCatalanTime(lang);
   const f = t.footer;
   // The contact page already is the call to action.
   const showCta = pathname !== "/contact";
@@ -63,6 +82,10 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} {f.rights}</span>
+          <span className="footer-clock" title={f.localTime}>
+            <span className="footer-clock-dot" aria-hidden="true" />
+            <span className="sr-only">{f.localTime}: </span>{time}
+          </span>
           <button type="button" className="footer-top" onClick={toTop}>
             {f.top} <FiArrowUp aria-hidden="true" />
           </button>

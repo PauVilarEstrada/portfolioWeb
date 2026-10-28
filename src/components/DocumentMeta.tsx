@@ -1,22 +1,12 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useI18n } from "../i18n/LanguageContext";
+import { PROJECT_ROUTE_KEYS } from "../data/routes";
 
 const ROUTE_KEYS: Record<string, string> = {
   "/projects": "work",
   "/experience": "experience",
   "/contact": "contact",
-};
-
-const PROJECT_KEYS: Record<string, string> = {
-  "/projects/tactiq360": "tactiq",
-  "/projects/ultimusdefensor": "ultimus",
-  "/projects/nbavision": "nba",
-  "/projects/mindflow": "mindflow",
-  "/projects/kdd": "kdd",
-  "/projects/ecommerce": "ecommerce",
-  "/projects/pacman": "pacman",
-  "/projects/flappybird": "flappy",
 };
 
 /** Keeps <title>, the meta description and og:* in sync with the route and the language. */
@@ -28,7 +18,7 @@ export default function DocumentMeta() {
     const base = t.meta.title;
     let title = base;
 
-    const projectKey = PROJECT_KEYS[pathname];
+    const projectKey = PROJECT_ROUTE_KEYS[pathname];
     if (projectKey) {
       const p = (t.projects as any)[projectKey];
       title = `${p.short} — Pau Vilar`;

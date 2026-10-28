@@ -12,7 +12,9 @@ e-commerce, Pacman and Flappy Bird).
 
 - React 19 + React Router 7, built with Vite 6
 - Plain CSS with design tokens (see [DESIGN.md](DESIGN.md))
-- `react-icons` for icons; no animation library (CSS only)
+- three.js for the intro pool and the hero scene (loaded on demand), `simple-icons` for the tool marks
+- `react-icons` for UI icons; page motion is CSS
+- Light and dark themes
 - Deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main`
 
 ## Structure
@@ -22,7 +24,10 @@ src/
   components/          pages and shared components
   components/myprojects/  one page per project + shared project CSS
   css/                 page and component styles
-  data/projects.ts     project list (routes, covers, colours) and contact links
+  components/game/     water polo penalty mini-game (canvas)
+  three/               three.js scenes (hero, intro pool)
+  theme/               light/dark theme context
+  data/projects.ts     project list (routes, colours, stack, pinned) and contact links
   i18n/                es.ts / en.ts (site) and pages.*.ts (project pages)
 ```
 

@@ -1,5 +1,5 @@
 /* TactiQ 360 specifics */
-.pp-figure--wide img { box-shadow: 0 0 0 1px var(--line), 0 40px 80px -50px rgba(12, 22, 17, 0.45); }
+.pp-figure--wide img { box-shadow: 0 0 0 1px var(--line), 0 40px 80px -50px var(--shadow); }
 
 .tq-audiences { margin: 8px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 24px; }
 .tq-audiences div { padding-top: 18px; border-top: 1px solid var(--ink); }

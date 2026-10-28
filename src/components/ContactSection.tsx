@@ -42,6 +42,19 @@ export default function ContactSection() {
         </div>
       </header>
 
+      <section className="container contact-routes" aria-labelledby="routes-title">
+        <h2 id="routes-title" className="contact-h">{c.routesTitle}</h2>
+        <div className="routes">
+          {c.routes.map(r => (
+            <article key={r.h} className="route">
+              <span className="tag tag--green">{r.tag}</span>
+              <h3>{r.h}</h3>
+              <p>{r.p}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <div className="container contact-grid">
         <section className="contact-reasons" aria-labelledby="reasons-title">
           <h2 id="reasons-title" className="contact-h">{c.reasonsTitle}</h2>
