@@ -3,13 +3,14 @@ import { pagesEn } from "./pages.en";
 export const en = {
   pages: pagesEn,
   meta: {
-    title: "Pau Vilar — AI Lead & IT Consultant at Brontobyte Cloud",
+    title: "Pau Vilar",
     description:
       "Pau Vilar, AI lead and coordinator and IT consultant at Brontobyte Cloud. Private AI for companies, n8n automation, AI training and custom software.",
     switchLabel: "Change language",
   },
 
   nav: {
+    play: "Game",
     home: "Home",
     work: "Projects",
     experience: "Experience",
@@ -23,6 +24,7 @@ export const en = {
   },
 
   intro: {
+    save: "PAU SAVES IT!",
     label: "Pau Vilar, water polo goalkeeper and AI lead",
   },
 
@@ -33,7 +35,84 @@ export const en = {
     projects: "See projects",
   },
 
+  play: {
+    title: "Game",
+    lead:
+      "A corner to play in. Swim through my projects and my water polo career, take penalties against Pau, build an automation like the ones I make at Brontobyte Cloud or play with the site's animations.",
+    count: "games",
+    index: { swim: "Pool of projects", penalties: "Penalties", puzzle: "Automation puzzle", lab: "PV playground" },
+    swim: {
+      title: "Pool of projects",
+      lead: "Swim around the pool and head for each buoy: every one is a project, a club or a stage of what I do.",
+      start: "Start swimming",
+      controls: "Arrow keys or WASD to swim. On a phone, press and drag towards where you want to go.",
+      found: "found",
+      hint: "Swim up to a buoy to see what's there.",
+      done: "You've seen it all! Thanks for swimming this far.",
+      open: "See project",
+      more: "See experience",
+      masterLabel: "Master's in AI",
+      kinds: { project: "Project", club: "Water polo", work: "Work", study: "Education" },
+      fallback: "Your browser can't show the 3D game.",
+    },
+    penalties: {
+      title: "Penalties against Pau",
+      lead: "Five shots against the keeper. Your best score is kept in this browser.",
+    },
+    puzzle: {
+      title: "Automation puzzle",
+      lead:
+        "Build the automation by joining the pieces in order: where the data comes from, what moves it, what understands it and where the result ends up. They are examples of the kind of work I do with n8n and private AI.",
+      columns: { source: "Data", flow: "Orchestration", ai: "AI", output: "Result" },
+      nodes: {
+        gmail: "Gmail",
+        zoho: "Zoho CRM",
+        veeam: "Veeam",
+        drive: "Google Drive",
+        n8n: "n8n",
+        llm: "Private LLM",
+        teams: "Summary in Teams",
+        crm: "Zoho CRM record",
+        email: "Email alert",
+      },
+      scenario: "Challenge",
+      of: "of",
+      pick: "Next piece",
+      wrong: "That piece doesn't go there. Try another.",
+      done: "Automation built!",
+      next: "Next challenge",
+      restart: "Start again",
+      allDone:
+        "You've built all three. That's how I work at Brontobyte Cloud: n8n connects the company's apps and a private LLM understands their data, without it leaving the data centre.",
+      scenarios: [
+        {
+          goal: "Every morning, a summary of customer emails for the team.",
+          path: ["gmail", "n8n", "llm", "teams"],
+          explain: "n8n collects the new emails, the private LLM summarises them and the team gets the summary in Teams. The emails never leave the private environment.",
+        },
+        {
+          goal: "Sort the new CRM leads without doing it by hand.",
+          path: ["zoho", "n8n", "llm", "crm"],
+          explain: "n8n spots each new lead, the LLM scores and tags it by interest, and the Zoho CRM record updates itself.",
+        },
+        {
+          goal: "Check the backups and only raise the alarm when something fails.",
+          path: ["veeam", "n8n", "llm", "email"],
+          explain: "n8n reads the Veeam reports, the LLM finds the failed jobs and sends an email saying what needs checking.",
+        },
+      ],
+    },
+    lab: {
+      title: "PV playground",
+      lead: "The site's animations, to play with: move the pointer over PV, blow it up, or watch the intro and the page curtain again.",
+      explode: "Blow up PV",
+      intro: "Replay the intro",
+      curtain: "Show the curtain",
+    },
+  },
+
   footer: {
+    playTitle: "Game",
     title: "Shall we talk about your project?",
     body:
       "Private AI, automation, training or custom software. If you have something specific in mind, or just want to meet, write to me.",
@@ -124,10 +203,11 @@ export const en = {
       saves: "Saves",
       shot: "Shot",
       of: "of",
+      best: "Best",
       again: "Another round",
-      resultWin: "You beat Pau in the shoot-out. Not many do.",
-      resultLose: "Pau wins the shoot-out. Ten years in goal show.",
-      resultDraw: "A draw. Pau wants a rematch.",
+      resultWin: "You beat Pau!",
+      resultLose: "Pau wins. Another round?",
+      resultDraw: "It's a draw.",
     },
 
     stackTitle: "Tools",
@@ -204,16 +284,6 @@ export const en = {
       cat: "ai",
       context: "Master's project",
       kind: "Machine-learning detection",
-    },
-    ecommerce: {
-      name: "E-commerce platform",
-      short: "E-commerce platform",
-      desc:
-        "Full-stack shop: JWT auth, persistent cart, admin dashboard, Cloudinary images and Redis caching on the hot paths.",
-      tags: ["React", "Node.js", "MongoDB"],
-      cat: "web",
-      context: "Deployed",
-      kind: "Online shop",
     },
     pacman: {
       name: "Pacman Remake",

@@ -183,14 +183,18 @@ function labelTexture(text, ink, paper) {
   return { tex, aspect: W / H };
 }
 
-/** @param {HTMLElement} container @returns {{ dispose: () => void }} */
-export function createHeroScene(container) {
+/**
+ * @param {HTMLElement} container
+ * @param {{ centered?: boolean }} [options] centered: fill the box instead of sitting beside the hero copy
+ * @returns {{ dispose: () => void, explode: () => void }}
+ */
+export function createHeroScene(container, { centered = false } = {}) {
   let renderer;
   try {
     renderer = new WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
   } catch {
     container.dataset.webgl = "off";
-    return { dispose: () => {} };
+    return { dispose: () => {}, explode: () => {} };
   }
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isMobile = () => container.clientWidth < CFG.mobileBreakpoint;
@@ -343,7 +347,10 @@ export function createHeroScene(container) {
     camera.updateProjectionMatrix();
     const viewH = 2 * CFG.cameraZ * Math.tan(MathUtils.degToRad(CFG.fov / 2));
     const viewW = viewH * camera.aspect;
-    if (isMobile()) {
+    if (centered) {
+      rig.position.set(0, 0, 0);
+      rig.scale.setScalar(Math.min(1, viewW / 7.2, viewH / 4.6));
+    } else if (isMobile()) {
       rig.position.set(0, viewH * 0.25, 0);
       rig.scale.setScalar(Math.min(0.5, viewW / 7.4));
     } else {
@@ -521,6 +528,17 @@ export function createHeroScene(container) {
   }
 
   return {
+    /** Blast every particle outwards; the springs pull PV back together. */
+    explode: () => {
+      for (let i = 0; i < count; i++) {
+        const a = Math.random() * Math.PI * 2;
+        const f = 0.25 + Math.random() * 0.45;
+        vel[i * 3] += Math.cos(a) * f;
+        vel[i * 3 + 1] += Math.sin(a) * f;
+        vel[i * 3 + 2] += (Math.random() - 0.5) * f;
+      }
+      if (reduce) step();
+    },
     dispose: () => {
       stop();
       io.disconnect();

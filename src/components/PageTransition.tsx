@@ -47,6 +47,19 @@ export default function PageTransition({ children }: { children: (location: Loca
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
+  // The Game page can run the curtain on demand, without leaving the page.
+  useEffect(() => {
+    const play = (e: Event) => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      setTitle((e as CustomEvent<{ title?: string }>).detail?.title ?? "");
+      setPhase("cover");
+      window.setTimeout(() => setPhase("reveal"), COVER_MS + HOLD_MS);
+      window.setTimeout(() => setPhase("idle"), COVER_MS + HOLD_MS + REVEAL_MS);
+    };
+    window.addEventListener("pv:curtain", play);
+    return () => window.removeEventListener("pv:curtain", play);
+  }, []);
+
   return (
     <>
       {children(shown)}

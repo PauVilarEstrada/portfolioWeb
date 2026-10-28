@@ -11,8 +11,8 @@ const SHOTS_PER_ROUND = 5;
 const FLIGHT_MS = 620;
 const REACTION = 0.32; // share of the flight before the keeper commits
 const RESULT_MS = 1300;
-const REACH_X = 0.36;
-const REACH_HIGH_X = 0.15; // top corners are only reachable near the keeper
+const REACH_X = 0.32;
+const REACH_HIGH_X = 0.13; // top corners are only reachable near the keeper
 const HIGH = 0.78;
 const AIM_STEP = 0.08;
 
@@ -241,8 +241,8 @@ export function createPenaltyGame(canvas, { colors, onState }) {
   // ── Game logic ──────────────────────────────────────────
   const keeperGuess = target => {
     // Reads the shot imperfectly: aims for the target with some error, sometimes guesses.
-    const read = Math.random() < 0.58;
-    const err = (Math.random() - 0.5) * 0.6;
+    const read = Math.random() < 0.48;
+    const err = (Math.random() - 0.5) * 0.66;
     return clamp(read ? target.x + err : (Math.random() * 2 - 1), -0.85, 0.85);
   };
 

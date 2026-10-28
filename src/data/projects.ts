@@ -4,18 +4,16 @@ import udLogo from "../components/myprojects/assets/logosApps/ultimusdefensorlog
 import nbaLogo from "../components/myprojects/assets/logosApps/nbavisionlogo.png";
 import mindflowLogo from "../components/myprojects/assets/logosApps/mindflowlogo.webp";
 import kddLogo from "../components/myprojects/assets/logosApps/kdd.webp";
-import ecommerceLogo from "../components/myprojects/assets/logosApps/logo-ecommerce.png";
 import pacmanLogo from "../components/myprojects/assets/logosApps/pacmanlogo.png";
 import flappyLogo from "../components/myprojects/assets/logosApps/flappybirdLogoSection.png";
 
 import udCover from "../components/myprojects/assets/ultimusdefensor/vista_ejectuiva_1.webp";
 import nbaCover from "../components/myprojects/assets/nbavision/hero.webp";
 import mindflowCover from "../components/myprojects/assets/mindflow/mindflow_feature.webp";
-import ecommerceCover from "../components/myprojects/assets/ecommerce-home.webp";
 import pacmanCover from "../components/myprojects/assets/PacmanMap.webp";
 import flappyCover from "../components/myprojects/assets/flappyBird2.webp";
 
-export type ProjectKey = "tactiq" | "ultimus" | "nba" | "mindflow" | "kdd" | "ecommerce" | "pacman" | "flappy";
+export type ProjectKey = "tactiq" | "ultimus" | "nba" | "mindflow" | "kdd" | "pacman" | "flappy";
 
 export type ProjectMeta = {
   key: ProjectKey;
@@ -36,7 +34,6 @@ export const PROJECTS: ProjectMeta[] = [
   { key: "nba", path: "/projects/nbavision", logo: nbaLogo, cover: nbaCover, color: "#ef4444", stack: "React · FastAPI · XGBoost" },
   { key: "mindflow", path: "/projects/mindflow", logo: mindflowLogo, cover: mindflowCover, color: "#6c9bff", stack: "React Native · TypeScript" },
   { key: "kdd", path: "/projects/kdd", logo: kddLogo, color: "#22c55e", stack: "Python · scikit-learn · Big Data" },
-  { key: "ecommerce", path: "/projects/ecommerce", logo: ecommerceLogo, cover: ecommerceCover, color: "#a78bfa", stack: "React · Node.js · MongoDB" },
   { key: "pacman", path: "/projects/pacman", logo: pacmanLogo, cover: pacmanCover, color: "#facc15", stack: "Java" },
   { key: "flappy", path: "/projects/flappybird", logo: flappyLogo, cover: flappyCover, color: "#4ade80", stack: "Unity · C#" },
 ];

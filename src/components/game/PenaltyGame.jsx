@@ -9,15 +9,27 @@ const PALETTES = {
   dark: { waterTop: "#13608f", waterBottom: "#06263d", skin: "#d9a983", accent: "#74d993" },
 };
 const SHOTS = 5;
+const BEST_KEY = "pv-penalty-best";
 
-/** Water polo penalty mini-game: five shots against Pau in goal. */
-export default function PenaltyGame() {
+const readBest = () => {
+  try { return Number(localStorage.getItem(BEST_KEY)) || 0; } catch { return 0; }
+};
+
+/** Water polo penalty mini-game: five shots against Pau in goal. `record` keeps the best score in this browser; `headless` drops the title when the page already has one. */
+export default function PenaltyGame({ record = false, headless = false }) {
   const { t } = useI18n();
   const { theme } = useTheme();
   const g = t.home.game;
   const canvas = useRef(null);
   const game = useRef(null);
   const [s, setS] = useState({ shots: 0, goals: 0, saves: 0, phase: "aim", outcome: null });
+  const [best, setBest] = useState(readBest);
+
+  useEffect(() => {
+    if (!record || s.phase !== "over" || s.goals <= best) return;
+    setBest(s.goals);
+    try { localStorage.setItem(BEST_KEY, String(s.goals)); } catch { /* storage blocked */ }
+  }, [record, s.phase, s.goals, best]);
 
   useEffect(() => {
     let cancelled = false;
@@ -39,10 +51,11 @@ export default function PenaltyGame() {
   return (
     <div className="pgame">
       <div className="pgame-head">
-        <h3>{g.title}</h3>
+        {headless ? <span /> : <h3>{g.title}</h3>}
         <dl className="pgame-score" aria-live="polite">
           <div><dt>{g.goals}</dt><dd>{s.goals}</dd></div>
           <div><dt>{g.saves}</dt><dd>{s.saves}</dd></div>
+          {record && <div><dt>{g.best}</dt><dd>{best}</dd></div>}
           <div><dt>{g.shot}</dt><dd>{Math.min(s.shots + (s.phase === "aim" || s.phase === "flight" ? 1 : 0), SHOTS)} {g.of} {SHOTS}</dd></div>
         </dl>
       </div>

@@ -22,8 +22,8 @@ const loaders = {
   ultimus: () => import("./components/myprojects/UltimusDefensor"),
   flappy: () => import("./components/myprojects/FlappyBird"),
   pacman: () => import("./components/myprojects/Pacman"),
-  ecommerce: () => import("./components/myprojects/Ecommerce"),
   kdd: () => import("./components/myprojects/kdd"),
+  play: () => import("./components/play/PlayPage"),
   notFound: () => import("./components/NotFound"),
 };
 const ProjectsSection = lazy(loaders.projects);
@@ -35,8 +35,8 @@ const MindFlow = lazy(loaders.mindflow);
 const UltimusDefensor = lazy(loaders.ultimus);
 const FlappyBird = lazy(loaders.flappy);
 const Pacman = lazy(loaders.pacman);
-const Ecommerce = lazy(loaders.ecommerce);
 const KDD = lazy(loaders.kdd);
+const PlayPage = lazy(loaders.play);
 const NotFound = lazy(loaders.notFound);
 
 /** Wait for the first paint to settle before prefetching the other pages. */
@@ -73,13 +73,13 @@ export default function App() {
                     <Route path="/projects" element={<ProjectsSection />} />
                     <Route path="/experience" element={<ExperienceSection />} />
                     <Route path="/contact" element={<ContactSection />} />
+                    <Route path="/play" element={<PlayPage />} />
                     <Route path="/projects/tactiq360" element={<Tactiq360 />} />
                     <Route path="/projects/nbavision" element={<NBAVision />} />
                     <Route path="/projects/mindflow" element={<MindFlow />} />
                     <Route path="/projects/ultimusdefensor" element={<UltimusDefensor />} />
                     <Route path="/projects/flappybird" element={<FlappyBird />} />
                     <Route path="/projects/pacman" element={<Pacman />} />
-                    <Route path="/projects/ecommerce" element={<Ecommerce />} />
                     <Route path="/projects/kdd" element={<KDD />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>

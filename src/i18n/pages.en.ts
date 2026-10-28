@@ -121,65 +121,6 @@ export const pagesEn = {
     playOutro: "The full Unity project — scripts, prefabs and scenes — is on GitHub.",
   },
 
-  ecommerce: {
-    label: "Full Stack Web Application · React + Node.js",
-    title: "E-Commerce Platform",
-    subtitle:
-      "A complete online shop, front to back: browse a catalogue, fill a cart that survives a reload, sign in securely, and manage the whole inventory from an **admin dashboard** — with **Redis caching** on the hot paths and product imagery served from a CDN.",
-    tags: ["React", "Node.js", "MongoDB", "Redis", "Cloudinary", "JWT", "Zustand"],
-    ctaLive: "Open the live shop",
-    specs: [
-      { v: "MERN", l: "Stack" },
-      { v: "JWT", l: "Auth" },
-      { v: "Redis", l: "Hot-path cache" },
-      { v: "CDN", l: "Image delivery" },
-      { v: "REST", l: "API" },
-    ],
-    storefrontTitle: "The storefront",
-    storefrontP:
-      "The shop opens on featured products — the one query every visitor triggers and almost nobody changes, which is exactly why it is the query that sits in Redis.",
-    storefrontCaption: "Landing page — featured products served from cache.",
-    flowTitle: "From browsing to checkout",
-    catKicker: "Catalogue",
-    catH: "Filter first, fetch second",
-    catP:
-      "Categories and filters are part of the route, so a listing is shareable, back-button friendly, and answered by a targeted query rather than by shipping the whole catalogue to the browser and hiding most of it.",
-    cartKicker: "Cart",
-    cartH: "Persistent, reconciled, honest",
-    cartP:
-      "The cart is stored per user and restored on the next visit. Totals are recomputed on the server at checkout time — the client's number is a preview, never the source of truth.",
-    authKicker: "Accounts",
-    authH: "Sign in without the footguns",
-    authP:
-      "Passwords are hashed before they touch the database and the session token lives in an http-only cookie. Role is carried in the token, so the admin surface is gated by the API, not merely hidden in the UI.",
-    adminTitle: "The admin side",
-    adminP:
-      "A shop is only half a project without the tooling to run it. The dashboard creates, edits, deletes and features products, uploads their imagery, and reflects every change on the storefront immediately — the cached keys are invalidated on write.",
-    adminCaption: "Admin dashboard — inventory management against the same REST API.",
-    featuresTitle: "What it does",
-    features: [
-      { icon: "🔐", t: "Authentication that survives a refresh", p: "Registration and login issue a JWT stored in an http-only cookie rather than local storage, so a reload keeps you signed in and a stray script cannot read the token." },
-      { icon: "🛒", t: "A cart that remembers", p: "Cart state lives in Zustand and is persisted per user, so items added on one visit are still there on the next — and quantities reconcile against real stock before checkout." },
-      { icon: "🗂️", t: "Browsing that narrows fast", p: "Category routes and filters drive server-side queries instead of filtering a giant client payload, so the listing stays quick as the catalogue grows." },
-      { icon: "🖼️", t: "Product images on a CDN", p: "Uploads go to Cloudinary and the database stores only the URL. The API never proxies binaries, and images are served from an edge close to the buyer." },
-      { icon: "⚡", t: "Redis on the hot path", p: "The featured-products query is the most requested and least changing thing on the site, so it is cached in Redis (Upstash) and invalidated on write instead of hitting MongoDB on every page load." },
-      { icon: "🛠️", t: "A real admin panel", p: "Create, update, delete and feature products from the browser — the same REST API the storefront reads, behind a role check." },
-    ],
-    archTitle: "How it is put together",
-    flow: [
-      { t: "Client", p: "React + Vite, styled with Tailwind, animated with Framer Motion. Zustand holds the two pieces of state that cross the whole app — cart and session — so no prop drilling and no context spaghetti." },
-      { t: "API", p: "Express exposes a RESTful surface: products, categories, cart, auth, admin. Middleware handles token verification and role checks in one place rather than per route." },
-      { t: "Data", p: "MongoDB via Mongoose, hosted on Atlas. Schemas validate before write, so a malformed product never reaches the collection." },
-      { t: "Cache", p: "Redis sits in front of the read-heavy endpoints. Writes invalidate the affected keys, which keeps the cache from being the reason a price looks wrong." },
-      { t: "Media", p: "Cloudinary stores and transforms product imagery; the app holds URLs only." },
-      { t: "Deploy", p: "Deployed on Render against MongoDB Atlas and Upstash — a live, publicly reachable build rather than a localhost demo." },
-    ],
-    tryTitle: "Try it",
-    tryP:
-      "The shop is deployed and open source. The free Render instance sleeps when idle, so the first load after a while can take a few seconds to wake up.",
-    liveBtn: "Live app",
-    demoBtn: "Demo video",
-  },
   nba: {
     label: "Full-Stack Sports Analytics · ML & Simulation",
     title: "NBA Vision",
