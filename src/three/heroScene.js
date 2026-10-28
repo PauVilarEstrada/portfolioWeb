@@ -75,6 +75,11 @@ const CFG = {
   parallaxEase: 0.05,
   maxDpr: 2,
   mobileBreakpoint: 720,
+  mobileNavClearance: 76, // px kept free under the nav on phones
+  mobileNameGap: 6, // px between the orbits and the name
+  mobileNameTop: 0.38, // fallback position of the name, as a share of the hero height
+  systemWidth: 5.9, // world size of PV with both orbits and their nodes, at scale 1
+  systemHeight: 3.3,
   greenShare: 0.12,
   pointSize: 2.4,
 };
@@ -351,8 +356,16 @@ export function createHeroScene(container, { centered = false } = {}) {
       rig.position.set(0, 0, 0);
       rig.scale.setScalar(Math.min(1, viewW / 7.2, viewH / 4.6));
     } else if (isMobile()) {
-      rig.position.set(0, viewH * 0.25, 0);
-      rig.scale.setScalar(Math.min(0.5, viewW / 7.4));
+      // Centre the system in the band between the nav and the name, as large as the band allows.
+      const box = container.getBoundingClientRect();
+      const name = container.parentElement?.querySelector(".hero-name");
+      const nameTop = name ? name.getBoundingClientRect().top - box.top : h * CFG.mobileNameTop;
+      const bandTop = CFG.mobileNavClearance;
+      const bandBottom = nameTop - CFG.mobileNameGap;
+      const centre = (bandTop + bandBottom) / 2;
+      rig.position.set(0, viewH * (0.5 - centre / h), 0);
+      const fitHeight = (((bandBottom - bandTop) / h) * viewH) / CFG.systemHeight;
+      rig.scale.setScalar(Math.min(0.62, viewW / CFG.systemWidth, fitHeight));
     } else {
       // Right of the hero copy, centred on the band between the nav and the rule
       rig.position.set(viewW * 0.31, viewH * 0.2, 0);

@@ -783,7 +783,7 @@ export function createPoolScene(container, { onDone, labels = DEFAULT_LABELS }) 
   scene.environment = envMap;
   scene.environmentIntensity = 0.55;
 
-  const camera = new PerspectiveCamera(mobile ? 58 : 30, 1, 0.1, 200);
+  const camera = new PerspectiveCamera(30, 1, 0.1, 200);
 
   const sunDir = new Vector3(-0.55, 1, 0.45).normalize();
   scene.add(new HemisphereLight("#ffffff", "#a9c6d4", 0.9));
@@ -1057,18 +1057,53 @@ export function createPoolScene(container, { onDone, labels = DEFAULT_LABELS }) 
   };
 
   // ── Camera: one shot that slowly closes in on the goal ──
-  const camFrom = mobile ? new Vector3(-6, 21, 41) : new Vector3(-14, 14, 31);
-  const camTo = mobile ? new Vector3(-3, 15, 34) : new Vector3(-7, 9, 24);
-  const lookFrom = mobile ? new Vector3(0, 0.2, -2.6) : new Vector3(0, 0, -2.6);
-  const lookTo = mobile ? new Vector3(1, 0.2, -2.2) : new Vector3(1, 0.1, -2.2);
+  // The framing adapts to the screen: wide screens see the diorama from the front, tall ones
+  // from the corner so it runs diagonally, and the camera backs off until all of it fits.
+  const VIEWS = {
+    wide: { fov: 30, from: new Vector3(-14, 14, 33.6), to: new Vector3(-8, 8.9, 26.2), lookFrom: new Vector3(0, 0, -2.6), lookTo: new Vector3(1, 0.1, -2.2), push: 0.9 },
+    tall: { fov: 44, from: new Vector3(-17, 19, 17), to: new Vector3(-13, 15, 15), lookFrom: new Vector3(0, 0.3, -2.6), lookTo: new Vector3(1.6, -0.2, -1.4), push: 0.8 },
+  };
+  const BOUNDS = [];
+  [-8.2, 8.2].forEach(x => [-2.9, 5.3].forEach(y => [3.6, -9].forEach(z => BOUNDS.push(new Vector3(x, y, z)))));
+  const ndc = new Vector3();
+  /** Smallest distance along `dir` from `target` at which every corner of the diorama is on screen. */
+  const fitDistance = (dir, target, margin) => {
+    let lo = 4;
+    let hi = 160;
+    for (let i = 0; i < 18; i++) {
+      const d = (lo + hi) / 2;
+      camera.position.copy(target).addScaledVector(dir, d);
+      camera.lookAt(target);
+      camera.updateMatrixWorld();
+      const fits = BOUNDS.every(c => {
+        ndc.copy(c).project(camera);
+        return Math.abs(ndc.x) <= margin && Math.abs(ndc.y) <= margin;
+      });
+      if (fits) hi = d; else lo = d;
+    }
+    return hi;
+  };
+  const camFrom = new Vector3();
+  const camTo = new Vector3();
+  const lookFrom = new Vector3();
+  const lookTo = new Vector3();
   const look = new Vector3();
+  const dir = new Vector3();
 
   const layout = () => {
     const w = container.clientWidth;
     const h = container.clientHeight;
     renderer.setSize(w, h, false);
+    const view = w / h < 1 ? VIEWS.tall : VIEWS.wide;
+    camera.fov = view.fov;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
+    lookFrom.copy(view.lookFrom);
+    lookTo.copy(view.lookTo);
+    dir.copy(view.from).normalize();
+    camFrom.copy(lookFrom).addScaledVector(dir, fitDistance(dir, lookFrom, 0.92));
+    dir.copy(view.to).normalize();
+    camTo.copy(lookTo).addScaledVector(dir, fitDistance(dir, lookTo, 0.96) * view.push);
   };
   layout();
   const ro = new ResizeObserver(layout);
