@@ -9,6 +9,7 @@ const ROUTE_KEYS: Record<string, string> = {
 };
 
 const PROJECT_KEYS: Record<string, string> = {
+  "/projects/tactiq360": "tactiq",
   "/projects/ultimusdefensor": "ultimus",
   "/projects/nbavision": "nba",
   "/projects/mindflow": "mindflow",

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./css/project-page.css";
 import "./css/showcase.css";
 import { useI18n } from "../../i18n/LanguageContext";
+import ProjectNav from "./ProjectNav";
 import { rt } from "../../i18n/rich";
 import pacmanLogo from "./assets/logosApps/pacmanlogo.png";
 import pacmanInicio from "./assets/PacmanInicio.webp";
@@ -26,6 +27,7 @@ export default function Pacman() {
     <div key={lang} className="pp-page lang-fade" style={{ "--pp-color": "#facc15", "--pp-glow": "rgba(250, 204, 21, 0.2)" } as React.CSSProperties}>
 
       <header className="pp-hero">
+        <Link to="/projects" className="pp-crumb">{g.back}</Link>
         <img src={pacmanLogo} alt={c.title} className="pp-hero-logo" />
         <div className="pp-hero-content">
           <span className="pp-hero-label">{c.label}</span>
@@ -152,12 +154,12 @@ export default function Pacman() {
           <p className="pp-text">{c.playOutro}</p>
           <div className="pp-actions">
             <a className="pp-btn-primary" href={REPO} target="_blank" rel="noopener noreferrer">
-              github.com/PauVilarEstrada/pacman ↗
+              github.com/PauVilarEstrada/pacman
             </a>
           </div>
         </div>
 
-        <Link to="/projects" className="pp-back">{g.back}</Link>
+        <ProjectNav current="pacman" />
       </div>
     </div>
   );

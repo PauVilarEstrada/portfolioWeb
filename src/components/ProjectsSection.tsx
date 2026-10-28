@@ -1,94 +1,82 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay, EffectCoverflow } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/effect-coverflow";
+import { FiArrowUpRight } from "react-icons/fi";
 import "../css/ProjectsSection.css";
 import { useI18n } from "../i18n/LanguageContext";
+import { PROJECTS } from "../data/projects";
+import ProjectCover from "./ProjectCover";
 
-import pacmanLogo from "../components/myprojects/assets/logosApps/pacmanlogo.png";
-import flappyLogo from "../components/myprojects/assets/logosApps/flappybirdLogoSection.png";
-import ecommerceLogo from "../components/myprojects/assets/logosApps/logo-ecommerce.png";
-import kddLogo from "../components/myprojects/assets/logosApps/kdd.webp";
-import udLogo from "../components/myprojects/assets/logosApps/ultimusdefensorlogo.webp";
-import mindflowLogo from "../components/myprojects/assets/logosApps/mindflowlogo.webp";
-import nbaLogo from "../components/myprojects/assets/logosApps/nbavisionlogo.png";
-
-type ProjectMeta = {
-  key: "ultimus" | "nba" | "mindflow" | "kdd" | "ecommerce" | "pacman" | "flappy";
-  image: string;
-  path: string;
-  featured?: boolean;
-};
-
-const PROJECTS: ProjectMeta[] = [
-  { key: "ultimus", image: udLogo, path: "/projects/ultimusdefensor", featured: true },
-  { key: "nba", image: nbaLogo, path: "/projects/nbavision" },
-  { key: "mindflow", image: mindflowLogo, path: "/projects/mindflow" },
-  { key: "kdd", image: kddLogo, path: "/projects/kdd" },
-  { key: "ecommerce", image: ecommerceLogo, path: "/projects/ecommerce" },
-  { key: "pacman", image: pacmanLogo, path: "/projects/pacman" },
-  { key: "flappy", image: flappyLogo, path: "/projects/flappybird" },
-];
-
-const PS_SYMBOLS = ["const", "async", "import", "class", "await", "<AI/>", "01010", "=>"];
+type Filter = "all" | "ai" | "web" | "games";
+const FILTERS: Filter[] = ["all", "ai", "web", "games"];
 
 export default function ProjectsSection() {
   const { t, lang } = useI18n();
+  const pp = t.projectsPage;
+  const [filter, setFilter] = useState<Filter>("all");
+
+  const visible = PROJECTS.filter(m => filter === "all" || t.projects[m.key].cat === filter);
+  const [featured, ...rest] = visible;
+  const count = (f: Filter) => PROJECTS.filter(m => f === "all" || t.projects[m.key].cat === f).length;
 
   return (
-    <section className="projects-section">
-      <div className="ps-float-code" aria-hidden="true">
-        {PS_SYMBOLS.map((sym, i) => <span key={i}>{sym}</span>)}
-      </div>
+    <div className="projects-page lang-fade" key={lang}>
+      <header className="container page-head">
+        <h1 className="page-head-title">{pp.title}</h1>
+        <div className="page-head-row">
+          <p className="page-head-lead">{pp.lead}</p>
+        </div>
+      </header>
 
-      <div className="ps-head lang-fade" key={lang}>
-        <h2>
-          {t.projectsPage.title[0]} <span className="ps-head-accent">{t.projectsPage.title[1]}</span>
-        </h2>
-        <p className="ps-sub">{t.projectsPage.subtitle}</p>
-      </div>
+      <div className="container">
+        <div className="filters" role="group" aria-label={pp.title}>
+          {FILTERS.map(f => (
+            <button
+              key={f}
+              type="button"
+              className={`filter${filter === f ? " is-active" : ""}`}
+              aria-pressed={filter === f}
+              onClick={() => setFilter(f)}
+            >
+              {pp.filters[f]} <span className="filter-count">{count(f)}</span>
+            </button>
+          ))}
+        </div>
 
-      <Swiper
-        key={lang}
-        modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
-        effect="coverflow"
-        spaceBetween={50}
-        slidesPerView={1}
-        navigation
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 3600, disableOnInteraction: false }}
-        loop={true}
-        initialSlide={0}
-        centeredSlides={true}
-        coverflowEffect={{
-          rotate: 30,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
-        className="projects-swiper"
-      >
-        {PROJECTS.map((meta) => {
-          const p = (t.projects as any)[meta.key];
-          return (
-            <SwiperSlide key={meta.path} className="project-slide">
-              <Link to={meta.path} className="project-link">
-                <div className={`project-card${meta.featured ? " project-card--featured" : ""}`}>
-                  {meta.featured && <span className="project-featured-badge">★ Featured</span>}
-                  <img src={meta.image} alt={p.name} className="project-logo" />
-                  <h3>{p.name}</h3>
-                  <p>{p.desc}</p>
-                </div>
-              </Link>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
-    </section>
+        {featured ? (
+          <div className="gallery" key={filter}>
+            <ProjectTile meta={featured} wide label={filter === "all" ? pp.featured : undefined} />
+            {rest.map(meta => <ProjectTile key={meta.key} meta={meta} />)}
+          </div>
+        ) : (
+          <p className="gallery-empty">{pp.empty}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ProjectTile({ meta, wide = false, label }: { meta: (typeof PROJECTS)[number]; wide?: boolean; label?: string }) {
+  const { t } = useI18n();
+  const p = t.projects[meta.key];
+
+  return (
+    <Link to={meta.path} className={`tile${wide ? " tile--wide" : ""}`} style={{ "--accent": meta.color } as React.CSSProperties}>
+      <span className="tile-media">
+        <ProjectCover meta={meta} alt={p.name} eager={wide} />
+        <span className="tile-cta" aria-hidden="true">
+          {t.projectsPage.open} <FiArrowUpRight />
+        </span>
+      </span>
+      <span className="tile-body">
+        <span className="tile-top">
+          <span className="tile-name">{p.short}</span>
+          <span className="tile-context">{label ?? p.context}</span>
+        </span>
+        <span className="tile-desc">{p.desc}</span>
+        <span className="tags">
+          {p.tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
+        </span>
+      </span>
+    </Link>
   );
 }

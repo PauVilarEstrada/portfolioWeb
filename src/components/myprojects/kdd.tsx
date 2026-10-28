@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./css/project-page.css";
 import { useI18n } from "../../i18n/LanguageContext";
+import ProjectNav from "./ProjectNav";
 import { rt } from "../../i18n/rich";
 import kddLogo from "./assets/logosApps/kdd.webp";
 
@@ -22,6 +23,7 @@ export default function KDD() {
     <div key={lang} className="pp-page lang-fade" style={{ "--pp-color": "#22c55e", "--pp-glow": "rgba(34, 197, 94, 0.2)" } as React.CSSProperties}>
 
       <header className="pp-hero">
+        <Link to="/projects" className="pp-crumb">{g.back}</Link>
         <img src={kddLogo} alt={c.title} className="pp-hero-logo" />
         <div className="pp-hero-content">
           <span className="pp-hero-label">{c.label}</span>
@@ -100,12 +102,12 @@ export default function KDD() {
           <p className="pp-text">{rt(c.noticeP1)}</p>
           <p className="pp-text">{c.noticeP2}</p>
           <div className="pp-contact-box">
-            <p>Email: <a href="mailto:pvilardev@gmail.com" style={{ color: "#22c55e" }}>pvilardev@gmail.com</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/pau-vilar/" target="_blank" rel="noopener noreferrer" style={{ color: "#22c55e" }}>linkedin.com/in/pau-vilar</a></p>
+            <p>Email: <a href="mailto:pvilardev@gmail.com">pvilardev@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/pau-vilar/" target="_blank" rel="noopener noreferrer">linkedin.com/in/pau-vilar</a></p>
           </div>
         </div>
 
-        <Link to="/projects" className="pp-back">{g.back}</Link>
+        <ProjectNav current="kdd" />
       </div>
     </div>
   );

@@ -4,9 +4,9 @@ import { pagesEs } from "./pages.es";
 export const es: Dict = {
   pages: pagesEs,
   meta: {
-    title: "Pau Vilar — Desarrollador Full Stack e Ingeniero de IA",
+    title: "Pau Vilar — Consultor de IT e IA en Brontobyte Cloud",
     description:
-      "Portfolio de Pau Vilar — desarrollador full-stack e ingeniero de IA y Big Data. Plataformas de IA, pipelines de datos, apps web y un juego publicado en Google Play. Y portero profesional de waterpolo en División de Honor.",
+      "Pau Vilar, consultor, responsable y coordinador de IT e IA en Brontobyte Cloud. IA privada para empresas, automatización con n8n y software a medida. Disponible para proyectos concretos.",
     switchLabel: "Cambiar idioma",
   },
 
@@ -16,328 +16,341 @@ export const es: Dict = {
     experience: "Experiencia",
     contact: "Contacto",
     skip: "Saltar al contenido",
-    hint: "pasa el ratón o toca para navegar",
+    menu: "Menú",
+    close: "Cerrar menú",
+    homeLabel: "Pau Vilar, ir al inicio",
+  },
+
+  footer: {
+    title: "¿Tienes un proyecto concreto?",
+    body:
+      "No estoy buscando empleo, pero me interesa hablar de proyectos de IA, automatización o software a medida. Y si solo quieres conocernos, también.",
+    cta: "Escríbeme",
+    secondary: "Ver formas de contacto",
+    navTitle: "Navegación",
+    elsewhereTitle: "En otros sitios",
+    rights: "Pau Vilar i Estrada",
+    place: "Catalunya, España",
+    top: "Volver arriba",
   },
 
   home: {
-    name: "Pau Vilar i Estrada",
-    roles: [
-      "Desarrollador Full Stack",
-      "Ingeniero de IA y Big Data",
-      "Ingeniero de Machine Learning",
-      "Formador en IA",
-    ],
-    tagline:
-      "Soy desarrollador, de Barcelona, y lo que más me gusta es ver algo que he construido acabar en manos de alguien: **sistemas de IA**, **pipelines de datos**, **plataformas web** y un **juego que ya está en Google Play**. Diez años bajo palos en waterpolo de élite me enseñaron el resto: aparecer cada día, iterar y mantener la calma justo cuando importa.",
-    stats: [
-      { n: "9", l: "Proyectos" },
-      { n: "20+", l: "Tecnologías" },
-      { n: "3", l: "Productos online" },
-      { n: "Máster", l: "IA y Big Data" },
-    ],
-    ctaWork: "Ver mis proyectos",
-    ctaContact: "Hablemos",
-    terminalTitle: "consola-ia",
-    terminal: [
-      { cmd: "$ ./bienvenid@.sh", out: "👋  ¡Bienvenid@ al portfolio de Pau!" },
-      { cmd: "$ git push origin --all", out: "✓  9 proyectos publicados en GitHub" },
-      { cmd: "$ cat contacto.txt", out: "📧  pvilardev@gmail.com — respondo rápido" },
-      { cmd: "$ open linkedin.com/in/pau-vilar", out: "🔗  Últimas novedades en LinkedIn ↗" },
-      { cmd: "$ whoami", out: "Ingeniero de IA · Full Stack · Portero de waterpolo 🤽" },
-      { cmd: "$ grep -r 'contratar' ./candidatos/", out: "✓  Coincidencia → pau_vilar.json 🎯" },
+    badge: "Disponible para proyectos · ",
+    badgeLabel: "Disponible para proyectos. Ir a contacto",
+    nameLines: ["Pau Vilar", "i Estrada"],
+    rolePre: "Consultor, responsable y coordinador de IT e IA en",
+    company: "Brontobyte Cloud",
+    intro:
+      "Diseño y construyo IA privada, automatizaciones y software a medida para empresas. Si tienes un proyecto concreto, hablemos.",
+    ctaPrimary: "Proponer un proyecto",
+    ctaSecondary: "Ver proyectos",
+    scroll: "Desliza",
+
+    servicesTitle: "En qué puedo ayudarte",
+    servicesLead:
+      "Proyectos concretos, con un alcance claro. Puedo entrar como consultor, como desarrollador o como formador.",
+    services: [
+      {
+        h: "IA privada y asistentes internos",
+        p: "LLMs que consultan la documentación y las aplicaciones de tu empresa, con RAG y control de accesos, desplegados en infraestructura controlada.",
+        tags: ["LLM", "RAG", "IMPLEMAI"],
+      },
+      {
+        h: "Automatización de procesos",
+        p: "Flujos con n8n y agentes que conectan Microsoft 365, Zoho, CRMs y APIs para quitar trabajo repetitivo de en medio.",
+        tags: ["n8n", "Agentes", "APIs"],
+      },
+      {
+        h: "Software a medida",
+        p: "Aplicaciones web y móviles de punta a punta: React y React Native delante, FastAPI, Node o Spring detrás, todo en contenedores.",
+        tags: ["React", "React Native", "FastAPI"],
+      },
+      {
+        h: "Formación en IA agéntica",
+        p: "Cursos y talleres prácticos para equipos: arquitectura de agentes, automatización y cómo llevarlos a producción con garantías.",
+        tags: ["Talleres", "Empresas", "Agentes"],
+      },
     ],
 
-    featuredTitle: ["Proyectos", "destacados"],
-    featuredLink: "Ver todos los proyectos →",
+    workTitle: "Proyectos seleccionados",
+    workLead: "Plataformas de IA, analítica de datos, web y un juego publicado en Google Play.",
+    workLink: "Todos los proyectos",
 
-    dualTitle: ["Una carrera", "dual"],
-    dualLead:
-      "Llevo diez años entrenando dos veces al día como portero de élite mientras estudiaba programación a tiempo completo. Muy poca gente construye los dos hábitos a la vez — y se nota en cómo trabajo.",
-    dual: [
-      {
-        h: "Calma cuando aprieta",
-        p: "Un penalti en el último minuto no se ensaya. Una incidencia en producción un viernes a las seis, tampoco. Llevo una década aprendiendo a pensar con claridad con el reloj corriendo.",
-      },
-      {
-        h: "La constancia gana a la motivación",
-        p: "A las seis de la mañana, cada mañana, durante años. Sacar software adelante es la misma disciplina: el trabajo repetitivo y poco vistoso es el que termina los proyectos.",
-      },
-      {
-        h: "Hecho para un equipo",
-        p: "Un portero lee toda la piscina y no para de hablar. Es el mismo instinto que hace que una revisión de código, una daily o un traspaso funcionen de verdad y no sean un trámite.",
-      },
-      {
-        h: "Feedback sin ego",
-        p: "En el deporte te corrigen cada día: te adaptas o te quedas en el banquillo. Con un comentario en una review, exactamente igual.",
-      },
-    ],
-    careerTitle: ["Trayectoria", "y formación"],
-    careerLink: "Perfil completo →",
-    careerNowLabel: "Ahora mismo",
+    careerTitle: "Trayectoria",
+    careerLink: "Experiencia completa",
     careerExpLabel: "Experiencia",
     careerEduLabel: "Formación",
-    careerNow: [
-      {
-        role: "Portero · División de Honor",
-        org: "Club Natació Catalunya",
-        meta: "2026 – Actualidad",
-        note: "La máxima liga española y la Copa del Rey.",
-      },
-      {
-        role: "Formador en IA — Sistemas Agénticos",
-        org: "Cambra de Comerç de Barcelona",
-        meta: "2026",
-        note: "Formo a empresas en IA agéntica y automatización.",
-      },
-    ],
     careerExp: [
-      { year: "2025", role: "Desarrollador Full Stack Junior", org: "Sycai Medical · Prácticas" },
-      { year: "2023 – 2026", role: "Portero", org: "CN Sant Andreu · División de Honor y EuroCup" },
-      { year: "2019 – 2023", role: "Portero", org: "CN Barcelona · Champions League" },
+      { year: "2026 – hoy", role: "Consultor, responsable y coordinador de IT e IA", org: "Brontobyte Cloud", badge: "" },
+      { year: "2026", role: "Formador en IA agéntica", org: "Cambra de Comerç de Barcelona", badge: "" },
+      { year: "2025", role: "Desarrollador Full Stack", org: "Sycai Medical", badge: "" },
     ],
     careerEdu: [
       { year: "2025 – 2026", role: "Máster en IA y Big Data", org: "Monlau Formación Profesional", badge: "Matrícula de Honor" },
-      { year: "2023 – 2025", role: "Desarrollo de Aplicaciones Multiplataforma (DAM)", org: "INS Poblenou", badge: "" },
-      { year: "2019 – 2021", role: "Bachillerato de Ciencias Sociales", org: "INS CAR — Centro de Alto Rendimiento", badge: "" },
+      { year: "2023 – 2025", role: "CFGS Desarrollo de Aplicaciones Multiplataforma", org: "INS Poblenou", badge: "" },
+      { year: "2019 – 2021", role: "Bachillerato de Ciencias Sociales", org: "INS CAR, Centro de Alto Rendimiento", badge: "" },
     ],
 
-    techTitle: ["Stack", "técnico"],
-    techSubtitle: "Lo que uso en el día a día",
-
-    focusTitle: ["A qué me", "dedico"],
-    focus: [
-      {
-        icon: "🧠",
-        h: "IA y Machine Learning",
-        p: "Detección de anomalías, gradient boosting, regresión cuantílica, asistentes con LLM. Me importa menos la métrica del leaderboard que poder fiarme del modelo en producción, así que los míos salen con su incertidumbre puesta, nunca como un notebook bonito.",
-      },
-      {
-        icon: "⚙️",
-        h: "Ingeniería full-stack",
-        p: "React y TypeScript delante, FastAPI, Node o Spring detrás, PostgreSQL y Redis debajo y Docker envolviéndolo todo. Me gusta llevar una funcionalidad de punta a punta, desde el botón hasta el plan de la consulta.",
-      },
-      {
-        icon: "📊",
-        h: "Ingeniería de datos",
-        p: "Ingerir, limpiar, cachear y servir. Es la mitad menos vistosa de cualquier proyecto de IA y casi siempre la que decide si funciona, así que construyo pipelines que aguantan un día real de producción, no solo una demo.",
-      },
-      {
-        icon: "📱",
-        h: "Móvil y videojuegos",
-        p: "React Native y Unity. MINDFLOW está en Google Play con cuatro modos y 1.200 niveles verificados a mano, totalmente offline — la mejor lección de acabado que he tenido, porque los jugadores se dan cuenta de todo.",
-      },
+    sportTitle: "Deporte de élite, a la vez",
+    sportLead:
+      "Llevo más de diez años como portero de waterpolo en la máxima liga española, con Champions League y EuroCup, compaginándolo con los estudios y ahora con el trabajo. De ahí vienen buena parte de mis hábitos profesionales.",
+    sport: [
+      { h: "Calma con el reloj corriendo", p: "Un penalti en el último minuto y una incidencia en producción se gestionan igual: pensar claro y decidir." },
+      { h: "Constancia", p: "Entrenar a las seis de la mañana durante años enseña que el trabajo poco vistoso es el que termina los proyectos." },
+      { h: "Comunicación de equipo", p: "Un portero lee toda la piscina y no deja de hablar. Lo mismo hace que un traspaso o una revisión funcionen." },
     ],
+    sportLink: "Carrera deportiva",
 
-    cta: {
-      eyebrow: "Trabajemos juntos",
-      title: "¿Tienes un proyecto en mente?",
-      body:
-        "Busco **posiciones junior, prácticas y colaboraciones** en desarrollo de software, ingeniería de IA y análisis de datos. Si estás construyendo algo y crees que puedo aportar, cuéntamelo — lo leo todo y contesto enseguida.",
-      cv: "Descargar CV",
-    },
+    stackTitle: "Herramientas",
+    stackLead: "Lo que uso a diario, agrupado por para qué sirve.",
+    stack: [
+      { h: "IA y datos", items: ["Python", "LLMs y RAG", "n8n", "PyTorch", "scikit-learn", "XGBoost", "pandas"] },
+      { h: "Backend", items: ["FastAPI", "Node.js", "Spring Boot", "Django", "PostgreSQL", "Redis", "MongoDB"] },
+      { h: "Frontend y móvil", items: ["React", "TypeScript", "React Native", "Angular", "Kotlin", "Tailwind"] },
+      { h: "Infraestructura", items: ["Docker", "AWS", "Linux", "Git", "Microsoft 365", "Veeam"] },
+    ],
   },
 
   projectsPage: {
-    title: ["Mis", "proyectos"],
-    subtitle: "Nueve cosas que he construido, desde plataformas de IA hasta juegos arcade. Cada una tiene su propia página con la historia detrás: qué hace, cómo funciona y qué aprendí montándola. Curiosea a gusto.",
+    title: "Proyectos",
+    lead:
+      "Una selección de lo que he construido: plataformas de IA, analítica de datos, aplicaciones web y juegos. Cada proyecto tiene su página con qué hace, cómo está hecho y qué decisiones tomé.",
+    filters: { all: "Todos", ai: "IA y datos", web: "Web", games: "Juegos y móvil" },
+    featured: "Proyecto destacado",
+    open: "Ver proyecto",
+    empty: "No hay proyectos en esta categoría.",
   },
 
   projects: {
+    tactiq: {
+      name: "TactiQ 360",
+      short: "TactiQ 360",
+      desc:
+        "SaaS multi-club para gestionar equipos de fútbol: convocatorias, pizarra, acta en directo sin cobertura, estadísticas automáticas e informes en PDF.",
+      tags: ["SaaS", "React", "FastAPI"],
+      cat: "web",
+      context: "En producción",
+    },
     ultimus: {
-      name: "Ultimus Defensor — BlueSentinel",
+      name: "Ultimus Defensor: BlueSentinel",
       short: "Ultimus Defensor",
       desc:
         "Plataforma BlueTeam con IA: detección MITRE ATT&CK, cascada Isolation Forest + XGBoost y un asistente de seguridad con LLM sobre más de 1.000 documentos.",
-      tags: ["IA / ML", "Ciberseguridad", "MITRE"],
+      tags: ["IA / ML", "Ciberseguridad", "LLM"],
+      cat: "ai",
+      context: "Proyecto final del máster",
     },
     nba: {
       name: "NBA Vision",
       short: "NBA Vision",
       desc:
-        "Laboratorio full-stack de analítica NBA: proyecciones por regresión cuantílica, pronósticos Elo y un simulador posesión a posesión. En Vercel y bilingüe.",
+        "Laboratorio full-stack de analítica NBA: proyecciones por regresión cuantílica, pronósticos Elo y un simulador posesión a posesión. Publicado en Vercel y bilingüe.",
       tags: ["React", "XGBoost", "Simulación"],
+      cat: "ai",
+      context: "En producción",
     },
     mindflow: {
-      name: "MINDFLOW — Brain Puzzle Games",
+      name: "MINDFLOW: Brain Puzzle Games",
       short: "MINDFLOW",
       desc:
-        "Mi primer juego móvil publicado: 4 modos de puzzle, 1.200 niveles verificados y totalmente offline. Disponible en Google Play.",
+        "Juego móvil publicado en Google Play: 4 modos de puzzle, 1.200 niveles verificados y totalmente offline.",
       tags: ["React Native", "TypeScript", "Android"],
+      cat: "games",
+      context: "Google Play",
     },
     kdd: {
       name: "Sistema de detección de intrusiones (KDD'99)",
       short: "Detección de intrusiones KDD'99",
       desc:
-        "IDS con machine learning: pipeline de clasificación jerárquica, ingeniería del dataset y cuadros de mando analíticos — más de 5M de registros procesados.",
+        "IDS con machine learning: clasificación jerárquica, ingeniería del dataset y cuadros de mando analíticos sobre más de 5 millones de registros.",
       tags: ["ML", "Big Data", "Python"],
+      cat: "ai",
+      context: "Big Data",
     },
     ecommerce: {
-      name: "Plataforma E-Commerce",
-      short: "Plataforma E-Commerce",
+      name: "Plataforma e-commerce",
+      short: "Plataforma e-commerce",
       desc:
-        "Tienda full-stack: autenticación JWT, carrito persistente, panel de administración, imágenes en Cloudinary y caché Redis en las rutas calientes.",
+        "Tienda full-stack: autenticación JWT, carrito persistente, panel de administración, imágenes en Cloudinary y caché Redis en las rutas críticas.",
       tags: ["React", "Node.js", "MongoDB"],
+      cat: "web",
+      context: "Full stack",
     },
     pacman: {
       name: "Pacman Remake",
       short: "Pacman",
       desc:
-        "El clásico arcade reconstruido en Java: mapas personalizados cargados desde ficheros, personajes seleccionables e IA de fantasmas que aprieta según tu puntuación.",
+        "El clásico arcade reconstruido en Java: mapas personalizados cargados desde ficheros, personajes seleccionables e IA de fantasmas.",
       tags: ["Java", "POO", "IA de juego"],
+      cat: "games",
+      context: "Java",
     },
     flappy: {
-      name: "Flappy Bird — clon mejorado",
+      name: "Flappy Bird, clon mejorado",
       short: "Flappy Bird",
       desc:
-        "Unity y C#: físicas 2D ajustadas a mano, obstáculos procedurales con object pooling y ranking online. Un botón, partidas infinitas.",
+        "Unity y C#: físicas 2D ajustadas a mano, obstáculos procedurales con object pooling y ranking online.",
       tags: ["Unity", "C#", "Physics2D"],
+      cat: "games",
+      context: "Unity",
     },
   },
 
   experience: {
     pageTitle: "Experiencia",
-    pageSubtitle:
-      "Ingeniería, docencia y deporte de élite, las tres a la vez desde hace unos años. Suena a mucho, y lo es — pero cada una me ha hecho mejor en las otras dos.",
+    pageLead:
+      "Consultoría e IA en empresa, formación, desarrollo de producto y deporte de élite. Todo a la vez durante los últimos años, y cada parte ha mejorado las otras.",
+    indexTitle: "En esta página",
+    index: {
+      bronto: "Brontobyte Cloud",
+      trainer: "Cambra de Comerç",
+      sycai: "Sycai Medical",
+      sport: "Waterpolo",
+      education: "Formación",
+    },
+    labels: {
+      current: "Actual",
+      highlights: "Responsabilidades",
+      achievements: "Resultados",
+      topics: "Qué enseño",
+      stack: "Tecnologías",
+      website: "Web",
+    },
+
+    bronto: {
+      org: "Brontobyte Cloud",
+      role: "Consultor, responsable y coordinador de IT e IA",
+      period: "2026 – actualidad",
+      location: "Girona",
+      summary:
+        "Responsable y coordinador del departamento de IA. Desarrollo soluciones de **IA privada** para clientes y para la propia Brontobyte Cloud, y aporto al proyecto **IMPLEMAI**, con el que ayudamos a las empresas a trabajar con sus datos en un entorno controlado y a automatizar procesos.",
+      about:
+        "Brontobyte Cloud es un proveedor europeo de ciberseguridad, cloud y protección de datos con sede en Girona. Trabaja a través de partners, con infraestructura bajo jurisdicción europea y certificaciones **ISO/IEC 27001** y **ENS categoría media**.",
+      highlights: [
+        "Coordino el departamento de IA: prioridades, hoja de ruta y relación con el resto de áreas técnicas.",
+        "Diseño y despliego entornos de **IA privada** para clientes: un LLM que consulta las aplicaciones de la empresa y ejecuta automatizaciones.",
+        "Construyo automatizaciones con **n8n** sobre Microsoft 365, Zoho y aplicaciones cloud de cliente.",
+        "Desarrollo herramientas internas de IA para los equipos de Brontobyte Cloud.",
+      ],
+      quote:
+        "Brontobyte Cloud sigue creciendo y nos hace mucha ilusión dar la bienvenida a Pau Vilar i Estrada, que se incorpora a nuestro equipo como consultor de IA y soluciones IT. Su formación en desarrollo de software, inteligencia artificial y Big Data nos permitirá sumar conocimiento y capacidad en diferentes ámbitos de la compañía.",
+      quoteSource: "Brontobyte Cloud en LinkedIn, traducido del catalán",
+      implemai: {
+        title: "IMPLEMAI, IA privada para empresas",
+        lead:
+          "El proyecto de IA privada de Brontobyte Cloud. Según lo que necesita cada empresa, montamos un entorno con un LLM que consulta todas las aplicaciones de la compañía y automatiza procesos, sin que los datos salgan de nuestro centro de datos.",
+        facts: [
+          { h: "Centro de datos propio en Madrid", p: "Máquinas virtuales dedicadas sobre GPUs NVIDIA RTX PRO 6000 Blackwell con 96 GB de VRAM." },
+          { h: "Un LLM conectado a tu empresa", p: "Consultas en lenguaje natural sobre tus aplicaciones y automatizaciones sobre ellas, orquestadas con n8n." },
+          { h: "Cloud y on-premise", p: "Cualquier aplicación cloud se integra vía n8n. Las on-premise se estudian caso por caso." },
+          { h: "Tus datos no salen de ahí", p: "No entrenamos modelos con ellos, no los usamos para otra cosa y no los vendemos." },
+        ],
+      },
+      certsLabel: "Certificaciones de la empresa",
+      website: "brontobytecloud.com",
+    },
 
     trainer: {
-      title: "FORMADOR EN IA",
-      titleHighlight: "· Cambra de Comerç de Barcelona",
-      subtitle:
-        "**Formador en IA** en la **Cambra de Comerç de Barcelona** — diseño e imparto formación en **sistemas de IA agéntica, flujos de automatización y soluciones de IA para empresa** dirigida a profesionales y compañías de Cataluña.",
-      blocks: [
-        {
-          h: "🎓 Programas impartidos",
-          p: "La Cambra de Comerç es una de las instituciones que lidera la transformación digital del tejido empresarial catalán. Mis cursos cubren todo el ciclo de vida de los sistemas agénticos — arquitectura, orquestación, despliegue e impacto de negocio — con práctica real, no diapositivas.",
-        },
-      ],
-      topicsTitle: "💡 Qué enseño",
+      org: "Cambra de Comerç de Barcelona",
+      role: "Formador en IA agéntica",
+      period: "2026",
+      location: "Barcelona",
+      summary:
+        "Diseño e imparto formación en **sistemas de IA agéntica, automatización y soluciones de IA para empresa**, dirigida a profesionales y compañías de Cataluña. Cubro todo el ciclo de vida: arquitectura, orquestación, despliegue e impacto en el negocio, siempre con práctica real.",
       topics: [
-        "**Arquitectura de agentes** — planificación, bucles de razonamiento e integración de herramientas (ReAct, chain-of-thought, reflexión)",
-        "**Automatización de negocio** — pipelines de principio a fin sobre procesos que las empresas ejecutan de verdad",
-        "**Orquestación multiagente** — patrones supervisor, agentes en paralelo y protocolos de traspaso",
-        "**Memoria y estado** — contexto a corto plazo, memoria vectorial a largo plazo y estrategias de recuperación",
-        "**Listo para producción** — evaluación, observabilidad y guardarraíles para sistemas autónomos",
+        "**Arquitectura de agentes**: planificación, bucles de razonamiento e integración de herramientas.",
+        "**Automatización de negocio**: pipelines de principio a fin sobre procesos reales.",
+        "**Orquestación multiagente**: patrón supervisor, agentes en paralelo y traspasos.",
+        "**Memoria y estado**: contexto a corto plazo, memoria vectorial y recuperación.",
+        "**Producción**: evaluación, observabilidad y guardarraíles.",
       ],
     },
 
     sycai: {
-      title: "EXPERIENCIA EN",
-      titleHighlight: "SYCAI MEDICAL",
-      subtitle:
-        "Sycai Medical es una startup de Barcelona que desarrolla herramientas de IA para radiólogos. Su tecnología ayuda a detectar y monitorizar **lesiones abdominales precancerosas** de forma temprana, cuando el tratamiento todavía cambia el desenlace.",
-      blocks: [
-        {
-          h: "🚀 Desarrollador Full Stack Junior · prácticas de 6 meses",
-          p: "Modernicé el software interno de la empresa: **reconstruí la plataforma** saliendo de su stack heredado, **rediseñé las bases de datos** y sustituí herramientas obsoletas por otras mantenibles.",
-        },
-        {
-          h: "🔧 Infraestructura AWS y cloud",
-          p: "Trabajé en la parte de **AWS** — escalabilidad, seguridad y coste — rediseñé esquemas de base de datos, containericé servicios con **Docker** y contribuí a la **automatización de despliegues**.",
-        },
-        {
-          h: "🏆 Sobre Sycai Medical",
-          p: "Fundada en **2020 en Barcelona**, Sycai se especializa en **IA médica**, ayudando a radiólogos a leer estudios de **TAC y resonancia**. Se integra con los **sistemas PACS hospitalarios** vía **DICOM**, y ha ganado varios premios de innovación además de financiación de aceleradoras europeas y ayudas health-tech.",
-        },
-      ],
-      techTitle: "⚡ Tecnologías utilizadas",
-      achievementsTitle: "💡 Logros principales",
+      org: "Sycai Medical",
+      role: "Desarrollador Full Stack · Prácticas de 6 meses",
+      period: "2025",
+      location: "Barcelona",
+      summary:
+        "Startup de Barcelona que desarrolla IA para radiólogos: ayuda a detectar y monitorizar **lesiones abdominales precancerosas** en TAC y resonancia, integrada con los sistemas **PACS** hospitalarios vía **DICOM**.",
       achievements: [
-        { b: "Migré la plataforma interna", r: " desde sistemas heredados a una arquitectura full-stack moderna." },
-        { b: "Rediseñé las bases de datos en AWS", r: " mejorando el rendimiento de las consultas y reduciendo coste." },
-        { b: "Construí entornos con Docker", r: " para despliegues cloud reproducibles y escalables." },
-        { b: "Mejoré la integración con PACS hospitalarios", r: " acortando el circuito de trabajo de los radiólogos." },
+        "**Migré la plataforma interna** desde sistemas heredados a una arquitectura full-stack moderna.",
+        "**Rediseñé las bases de datos en AWS**, mejorando el rendimiento de las consultas y reduciendo coste.",
+        "**Containericé servicios con Docker** para despliegues cloud reproducibles.",
+        "**Mejoré la integración con PACS**, acortando el circuito de trabajo de los radiólogos.",
       ],
     },
 
-    waterpolo: {
-      title: "CARRERA PROFESIONAL EN WATERPOLO",
-      subtitle:
-        "Portero de élite en la **División de Honor** — la máxima liga nacional — y en las **principales competiciones europeas de clubes**.",
+    sport: {
+      title: "Carrera deportiva",
+      lead:
+        "Portero de waterpolo en la **División de Honor**, la máxima liga española, y en las principales competiciones europeas de clubes.",
       currentBadge: "Club actual",
-      pastBadge: "Anterior",
       clubs: [
         {
           name: "Club Natació Catalunya",
-          years: "2026 – Actualidad",
+          years: "2026 – actualidad",
           current: true,
-          p: "Fichado como **portero** del **CN Catalunya** para la nueva temporada, compitiendo en lo más alto del waterpolo español:",
-          bullets: [
-            "**División de Honor** — la máxima liga profesional española · LEWATERPOLO",
-            "**Copa del Rey** — el torneo de copa más prestigioso del país",
-          ],
+          p: "Portero del CN Catalunya en lo más alto del waterpolo español.",
+          comps: ["División de Honor", "Copa del Rey"],
         },
         {
           name: "CN Sant Andreu",
           years: "2023 – 2026",
           current: false,
-          p: "**Portero titular** del **CN Sant Andreu** durante tres temporadas en la élite española y europea:",
-          bullets: [
-            "**División de Honor** — la máxima liga profesional española · LEWATERPOLO",
-            "**Copa del Rey** — el torneo de copa más prestigioso del país",
-            "**EuroCup** — la segunda competición continental de clubes",
-          ],
+          p: "Portero titular durante tres temporadas en la élite española y europea.",
+          comps: ["División de Honor", "Copa del Rey", "EuroCup"],
         },
         {
           name: "CN Barcelona",
           years: "2019 – 2023",
           current: false,
-          p: "**Portero** del **CN Barcelona**, el club **más laureado** del waterpolo español:",
-          bullets: [
-            "**División de Honor** — la máxima liga profesional española · LEWATERPOLO",
-            "**Copa del Rey** — el torneo de copa más prestigioso del país",
-            "**Champions League** — la máxima competición de clubes de Europa",
-            "**EuroCup** — la segunda competición continental de clubes",
-          ],
+          p: "Portero del club más laureado del waterpolo español.",
+          comps: ["División de Honor", "Copa del Rey", "Champions League", "EuroCup"],
         },
       ],
-      achievementsTitle: "💡 Lo que me ha dado el deporte",
-      achievements: [
-        { b: "Tres clubes de élite, una liga", r: " — la máxima división española, con competición europea cada temporada." },
-        { b: "Minutos en Champions League", r: " frente a los mejores clubes de Europa y, por extensión, del mundo." },
-        { b: "Sangre fría bajo presión", r: " — el trabajo de un portero es el siguiente lanzamiento, nunca el anterior." },
-        { b: "Una carrera dual sostenida", r: " — deporte a tiempo completo y estudios a tiempo completo, durante una década." },
+      lessonsTitle: "Lo que me ha dado el deporte",
+      lessons: [
+        "**Sangre fría bajo presión**: el trabajo de un portero es el siguiente lanzamiento, nunca el anterior.",
+        "**Una carrera dual sostenida** durante una década: deporte y estudios, ambos a tiempo completo.",
+        "**Minutos en Champions League** frente a los mejores clubes de Europa.",
       ],
     },
 
-    studies: {
-      title: "FORMACIÓN",
-      master: {
-        h: "🤖 Máster en Inteligencia Artificial y Big Data · 2025 – 2026",
-        statusBadge: "Finalizado · Matrícula de Honor",
-        p1: "**Finalizado** en **Monlau Formación Profesional** con **Matrícula de Honor**, la máxima distinción académica. Un programa muy exigente que recorre toda la IA y la ingeniería de datos moderna: aprendizaje supervisado y no supervisado, LLMs, sistemas agénticos, pipelines de datos en producción y despliegue real de modelos.",
-        p2: "Culminó con **Ultimus Defensor**, una plataforma completa de ciberseguridad con IA que combina detección de anomalías, clasificación MITRE ATT&CK y un asistente BlueTeam basado en LLM.",
-        areasTitle: "📚 Áreas principales",
-        areas: [
-          "**Modelos de IA** — redes neuronales, PLN, visión por computador, sistemas expertos y ética",
-          "**Machine learning** — supervisado, no supervisado, ensembles y evaluación de modelos",
-          "**Sistemas Big Data** — computación distribuida, pipelines de datos y procesamiento en tiempo real",
-          "**Big Data aplicado** — ingeniería de datos en producción, analítica y cuadros de mando",
-          "**Programación de IA** — Python, frameworks de ML, diseño de APIs y despliegue",
-          "**Proyecto final** — Ultimus Defensor: plataforma de IA completa para operaciones BlueTeam",
-        ],
-      },
-      dam: {
-        h: "Desarrollo de Aplicaciones Multiplataforma (DAM) · 2023 – 2025",
-        statusBadge: "Finalizado",
-        p1: "**Ciclo formativo de grado superior** en el **INS Poblenou**, centrado en diseñar, construir y desplegar software en múltiples plataformas.",
-        p2: "Me dio la base que sigo usando cada día: **ingeniería del software**, **desarrollo full-stack**, **bases de datos** y **gestión del ciclo de vida**, siempre con proyectos con forma de producción.",
-        techTitle: "👨‍💻 Tecnologías y herramientas",
-      },
-      bac: {
-        h: "Bachillerato de Ciencias Sociales · 2019 – 2021",
-        p1: "Cursado en el **Centro de Alto Rendimiento (INS CAR)**, un centro pensado exclusivamente para deportistas de élite de nivel nacional.",
-        p2: "Allí compaginé **seis horas de entrenamiento diarias** con la carga académica completa — de ahí salieron la gestión del tiempo, la disciplina y la calma bajo presión.",
-        p3: "El INS CAR acoge a los mejores deportistas de España de múltiples disciplinas, incluida la **selección española de waterpolo**.",
-      },
-      certificationsTitle: "CERTIFICACIONES",
-      certifications: [
-        "**Google y Banco Santander:** Inteligencia Artificial y Productividad (oct. 2024)",
-        "**IBM:** Python (ago. 2024)",
+    education: {
+      title: "Formación",
+      items: [
+        {
+          h: "Máster en Inteligencia Artificial y Big Data",
+          org: "Monlau Formación Profesional",
+          period: "2025 – 2026",
+          badge: "Matrícula de Honor",
+          p: "Aprendizaje supervisado y no supervisado, LLMs, sistemas agénticos, pipelines de datos en producción y despliegue de modelos. Proyecto final: **Ultimus Defensor**, plataforma de ciberseguridad con IA.",
+        },
+        {
+          h: "CFGS Desarrollo de Aplicaciones Multiplataforma (DAM)",
+          org: "INS Poblenou",
+          period: "2023 – 2025",
+          badge: "",
+          p: "Ingeniería del software, desarrollo full-stack, bases de datos y gestión del ciclo de vida, siempre con proyectos con forma de producción.",
+        },
+        {
+          h: "Bachillerato de Ciencias Sociales",
+          org: "INS CAR, Centro de Alto Rendimiento",
+          period: "2019 – 2021",
+          badge: "",
+          p: "Centro para deportistas de élite de nivel nacional: seis horas de entrenamiento diarias junto a la carga académica completa.",
+        },
       ],
-      languagesTitle: "IDIOMAS",
+      certificationsTitle: "Certificaciones",
+      certifications: [
+        "**Google y Banco Santander**: Inteligencia Artificial y Productividad (2024)",
+        "**IBM**: Python (2024)",
+      ],
+      languagesTitle: "Idiomas",
       languages: [
-        { l: "Español", v: "Nativo" },
         { l: "Catalán", v: "Nativo" },
+        { l: "Español", v: "Nativo" },
         { l: "Inglés", v: "B1" },
       ],
     },
@@ -345,28 +358,36 @@ export const es: Dict = {
 
   contact: {
     title: "Hablemos",
-    eyebrow: "Contacto",
     lead:
-      "Hola, soy **Pau Vilar** — desarrollador al que le gusta construir cosas sólidas, guiadas por datos y, sobre todo, terminadas. Gracias por llegar hasta aquí abajo.",
-    paragraphs: [
-      "Tengo el **CFGS en Desarrollo de Aplicaciones Multiplataforma (DAM)** y el **Máster en Inteligencia Artificial y Big Data**, que terminé con **Matrícula de Honor**. Lo que me mueve son los **productos con IA**, los **sistemas agénticos** y el **análisis de datos** — machine learning que acaba delante de un usuario de verdad y no en un notebook que nadie vuelve a abrir.",
-      "En paralelo soy **portero profesional de waterpolo**, esta temporada en el **Club Natació Catalunya**, en **División de Honor** y **Copa del Rey**. Diez años entrenando a las seis de la mañana antes de clase son, probablemente, la razón de que las entregas no me pongan nervioso.",
-      "Estoy abierto a **posiciones junior, prácticas y colaboraciones** en desarrollo de software, ingeniería de IA y análisis de datos. Si algo de esto te encaja, escríbeme — aunque sea solo para saludar o preguntar cómo está hecho algo de esta web. Siempre contesto.",
+      "No estoy buscando empleo. Sí estoy abierto a **proyectos concretos** de IA, automatización o software, a colaboraciones y a conversaciones con gente que esté construyendo algo interesante.",
+    reasonsTitle: "Buenos motivos para escribirme",
+    reasons: [
+      { h: "Un entorno de IA privada", p: "Quieres que un LLM trabaje con los datos de tu empresa sin que salgan de un entorno controlado." },
+      { h: "Automatizar un proceso", p: "Tienes una tarea repetitiva entre aplicaciones y quieres quitártela de encima con n8n o agentes." },
+      { h: "Una aplicación a medida", p: "Necesitas una web, una app móvil o una herramienta interna, de punta a punta." },
+      { h: "Formación para tu equipo", p: "Un taller práctico de IA agéntica adaptado a vuestra realidad." },
+      { h: "Conocernos", p: "Sin proyecto concreto todavía. Un café o una llamada también está bien." },
     ],
-    cardsTitle: "Dónde encontrarme",
-    cards: [
-      { k: "email", h: "Email", p: "La vía más rápida para llegar a mí.", cta: "pvilardev@gmail.com" },
-      { k: "linkedin", h: "LinkedIn", p: "Trayectoria, novedades y un sitio donde saludar.", cta: "linkedin.com/in/pau-vilar" },
-      { k: "github", h: "GitHub", p: "Todos los proyectos de esta web, con su código.", cta: "github.com/PauVilarEstrada" },
-      { k: "cv", h: "CV", p: "Una página, en PDF, siempre actualizado.", cta: "Descargar CV" },
+    formTitle: "Cuéntame tu proyecto",
+    formNote: "Al enviar se abrirá tu cliente de correo con el mensaje preparado.",
+    form: {
+      name: "Nombre",
+      company: "Empresa (opcional)",
+      topic: "Tema",
+      topics: ["IA privada", "Automatización", "Software a medida", "Formación", "Conocernos"],
+      message: "Mensaje",
+      messagePlaceholder: "Qué necesitas, plazos aproximados y cualquier contexto útil.",
+      submit: "Preparar correo",
+      subject: "Proyecto",
+      required: "Completa tu nombre y el mensaje.",
+    },
+    channelsTitle: "Contacto directo",
+    channels: [
+      { k: "email", h: "Email", cta: "pvilardev@gmail.com" },
+      { k: "linkedin", h: "LinkedIn", cta: "linkedin.com/in/pau-vilar" },
+      { k: "github", h: "GitHub", cta: "github.com/PauVilarEstrada" },
+      { k: "cv", h: "CV en PDF", cta: "Descargar" },
     ],
-    lookingTitle: "Qué estoy buscando",
-    looking: [
-      "Ingeniería de IA / ML",
-      "Desarrollo full-stack",
-      "Ingeniería de datos",
-      "Posiciones junior y prácticas",
-      "Barcelona o remoto",
-    ],
+    basedIn: "Desde Catalunya, en remoto o presencial.",
   },
 };
