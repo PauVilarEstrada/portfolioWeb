@@ -55,6 +55,26 @@
   padding: 22px 0;
   isolation: isolate;
 }
+/* Pinned reference project: a paperclip tab and a permanent tint */
+.pindex-list > li.is-pinned { border-bottom-color: var(--ink); }
+.is-pinned .prow { padding-top: 40px; }
+.is-pinned .prow::before { opacity: 0.55; transform: none; }
+.prow-pin {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px 3px 8px;
+  border-radius: var(--pill);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.prow-pin svg { width: 13px; height: 13px; transform: rotate(-35deg); }
+
 /* Hover band in the project's own colour, grown from the left */
 .prow::before {
   content: "";
@@ -68,6 +88,7 @@
   transition: opacity 0.35s var(--ease), transform 0.5s var(--ease-out);
 }
 .prow:hover::before, .prow:focus-visible::before { opacity: 1; transform: none; }
+.is-pinned .prow:hover::before { opacity: 1; }
 
 .prow-n {
   color: var(--ink-3);

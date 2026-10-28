@@ -122,6 +122,7 @@ export const en = {
     featured: "Featured project",
     cols: { project: "Project", type: "Type", stack: "Stack", status: "Status" },
     count: "projects",
+    pinned: "Pinned",
     open: "View project",
     empty: "There are no projects in this category.",
   },

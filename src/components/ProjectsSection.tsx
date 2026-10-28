@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FiArrowUpRight } from "react-icons/fi";
+import { FiArrowUpRight, FiPaperclip } from "react-icons/fi";
 import "../css/ProjectsSection.css";
 import { useI18n } from "../i18n/LanguageContext";
 import { PROJECTS } from "../data/projects";
@@ -56,10 +56,15 @@ export default function ProjectsSection() {
             <ol className="pindex-list">
               {visible.map((meta, i) => {
                 const p = t.projects[meta.key];
-                const n = PROJECTS.indexOf(meta) + 1;
+                const n = i + 1;
                 return (
-                  <li key={meta.key} style={{ "--i": i, "--accent": meta.color } as React.CSSProperties}>
+                  <li key={meta.key} className={meta.pinned ? "is-pinned" : undefined} style={{ "--i": i, "--accent": meta.color } as React.CSSProperties}>
                     <Link to={meta.path} className="prow">
+                      {meta.pinned ? (
+                        <span className="prow-pin">
+                          <FiPaperclip aria-hidden="true" /> {pp.pinned}
+                        </span>
+                      ) : null}
                       <span className="prow-n">{String(n).padStart(INDEX_DIGITS, "0")}</span>
                       <span className="prow-main">
                         <span className="prow-logo"><img src={meta.logo} alt="" loading="lazy" /></span>

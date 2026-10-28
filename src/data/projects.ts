@@ -26,11 +26,13 @@ export type ProjectMeta = {
   color: string;
   /** Short, language-neutral stack line for the projects index. */
   stack: string;
+  /** Shown first with a paperclip: the reference piece of the portfolio. */
+  pinned?: boolean;
 };
 
 export const PROJECTS: ProjectMeta[] = [
+  { key: "ultimus", path: "/projects/ultimusdefensor", logo: udLogo, cover: udCover, color: "#38bdf8", stack: "Python · XGBoost · LLM", pinned: true },
   { key: "tactiq", path: "/projects/tactiq360", logo: tactiqLogo, cover: tactiqCover, color: "#2563eb", stack: "React · FastAPI · PostgreSQL" },
-  { key: "ultimus", path: "/projects/ultimusdefensor", logo: udLogo, cover: udCover, color: "#38bdf8", stack: "Python · XGBoost · LLM" },
   { key: "nba", path: "/projects/nbavision", logo: nbaLogo, cover: nbaCover, color: "#ef4444", stack: "React · FastAPI · XGBoost" },
   { key: "mindflow", path: "/projects/mindflow", logo: mindflowLogo, cover: mindflowCover, color: "#6c9bff", stack: "React Native · TypeScript" },
   { key: "kdd", path: "/projects/kdd", logo: kddLogo, color: "#22c55e", stack: "Python · scikit-learn · Big Data" },

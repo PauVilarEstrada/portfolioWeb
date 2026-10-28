@@ -123,6 +123,7 @@ export const es: Dict = {
     featured: "Proyecto destacado",
     cols: { project: "Proyecto", type: "Tipo", stack: "Stack", status: "Estado" },
     count: "proyectos",
+    pinned: "Fijado",
     open: "Ver proyecto",
     empty: "No hay proyectos en esta categoría.",
   },
